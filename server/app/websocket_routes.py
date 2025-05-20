@@ -1,14 +1,18 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-from app.database import supabase_client
+from app.database import db as firestore_client
 from app.ai_provider import generate_response  # ✅ 统一管理 AI API 提供商
 import json
 import asyncio
 from datetime import datetime, timedelta
 import uuid
+from google.cloud import firestore
+import os
 
 def get_bot_id_by_group(group_id: str) -> str:
-    result = supabase_client.table("ai_bots").select("id").eq("group_id", group_id).limit(1).execute().data
-    return result[0]["id"] if result else None
+    bots_ref = firestore_client.collection("ai_bots").where("group_id", "==", group_id).limit(1).stream()
+    for bot in bots_ref:
+        return bot.to_dict().get("id")
+    return None
 
 websocket_router = APIRouter()
 
@@ -111,15 +115,10 @@ async def push_chat_message(group_id, message):
 async def check_cognitive_guidance(group_id: str, api_provider: str):
     """基于最近的 5 条消息，判断是否需要 AI 介入，并生成引导信息"""
     
-    chat_history = (
-        supabase_client.table("chat_messages")
-        .select("id, user_id, message")
-        .eq("group_id", group_id)
-        .order("created_at", desc=True)
-        .limit(5)
-        .execute()
-        .data
-    )
+    chat_history = []
+    chat_docs = firestore_client.collection("chat_messages").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(5).stream()
+    for doc in chat_docs:
+        chat_history.append(doc.to_dict())
 
     if not chat_history:
         return
@@ -129,15 +128,10 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
 
     bot_id = get_bot_id_by_group(group_id)
 
-    last_summary = (
-        supabase_client.table("chat_summaries")
-        .select("summary_text")
-        .eq("group_id", group_id)
-        .order("summary_time", desc=True)
-        .limit(1)
-        .execute()
-        .data
-    )
+    last_summary = []
+    summary_docs = firestore_client.collection("chat_summaries").where("group_id", "==", group_id).order_by("summary_time", direction=firestore.Query.DESCENDING).limit(1).stream()
+    for doc in summary_docs:
+        last_summary.append(doc.to_dict())
     summary_text = last_summary[0]["summary_text"] if last_summary else ""
     
     print(f"🪐 生成 AI bot 聊天干预: group_id={group_id}，使用 API: {api_provider}，传入main prompt: {conversation_content}，传入history_prompt: {summary_text}")
@@ -173,14 +167,10 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
     
 
 # ✅ 通过 group_id 获取 AI 机器人 ID 和 user_id
-    bot_data = (
-        supabase_client.table("ai_bots")
-        .select("id", "user_id")
-        .eq("group_id", group_id)
-        .limit(1)
-        .execute()
-        .data
-    )
+    bot_data = []
+    bot_docs = firestore_client.collection("ai_bots").where("group_id", "==", group_id).limit(1).stream()
+    for doc in bot_docs:
+        bot_data.append(doc.to_dict())
 
     if bot_data:
         chatbot_id = bot_data[0]["id"]
@@ -190,15 +180,10 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
         user_id = None
 
     # ✅ 通过 group_id 获取当前活跃的 session_id
-    session_data = (
-        supabase_client.table("chat_sessions")
-        .select("id")
-        .eq("group_id", group_id)
-        .order("created_at", desc=True)
-        .limit(1)
-        .execute()
-        .data
-    )
+    session_data = []
+    session_docs = firestore_client.collection("chat_sessions").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(1).stream()
+    for doc in session_docs:
+        session_data.append(doc.to_dict())
     session_id = session_data[0]["id"] if session_data else None
 
     ai_message = {
@@ -213,7 +198,7 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
     }
 
     # ✅ 入库 AI 认知引导消息
-    supabase_client.table("chat_messages").insert(ai_message).execute()
+    firestore_client.collection("chat_messages").add(ai_message)
 
     await push_chat_message(group_id, ai_message)
 
@@ -228,15 +213,10 @@ async def push_ai_summary(group_id: str, api_provider: str):
     print(f"🚀 生成 AI 总结: group_id={group_id}，使用 API: {api_provider}")
 
     # ✅ 获取当前 session
-    session = (
-        supabase_client.table("chat_sessions")
-        .select("id")
-        .eq("group_id", group_id)
-        .order("created_at", desc=True)
-        .limit(1)
-        .execute()
-        .data
-    )
+    session = []
+    session_docs = firestore_client.collection("chat_sessions").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(1).stream()
+    for doc in session_docs:
+        session.append(doc.to_dict())
 
     if not session:
         print("❌ 没有找到当前活跃 session")
@@ -244,15 +224,10 @@ async def push_ai_summary(group_id: str, api_provider: str):
     session_id = session[0]["id"]
 
     # ✅ 获取最近 10 条聊天记录
-    chat_history = (
-        supabase_client.table("chat_messages")
-        .select("id, user_id, message")
-        .eq("group_id", group_id)
-        .order("created_at", desc=True)
-        .limit(10)
-        .execute()
-        .data
-    )
+    chat_history = []
+    chat_docs = firestore_client.collection("chat_messages").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(10).stream()
+    for doc in chat_docs:
+        chat_history.append(doc.to_dict())
 
     if not chat_history:
         print("❌ 没有找到聊天记录")
@@ -290,7 +265,7 @@ async def push_ai_summary(group_id: str, api_provider: str):
         "summary_time": "now()",
     }
 
-    supabase_client.table("chat_summaries").insert(summary_entry).execute()
+    firestore_client.collection("chat_summaries").add(summary_entry)
 
     if group_id in connected_clients:
         summary_payload = json.dumps({

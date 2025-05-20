@@ -1,11 +1,11 @@
 from fastapi import APIRouter, HTTPException, Query
-from app.database import supabase_client
 from app.generate_prompts import (
     generate_prompts_for_group,
     set_prompt_version_active,
 )
 from pydantic import BaseModel
 from datetime import datetime
+from app.database import db
 from typing import Optional
 import uuid
 
@@ -17,8 +17,8 @@ async def get_all_ai_bots():
     获取所有 AI Bots（供前端显示所有 bot）
     """
     try:
-        result = supabase_client.table("ai_bots").select("*").execute()
-        return result.data
+        docs = db.collection("ai_bots").stream()
+        return [doc.to_dict() | {"id": doc.id} for doc in docs]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取所有 bots 失败: {str(e)}")
 
@@ -49,19 +49,15 @@ async def get_ai_bot_feedback(
     if not prompt_type:
         return {"message": "No prompt_type specified", "data": None}
     try:
-        query = (
-            supabase_client.table("ai_bot_feedback")
-            .select("*")
-            .eq("user_id", user_id)
-            .eq("bot_id", bot_id)
-            .eq("prompt_type", prompt_type)
-        )
+        query = db.collection("ai_bot_feedback").where("user_id", "==", user_id).where("bot_id", "==", bot_id).where("prompt_type", "==", prompt_type)
         if target_id:
-            query = query.eq("target_id", target_id)
-        result = query.order("created_at", desc=True).limit(1).execute()
-        if not result.data:
+            query = query.where("target_id", "==", target_id)
+        docs = list(query.stream())
+        if not docs:
             return {"message": "No feedback found", "data": None}
-        return result.data[0]
+        # Sort by created_at desc and take the first one (limit 1)
+        doc = sorted(docs, key=lambda d: d.to_dict().get("created_at", ""), reverse=True)[0]
+        return doc.to_dict() | {"id": doc.id}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取反馈失败: {str(e)}")
 
@@ -70,21 +66,24 @@ async def get_ai_bot(bot_id: str):
     """
     根据 AI 机器人 ID 获取具体的机器人信息
     """
-    return supabase_client.table("ai_bots").select("*").eq("id", bot_id).execute().data
+    docs = db.collection("ai_bots").where("id", "==", bot_id).stream()
+    return [doc.to_dict() | {"id": doc.id} for doc in docs]
 
 @router.get("/api/ai_bots/group/{group_id}")
 async def get_ai_bots_by_group(group_id: str):
     """
     获取特定小组的 AI 机器人
     """
-    return supabase_client.table("ai_bots").select("*").eq("group_id", group_id).execute().data
+    docs = db.collection("ai_bots").where("group_id", "==", group_id).stream()
+    return [doc.to_dict() | {"id": doc.id} for doc in docs]
 
 @router.get("/api/ai_bots/user/{user_id}")
 async def get_ai_bots_by_user(user_id: str):
     """
     获取属于特定用户的 AI 机器人
     """
-    return supabase_client.table("ai_bots").select("*").eq("user_id", user_id).execute().data
+    docs = db.collection("ai_bots").where("user_id", "==", user_id).stream()
+    return [doc.to_dict() | {"id": doc.id} for doc in docs]
 
 # 🎯 为某个小组的 AI Bot 生成 prompts（并激活最新版本）
 @router.post("/api/ai_bots/generate_prompt/{group_id}")
@@ -110,19 +109,23 @@ async def get_prompt_versions(bot_id: str, prompt_type: str, version: str = Quer
     获取指定 AI Bot 的 prompt 历史版本（可筛选 prompt_type 和 version）
     """
     try:
-        query = (
-            supabase_client.table("ai_prompt_versions")
-            .select("*")
-            .eq("ai_bot_id", bot_id)
-            .eq("prompt_type", prompt_type)
-        )
+        query = db.collection("ai_prompt_versions")\
+            .where("ai_bot_id", "==", bot_id)\
+            .where("prompt_type", "==", prompt_type)
         if version:
-            query = query.eq("template_version", version)
+            query = query.where("template_version", "==", version)
 
-        result = query.order("created_at", desc=True).execute()
-        for item in result.data:
-            item["is_current"] = item.get("is_active", False)
-        return result.data
+        docs = query.stream()
+        result = []
+        for doc in docs:
+            data = doc.to_dict()
+            data["id"] = doc.id
+            data["is_current"] = data.get("is_active", False)
+            result.append(data)
+
+        # 按 created_at 字段排序（降序）
+        result.sort(key=lambda d: d.get("created_at", ""), reverse=True)
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取版本失败: {str(e)}")
 
@@ -137,15 +140,11 @@ async def update_ai_bot_model(bot_id: str, update_data: BotModelUpdateRequest):
     根据 AI Bot 的 ID 更新其 model 字段
     """
     try:
-        update_response = (
-            supabase_client.table("ai_bots")
-            .update({"model": update_data.model})
-            .eq("id", bot_id)
-            .execute()
-        )
-        if not update_response.data:
+        db.collection("ai_bots").document(bot_id).update({"model": update_data.model})
+        doc = db.collection("ai_bots").document(bot_id).get()
+        if not doc.exists:
             raise HTTPException(status_code=404, detail="未找到指定的 AI Bot 或更新失败")
-        return {"message": "model 字段已更新", "data": update_response.data[0]}
+        return {"message": "model 字段已更新", "data": doc.to_dict() | {"id": doc.id}}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"更新失败: {str(e)}")
 
@@ -155,15 +154,10 @@ async def get_ai_bot_model(bot_id: str):
     根据 AI Bot 的 ID 获取其 model 字段
     """
     try:
-        result = (
-            supabase_client.table("ai_bots")
-            .select("model")
-            .eq("id", bot_id)
-            .execute()
-        )
-        if not result.data:
+        doc = db.collection("ai_bots").document(bot_id).get()
+        if not doc.exists:
             raise HTTPException(status_code=404, detail="未找到指定的 AI Bot")
-        return {"model": result.data[0].get("model", None)}
+        return {"model": doc.to_dict().get("model", None)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取失败: {str(e)}")
 
@@ -198,18 +192,15 @@ async def submit_ai_bot_feedback(data: AIBotFeedbackRequest):
             raise HTTPException(status_code=400, detail="target_id 缺失或不合法")
 
         # 查询是否已有相同 prompt_type 的反馈（user_id, bot_id, target_id, prompt_type）
-        existing = (
-            supabase_client.table("ai_bot_feedback")
-            .select("*")
-            .eq("user_id", data.user_id)
-            .eq("bot_id", data.bot_id)
-            .eq("target_id", target_id)
-            .eq("prompt_type", data.prompt_type)
-            .execute()
-            .data
+        query = (
+            db.collection("ai_bot_feedback")
+            .where("user_id", "==", data.user_id)
+            .where("bot_id", "==", data.bot_id)
+            .where("target_id", "==", target_id)
+            .where("prompt_type", "==", data.prompt_type)
         )
+        docs = list(query.stream())
 
-        # 正常反馈流程
         feedback_payload = {
             "user_id": data.user_id,
             "bot_id": data.bot_id,
@@ -227,21 +218,15 @@ async def submit_ai_bot_feedback(data: AIBotFeedbackRequest):
         if data.comment_text is not None:
             feedback_payload["comment_text"] = data.comment_text
 
-        if existing:
-            update_response = (
-                supabase_client.table("ai_bot_feedback")
-                .update(feedback_payload)
-                .eq("id", existing[0]["id"])
-                .execute()
-            )
-            return {"message": "反馈已更新", "data": update_response.data[0]}
+        if docs:
+            doc_ref = db.collection("ai_bot_feedback").document(docs[0].id)
+            doc_ref.update(feedback_payload)
+            updated_doc = doc_ref.get()
+            return {"message": "反馈已更新", "data": updated_doc.to_dict() | {"id": updated_doc.id}}
         else:
-            insert_response = (
-                supabase_client.table("ai_bot_feedback")
-                .insert(feedback_payload)
-                .execute()
-            )
-            return {"message": "反馈已提交", "data": insert_response.data[0]}
+            inserted, ref = db.collection("ai_bot_feedback").add(feedback_payload)
+            doc = ref.get()
+            return {"message": "反馈已提交", "data": doc.to_dict() | {"id": doc.id}}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"反馈处理失败: {str(e)}")

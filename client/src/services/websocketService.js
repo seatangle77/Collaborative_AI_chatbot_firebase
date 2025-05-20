@@ -8,7 +8,9 @@ export const createWebSocket = (groupId) => {
     return;
   }
 
-  const socket = new WebSocket(`wss://10.4.131.51:8000/ws/${groupId}`);
+  const protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  const host = location.hostname + (location.port ? `:${location.port}` : '');
+  const socket = new WebSocket(`${protocol}://${host}/ws/${groupId}`);
   sockets[groupId] = socket;
   messageCounterforaiSummary[groupId] = 0; // ✅ 初始化 AI 会议总结计数
   messageCounterforaiGuidance[groupId] = 0; // ✅ 初始化 AI 认知引导计数

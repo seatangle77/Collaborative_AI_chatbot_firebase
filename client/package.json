@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@guolao/vue-monaco-editor": "^1.5.5",
     "@supabase/supabase-js": "^2.48.1",
     "axios": "^1.7.9",

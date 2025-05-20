@@ -2,7 +2,7 @@ import os
 import json
 from openai import OpenAI  
 from dotenv import load_dotenv
-from .database import supabase_client
+from .database import db as firestore_client
 
 # ✅ 加载 .env 配置
 load_dotenv()
@@ -38,21 +38,20 @@ def generate_ai_response(bot_id: str, main_prompt: str, history_prompt: str = No
         else:
             raise ValueError(f"❌ Unsupported prompt_type: {prompt_type}")
 
-        response = (
-            supabase_client.table(table)
-            .select("rendered_prompt")
-            .eq(id_field, id_value)
-            .eq("prompt_type", prompt_type)
-            .eq("is_active", True)
-            .order("created_at", desc=True)
+        query = (
+            firestore_client.collection(table)
+            .where(id_field, "==", id_value)
+            .where("prompt_type", "==", prompt_type)
+            .where("is_active", "==", True)
+            .order_by("created_at", direction="DESCENDING")
             .limit(1)
-            .execute()
-        )
+        ).stream()
 
-        if not response.data or len(response.data) == 0:
+        docs = list(query)
+        if not docs:
             raise ValueError(f"❌ No active prompt found for {prompt_type}")
 
-        system_prompt = response.data[0]["rendered_prompt"]
+        system_prompt = docs[0].to_dict()["rendered_prompt"]
         max_words = 150 if prompt_type == "real_time_summary" else 100
         system_prompt = system_prompt.replace("{max_words}", str(max_words))
 

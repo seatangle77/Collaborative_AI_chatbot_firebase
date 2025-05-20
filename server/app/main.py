@@ -20,6 +20,7 @@ origins = [
     "http://10.4.153.143:3000",
     "https://10.4.153.143:3000",
     "https://10.4.131.51:3000",
+    "https://collaborative-ai-chatbot.web.app",
 ]
 
 # ✅ 添加 CORS 中间件

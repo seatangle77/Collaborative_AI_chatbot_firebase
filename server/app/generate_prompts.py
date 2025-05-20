@@ -1,21 +1,19 @@
 import importlib.util
 from jinja2 import Template
-from supabase import create_client, Client
 import os
 import traceback
-
-# 数据库连接
-url = os.environ.get("SUPABASE_URL")
-key = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(url, key)
+from app.database import db
 
 # 获取组数据
 def get_group_data(group_id):
-    group = supabase.table("groups").select("*").eq("id", group_id).single().execute().data
-    agendas = supabase.table("chat_agendas").select("*").eq("group_id", group_id).order("created_at").execute().data
-    member_ids = supabase.table("group_memberships").select("user_id").eq("group_id", group_id).execute().data
+    group = db.collection("groups").document(group_id).get().to_dict()
+    agendas = [doc.to_dict() for doc in db.collection("chat_agendas").where("group_id", "==", group_id).order_by("created_at").stream()]
+    member_ids = [doc.to_dict() for doc in db.collection("group_memberships").where("group_id", "==", group_id).stream()]
     user_ids = [m["user_id"] for m in member_ids]
-    users = supabase.table("users_info").select("*").in_("user_id", user_ids).execute().data
+    users = []
+    if user_ids:
+        # Firestore 'in' queries support up to 10 items, handle accordingly if needed
+        users = [doc.to_dict() for doc in db.collection("users_info").where("user_id", "in", user_ids).stream()]
 
     user_data = [
         {
@@ -49,9 +47,11 @@ def load_default_prompts(path="default_prompts.py"):
 def generate_prompts_for_group(group_id: str):
     try:
         prompts = load_default_prompts("default_prompts.py")
-        bot = supabase.table("ai_bots").select("*").eq("group_id", group_id).single().execute().data
-        if not bot:
+        bot_query = db.collection("ai_bots").where("group_id", "==", group_id).limit(1).stream()
+        bot_doc = next(bot_query, None)
+        if not bot_doc:
             return
+        bot = bot_doc.to_dict()
         bot_id = bot["id"]
         data = get_group_data(group_id)
 
@@ -65,20 +65,31 @@ def generate_prompts_for_group(group_id: str):
                 continue
             field_name = f"{prompt_name}_systemprompt"
             
-            existing_versions = supabase.table("ai_prompt_versions").select("template_version").eq("ai_bot_id", bot_id).eq("prompt_type", prompt_name).execute().data
+            versions_query = db.collection("ai_prompt_versions") \
+                .where("ai_bot_id", "==", bot_id) \
+                .where("prompt_type", "==", prompt_name) \
+                .stream()
+            existing_versions = [v.to_dict() for v in versions_query]
             version_numbers = [int(v["template_version"].lstrip("v")) for v in existing_versions if v["template_version"].startswith("v") and v["template_version"][1:].isdigit()]
             new_version = max(version_numbers, default=0) + 1
             template_version = f"v{new_version}"
             
-            supabase.table("ai_bots").update({field_name: filled_prompt}).eq("id", bot_id).execute()
-            supabase.table("ai_prompt_versions").insert({
+            # Update ai_bots document
+            bot_docs = db.collection("ai_bots").where("id", "==", bot_id).limit(1).stream()
+            bot_doc_ref = next(bot_docs, None)
+            if bot_doc_ref:
+                bot_doc_ref.reference.update({field_name: filled_prompt})
+
+            # Insert new version document
+            db.collection("ai_prompt_versions").add({
                 "ai_bot_id": bot_id,
                 "group_id": group_id,
                 "prompt_type": prompt_name,
                 "rendered_prompt": filled_prompt,
                 "template_version": template_version,
-                "source": "auto"
-            }).execute()
+                "source": "auto",
+                "is_active": False
+            })
             print(f"✅ Updated {field_name} for bot {bot['name']}")
     except Exception as e:
         print("🔥 生成 prompts 失败（全局异常）:")
@@ -89,27 +100,30 @@ def generate_prompts_for_personal_agent(agent_id: str):
         prompts = load_default_prompts("default_prompts.py")
         
         # 获取 agent 对应的 user_id
-        user_result = supabase.table("users_info").select("*").eq("agent_id", agent_id).single().execute()
-        if not user_result.data:
+        user_query = db.collection("users_info").where("agent_id", "==", agent_id).limit(1).stream()
+        user_doc = next(user_query, None)
+        if not user_doc:
             raise ValueError(f"❌ 无法通过 agent_id={agent_id} 找到用户信息")
-        user_info = user_result.data
+        user_info = user_doc.to_dict()
         user_id = user_info["user_id"]
 
         print(f"🧪 正在查询用户 user_id={user_id}")
-        agent_info = supabase.table("personal_agents").select("*").eq("id", agent_id).single().execute().data
-
-        if not agent_info:
+        agent_query = db.collection("personal_agents").where("id", "==", agent_id).limit(1).stream()
+        agent_doc = next(agent_query, None)
+        if not agent_doc:
             print(f"❌ 未找到 agent 信息，agent_id={agent_id}")
             return
+        agent_info = agent_doc.to_dict()
 
-        agent_id = agent_info["id"]
-
-        membership = supabase.table("group_memberships").select("group_id").eq("user_id", user_id).execute().data
+        membership_query = db.collection("group_memberships").where("user_id", "==", user_id).limit(1).stream()
+        membership_doc = next(membership_query, None)
         group_goal = ""
-        if membership:
-            group_id = membership[0]["group_id"]
-            group_data = supabase.table("groups").select("group_goal").eq("id", group_id).single().execute().data
-            if group_data:
+        if membership_doc:
+            membership = membership_doc.to_dict()
+            group_id = membership.get("group_id")
+            group_doc = db.collection("groups").document(group_id).get()
+            if group_doc.exists:
+                group_data = group_doc.to_dict()
                 group_goal = group_data["group_goal"].strip()
 
         user_data = {
@@ -132,20 +146,30 @@ def generate_prompts_for_personal_agent(agent_id: str):
                     template = Template(prompts[prompt_name]["system_prompt"])
                     filled_prompt = template.render(**user_data)
                     field_name = f"{prompt_name}_prompt"
-                    supabase.table("personal_agents").update({field_name: filled_prompt}).eq("user_id", user_id).execute()
 
-                    existing_versions = supabase.table("agent_prompt_versions").select("template_version").eq("agent_id", agent_id).eq("prompt_type", prompt_name).execute().data
+                    # Update personal_agents document
+                    personal_agents_query = db.collection("personal_agents").where("user_id", "==", user_id).limit(1).stream()
+                    personal_agent_doc = next(personal_agents_query, None)
+                    if personal_agent_doc:
+                        personal_agent_doc.reference.update({field_name: filled_prompt})
+
+                    versions_query = db.collection("agent_prompt_versions") \
+                        .where("agent_id", "==", agent_id) \
+                        .where("prompt_type", "==", prompt_name) \
+                        .stream()
+                    existing_versions = [v.to_dict() for v in versions_query]
                     version_numbers = [int(v["template_version"].lstrip("v")) for v in existing_versions if v["template_version"].startswith("v") and v["template_version"][1:].isdigit()]
                     new_version = max(version_numbers, default=0) + 1
                     template_version = f"v{new_version}"
 
-                    supabase.table("agent_prompt_versions").insert({
+                    db.collection("agent_prompt_versions").add({
                         "agent_id": agent_id,
                         "prompt_type": prompt_name,
                         "rendered_prompt": filled_prompt,
                         "template_version": template_version,
-                        "source": "auto"
-                    }).execute()
+                        "source": "auto",
+                        "is_active": False
+                    })
 
                     new_versions.append({
                         "agent_id": agent_id,
@@ -170,41 +194,48 @@ def set_prompt_version_active(bot_id: str, prompt_type: str, version: str):
     将指定 bot 的某类 prompt 的某个版本设置为当前激活状态
     """
     # 先将该 bot + prompt_type 的所有版本设为 inactive
-    supabase.table("ai_prompt_versions") \
-        .update({"is_active": False}) \
-        .eq("ai_bot_id", bot_id) \
-        .eq("prompt_type", prompt_type) \
-        .execute()
+    versions_query = db.collection("ai_prompt_versions") \
+        .where("ai_bot_id", "==", bot_id) \
+        .where("prompt_type", "==", prompt_type) \
+        .stream()
+    for doc in versions_query:
+        doc.reference.update({"is_active": False})
 
     # 然后将目标版本设为 active
-    supabase.table("ai_prompt_versions") \
-        .update({"is_active": True}) \
-        .eq("ai_bot_id", bot_id) \
-        .eq("prompt_type", prompt_type) \
-        .eq("template_version", version) \
-        .execute()
+    active_query = db.collection("ai_prompt_versions") \
+        .where("ai_bot_id", "==", bot_id) \
+        .where("prompt_type", "==", prompt_type) \
+        .where("template_version", "==", version) \
+        .limit(1).stream()
+    active_doc = next(active_query, None)
+    if active_doc:
+        active_doc.reference.update({"is_active": True})
 
 def set_personal_prompt_version_active(agent_id: str, prompt_type: str, version: str):
     """
     将指定个人 agent 的某类 prompt 的某个版本设置为当前激活状态
     """
     # 先将该 agent + prompt_type 的所有版本设为 inactive
-    supabase.table("agent_prompt_versions") \
-        .update({"is_active": False}) \
-        .eq("agent_id", agent_id) \
-        .eq("prompt_type", prompt_type) \
-        .execute()
+    versions_query = db.collection("agent_prompt_versions") \
+        .where("agent_id", "==", agent_id) \
+        .where("prompt_type", "==", prompt_type) \
+        .stream()
+    for doc in versions_query:
+        doc.reference.update({"is_active": False})
 
     # 然后将目标版本设为 active
-    supabase.table("agent_prompt_versions") \
-        .update({"is_active": True}) \
-        .eq("agent_id", agent_id) \
-        .eq("prompt_type", prompt_type) \
-        .eq("template_version", version) \
-        .execute()
+    active_query = db.collection("agent_prompt_versions") \
+        .where("agent_id", "==", agent_id) \
+        .where("prompt_type", "==", prompt_type) \
+        .where("template_version", "==", version) \
+        .limit(1).stream()
+    active_doc = next(active_query, None)
+    if active_doc:
+        active_doc.reference.update({"is_active": True})
 
 # 第三步：读取模板并替换
 if __name__ == "__main__":
-    all_bots = supabase.table("ai_bots").select("group_id").execute().data
+    bots_query = db.collection("ai_bots").stream()
+    all_bots = [doc.to_dict() for doc in bots_query]
     for b in all_bots:
         generate_prompts_for_group(b["group_id"])

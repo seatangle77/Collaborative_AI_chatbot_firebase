@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional, List
-from app.database import supabase_client
+from app.database import db
 from app.ai_provider import generate_response
 import datetime
 import uuid
@@ -69,11 +69,10 @@ async def create_discussion_insight(data: DiscussionInsightCreate):
         }
 
         # 插入数据库
-        insert_response = supabase_client.from_("discussion_insights").insert(new_insight).execute()
-        if not insert_response.data:
-            raise HTTPException(status_code=500, detail="插入数据库失败")
-
-        return DiscussionInsightResponse(**insert_response.data[0])
+        doc_ref = db.collection("discussion_insights").document()
+        doc_ref.set(new_insight)
+        doc_snapshot = doc_ref.get()
+        return DiscussionInsightResponse(**doc_snapshot.to_dict())
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"查询失败: {str(e)}")
@@ -86,8 +85,8 @@ async def get_all_discussion_insights():
     获取 discussion_insights 表中所有记录。
     """
     try:
-        response = supabase_client.from_("discussion_insights").select("*").execute()
-        return response.data
+        docs = db.collection("discussion_insights").stream()
+        return [doc.to_dict() for doc in docs]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取查询记录失败: {str(e)}")
 
@@ -99,8 +98,8 @@ async def get_discussion_insights_by_group(group_id: str):
     获取特定 group 的 discussion_insights 查询记录。
     """
     try:
-        response = supabase_client.from_("discussion_insights").select("*").eq("group_id", group_id).execute()
-        return response.data
+        docs = db.collection("discussion_insights").where("group_id", "==", group_id).stream()
+        return [doc.to_dict() for doc in docs]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取查询记录失败: {str(e)}")
 
@@ -112,11 +111,11 @@ async def get_discussion_insights_by_session(group_id: str, session_id: str):
     获取特定 group 与 session 对应的 discussion_insights 查询记录。
     """
     try:
-        response = supabase_client.from_("discussion_insights").select("*") \
-            .eq("group_id", group_id) \
-            .eq("session_id", session_id) \
-            .execute()
-        return response.data
+        docs = db.collection("discussion_insights") \
+            .where("group_id", "==", group_id) \
+            .where("session_id", "==", session_id) \
+            .stream()
+        return [doc.to_dict() for doc in docs]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取查询记录失败: {str(e)}")
 
@@ -127,10 +126,10 @@ async def get_discussion_insights_by_group_and_agent(group_id: str, agent_id: st
     获取特定 group 与 agent 对应的 discussion_insights 查询记录。
     """
     try:
-        response = supabase_client.from_("discussion_insights").select("*") \
-            .eq("group_id", group_id) \
-            .eq("agent_id", agent_id) \
-            .execute()
-        return response.data
+        docs = db.collection("discussion_insights") \
+            .where("group_id", "==", group_id) \
+            .where("agent_id", "==", agent_id) \
+            .stream()
+        return [doc.to_dict() for doc in docs]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取查询记录失败: {str(e)}")

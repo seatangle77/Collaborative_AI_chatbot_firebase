@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Query, Body
-from app.database import supabase_client
+from google.cloud import firestore
 from app.generate_prompts import (
     generate_prompts_for_personal_agent,
     set_personal_prompt_version_active,
@@ -8,6 +8,7 @@ import traceback
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime
+from app.database import db
 
 router = APIRouter()
 
@@ -41,17 +42,27 @@ async def get_personal_prompt_versions(agent_id: str):
     try:
         result = {}
         for prompt_type in ["term_explanation", "knowledge_followup"]:
-            query = (
-                supabase_client.table("agent_prompt_versions")
-                .select("*")
-                .eq("agent_id", agent_id)
-                .eq("prompt_type", prompt_type)
-                .order("created_at", desc=True)
-            )
-            query_result = query.execute().data
-            for item in query_result:
-                item["is_current"] = item.get("is_active", False)
-            result[prompt_type] = query_result
+            print(f"🔥 查询 agent_id={agent_id}, prompt_type={prompt_type}")
+            versions_ref = db.collection("agent_prompt_versions")
+            try:
+                snapshots = (
+                    versions_ref.where("agent_id", "==", agent_id)
+                                .where("prompt_type", "==", prompt_type)
+                                .order_by("created_at", direction=firestore.Query.DESCENDING)
+                                .stream()
+                )
+                print("✅ 查询成功，开始迭代")
+                query_result = []
+                for doc in snapshots:
+                    item = doc.to_dict()
+                    item["is_current"] = item.get("is_active", False)
+                    query_result.append(item)
+                result[prompt_type] = query_result
+                print(f"✅ 返回 {len(query_result)} 条")
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                raise HTTPException(status_code=500, detail=f"查询失败: {str(e)}")
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取版本失败: {str(e)}")
@@ -64,16 +75,10 @@ async def get_personal_agent(agent_id: str):
     获取指定 ID 的个人 AI Agent 信息
     """
     try:
-        result = (
-            supabase_client.table("personal_agents")
-            .select("*")
-            .eq("id", agent_id)
-            .single()
-            .execute()
-        )
-        if not result.data:
+        doc = db.collection("personal_agents").document(agent_id).get()
+        if not doc.exists:
             raise HTTPException(status_code=404, detail="未找到该 Agent")
-        return result.data
+        return doc.to_dict()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取 Agent 信息失败: {str(e)}")
 
@@ -84,15 +89,10 @@ async def update_personal_agent_model(agent_id: str, model: str = Body(..., embe
     更新个人 AI Agent 的模型字段（model）
     """
     try:
-        update_response = (
-            supabase_client.table("personal_agents")
-            .update({"model": model})
-            .eq("id", agent_id)
-            .execute()
-        )
-        if not update_response.data:
-            raise HTTPException(status_code=404, detail="更新失败，未找到该 Agent")
-        return {"message": "模型已更新", "data": update_response.data[0]}
+        agent_ref = db.collection("personal_agents").document(agent_id)
+        agent_ref.update({"model": model})
+        updated_doc = agent_ref.get()
+        return {"message": "模型已更新", "data": updated_doc.to_dict()}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"更新失败: {str(e)}")
 
@@ -109,18 +109,14 @@ async def get_ai_agent_feedback(
     if not prompt_type:
         return {"message": "No prompt_type specified", "data": None}
     try:
-        query = (
-            supabase_client.table("ai_agent_feedback")
-            .select("*")
-            .eq("agent_id", agent_id)
-            .eq("prompt_type", prompt_type)
-        )
+        feedback_ref = db.collection("ai_agent_feedback")
+        query = feedback_ref.where("agent_id", "==", agent_id).where("prompt_type", "==", prompt_type)
         if target_id:
-            query = query.eq("target_id", target_id)
-        result = query.order("created_at", desc=True).limit(1).execute()
-        if not result.data:
+            query = query.where("target_id", "==", target_id)
+        results = list(query.order_by("created_at", direction=firestore.Query.DESCENDING).limit(1).stream())
+        if not results:
             return {"message": "No feedback found", "data": None}
-        return result.data[0]
+        return results[0].to_dict()
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"获取反馈失败: {str(e)}")
 
@@ -147,15 +143,11 @@ async def submit_ai_agent_feedback(data: AIAgentFeedbackRequest):
         if not data.prompt_type:
             raise HTTPException(status_code=400, detail="prompt_type 不能为空")
 
-        existing = (
-            supabase_client.table("ai_agent_feedback")
-            .select("*")
-            .eq("agent_id", data.agent_id)
-            .eq("target_id", data.target_id)
-            .eq("prompt_type", data.prompt_type)
-            .execute()
-            .data
-        )
+        feedback_ref = db.collection("ai_agent_feedback")
+        query = feedback_ref.where("agent_id", "==", data.agent_id)\
+                            .where("target_id", "==", data.target_id)\
+                            .where("prompt_type", "==", data.prompt_type)
+        existing = list(query.stream())
 
         feedback_payload = {
             "agent_id": data.agent_id,
@@ -174,19 +166,13 @@ async def submit_ai_agent_feedback(data: AIAgentFeedbackRequest):
             feedback_payload["comment_text"] = data.comment_text
 
         if existing:
-            update_response = (
-                supabase_client.table("ai_agent_feedback")
-                .update(feedback_payload)
-                .eq("id", existing[0]["id"])
-                .execute()
-            )
-            return {"message": "反馈已更新", "data": update_response.data[0]}
+            doc_id = existing[0].id
+            feedback_ref.document(doc_id).update(feedback_payload)
+            updated_doc = feedback_ref.document(doc_id).get()
+            return {"message": "反馈已更新", "data": updated_doc.to_dict()}
         else:
-            insert_response = (
-                supabase_client.table("ai_agent_feedback")
-                .insert(feedback_payload)
-                .execute()
-            )
-            return {"message": "反馈已提交", "data": insert_response.data[0]}
+            doc_ref = feedback_ref.document()
+            doc_ref.set(feedback_payload)
+            return {"message": "反馈已提交", "data": feedback_payload}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"反馈处理失败: {str(e)}")

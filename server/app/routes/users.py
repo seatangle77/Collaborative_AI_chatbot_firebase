@@ -1,19 +1,25 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-from app.database import supabase_client
+from app.database import db
 
 router = APIRouter()
 
 # ✅ 获取所有用户信息
 @router.get("/api/users/")
 async def get_users():
-    return supabase_client.table("users_info").select("*").execute().data
+    users_ref = db.collection("users_info")
+    docs = users_ref.stream()
+    return [doc.to_dict() for doc in docs]
 
 # ✅ 获取指定用户信息
 @router.get("/api/users/{user_id}")
 async def get_user(user_id: str):
-    return supabase_client.table("users_info").select("*").eq("user_id", user_id).execute().data
+    doc_ref = db.collection("users_info").document(user_id)
+    doc = doc_ref.get()
+    if not doc.exists:
+        raise HTTPException(status_code=404, detail="未找到该用户信息")
+    return doc.to_dict()
 
 # ✅ 获取用户的 AI 代理信息
 @router.get("/api/users/{user_id}/agent")
@@ -21,20 +27,24 @@ async def get_user_agent(user_id: str):
     """
     获取用户的 AI 代理信息 (agent_id, agent_name)
     """
-    result = (
-        supabase_client.table("users_info")
-        .select("agent_id, personal_agents(name)")
-        .eq("user_id", user_id)
-        .execute()
-    )
+    user_doc = db.collection("users_info").document(user_id).get()
+    if not user_doc.exists:
+        raise HTTPException(status_code=404, detail="未找到该用户信息")
 
-    if not result.data or len(result.data) == 0:
-        raise HTTPException(status_code=404, detail="未找到该用户的 AI 代理")
+    user_data = user_doc.to_dict()
+    agent_id = user_data.get("agent_id")
 
-    agent_info = result.data[0]
+    if not agent_id:
+        return {"agent_id": None, "agent_name": "无 AI 代理"}
+
+    agent_doc = db.collection("personal_agents").document(agent_id).get()
+    if not agent_doc.exists:
+        return {"agent_id": agent_id, "agent_name": "无 AI 代理"}
+
+    agent_data = agent_doc.to_dict()
     return {
-        "agent_id": agent_info.get("agent_id"),
-        "agent_name": agent_info.get("personal_agents", {}).get("name", "无 AI 代理"),
+        "agent_id": agent_id,
+        "agent_name": agent_data.get("name", "无 AI 代理")
     }
 
 # ✅ 用户信息更新模型
@@ -53,14 +63,12 @@ async def update_user_info(user_id: str, update_data: UserInfoUpdateRequest):
     if not update_fields:
         raise HTTPException(status_code=400, detail="未提供任何更新字段")
 
-    response = (
-        supabase_client.table("users_info")
-        .update(update_fields)
-        .eq("user_id", user_id)
-        .execute()
-    )
-
-    if not response.data:
+    doc_ref = db.collection("users_info").document(user_id)
+    doc = doc_ref.get()
+    if not doc.exists:
         raise HTTPException(status_code=404, detail="未找到该用户或更新失败")
 
-    return {"message": "用户信息已更新", "data": response.data[0]}
+    doc_ref.update(update_fields)
+    updated_doc = doc_ref.get()
+
+    return {"message": "用户信息已更新", "data": updated_doc.to_dict()}
