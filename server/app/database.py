@@ -8,10 +8,12 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env.loca
 
 # 环境区分加载 firebase_key_dict
 ENV = os.getenv("ENV", "development")
+
 if ENV == "production":
-    firebase_key_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-    with open(firebase_key_path) as f:
-        firebase_key_dict = json.load(f)
+    firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
+    if firebase_key_str is None:
+        raise RuntimeError("FIREBASE_KEY_JSON not set for production mode")
+    firebase_key_dict = json.loads(firebase_key_str)
 else:
     firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
     if firebase_key_str is None:
