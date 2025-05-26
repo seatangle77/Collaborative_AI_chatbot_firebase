@@ -24,6 +24,7 @@
       @click="showAgendaPanel = !showAgendaPanel"
       size="default"
       class="toggle-user-card-button"
+      style="display: none"
     >
       <el-icon style="font-size: 20px">
         <component :is="showAgendaPanel ? DArrowLeft : DArrowRight" />
@@ -44,6 +45,7 @@
           :groupId="selectedGroupId"
           :sessionId="selectedSessionId"
           @updateGroupInfo="updateGroupInfo"
+          @agendaCompleted="handleAgendaCompleted"
         />
       </el-aside>
 
@@ -71,7 +73,7 @@
           :isTtsPlaying="isTtsPlaying"
           ref="messageInputRef"
         />
-        <div id="jitsi-container" style="height: 50%; margin: 20px 0"></div>
+        <div id="jitsi-container" style="height: 74%; margin: 20px 0"></div>
       </el-main>
 
       <el-aside class="realtime-summary">
@@ -128,7 +130,7 @@ const selectedGroupBot = computed(() =>
 ); // 新增计算属性
 const showDrawer = ref(false); // 新增代码
 const promptVersions = ref({}); // 新增代码
-const showAgendaPanel = ref(false); // 新增代码
+const showAgendaPanel = ref(true); // 新增代码
 const isInitialLoad = ref(true); // 新增代码
 const isTtsPlaying = ref(false);
 const messageInputRef = ref(null);
@@ -300,22 +302,28 @@ const fetchUsers = async () => {
   }
 };
 
-// ✅ **发送消息（字段补全）**
+// ✅ **发送消息（字段补全，完整结构）**
 const sendMessage = async (payload) => {
-  try {
-    const response = await api.sendChatMessage({
-      group_id: payload.group_id,
-      session_id: selectedSessionId.value, // ✅ 关联 session
-      user_id: payload.user_id,
-      chatbot_id: payload.chatbot_id || null,
-      message: payload.message,
-      role: payload.role || "user",
-      message_type: payload.message_type || "text",
-      sender_type: payload.sender_type || "user",
-      speaking_duration: payload.speaking_duration || 0,
-    });
+  const fullMessage = {
+    group_id: payload.group_id,
+    session_id: selectedSessionId.value,
+    user_id: payload.user_id,
+    chatbot_id: "",
+    agent_id: payload.agent_id || "",
+    msgid: payload.msgid || crypto.randomUUID(),
+    message: payload.message,
+    role: payload.role || "user",
+    message_type: payload.message_type || "text",
+    sender_type: payload.sender_type || "user",
+    speaking_duration: payload.speaking_duration || 0,
+    created_at: new Date().toISOString(),
+  };
 
-    console.log("📤 发送消息到数据库:", response.data);
+  try {
+    const response = await api.sendChatMessage(fullMessage);
+    console.log("📤 发送消息到数据库:", response);
+    messages.value.push(response);
+    scrollToBottom();
   } catch (error) {
     console.error("❌ 发送消息失败:", error);
   }
@@ -392,7 +400,10 @@ const fetchChatSummariesBySession = async (sessionId) => {
   if (!sessionId) return;
   try {
     const summary = await api.getChatSummaries(sessionId);
-    chatSummaries.value = [summary]; // ✅ 只存储最新的一条
+    console.log("dddddd", summary);
+
+    chatSummaries.value = summary.length > 0 ? summary[0] : []; // ✅ 只存储最新的一条
+    console.log("dddddd", chatSummaries.value);
   } catch (error) {
     console.error("获取 AI 会议总结失败:", error);
   }
@@ -439,6 +450,11 @@ onMounted(() => {
   fetchGroups();
   fetchAllAiBots(); // ✅ 这里初始化获取所有机器人
 
+  // 👉 页面加载后为当前选中小组建立 WebSocket 连接
+  if (selectedGroupId.value) {
+    createWebSocket(selectedGroupId.value);
+  }
+
   // ✅ 动态加载 Jitsi IFrame API 并初始化会议
   const script = document.createElement("script");
   script.src = "https://meet.jit.si/external_api.js";
@@ -457,6 +473,53 @@ onMounted(() => {
   };
   document.head.appendChild(script);
 });
+// ✅ 处理议程完成事件，触发 AI 总结、认知引导、行为提醒
+const handleAgendaCompleted = async ({ agendaId, groupId, sessionId }) => {
+  console.log("🧪 handleAgendaCompleted 参数:", {
+    agendaId,
+    groupId,
+    sessionId,
+  });
+  if (!groupId || !sessionId) return;
+
+  // 替换为新的 API 请求调用
+  console.log("📡 正在触发 trigger_ai_summary...");
+  try {
+    await api.generateSummary(groupId, {
+      group_id: groupId,
+      session_id: sessionId,
+      chatbot_id: selectedGroupBot.value?.id || "",
+      ai_provider: selectedAiProvider.value || "xai",
+    });
+    await fetchChatSummariesBySession(sessionId); // ✅ 重新拉取总结
+    ElMessage.success("AI 总结已生成并更新！");
+  } catch (error) {
+    console.error("❌ AI 总结生成失败:", error);
+    ElMessage.error("AI 总结生成失败！");
+  }
+
+  // console.log("📡 正在触发 trigger_ai_guidance...");
+
+  // // 👉 新增：触发认知引导（trigger_ai_guidance）
+  // try {
+  //   await api.generateGuidance(groupId, {
+  //     group_id: groupId,
+  //     session_id: sessionId,
+  //     chatbot_id: selectedGroupBot.value?.id || "",
+  //     ai_provider: selectedAiProvider.value || "xai",
+  //   });
+  //   ElMessage.success("AI 认知引导已生成！");
+  // } catch (error) {
+  //   console.error("❌ AI 认知引导生成失败:", error);
+  //   ElMessage.error("AI 认知引导生成失败！");
+  // }
+
+  // console.log("📡 正在触发 trigger_behavior_reminder...");
+  // sendWebSocketMessage(groupId, {
+  //   type: "trigger_behavior_reminder",
+  //   session_id: sessionId,
+  // });
+};
 </script>
 
 <style scoped>
@@ -480,11 +543,10 @@ onMounted(() => {
 
 /* 📌 小组选择器 */
 .agenda-panel {
-  flex: 0.5;
+  flex: 0.25;
 }
 .agenda-display {
   width: 100%;
-  padding: 15px;
   padding-left: 0;
   background: white;
   border-radius: 12px;
@@ -535,13 +597,12 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   flex: 1;
-  padding: 20px;
   margin-top: 80px; /* 为 header 留出空间，避免被遮挡 */
 }
 
 /* 📌 聊天区域 */
 .chat-area {
-  flex: 0.7;
+  flex: 0.75;
   background: white;
   padding: 15px;
   border-radius: 10px;

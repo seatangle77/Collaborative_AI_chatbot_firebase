@@ -24,6 +24,7 @@
           label="📚 Summary to Knowledge"
           name="summary_to_knowledge"
         />
+        <el-tab-pane label="🔁 Behavior Reminder" name="behavior_reminder" />
       </el-tabs>
 
       <el-row :gutter="12" style="margin-bottom: 10px">
@@ -57,7 +58,26 @@
 
       <el-row
         :gutter="12"
-        v-if="promptVersions[activeTab].length"
+        v-if="currentPromptText && !comparePromptText"
+        style="height: 600px"
+      >
+        <el-col :span="24" class="el-col">
+          <VueMonacoEditor
+            :value="currentPromptText"
+            language="markdown"
+            theme="vs"
+            :options="{
+              readOnly: true,
+              wordWrap: 'on',
+              automaticLayout: true,
+            }"
+          />
+        </el-col>
+      </el-row>
+
+      <el-row
+        :gutter="12"
+        v-if="promptVersions[activeTab].length >= 1"
         style="height: 600px"
       >
         <el-col :span="12" class="el-col">
@@ -105,7 +125,10 @@
 <script setup>
 import { ref, computed, watch, watchEffect } from "vue";
 import api from "../services/apiService";
-import { VueMonacoDiffEditor } from "@guolao/vue-monaco-editor";
+import {
+  VueMonacoDiffEditor,
+  VueMonacoEditor,
+} from "@guolao/vue-monaco-editor";
 
 const props = defineProps({
   groupId: String,
@@ -125,6 +148,7 @@ const promptVersions = ref({
   cognitive_guidance: [],
   real_time_summary: [],
   summary_to_knowledge: [],
+  behavior_reminder: [], // new tab added
 });
 
 const activePromptVersion = computed(() => {
@@ -134,10 +158,8 @@ const activePromptVersion = computed(() => {
 
 const currentPromptText = computed(() => {
   const list = promptVersions.value[activeTab.value] || [];
-  return (
-    list.find((v) => v.template_version === currentVersion.value)
-      ?.rendered_prompt || ""
-  );
+  const found = list.find((v) => v.template_version === currentVersion.value);
+  return found?.rendered_prompt || "⚠️ No prompt text found.";
 });
 const comparePromptText = computed(() => {
   const list = promptVersions.value[activeTab.value] || [];
@@ -157,8 +179,6 @@ const handleVersionChange = () => {
   );
 
   if (current && compare) {
-    console.log("🔁 Current version selected:", current.template_version);
-    console.log("🔁 Compare version selected:", compare.template_version);
   } else {
     console.warn("⚠️ One or both selected versions are not found");
   }
@@ -176,22 +196,27 @@ watch(
         const cg = await api.getPromptVersions(botId, "cognitive_guidance");
         const rs = await api.getPromptVersions(botId, "real_time_summary");
         const sk = await api.getPromptVersions(botId, "summary_to_knowledge");
+        const br = await api.getPromptVersions(botId, "behavior_reminder");
 
         emit("promptLoaded", {
           botId,
           cognitive_guidance: cg,
           real_time_summary: rs,
           summary_to_knowledge: sk,
+          behavior_reminder: br,
         });
 
         promptVersions.value = {
           cognitive_guidance: cg,
           real_time_summary: rs,
           summary_to_knowledge: sk,
+          behavior_reminder: br,
         };
       } catch (e) {
         console.error("❌ Failed to load prompt versions:", e);
       }
+    } else {
+      console.warn("⚠️ groupId 或 matchedBot 不满足条件，不会触发 API");
     }
   },
   { immediate: true }

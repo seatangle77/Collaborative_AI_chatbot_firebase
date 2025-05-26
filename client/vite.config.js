@@ -7,13 +7,13 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000, // ✅ 这里是你的前端端口
-    https: {
-      key: fs.readFileSync('./local.dev-key.pem'),
-      cert: fs.readFileSync('./local.dev.pem'),
-    },
+   // https: {
+     // key: fs.readFileSync('./local.dev-key.pem'),
+      //cert: fs.readFileSync('./local.dev.pem'),
+    //},
     proxy: {
       "/api": {
-        target: "https://10.4.131.51:8000", // ✅ 改为电脑的局域网 IP
+        target: process.env.VITE_API_BASE, // ✅ 使用环境变量配置后端地址
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),

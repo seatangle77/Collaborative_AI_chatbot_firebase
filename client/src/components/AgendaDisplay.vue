@@ -1,7 +1,10 @@
 <template>
   <el-card class="agenda-display">
     <!-- 🔹 Group Info Section -->
-    <div :class="['group-info', { 'group-info-edit': groupInfoEditMode }]">
+    <div
+      :class="['group-info', { 'group-info-edit': groupInfoEditMode }]"
+      style="display: none"
+    >
       <div class="group-header">
         <div class="group-name">👥 {{ groupName }}</div>
         <span
@@ -195,6 +198,78 @@
           <!-- Agenda details are included in the edit form -->
         </template>
         <template v-else>
+          <div
+            class="agenda-timer-flex"
+            v-if="
+              agenda.allocated_time_minutes &&
+              (agenda.status === 'not_started' ||
+                agenda.status === 'in_progress')
+            "
+            style="
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              margin-top: 6px;
+            "
+          >
+            <span v-if="agenda.id === activeAgendaId">
+              ⏱️ Time Left: {{ formatCountdown(remainingSeconds) }}
+            </span>
+            <span v-else>
+              ⏱️ Total: {{ formatMinutes(agenda.allocated_time_minutes) }}
+            </span>
+            <div
+              v-if="
+                agenda.status === 'in_progress' && agenda.id !== activeAgendaId
+              "
+              class="agenda-start-icon"
+              @click="startCountdown(agenda)"
+              title="Start Timer"
+            >
+              <svg
+                t="1743698565000"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.3 0-372-166.7-372-372S306.7 140 512 140s372 166.7 372 372-166.7 372-372 372z"
+                  fill="#606266"
+                />
+                <path
+                  d="M416 336v352c0 12.8 14.1 20.7 24.9 13.8l256-176c9.6-6.6 9.6-21 0-27.6l-256-176c-10.8-6.9-24.9 1-24.9 13.8z"
+                  fill="#606266"
+                />
+              </svg>
+            </div>
+            <div
+              v-if="
+                agenda.status === 'in_progress' && agenda.id === activeAgendaId
+              "
+              class="agenda-start-icon"
+              @click="endCurrentAgendaManually"
+              title="End Agenda"
+            >
+              <svg
+                t="1743698777000"
+                class="icon"
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+              >
+                <path
+                  d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.3 0-372-166.7-372-372S306.7 140 512 140s372 166.7 372 372-166.7 372-372 372z"
+                  fill="#d32f2f"
+                />
+                <path d="M336 336h352v352H336z" fill="#d32f2f" />
+              </svg>
+            </div>
+          </div>
           <p class="agenda-description">{{ agenda.agenda_description }}</p>
         </template>
       </div>
@@ -219,6 +294,37 @@
 </template>
 
 <script setup>
+import { ref, watch, onMounted, onUnmounted, defineEmits } from "vue";
+import { ElMessage } from "element-plus";
+import api from "../services/apiService";
+import "element-plus/es/components/icon/style/css";
+import { VideoPlay } from "@element-plus/icons-vue";
+import { Close } from "@element-plus/icons-vue";
+
+const endCurrentAgendaManually = () => {
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownInterval = null;
+  remainingSeconds.value = 0;
+
+  const currentIndex = props.agendas.findIndex(
+    (a) => a.id === activeAgendaId.value
+  );
+  if (currentIndex !== -1) {
+    props.agendas[currentIndex].status = "completed";
+    emit("agendaCompleted", {
+      agendaId: props.agendas[currentIndex].id,
+      groupId: props.groupId,
+      sessionId: props.sessionId,
+    });
+    emit("refreshAgendas");
+
+    const next = props.agendas[currentIndex + 1];
+    if (next) {
+      toggleAgendaStatus(next);
+    }
+  }
+};
+
 // 新增方法：切换组信息编辑模式
 const toggleGroupInfoEdit = () => {
   if (!groupInfoEditMode.value) {
@@ -227,10 +333,6 @@ const toggleGroupInfoEdit = () => {
   }
   groupInfoEditMode.value = !groupInfoEditMode.value;
 };
-import { ref, watch, onMounted, defineEmits } from "vue";
-import { ElMessage } from "element-plus";
-import api from "../services/apiService";
-import "element-plus/es/components/icon/style/css";
 
 const props = defineProps({
   agendas: Array,
@@ -241,13 +343,74 @@ const props = defineProps({
 });
 
 // New edit mode state
-const emit = defineEmits(["refreshAgendas", "updateGroupInfo"]);
+const emit = defineEmits([
+  "refreshAgendas",
+  "updateGroupInfo",
+  "agendaCompleted",
+]);
 const agendaEditMode = ref(false);
 const groupInfoEditMode = ref(false);
 
 // New editable group name and goal
 const editableGroupName = ref(props.groupName);
 const editableGroupGoal = ref(props.groupGoal);
+
+const activeAgendaId = ref(null);
+const remainingSeconds = ref(0);
+let countdownInterval = null;
+
+const startCountdown = (agenda) => {
+  if (!agenda.allocated_time_minutes || agenda.status !== "in_progress") return;
+
+  activeAgendaId.value = agenda.id;
+  remainingSeconds.value = agenda.allocated_time_minutes * 60;
+
+  if (countdownInterval) clearInterval(countdownInterval);
+  countdownInterval = setInterval(() => {
+    if (remainingSeconds.value > 0) {
+      remainingSeconds.value -= 1;
+    } else {
+      clearInterval(countdownInterval);
+      countdownInterval = null;
+
+      // 提示用户当前阶段结束
+      ElMessage({
+        message: "⏰ 当前阶段已结束，系统将进入下一个阶段。",
+        type: "info",
+        duration: 5000,
+      });
+
+      // 自动结束当前阶段并开始下一个
+      const currentIndex = props.agendas.findIndex(
+        (a) => a.id === activeAgendaId.value
+      );
+      if (currentIndex !== -1) {
+        if (props.agendas[currentIndex].status !== "completed") {
+          props.agendas[currentIndex].status = "completed";
+        }
+        const next = props.agendas[currentIndex + 1];
+        if (next) {
+          toggleAgendaStatus(next);
+        }
+      }
+    }
+  }, 1000);
+};
+
+const formatCountdown = (seconds) => {
+  const m = Math.floor(seconds / 60)
+    .toString()
+    .padStart(2, "0");
+  const s = Math.floor(seconds % 60)
+    .toString()
+    .padStart(2, "0");
+  return `${m}:${s}`;
+};
+
+onUnmounted(() => {
+  if (countdownInterval) clearInterval(countdownInterval);
+});
+
 watch(
   () => [props.groupName, props.groupGoal],
   ([newName, newGoal]) => {
@@ -265,10 +428,12 @@ const toggleAgendaStatus = async (agenda) => {
   };
 
   const newStatus = statusCycle[agenda.status] || "not_started";
+
   try {
     const res = await api.toggleAgendaStatus(agenda.id, newStatus);
 
-    if (res.message === "Agenda updated") {
+    // 支持多语言提示
+    if (res.message === "Agenda updated" || res.message === "议程已更新") {
       agenda.status = newStatus;
       ElMessage.success(`Status updated to: ${getStatusLabel(newStatus)}`);
     } else {
@@ -278,6 +443,7 @@ const toggleAgendaStatus = async (agenda) => {
     console.error("Failed to update agenda", error);
     ElMessage.error("Update failed, please try again later");
   }
+  // 不再自动调用 startCountdown，改为用户手动点击按钮启动
 };
 
 const submitGroupInfo = async () => {
@@ -412,6 +578,11 @@ const deleteAgenda = async (agenda, index) => {
     }
   }
 };
+// 格式化分钟显示
+const formatMinutes = (minutes) => {
+  if (!minutes || isNaN(minutes)) return "";
+  return `${minutes} min${minutes > 1 ? "s" : ""}`;
+};
 </script>
 
 <style scoped>
@@ -419,7 +590,6 @@ const deleteAgenda = async (agenda, index) => {
 .agenda-display {
   width: 100%;
   height: 100%;
-  padding: 20px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
@@ -610,5 +780,45 @@ const deleteAgenda = async (agenda, index) => {
 .group-info-edit {
   background: transparent !important;
   border-left: none !important;
+}
+
+.agenda-timer {
+  font-size: 14px;
+  font-weight: bold;
+  color: #d32f2f;
+  background: #fff3f3;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.agenda-timer-flex {
+  font-size: 14px;
+  font-weight: bold;
+  color: #d32f2f;
+  background: #fff3f3;
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.agenda-start-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.agenda-start-icon:hover {
+  transform: scale(1.1);
+}
+
+.agenda-start-icon .icon {
+  fill: #606266;
 }
 </style>

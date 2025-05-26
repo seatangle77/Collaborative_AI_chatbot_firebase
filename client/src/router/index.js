@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import ChatView from "../views/ChatView.vue";
+import MeetingView from "../views/MeetingView.vue";
 import PersonalDashboard from "../personal_device/PersonalDashboard.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Chat",
-    component: ChatView,
+    name: "MeetingView",
+    component: MeetingView,
   },
   {
     path: "/personal-dashboard",

@@ -27,6 +27,8 @@ class ChatMessage(BaseModel):
     sender_type: str = Field(default="user")
     speaking_duration: Optional[int] = 0
     session_id: Optional[str] = None
+    msgid: Optional[str] = None
+    agent_id: Optional[str] = None
 
 # ========== 📌 发送聊天消息 ==========
 @router.post("/api/chat/send")
@@ -34,11 +36,16 @@ async def send_chat_message(payload: ChatMessage):
     """
     发送聊天消息，同时存入数据库并通过 WebSocket 推送
     """
+    from google.cloud import firestore
+
     data = payload.dict()
+    data["created_at"] = firestore.SERVER_TIMESTAMP  # ✅ 添加 Firestore 时间戳
 
     # ✅ 插入数据库
     doc_ref = firestore_db.collection("chat_messages").add(data)
-    inserted_data = data | {"id": doc_ref[1].id}
+    # 重新获取插入后的文档，确保 created_at 被 Firestore 正常填充并可序列化
+    doc_snapshot = firestore_db.collection("chat_messages").document(doc_ref[1].id).get()
+    inserted_data = doc_snapshot.to_dict() | {"id": doc_ref[1].id}
 
     if inserted_data:
         await push_chat_message(payload.group_id, inserted_data)  # ✅ WebSocket 推送消息
@@ -201,6 +208,11 @@ async def get_chat_summaries_by_session(session_id: str):
     """
     获取指定 session 的 AI 聊天总结（按时间倒序）
     """
-    summaries = firestore_db.collection("chat_summaries").where("session_id", "==", session_id).order_by("summary_time", direction="DESCENDING").stream()
-    summaries = [doc.to_dict() | {"id": doc.id} for doc in summaries]
+    summaries = []
+    for doc in firestore_db.collection("chat_summaries").where("session_id", "==", session_id).stream():
+        data = doc.to_dict()
+        if "created_at" in data and hasattr(data["created_at"], "isoformat"):
+            data["created_at"] = data["created_at"].isoformat()
+        data["id"] = doc.id
+        summaries.append(data)
     return JSONResponse(content=summaries, status_code=200, headers={"Access-Control-Allow-Origin": "*"})

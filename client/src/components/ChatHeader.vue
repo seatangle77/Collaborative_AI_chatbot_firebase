@@ -34,13 +34,6 @@
       </span>
       <el-icon style="color: white; margin-left: 5px"><InfoFilled /></el-icon>
     </el-button>
-    <el-button
-      style="position: fixed; top: 100px; right: 20px; z-index: 9999"
-      type="primary"
-      @click="requestPermissionManually"
-    >
-      测试通知
-    </el-button>
 
     <!-- AI供应商选择 -->
     <el-select
@@ -96,39 +89,6 @@ onMounted(() => {
       });
   }
 });
-
-const requestPermissionManually = () => {
-  if ("Notification" in window && "serviceWorker" in navigator) {
-    console.log("🧪 Notification supported");
-
-    Notification.requestPermission()
-      .then((permission) => {
-        console.log("🔐 权限状态：", permission);
-        if (permission === "granted") {
-          navigator.serviceWorker.getRegistration().then((reg) => {
-            if (reg) {
-              reg.showNotification("🔔心率变异性（HRV)", {
-                body: "指逐次心跳周期时间长度的微小波动",
-              });
-              ElMessage.success("✅ 系统通知已发送，请检查通知栏");
-            } else {
-              ElMessage.error("❌ 无法获取 Service Worker 实例");
-            }
-          });
-        } else {
-          console.warn("❌ 用户拒绝了通知权限");
-          ElMessage.warning("用户未授权通知，无法发送提醒");
-        }
-      })
-      .catch((err) => {
-        console.error("❌ Notification.requestPermission 失败:", err);
-        ElMessage.error("请求通知权限失败：" + err.message);
-      });
-  } else {
-    console.warn("❌ 当前浏览器不支持 Notification 或 Service Worker");
-    ElMessage.error("当前浏览器不支持系统通知");
-  }
-};
 
 const handleModelChange = async (newModel) => {
   if (props.selectedGroupBot?.id) {

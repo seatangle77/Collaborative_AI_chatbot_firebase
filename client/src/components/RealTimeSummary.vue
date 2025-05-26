@@ -52,18 +52,40 @@
           {{ issue }}
         </li>
       </ul>
-      <ai-feedback
-        :key="feedbackKey"
-        :group-id="groupId"
-        :session-id="sessionId"
-        :bot-id="botId"
-        :user-id="userId"
-        :model="currentBotModel"
-        :prompt-type="promptType"
-        :prompt-version="promptVersion"
-        :target-id="latestSummaryId"
-      />
     </div>
+
+    <div v-if="cognitiveParticipation">
+      <p><strong>🧠 Cognitive Participation:</strong></p>
+      <ul class="summary-list">
+        <li v-for="(desc, name) in cognitiveParticipation" :key="'cp-' + name">
+          {{ name }}：{{ desc }}
+        </li>
+      </ul>
+    </div>
+
+    <div v-if="participationGuidance.length">
+      <p><strong>🎯 Participation Guidance:</strong></p>
+      <ul class="summary-list">
+        <li
+          v-for="(guide, index) in participationGuidance"
+          :key="'pg-' + index"
+        >
+          {{ guide }}
+        </li>
+      </ul>
+    </div>
+
+    <ai-feedback
+      :key="feedbackKey"
+      :group-id="groupId"
+      :session-id="sessionId"
+      :bot-id="botId"
+      :user-id="userId"
+      :model="currentBotModel"
+      :prompt-type="promptType"
+      :prompt-version="promptVersion"
+      :target-id="latestSummaryId"
+    />
   </el-card>
 </template>
 
@@ -73,7 +95,7 @@ import api from "../services/apiService";
 import AiFeedback from "./AiFeedback.vue";
 
 const props = defineProps({
-  discussion_summary: Array,
+  discussion_summary: Object,
   groupId: String,
   sessionId: String,
   botId: String,
@@ -92,10 +114,14 @@ const isLoading = ref(false); // 新增状态变量
 const feedbackKey = ref(Date.now());
 const latestSummaryId = ref(null); // Changed from computed to ref
 
+const cognitiveParticipation = ref(null);
+const participationGuidance = ref([]);
+
 const currentBotModel = computed(() => props.selectedGroupBot?.model || "");
 
 // ✅ **解析 AI 会议总结**
 const parseAiSummary = (insightText) => {
+  console.log("🧪 正在解析 summary_text:", insightText);
   if (
     typeof insightText !== "string" ||
     insightText.includes("AI 生成失败") ||
@@ -137,12 +163,16 @@ const parseAiSummary = (insightText) => {
         suggestions: parsedJson.summary.suggestions || [],
         unresolved_issues: parsedJson.summary.unresolved_issues || [],
       };
+      cognitiveParticipation.value =
+        parsedJson.cognitive_participation?.members || null;
+      participationGuidance.value = parsedJson.participation_guidance || [];
       errorText.value = "";
     } else {
       console.warn("⚠️ AI summary format incorrect:", parsedJson);
     }
   } catch (error) {
     console.error("❌ Failed to parse AI JSON response:", error);
+    console.error("❌ JSON 解析失败内容:", insightText);
     parsedSummary.value = null;
   }
 };
@@ -150,6 +180,7 @@ const parseAiSummary = (insightText) => {
 // ✅ **RESTful API 获取最新 AI Summary**
 const fetchLatestSummary = async (groupId) => {
   if (!groupId) return;
+  console.log("📡 正在获取 AI 总结: groupId =", groupId);
   isLoading.value = true; // 开始加载时设置为 true
   try {
     const summaries = await api.fetchLatestSummary(groupId);
@@ -157,6 +188,8 @@ const fetchLatestSummary = async (groupId) => {
       const latestSummary = summaries[0];
       latestSummaryId.value = latestSummary.id;
       feedbackKey.value = latestSummary.id;
+      console.log("✅ 获取成功，summary:", summaries[0]);
+      console.log("✅ summary_text 原始内容:", summaries[0]?.summary_text);
       const summaryText = latestSummary.summary_text;
       if (typeof summaryText === "string") {
         parseAiSummary(summaryText);
@@ -193,53 +226,25 @@ const fetchLatestSummaryId = async (groupId) => {
 watch(
   () => props.discussion_summary,
   (newSummary) => {
-    if (!newSummary || newSummary.length === 0) {
+    if (!newSummary || typeof newSummary !== "object") {
       parsedSummary.value = null;
       return;
     }
 
-    try {
-      let latestSummary = newSummary[newSummary.length - 1];
-
-      // 🔹 处理 REST API 或 WebSocket 的数据格式
-      if (Array.isArray(latestSummary)) {
-        latestSummary = latestSummary[0];
-      }
-
-      if (!latestSummary || !latestSummary.summary_text) {
-        parsedSummary.value = null;
-        return;
-      }
-
-      const summaryText = latestSummary.summary_text;
-      if (typeof summaryText === "string") {
-        parseAiSummary(summaryText);
-        feedbackKey.value = Date.now();
-      } else {
-        parsedSummary.value = null;
-      }
-    } catch (error) {
-      console.error("❌ Failed to parse AI JSON response:", error);
+    if (
+      newSummary.type === "summary" &&
+      typeof newSummary.content === "string"
+    ) {
+      parseAiSummary(newSummary.content);
+      feedbackKey.value = Date.now();
+    } else {
       parsedSummary.value = null;
     }
   },
   { deep: true, immediate: true }
 );
 
-// 替换复合 watch 语句
-watch(
-  () => props.discussion_summary,
-  (newSummary) => {
-    if (
-      Array.isArray(newSummary) &&
-      newSummary.length > 0 &&
-      typeof newSummary.at(-1)?.summary_text === "string"
-    ) {
-      fetchLatestSummaryId(props.groupId);
-    }
-  },
-  { deep: true, immediate: true }
-);
+// （已移除重复的 discussion_summary watch 监听器）
 
 // ✅ **组件初始化时加载最新 AI Summary**
 onMounted(() => {

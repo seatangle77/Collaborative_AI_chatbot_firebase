@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_BACKEND_API;
+const BASE_URL = import.meta.env.VITE_API_BASE;
 axios.defaults.withCredentials = true;
 export default {
   getAgenda() { return axios.get(`${BASE_URL}/api/chat/agenda`).then(res => res.data); },
@@ -111,4 +111,19 @@ export default {
   getAgentFeedback(query) {
     return axios.get(`${BASE_URL}/api/ai_agents/feedback`, { params: query }).then(res => res.data);
   },
+  generateSummary(groupId, payload) {
+    return axios.post(`${BASE_URL}/api/summary/generate_summary/${groupId}`, payload, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res.data);
+  },
+  generateGuidance(groupId, payload) {
+    return axios.post(`${BASE_URL}/api/summary/generate_guidance/${groupId}`, payload, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => res.data);
+  },
+
 };

@@ -4,10 +4,19 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env.local"))
 
-firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
-firebase_key_dict = json.loads(firebase_key_str)
+# 环境区分加载 firebase_key_dict
+ENV = os.getenv("ENV", "development")
+if ENV == "production":
+    firebase_key_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    with open(firebase_key_path) as f:
+        firebase_key_dict = json.load(f)
+else:
+    firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
+    if firebase_key_str is None:
+        raise RuntimeError("FIREBASE_KEY_JSON not set in .env.local for development mode")
+    firebase_key_dict = json.loads(firebase_key_str)
 cred = credentials.Certificate(firebase_key_dict)
 firebase_admin.initialize_app(cred)
 db = firestore.client()

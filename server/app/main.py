@@ -71,3 +71,13 @@ async def root():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+
+# Note: To adapt the WebSocket connection protocol for different environments,
+# update the frontend WebSocket initialization logic as follows:
+#
+# const WS_BASE = window.location.protocol === "https:" ? "wss" : "ws";
+# const socket = new WebSocket(`${WS_BASE}://${window.location.host}/ws/${groupId}`);
+#
+# This ensures that in development (http) the connection uses ws://,
+# and in production (https) it uses wss:// without any backend changes.
+# Just make sure your backend is deployed with HTTPS/WSS support.

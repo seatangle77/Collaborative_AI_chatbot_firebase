@@ -97,37 +97,14 @@ onMounted(() => {
 });
 
 const startAudioCapture = async () => {
-  if (props.isTtsPlaying) {
-    return;
-  }
-
-  isRecognizing.value = true;
-  const startTime = performance.now();
-
-  try {
-    const resultText = await recognizeSpeechFromMicrophone();
-    const endTime = performance.now();
-    const duration = Math.round(endTime - startTime);
-    speakingDuration.value = duration;
-
-    if (resultText) {
-      console.log("📝 Azure 识别结果：", resultText);
-      message.value = resultText;
-      console.log("📏 实际语音时长(ms)：", duration);
-      handleSend(); // ✅ 自动发送后由 handleSend 决定是否继续识别
-    } else {
-      console.warn("⚠️ Azure 返回了空字符串");
-    }
-  } catch (err) {
-    console.error("❌ Azure 语音识别失败：", err);
-  } finally {
-    isRecognizing.value = false;
-  }
+  // 暂时禁用语音识别功能，但保留按钮和方法
+  console.log("🎤 startAudioCapture 被禁用（暂不使用语音识别）");
 };
 
 const stopAudioCapture = () => {
-  autoLoop.value = false;
-  isRecognizing.value = false;
+  // 暂时禁用 stopAudioCapture 功能
+  // 保留方法和按钮，但不执行任何操作
+  console.log("🛑 stopAudioCapture 被禁用（暂不使用语音识别）");
 };
 
 watch(

@@ -19,8 +19,6 @@ websocket_router = APIRouter()
 # 存储 WebSocket 连接
 connected_clients = {}
 
-# 记录消息计数
-message_count = {}
 last_ai_summary = {}  # 记录上次 AI 生成的总结
 
 @websocket_router.websocket("/ws/{group_id}")
@@ -30,7 +28,6 @@ async def websocket_endpoint(websocket: WebSocket, group_id: str):
     
     if group_id not in connected_clients:
         connected_clients[group_id] = []
-        message_count[group_id] = 0
         last_ai_summary[group_id] = None  
 
     connected_clients[group_id].append(websocket)
@@ -53,24 +50,19 @@ async def websocket_endpoint(websocket: WebSocket, group_id: str):
 
                 print(f"🚀 触发 AI 总结: group_id={group_id}，使用 API: {ai_provider}")
                 await push_ai_summary(group_id, ai_provider)
-                message_count[group_id] = 0  
                 continue  
+
+            # ✅ 处理前端触发 AI 认知引导请求
+            if received_data.get("type") == "trigger_ai_guidance":
+                ai_provider = received_data.get("aiProvider", "xai")
+                print(f"🚀 触发 AI 认知引导: group_id={group_id}, 使用 API: {ai_provider}")
+                await check_cognitive_guidance(group_id, ai_provider)
+                continue
 
             # ✅ 处理常规聊天消息
             await push_chat_message(group_id, received_data)
 
-            message_count[group_id] += 1  
-            print(f"📩 WebSocket 收到消息: {data} (group {group_id} - 计数 {message_count[group_id]})")
-
-            # ✅ **AI 认知参与引导触发**
-            await check_cognitive_guidance(group_id, ai_provider)
-
-            # ✅ **每 3 条消息触发 AI会议总结 生成**
-            if message_count[group_id] >= 3:
-                api_provider = os.getenv("DEFAULT_AI_PROVIDER", "xai")  # ✅ 默认值改为 `.env`
-                print(f"🚀 触发 AI 实时总结: group_id={group_id}，使用 API: {api_provider}")
-                await push_ai_summary(group_id, api_provider)
-                message_count[group_id] = 0  # ✅ 计数归零
+            print(f"📩 WebSocket 收到消息: {data} (group {group_id})")
 
     except WebSocketDisconnect:
         connected_clients[group_id].remove(websocket)
@@ -114,7 +106,20 @@ async def push_chat_message(group_id, message):
 # ✅ **检测是否需要 AI 认知参与引导**
 async def check_cognitive_guidance(group_id: str, api_provider: str):
     """基于最近的 5 条消息，判断是否需要 AI 介入，并生成引导信息"""
-    
+    # 🔍 检查是否已存在 ai_guidance 消息，避免重复生成
+    existing_guidance = firestore_client.collection("chat_messages") \
+        .where("group_id", "==", group_id) \
+        .where("message_type", "==", "ai_guidance") \
+        .order_by("created_at", direction=firestore.Query.DESCENDING) \
+        .limit(1) \
+        .stream()
+
+    for doc in existing_guidance:
+        last_time = doc.to_dict().get("created_at")
+        if last_time:
+            print("⚠️ 已存在 ai_guidance，跳过本次生成")
+            return
+
     chat_history = []
     chat_docs = firestore_client.collection("chat_messages").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(5).stream()
     for doc in chat_docs:
@@ -266,6 +271,19 @@ async def push_ai_summary(group_id: str, api_provider: str):
     }
 
     firestore_client.collection("chat_summaries").add(summary_entry)
+
+    ai_summary_message = {
+        "group_id": group_id,
+        "user_id": bot_id,
+        "message": ai_response,
+        "role": "bot",
+        "message_type": "ai_summary",
+        "sender_type": "bot",
+        "chatbot_id": bot_id,
+        "session_id": session_id
+    }
+
+    firestore_client.collection("chat_messages").add(ai_summary_message)
 
     if group_id in connected_clients:
         summary_payload = json.dumps({
