@@ -8,14 +8,8 @@
         :users="users"
         :filteredUsersInfo="filteredUsersInfo"
         :selectedSessionTitle="selectedSessionTitle"
-        :agentName="agentName"
-        :selectedAiProvider="selectedAiProvider"
-        :agentInfo="agentInfoObject"
         @selectGroup="selectGroup"
         @selectUser="(val) => (selectedUser = val)"
-        @updatePrompt="handleUpdatePersonalPrompt"
-        @changeAiProvider="changeAiProvider"
-        @toggleDrawer="showDrawer = true"
       />
     </div>
 
@@ -52,62 +46,29 @@
           :groupId="selectedGroupId"
           :sessionId="selectedSessionId"
           :userId="selectedUser"
-          :aiProvider="selectedAiProvider"
-          :agentId="agentId"
-          :agentModel="agentModel"
-          :promptVersion="promptVersion_term_explanation"
           @closeQueryDialog="handleCloseQueryDialog"
         />
       </el-main>
-
-      <!-- ✅ 右侧 AI 助手 -->
-      <el-aside class="side-panel">
-        <TerminologyHelper
-          v-if="selectedGroupId && agentId"
-          :groupId="selectedGroupId"
-          :agentId="agentId"
-          :agentModel="selectedAiProvider"
-          :promptVersion_term_explanation="promptVersion_term_explanation"
-          :refreshSignal="refreshSignal"
-          @insightsResponse="handleInsightsResponse"
-          @onCloseQueryDialog="handleCloseQueryDialog"
-        />
-        <!--<ReminderPanel />-->
-      </el-aside>
     </el-container>
-
-    <PersonalAgentDrawer
-      v-if="agentId"
-      :visible="showDrawer"
-      :agentId="agentId"
-      :promptVersions="personalPromptVersions"
-      @update:visible="showDrawer = $event"
-    />
   </el-container>
 </template>
 
 <script setup>
 import { ref, computed, watch, onMounted } from "vue";
-import { ElMessage } from "element-plus";
-import { InfoFilled, DArrowLeft, DArrowRight } from "@element-plus/icons-vue";
+import { DArrowLeft, DArrowRight } from "@element-plus/icons-vue";
 import api from "../services/apiService";
 import ChatWindow from "../components/ChatWindow.vue";
-import TerminologyHelper from "../personal_device/TerminologyHelper.vue";
-import ReminderPanel from "../personal_device/ReminderPanel.vue";
 import UserProfileCard from "../components/UserProfileCard.vue";
-import PersonalAgentDrawer from "../components/PersonalAgentDrawer.vue";
 import PersonalDashboardHeader from "../components/PersonalDashboardHeader.vue";
 import {
   createWebSocket,
   onMessageReceived,
   closeWebSocket,
-  changeAiProviderAndTriggerSummary,
 } from "../services/websocketService";
 
 // ✅ **存储状态**
 const messages = ref([]);
 const users = ref({});
-const chatSummaries = ref([]);
 const aiBots = ref([]);
 const groups = ref([]);
 const groupMembers = ref([]);
@@ -116,36 +77,9 @@ const selectedGroupId = ref(null);
 const selectedSessionId = ref(null);
 const selectedSessionTitle = ref("");
 const currentUserName = ref("未登录用户");
-const selectedAiProvider = ref("xai");
-const agentName = ref("无 AI 代理");
-const agentId = ref(null);
-const agentModel = ref(null);
-const showDrawer = ref(false);
-const personalPromptVersions = ref({});
-const agentInfoObject = ref({}); // Added
 const userCardActiveNames = ref([]); // Added
 const showUserCard = ref(false); // 默认收起
 const refreshSignal = ref(Date.now()); // Added
-
-// 获取用户对应的 AI 代理
-const fetchUserAgent = async (userId) => {
-  if (!userId) {
-    agentName.value = "无 AI 代理";
-    agentId.value = null;
-    return;
-  }
-
-  try {
-    const response = await api.getUserAgent(userId);
-    agentName.value = response.agent_name || "无 AI 代理";
-    agentId.value = response.agent_id || null;
-    agentModel.value = response.agent_model || "xai";
-  } catch (error) {
-    console.error("获取 AI 代理失败:", error);
-    agentName.value = "无 AI 代理";
-    agentId.value = null;
-  }
-};
 
 // ✅ **计算当前小组的用户**
 const filteredUsers = computed(() => {
@@ -176,13 +110,6 @@ const filteredUsersInfo = computed(() => {
   );
 });
 
-const promptVersion_term_explanation = computed(() => {
-  return (
-    personalPromptVersions.value.term_explanation?.find((p) => p.is_current)
-      ?.template_version || null
-  );
-});
-
 // ✅ **监听 `filteredUsers` 变化，确保 `selectedUser` 有默认值**
 watch(
   filteredUsers,
@@ -206,16 +133,6 @@ const fetchGroups = async () => {
   } catch (error) {
     console.error("获取小组数据失败:", error);
   }
-};
-
-// ✅ 切换 AI 供应商
-const changeAiProvider = () => {
-  if (!selectedGroupId.value) return;
-  console.log(`🔄 AI 供应商切换: ${selectedAiProvider.value}，触发 AI 总结`);
-  changeAiProviderAndTriggerSummary(
-    selectedGroupId.value,
-    selectedAiProvider.value
-  );
 };
 
 // ✅ **获取所有用户**
@@ -304,48 +221,10 @@ const fetchChatHistory = async (groupId) => {
   }
 };
 
-// ✅ **获取 AI 会议总结**
-const fetchChatSummaries = async (groupId) => {
-  if (!groupId) return;
-  try {
-    const response = await api.getChatSummaries(groupId);
-    chatSummaries.value = response.data;
-  } catch (error) {
-    console.error("获取 AI 会议总结失败:", error);
-  }
-};
-
 // ✅ **初始化 WebSocket**
 const initWebSocket = (groupId) => {
   if (!groupId) return;
   createWebSocket(groupId);
-
-  onMessageReceived((data) => {
-    if (data.type === "message") {
-      messages.value.push(data.message);
-    } else if (data.type === "ai_summary") {
-      chatSummaries.value.push({ summary_text: data.summary_text });
-
-      // ✅ 系统通知
-      if ("Notification" in window) {
-        if (Notification.permission === "granted") {
-          new Notification("🧠 AI 总结完成", {
-            body: "点击查看你的个人总结",
-            icon: "/logo.png",
-          });
-        } else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-              new Notification("🧠 AI 总结完成", {
-                body: "点击查看你的个人总结",
-                icon: "/logo.png",
-              });
-            }
-          });
-        }
-      }
-    }
-  });
 };
 
 // ✅ **获取所有聊天数据**
@@ -354,7 +233,6 @@ const fetchChatData = async (groupId) => {
   fetchUsers(); // ✅ 先获取用户
   fetchGroupMembers(groupId);
   fetchChatHistory(groupId);
-  fetchChatSummaries(groupId);
   initWebSocket(groupId);
 };
 
@@ -364,68 +242,6 @@ watch(selectedGroupId, async (newGroupId) => {
     fetchChatData(newGroupId);
   }
 });
-
-// ✅ **监听用户变化**
-watch(
-  selectedUser,
-  async (newUserId) => {
-    if (newUserId && users.value[newUserId]) {
-      currentUserName.value = users.value[newUserId];
-      await fetchUserAgent(newUserId);
-      const agentInfo = await api.getAgentModel(agentId.value);
-      if (agentInfo && agentInfo.model) {
-        selectedAiProvider.value = agentInfo.model;
-        agentInfoObject.value = agentInfo; // Added
-      }
-    }
-  },
-  { immediate: true }
-);
-
-// ✅ **监听 agentId 变化（用于通知子组件更新）**
-watch(agentId, async (newAgentId) => {
-  if (newAgentId) {
-    try {
-      personalPromptVersions.value = await api.getPersonalPromptVersions(
-        newAgentId
-      );
-    } catch (e) {
-      console.error("❌ Failed to load personal prompt versions:", e);
-    }
-  }
-});
-
-// ✅ **监听 selectedAiProvider 变化**
-watch(selectedAiProvider, (newVal, oldVal) => {
-  console.log(`🎯 AI 供应商变化: ${oldVal} → ${newVal}`);
-  // 可以在此添加其他逻辑，如根据新的 AI 提供商刷新数据等
-});
-
-// ✅ **更新个人代理提示**
-const handleUpdatePersonalPrompt = async () => {
-  if (!selectedUser.value || !users.value[selectedUser.value]) return;
-  const agentId = users.value[selectedUser.value].agent_id;
-  if (!agentId) {
-    ElMessage.warning("当前用户未绑定个人 Agent");
-    return;
-  }
-
-  try {
-    const response = await api.generatePersonalPrompt(agentId);
-    ElMessage.success(
-      response.message || "Personal agent prompts updated successfully!"
-    );
-    await fetchUserAgent(selectedUser.value); // ✅ 更新 agent 信息
-  } catch (error) {
-    console.error("Failed to update personal prompts:", error);
-    ElMessage.error("Failed to update personal prompts.");
-  }
-};
-
-const handleInsightsResponse = (insights) => {
-  console.log("📥 从 TerminologyHelper 回调回来的 insights：", insights);
-  // 你可以在这里存储或处理这些术语解释结果
-};
 
 const handleCloseQueryDialog = () => {
   console.log("📪 ChatWindow 关闭查询弹窗，通知 TerminologyHelper 刷新");
@@ -471,15 +287,6 @@ onMounted(() => {
   backface-visibility: hidden;
   transform: translateZ(0);
 }
-.agent-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff;
-  background: rgba(255, 152, 0, 0.1);
-  padding: 4px 8px;
-  border-radius: 5px;
-  margin-left: 8px;
-}
 
 .bot-name {
   font-weight: bold;
@@ -497,8 +304,7 @@ onMounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.group-select,
-.ai-provider-select {
+.group-select {
   width: 150px;
   border-radius: 8px;
   font-size: 16px;

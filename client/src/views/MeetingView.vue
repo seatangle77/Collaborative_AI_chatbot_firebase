@@ -1,12 +1,5 @@
 <template>
   <el-container class="chat-container">
-    <AiBotDrawer
-      :model-value="showDrawer"
-      @update:model-value="(val) => (showDrawer = val)"
-      :groupId="selectedGroupId"
-      :aiBots="aiBots"
-      @promptLoaded="handlePromptLoaded"
-    />
     <div class="chat-header-wrapper">
       <ChatHeader
         :groups="groups"
@@ -16,8 +9,6 @@
         :selectedSessionTitle="selectedSessionTitle"
         @selectGroup="selectGroup"
         @changeAiProvider="changeAiProvider"
-        @updatePrompt="handleUpdatePrompt"
-        @toggleDrawer="showDrawer = true"
       />
     </div>
     <el-button
@@ -60,7 +51,6 @@
           :sessionId="selectedSessionId"
           :userId="selectedUser"
           :aiProvider="selectedAiProvider"
-          :agentId="selectedGroupBot?.id"
           :botId="selectedGroupBot?.id"
           :promptVersion="promptVersions_cognitive_guidance"
           :isTtsPlaying="isTtsPlaying"
@@ -75,47 +65,29 @@
         />
         <div id="jitsi-container" style="height: 74%; margin: 20px 0"></div>
       </el-main>
-
-      <el-aside class="realtime-summary">
-        <RealTimeSummary
-          :discussion_summary="chatSummaries"
-          :groupId="selectedGroupId"
-          :sessionId="selectedSessionId"
-          :selectedGroupBot="selectedGroupBot"
-          promptType="real_time_summary"
-          :promptVersion="promptVersions_real_time_summary"
-          :userId="selectedUser"
-          :botId="selectedGroupBot?.id"
-        />
-      </el-aside>
     </el-container>
   </el-container>
 </template>
 
 <script setup>
-import AiBotDrawer from "../components/AiBotDrawer.vue";
 import ChatHeader from "../components/ChatHeader.vue";
 import { ref, computed, onMounted, watch, nextTick } from "vue";
 import api from "../services/apiService";
 import MeetChatWindow from "../components/MeetChatWindow.vue";
 import MessageInput from "../components/MessageInput.vue";
 import AgendaDisplay from "../components/AgendaDisplay.vue";
-import RealTimeSummary from "../components/RealTimeSummary.vue";
 import {
   createWebSocket,
   sendMessage as sendWebSocketMessage,
   onMessageReceived,
   closeWebSocket,
-  changeAiProviderAndTriggerSummary as triggerWebSocketAiSummary,
 } from "../services/websocketService";
 import { InfoFilled, DArrowLeft, DArrowRight } from "@element-plus/icons-vue";
-import { ElMessage } from "element-plus";
 
 // ✅ **存储状态**
 const messages = ref([]);
 const users = ref({});
 const chatAgendas = ref([]);
-const chatSummaries = ref([]); // ✅ 改名 `chatSummaries`
 const selectedGroupName = ref("");
 const selectedGroupId = ref(null);
 const selectedSessionId = ref(null); // ✅ 存储当前 Session ID
@@ -128,7 +100,6 @@ const selectedAiProvider = ref("xai"); // ✅ 默认使用 xAI
 const selectedGroupBot = computed(() =>
   aiBots.value.find((bot) => bot.group_id === selectedGroupId.value)
 ); // 新增计算属性
-const showDrawer = ref(false); // 新增代码
 const promptVersions = ref({}); // 新增代码
 const showAgendaPanel = ref(true); // 新增代码
 const isInitialLoad = ref(true); // 新增代码
@@ -144,25 +115,10 @@ const stopAudioCapture = () => {
   }
 };
 
-// ✅ **新增计算属性 currentPromptVersion**
-const current_real_time_summary_PromptVersion = computed(() => {
-  return (
-    promptVersions.value["real_time_summary"]?.find((p) => p.is_current)
-      ?.template_version || null
-  );
-});
 // ✅ **新增计算属性 promptVersions_cognitive_guidance**
 const promptVersions_cognitive_guidance = computed(() => {
   return (
     promptVersions.value.cognitive_guidance?.find((p) => p.is_current)
-      ?.template_version || null
-  );
-});
-
-// ✅ **新增计算属性 promptVersions_real_time_summary**
-const promptVersions_real_time_summary = computed(() => {
-  return (
-    promptVersions.value.real_time_summary?.find((p) => p.is_current)
       ?.template_version || null
   );
 });
@@ -174,7 +130,6 @@ const changeAiProvider = () => {
     isInitialLoad.value = false;
     return;
   }
-  triggerWebSocketAiSummary(selectedGroupId.value, selectedAiProvider.value);
 };
 
 // ✅ **获取所有小组**
@@ -272,7 +227,6 @@ const fetchSessionAndData = async (groupId) => {
 
     fetchChatData(groupId);
     fetchChatAgendas(selectedSessionId.value); // ✅ 用 session_id 获取议程
-    fetchChatSummariesBySession(selectedSessionId.value); // ✅ 获取 AI 会议总结
   } catch (error) {
     console.error("获取小组当前 Session 失败:", error);
   }
@@ -309,7 +263,6 @@ const sendMessage = async (payload) => {
     session_id: selectedSessionId.value,
     user_id: payload.user_id,
     chatbot_id: "",
-    agent_id: payload.agent_id || "",
     msgid: payload.msgid || crypto.randomUUID(),
     message: payload.message,
     role: payload.role || "user",
@@ -354,10 +307,6 @@ const initWebSocket = (groupId) => {
         messages.value.push(newMessage);
         scrollToBottom();
       }
-      if (parsedData.type === "ai_summary") {
-        console.log("🤖 AI 会议总结收到:", parsedData.summary_text);
-        chatSummaries.value.push({ summary_text: parsedData.summary_text });
-      }
     } catch (error) {
       console.error("❌ WebSocket 消息解析错误:", error, "原始数据:", data);
     }
@@ -395,20 +344,6 @@ watch(selectedGroupId, async (newGroupId) => {
   }
 });
 
-// ✅ **根据 sessionId 获取 AI 会议总结**
-const fetchChatSummariesBySession = async (sessionId) => {
-  if (!sessionId) return;
-  try {
-    const summary = await api.getChatSummaries(sessionId);
-    console.log("dddddd", summary);
-
-    chatSummaries.value = summary.length > 0 ? summary[0] : []; // ✅ 只存储最新的一条
-    console.log("dddddd", chatSummaries.value);
-  } catch (error) {
-    console.error("获取 AI 会议总结失败:", error);
-  }
-};
-
 // ✅ **新增计算属性 userNames**
 const userNames = computed(() => {
   return Object.fromEntries(
@@ -423,18 +358,6 @@ const updateGroupInfo = ({ name, goal }) => {
     group.name = name;
     group.group_goal = goal;
     selectedGroupName.value = name;
-  }
-};
-
-// ✅ **更新 Prompt**
-const handleUpdatePrompt = async () => {
-  if (!selectedGroupId.value) return;
-  try {
-    await api.generatePrompt(selectedGroupId.value);
-    ElMessage.success("GroupBot prompt updated successfully!");
-  } catch (error) {
-    console.error("❌ 更新 Prompt 失败:", error);
-    ElMessage.error("Failed to update GroupBot prompt.");
   }
 };
 
@@ -473,53 +396,6 @@ onMounted(() => {
   };
   document.head.appendChild(script);
 });
-// ✅ 处理议程完成事件，触发 AI 总结、认知引导、行为提醒
-const handleAgendaCompleted = async ({ agendaId, groupId, sessionId }) => {
-  console.log("🧪 handleAgendaCompleted 参数:", {
-    agendaId,
-    groupId,
-    sessionId,
-  });
-  if (!groupId || !sessionId) return;
-
-  // 替换为新的 API 请求调用
-  console.log("📡 正在触发 trigger_ai_summary...");
-  try {
-    await api.generateSummary(groupId, {
-      group_id: groupId,
-      session_id: sessionId,
-      chatbot_id: selectedGroupBot.value?.id || "",
-      ai_provider: selectedAiProvider.value || "xai",
-    });
-    await fetchChatSummariesBySession(sessionId); // ✅ 重新拉取总结
-    ElMessage.success("AI 总结已生成并更新！");
-  } catch (error) {
-    console.error("❌ AI 总结生成失败:", error);
-    ElMessage.error("AI 总结生成失败！");
-  }
-
-  // console.log("📡 正在触发 trigger_ai_guidance...");
-
-  // // 👉 新增：触发认知引导（trigger_ai_guidance）
-  // try {
-  //   await api.generateGuidance(groupId, {
-  //     group_id: groupId,
-  //     session_id: sessionId,
-  //     chatbot_id: selectedGroupBot.value?.id || "",
-  //     ai_provider: selectedAiProvider.value || "xai",
-  //   });
-  //   ElMessage.success("AI 认知引导已生成！");
-  // } catch (error) {
-  //   console.error("❌ AI 认知引导生成失败:", error);
-  //   ElMessage.error("AI 认知引导生成失败！");
-  // }
-
-  // console.log("📡 正在触发 trigger_behavior_reminder...");
-  // sendWebSocketMessage(groupId, {
-  //   type: "trigger_behavior_reminder",
-  //   session_id: sessionId,
-  // });
-};
 </script>
 
 <style scoped>
@@ -612,14 +488,6 @@ const handleAgendaCompleted = async ({ agendaId, groupId, sessionId }) => {
 }
 
 /* 📌 AI 实时总结面板 */
-.realtime-summary {
-  flex: 0.3;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.08);
-  margin-left: 15px;
-}
 
 /* 📌 议程面板状态 */
 .agenda-collapsed {

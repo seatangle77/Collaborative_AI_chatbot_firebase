@@ -34,14 +34,6 @@
             <el-icon><Cpu /></el-icon> {{ api.name }}
           </el-menu-item>
         </el-sub-menu>
-        <el-sub-menu index="5">
-          <template #title
-            ><el-icon><ChatDotRound /></el-icon>聊天议程与汇总</template
-          >
-          <el-menu-item v-for="api in apiCategories[4].apis" :key="api.url">
-            <el-icon><ChatDotRound /></el-icon> {{ api.name }}
-          </el-menu-item>
-        </el-sub-menu>
         <el-sub-menu index="6">
           <template #title
             ><el-icon><Setting /></el-icon>讨论核心与反馈</template
@@ -130,32 +122,11 @@ const apiCategories = ref([
     ],
   },
   {
-    category: "聊天议程与汇总 API",
-    apis: [
-      {
-        name: "获取聊天议程",
-        url: "http://localhost:8000/api/chat/agenda/{group_id}",
-      },
-      {
-        name: "获取聊天汇总",
-        url: "http://localhost:8000/api/chat/summary/{group_id}",
-      },
-    ],
-  },
-  {
     category: "讨论核心与反馈 API",
     apis: [
       {
         name: "获取讨论核心",
         url: "http://localhost:8000/api/discussion_core",
-      },
-      {
-        name: "获取讨论反馈",
-        url: "http://localhost:8000/api/engagement_feedback",
-      },
-      {
-        name: "获取讨论见解",
-        url: "http://localhost:8000/api/discussion_insights",
       },
       {
         name: "获取讨论术语",

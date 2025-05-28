@@ -27,15 +27,6 @@
           :value="userId"
         />
       </el-select>
-
-      <el-button
-        type="success"
-        class="update-prompt-btn"
-        @click="emit('updatePrompt')"
-        :disabled="!localUserId"
-      >
-        Update Prompt
-      </el-button>
     </div>
 
     <div class="header-section header-title">
@@ -44,62 +35,27 @@
       </span>
       - {{ selectedSessionTitle || "No Active Session" }}
     </div>
-
-    <span
-      class="agent-name"
-      @click="emit('toggleDrawer')"
-      style="cursor: pointer"
-    >
-      🤖 {{ agentName }}
-      <el-icon style="color: white; margin-left: 5px"><InfoFilled /></el-icon>
-    </span>
-    <div class="header-section">
-      <el-select
-        v-model="agentModel"
-        class="ai-provider-select"
-        @change="handleProviderChange"
-      >
-        <el-option
-          v-for="(label, value) in aiModelOptions"
-          :key="value"
-          :label="label"
-          :value="value"
-        />
-      </el-select>
-    </div>
   </el-header>
 </template>
 
 <script setup>
 import { ref, watch } from "vue";
 import { InfoFilled } from "@element-plus/icons-vue";
-import { aiModelOptions } from "../utils/constants";
-import api from "../services/apiService";
-import { ElMessage } from "element-plus";
 
 const props = defineProps({
   groups: Array,
   selectedGroupId: String,
   selectedUser: String,
-  agentInfo: Object,
   users: Object,
   filteredUsersInfo: Object,
   selectedSessionTitle: String,
-  agentName: String,
   selectedAiProvider: String,
 });
 
-const emit = defineEmits([
-  "selectGroup",
-  "selectUser",
-  "updatePrompt",
-  "changeAiProvider",
-  "toggleDrawer",
-]);
+const emit = defineEmits(["selectGroup", "selectUser", "changeAiProvider"]);
 
 const localGroupId = ref(props.selectedGroupId);
 const localUserId = ref(props.selectedUser);
-const agentModel = ref(props.agentInfo?.model);
 
 watch(
   () => props.selectedGroupId,
@@ -109,27 +65,6 @@ watch(
   () => props.selectedUser,
   (val) => (localUserId.value = val)
 );
-watch(
-  () => props.agentInfo?.model,
-  (val) => (agentModel.value = val)
-);
-
-const updateModelInDatabase = async (model) => {
-  console.log("props.agentInfo.id", props.agentInfo.id);
-  if (!props.agentInfo?.id) return;
-  try {
-    await api.updateAgentModel(props.agentInfo.id, model);
-    ElMessage.success("AI 模型已更新");
-  } catch (error) {
-    console.error("更新模型失败:", error);
-    ElMessage.error("更新模型失败");
-  }
-};
-
-const handleProviderChange = async (newModel) => {
-  agentModel.value = newModel;
-  await updateModelInDatabase(newModel);
-};
 </script>
 
 <style scoped>
@@ -153,8 +88,7 @@ const handleProviderChange = async (newModel) => {
   gap: 10px;
 }
 .group-select,
-.user-select,
-.ai-provider-select {
+.user-select {
   width: 200px;
   font-size: 14px;
   border-radius: 6px;
@@ -171,20 +105,5 @@ const handleProviderChange = async (newModel) => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.update-prompt-btn {
-  font-size: 14px;
-  padding: 4px 10px;
-  font-weight: 500;
-  border-radius: 6px;
-}
-.agent-name {
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  margin-right: 4px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
 }
 </style>

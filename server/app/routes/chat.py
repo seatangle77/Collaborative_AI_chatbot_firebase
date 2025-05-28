@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional
 from app.database import db as firestore_db
-from app.websocket_routes import push_chat_message, push_ai_summary
+from app.websocket_routes import push_chat_message
 
 router = APIRouter()
 
@@ -28,7 +28,6 @@ class ChatMessage(BaseModel):
     speaking_duration: Optional[int] = 0
     session_id: Optional[str] = None
     msgid: Optional[str] = None
-    agent_id: Optional[str] = None
 
 # ========== 📌 发送聊天消息 ==========
 @router.post("/api/chat/send")
@@ -183,36 +182,3 @@ async def delete_agenda(agenda_id: str):
         return {"message": "议程已删除", "data": deleted.to_dict() | {"id": agenda_id}}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"删除议程失败: {str(e)}")
-
-# ========== 📌 获取小组的 AI 聊天总结记录 ==========
-@router.get("/api/chat_summaries/{group_id}")
-async def get_chat_summaries(group_id: str):
-    """
-    获取指定小组的 AI 聊天总结（按时间倒序）
-    """
-    docs = firestore_db.collection("chat_summaries").where("group_id", "==", group_id).order_by("summary_time", direction="DESCENDING").stream()
-    return [doc.to_dict() | {"id": doc.id} for doc in docs]
-
-# ========== 📌 手动触发一次 AI 聊天总结 ==========
-@router.post("/api/chat_summaries/{group_id}")
-async def trigger_ai_summary(group_id: str):
-    """
-    手动触发一次 AI 聊天总结
-    """
-    await push_ai_summary(group_id)
-    return {"message": "AI 会议总结已触发"}
-
-# ========== 📌 获取指定 session 的 AI 聊天总结 ==========
-@router.get("/api/chat_summaries/session/{session_id}")
-async def get_chat_summaries_by_session(session_id: str):
-    """
-    获取指定 session 的 AI 聊天总结（按时间倒序）
-    """
-    summaries = []
-    for doc in firestore_db.collection("chat_summaries").where("session_id", "==", session_id).stream():
-        data = doc.to_dict()
-        if "created_at" in data and hasattr(data["created_at"], "isoformat"):
-            data["created_at"] = data["created_at"].isoformat()
-        data["id"] = doc.id
-        summaries.append(data)
-    return JSONResponse(content=summaries, status_code=200, headers={"Access-Control-Allow-Origin": "*"})

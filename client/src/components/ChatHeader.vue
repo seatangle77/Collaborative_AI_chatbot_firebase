@@ -15,25 +15,10 @@
       />
     </el-select>
 
-    <el-button
-      type="success"
-      @click="emit('updatePrompt')"
-      :disabled="!localSelectedGroupId"
-    >
-      Update GroupBot Prompt
-    </el-button>
-
     <!-- 会话标题 -->
     <div class="header-title">
       {{ selectedSessionTitle || "No Active Session" }}
     </div>
-
-    <el-button link @click="emit('toggleDrawer')">
-      <span v-if="selectedGroupBot" class="bot-name">
-        🤖 {{ selectedGroupBot.name }}
-      </span>
-      <el-icon style="color: white; margin-left: 5px"><InfoFilled /></el-icon>
-    </el-button>
 
     <!-- AI供应商选择 -->
     <el-select
@@ -67,12 +52,7 @@ const props = defineProps({
   selectedSessionTitle: String,
 });
 
-const emit = defineEmits([
-  "selectGroup",
-  "changeAiProvider",
-  "updatePrompt",
-  "toggleDrawer",
-]);
+const emit = defineEmits(["selectGroup", "changeAiProvider"]);
 
 const localSelectedGroupId = ref(props.selectedGroupId);
 const localSelectedAiProvider = ref(props.selectedAiProvider);

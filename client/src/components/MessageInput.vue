@@ -1,7 +1,4 @@
 <template>
-  <div v-if="isRecognizing" style="padding: 8px 16px; color: #409eff">
-    🎤 正在识别语音...
-  </div>
   <div class="input-container">
     <!-- ✅ 用户选择 -->
     <el-select
@@ -41,31 +38,11 @@
     <el-button type="primary" @click="handleSend" size="large" class="send-btn">
       Send
     </el-button>
-
-    <el-button
-      type="success"
-      @click="startAudioCapture"
-      size="large"
-      class="send-btn"
-    >
-      🎤 开始语音识别
-    </el-button>
-
-    <el-button
-      type="warning"
-      @click="stopAudioCapture"
-      size="large"
-      class="send-btn"
-      :disabled="!isRecognizing"
-    >
-      🛑 结束语音识别
-    </el-button>
   </div>
 </template>
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import { recognizeSpeechFromMicrophone } from "../services/azureSpeech";
 
 const props = defineProps({
   users: {
@@ -86,8 +63,6 @@ const props = defineProps({
 const message = ref("");
 const selectedUser = ref(null);
 const speakingDuration = ref(null); // ✅ 让前端控制 speaking_duration (ms)
-const isRecognizing = ref(false);
-const autoLoop = ref(true); // 控制是否自动识别下一轮
 
 onMounted(() => {
   const userIds = Object.keys(props.users);
@@ -95,17 +70,6 @@ onMounted(() => {
     selectedUser.value = userIds[0];
   }
 });
-
-const startAudioCapture = async () => {
-  // 暂时禁用语音识别功能，但保留按钮和方法
-  console.log("🎤 startAudioCapture 被禁用（暂不使用语音识别）");
-};
-
-const stopAudioCapture = () => {
-  // 暂时禁用 stopAudioCapture 功能
-  // 保留方法和按钮，但不执行任何操作
-  console.log("🛑 stopAudioCapture 被禁用（暂不使用语音识别）");
-};
 
 watch(
   () => props.messages,
@@ -148,17 +112,8 @@ const handleSend = () => {
     const msgKey = message.value.trim();
     message.value = "";
     speakingDuration.value = null;
-
-    // 发送完成后继续识别
-    if (autoLoop.value) {
-      setTimeout(() => startAudioCapture(), 500);
-    }
   }
 };
-
-defineExpose({
-  stopAudioCapture,
-});
 </script>
 
 <style scoped>

@@ -2,7 +2,6 @@ import os
 import json
 import requests
 from dotenv import load_dotenv
-from .database import db as firestore_client
 
 # ✅ 加载 .env 配置
 load_dotenv()
@@ -11,55 +10,25 @@ load_dotenv()
 HKUST_AI_API_KEY = os.getenv("SCHOOL_GPT_API_KEY")
 HKUST_AI_API_BASE = os.getenv("SCHOOL_GPT_API_URL", "https://gpt-api.hkust-gz.edu.cn/v1")
 
-def generate_ai_response(bot_id: str, main_prompt: str, history_prompt: str = None, prompt_type: str = "real_time_summary", model: str = "gpt-4", agent_id: str = None):
+def generate_ai_response(bot_id: str, main_prompt: str, history_prompt: str = None, prompt_type: str = "cognitive_guidance", model: str = "gpt-4"):
     """
     调用 HKUST GZ AI API 生成 AI 会议总结
     """
     if not HKUST_AI_API_KEY:
         return "❌ API Key 为空，请检查 `.env` 配置"
 
-    if prompt_type in ["real_time_summary", "cognitive_guidance", "summary_to_knowledge"]:
+    if prompt_type == "cognitive_guidance":
         if not bot_id:
             raise ValueError(f"{prompt_type} 类型必须提供 bot_id")
-        table = "ai_prompt_versions"
-        id_field = "ai_bot_id"
-        id_value = bot_id
-    elif prompt_type in ["term_explanation", "knowledge_followup"]:
-        if not agent_id:
-            raise ValueError(f"{prompt_type} 类型必须提供 agent_id")
-        table = "agent_prompt_versions"
-        id_field = "agent_id"
-        id_value = agent_id
-    else:
-        return f"❌ 不支持的 prompt_type: {prompt_type}"
 
-    prompts_ref = firestore_client.collection(table)
-    query = (
-        prompts_ref
-        .where(id_field, "==", id_value)
-        .where("prompt_type", "==", prompt_type)
-        .where("is_active", "==", True)
-        .order_by("created_at", direction="DESCENDING")
-        .limit(1)
-    )
-    docs = list(query.stream())
+    system_prompt = "你是一个跨学科协作讨论的引导助手，请根据输入内容判断是否需要提供认知引导，并简洁地回应。"
 
-    if not docs:
-        return f"❌ 未找到可用的 prompt（{prompt_type}）"
-
-    system_prompt = docs[0].to_dict().get("rendered_prompt", "")
-    max_words = 150 if prompt_type == "real_time_summary" else 100
+    max_words = 100
     system_prompt = system_prompt.replace("{max_words}", str(max_words))
 
     # ✅ 处理不同的 `prompt_type`
-    if prompt_type == "real_time_summary":
-        user_prompt = f"请在 {max_words} 词以内总结以下内容：\n\n{main_prompt}"
-    elif prompt_type == "cognitive_guidance":
+    if prompt_type == "cognitive_guidance":
         user_prompt = f"请根据以下讨论内容，判断是否需要引导团队进一步讨论，并提供知识支持：\n\n{main_prompt}"
-    elif prompt_type == "term_explanation":
-        user_prompt = f"请在 {max_words} 词以内解释这个术语：\n\n{main_prompt}"
-    else:
-        return "❌ 不支持的 `prompt_type`"
 
     messages = [
         {"role": "system", "content": system_prompt},  

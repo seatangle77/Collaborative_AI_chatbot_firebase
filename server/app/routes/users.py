@@ -21,32 +21,6 @@ async def get_user(user_id: str):
         raise HTTPException(status_code=404, detail="未找到该用户信息")
     return doc.to_dict()
 
-# ✅ 获取用户的 AI 代理信息
-@router.get("/api/users/{user_id}/agent")
-async def get_user_agent(user_id: str):
-    """
-    获取用户的 AI 代理信息 (agent_id, agent_name)
-    """
-    user_doc = db.collection("users_info").document(user_id).get()
-    if not user_doc.exists:
-        raise HTTPException(status_code=404, detail="未找到该用户信息")
-
-    user_data = user_doc.to_dict()
-    agent_id = user_data.get("agent_id")
-
-    if not agent_id:
-        return {"agent_id": None, "agent_name": "无 AI 代理"}
-
-    agent_doc = db.collection("personal_agents").document(agent_id).get()
-    if not agent_doc.exists:
-        return {"agent_id": agent_id, "agent_name": "无 AI 代理"}
-
-    agent_data = agent_doc.to_dict()
-    return {
-        "agent_id": agent_id,
-        "agent_name": agent_data.get("name", "无 AI 代理")
-    }
-
 # ✅ 用户信息更新模型
 class UserInfoUpdateRequest(BaseModel):
     name: Optional[str] = None

@@ -27,27 +27,6 @@ export const createWebSocket = (groupId) => {
 
       console.log("✅ 解析后数据:", receivedData);
 
-      // **区分不同类型的 WebSocket 消息**
-      switch (receivedData.type) {
-        case "message":
-          console.log("💬 新聊天消息:", receivedData.message, "🆔 msgId:", receivedData.message?.msgId);
-          break;
-
-        case "ai_summary":
-          console.log("🤖 AI 会议总结:", receivedData.summary_text);
-          break;
-
-        case "ai_guidance":
-          console.log("🤖 AI 认知引导:", receivedData.message);
-          if (onMessageCallback) {
-            onMessageCallback(receivedData);
-          }
-          break;
-        
-        default:
-          console.warn("⚠️ 未知类型的 WebSocket 消息:", receivedData);
-      }
-
       // **通知 Vue 组件更新 UI**
       if (onMessageCallback) {
         onMessageCallback(receivedData);
@@ -65,20 +44,6 @@ export const createWebSocket = (groupId) => {
   socket.onerror = (error) => {
     console.error("❌ WebSocket 发生错误:", error);
   };
-};
-
-export const changeAiProviderAndTriggerSummary = (groupId, aiProvider) => {
-  if (!groupId || !aiProvider) {
-    console.error("⚠️ groupId 或 aiProvider 为空，无法触发 AI 会议总结");
-    return;
-  }
-
-  // const payload = {
-  //   type: "trigger_ai_summary",
-  //   aiProvider, // ✅ 传递用户选择的 AI 供应商
-  // };
-
-  sendControlMessage(groupId, payload);
 };
 
 // 新增发送控制类系统消息方法
@@ -117,10 +82,6 @@ export const sendMessage = (groupId, message) => {
 
   if (!message.created_at) {
     message.created_at = new Date().toISOString();
-  }
-
-  if (message.personal_agent_id === undefined) {
-    message.personal_agent_id = ""; // 确保结构一致，即使为空
   }
 
   if (!message.chatbot_id) {

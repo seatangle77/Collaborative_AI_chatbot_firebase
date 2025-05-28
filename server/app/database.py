@@ -15,11 +15,19 @@ if ENV == "production":
         raise RuntimeError("FIREBASE_KEY_JSON not set for production mode")
     firebase_key_dict = json.loads(firebase_key_str)
 else:
-    firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
-    if firebase_key_str is None:
-        raise RuntimeError("FIREBASE_KEY_JSON not set in .env.local for development mode")
-    firebase_key_dict = json.loads(firebase_key_str)
-cred = credentials.Certificate(firebase_key_dict)
+    cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    if cred_path and os.path.exists(cred_path):
+        cred = credentials.Certificate(cred_path)
+    else:
+        firebase_key_str = os.getenv("FIREBASE_KEY_JSON")
+        if firebase_key_str is None:
+            raise RuntimeError("FIREBASE_KEY_JSON not set in .env.local for development mode")
+        firebase_key_dict = json.loads(firebase_key_str)
+        cred = credentials.Certificate(firebase_key_dict)
+    # if using path, firebase_key_dict is not needed; if using dict, cred is already set
+    # 'cred' is set in both branches above
+if ENV == "production":
+    cred = credentials.Certificate(firebase_key_dict)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -30,14 +38,6 @@ def get_discussion_core_by_group(group_id):
 
 def insert_discussion_core(data):
     doc_ref = db.collection("discussion_core").document(data["id"])
-    doc_ref.set(data)
-    return {"status": "inserted", "id": doc_ref.id}
-
-def get_engagement_feedback_by_user(user_id):
-    return [doc.to_dict() for doc in db.collection("engagement_feedback").where("user_id", "==", user_id).stream()]
-
-def insert_engagement_feedback(data):
-    doc_ref = db.collection("engagement_feedback").document(data["id"])
     doc_ref.set(data)
     return {"status": "inserted", "id": doc_ref.id}
 

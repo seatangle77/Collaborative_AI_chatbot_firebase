@@ -19,8 +19,6 @@ websocket_router = APIRouter()
 # 存储 WebSocket 连接
 connected_clients = {}
 
-last_ai_summary = {}  # 记录上次 AI 生成的总结
-
 @websocket_router.websocket("/ws/{group_id}")
 async def websocket_endpoint(websocket: WebSocket, group_id: str):
     """WebSocket 连接管理"""
@@ -28,7 +26,6 @@ async def websocket_endpoint(websocket: WebSocket, group_id: str):
     
     if group_id not in connected_clients:
         connected_clients[group_id] = []
-        last_ai_summary[group_id] = None  
 
     connected_clients[group_id].append(websocket)
 
@@ -38,19 +35,6 @@ async def websocket_endpoint(websocket: WebSocket, group_id: str):
             print(f"📩 收到 WebSocket 数据: {data}")  # ✅ 添加日志，查看原始数据
 
             received_data = json.loads(data)
-
-            # ✅ 处理前端触发 AI 总结请求
-            if received_data.get("type") == "trigger_ai_summary":
-                ai_provider = received_data.get("aiProvider", "xai")  # ✅ 确保解析 aiProvider
-                print(f"🚀 触发 AI 总结: group_id={group_id}, 使用 API: {ai_provider}")
-
-                if not ai_provider:  # ✅ 变量名修正
-                    print("❌ 错误: AI 提供商 (`ai_provider`) 为空，无法生成总结")
-                    return
-
-                print(f"🚀 触发 AI 总结: group_id={group_id}，使用 API: {ai_provider}")
-                await push_ai_summary(group_id, ai_provider)
-                continue  
 
             # ✅ 处理前端触发 AI 认知引导请求
             if received_data.get("type") == "trigger_ai_guidance":
@@ -133,18 +117,11 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
 
     bot_id = get_bot_id_by_group(group_id)
 
-    last_summary = []
-    summary_docs = firestore_client.collection("chat_summaries").where("group_id", "==", group_id).order_by("summary_time", direction=firestore.Query.DESCENDING).limit(1).stream()
-    for doc in summary_docs:
-        last_summary.append(doc.to_dict())
-    summary_text = last_summary[0]["summary_text"] if last_summary else ""
-    
-    print(f"🪐 生成 AI bot 聊天干预: group_id={group_id}，使用 API: {api_provider}，传入main prompt: {conversation_content}，传入history_prompt: {summary_text}")
+    print(f"🪐 生成 AI bot 聊天干预: group_id={group_id}，使用 API: {api_provider}，传入main prompt: {conversation_content}")
 
     guidance_response = generate_response(
         bot_id=bot_id,
         main_prompt=conversation_content,  # 主要内容（最近聊天）
-        history_prompt=summary_text,  # 过去的 AI 会议总结
         prompt_type="cognitive_guidance",
         model="default",
         api_provider=api_provider
@@ -206,92 +183,3 @@ async def check_cognitive_guidance(group_id: str, api_provider: str):
     firestore_client.collection("chat_messages").add(ai_message)
 
     await push_chat_message(group_id, ai_message)
-
-
-# ✅ **推送 AI 会议总结**
-async def push_ai_summary(group_id: str, api_provider: str):
-    """触发 AI 生成会议总结，使用前端指定的 AI 提供商"""
-    if not api_provider:
-        print("❌ `api_provider` 为空，无法生成 AI 总结")
-        return
-
-    print(f"🚀 生成 AI 总结: group_id={group_id}，使用 API: {api_provider}")
-
-    # ✅ 获取当前 session
-    session = []
-    session_docs = firestore_client.collection("chat_sessions").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(1).stream()
-    for doc in session_docs:
-        session.append(doc.to_dict())
-
-    if not session:
-        print("❌ 没有找到当前活跃 session")
-        return
-    session_id = session[0]["id"]
-
-    # ✅ 获取最近 10 条聊天记录
-    chat_history = []
-    chat_docs = firestore_client.collection("chat_messages").where("group_id", "==", group_id).order_by("created_at", direction=firestore.Query.DESCENDING).limit(10).stream()
-    for doc in chat_docs:
-        chat_history.append(doc.to_dict())
-
-    if not chat_history:
-        print("❌ 没有找到聊天记录")
-        return
-
-    print(f"📖 获取到最近 {len(chat_history)} 条聊天记录")
-
-    conversation = "\n".join([msg["message"] for msg in chat_history])
-    previous_summary = last_ai_summary.get(group_id, "")
-
-    bot_id = get_bot_id_by_group(group_id)
-
-    # ✅ 发送 AI 生成请求（传递 main_prompt 和 history_prompt）
-    ai_response = generate_response(
-        bot_id=bot_id,
-        main_prompt=conversation,  # 主要内容（最新聊天）
-        history_prompt=previous_summary,  # 过去的 AI 会议总结
-        prompt_type="real_time_summary",
-        model="default",
-        api_provider=api_provider
-    )
-
-    if not ai_response or ai_response.strip() == "":
-        print("❌ AI 生成失败，跳过入库")
-        return
-
-    print(f"🤖 AI 会议总结生成成功: {ai_response}")
-
-    last_ai_summary[group_id] = ai_response
-
-    summary_entry = {
-        "group_id": group_id,
-        "session_id": session_id,
-        "summary_text": ai_response,
-        "summary_time": "now()",
-    }
-
-    firestore_client.collection("chat_summaries").add(summary_entry)
-
-    ai_summary_message = {
-        "group_id": group_id,
-        "user_id": bot_id,
-        "message": ai_response,
-        "role": "bot",
-        "message_type": "ai_summary",
-        "sender_type": "bot",
-        "chatbot_id": bot_id,
-        "session_id": session_id
-    }
-
-    firestore_client.collection("chat_messages").add(ai_summary_message)
-
-    if group_id in connected_clients:
-        summary_payload = json.dumps({
-            "type": "ai_summary",
-            "summary_text": ai_response,
-            "api_provider": api_provider  # ✅ 返回使用的 AI 供应商
-        })
-        for client in connected_clients[group_id]:
-            await client.send_text(summary_payload)
-
-    print(f"📤 AI 会议总结已通过 WebSocket 发送: {ai_response}")

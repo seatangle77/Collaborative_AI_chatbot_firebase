@@ -57,7 +57,6 @@ import api from "../services/apiService";
 import { ElMessage } from "element-plus";
 
 const props = defineProps({
-  summaryId: String,
   messageId: String,
   groupId: String,
   botId: String,

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "TabBehavior (Minimal)",
+  "version": "0.1",
+  "description": "A minimal Chrome extension to read tab information.",
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

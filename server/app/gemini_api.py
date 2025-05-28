@@ -16,54 +16,19 @@ client = genai
 
 
 def generate_ai_response(bot_id: str, main_prompt: str, history_prompt: str = None,
-                         prompt_type: str = "real_time_summary", model: str = "default", agent_id: str = None):
+                         prompt_type: str = "cognitive_guidance", model: str = "default"):
     """
     使用 google-genai 官方 Client 接口调用 Gemini 模型（标准推荐用法）
     """
     try:
-        # ✅ 从新版表获取 prompt 数据
-        if prompt_type in ["real_time_summary", "cognitive_guidance", "summary_to_knowledge"]:
-            if not bot_id:
-                raise ValueError(f"{prompt_type} 类型必须提供 bot_id")
-            table = "ai_prompt_versions"
-            id_field = "ai_bot_id"
-            id_value = bot_id
-        elif prompt_type in ["term_explanation", "knowledge_followup"]:
-            if not agent_id:
-                raise ValueError(f"{prompt_type} 类型必须提供 agent_id")
-            table = "agent_prompt_versions"
-            id_field = "agent_id"
-            id_value = agent_id
-        else:
+        if prompt_type != "cognitive_guidance":
             raise ValueError(f"❌ Unsupported prompt_type: {prompt_type}")
 
-        docs = (
-            db.collection(table)
-            .where(id_field, "==", id_value)
-            .where("prompt_type", "==", prompt_type)
-            .where("is_active", "==", True)
-            .order_by("created_at", direction=firestore.Query.DESCENDING)
-            .limit(1)
-            .stream()
-        )
-
-        docs = list(docs)
-        if not docs:
-            raise ValueError(f"❌ No active prompt found for {prompt_type}")
-
-        system_prompt = docs[0].to_dict()["rendered_prompt"]
-        max_words = 150 if prompt_type == "real_time_summary" else 100
-        system_prompt = system_prompt.replace("{max_words}", str(max_words))
+        system_prompt = "你是一个小组讨论助理，请根据团队讨论内容判断是否需要引导并提供建议，最多不超过 {max_words} 字。"
+        system_prompt = system_prompt.replace("{max_words}", str(100))
 
         # ✅ 构造用户内容
-        if prompt_type == "real_time_summary":
-            user_prompt = f"请在 {max_words} 词以内总结以下内容：\n\n{main_prompt}"
-        elif prompt_type == "cognitive_guidance":
-            user_prompt = f"请根据以下讨论内容，判断是否需要引导团队进一步讨论，并提供知识支持：\n\n{main_prompt}"
-        elif prompt_type == "term_explanation":
-            user_prompt = f"请在 {max_words} 词以内解释这个术语：\n\n{main_prompt}"
-        else:
-            return f"❌ 不支持的 prompt_type: {prompt_type}"
+        user_prompt = f"请根据以下讨论内容，判断是否需要引导团队进一步讨论，并提供知识支持：\n\n{main_prompt}"
 
         # ✅ 组合内容（system + user + optional history）
         contents = [system_prompt, user_prompt]
