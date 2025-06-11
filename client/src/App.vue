@@ -7,9 +7,19 @@
 <script setup></script>
 
 <style>
-body {
-  font-family: "Arial", sans-serif;
+html,
+body,
+#app {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Arial", sans-serif;
   background: #f8f9fa;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+}
 </style>
+ß

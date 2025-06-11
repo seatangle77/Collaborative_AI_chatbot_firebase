@@ -26,6 +26,9 @@ export default {
   getUsers() {
     return axios.get(`${BASE_URL}/api/users/`).then(res => res.data);
   },
+  getUserGroupContext(userId) {
+    return axios.get(`${BASE_URL}/api/user/${userId}/group-context`).then(res => res.data);
+  },
   getAiBots() {
     return axios.get(`${BASE_URL}/api/ai_bots`).then(res => res.data);
   },
@@ -61,5 +64,9 @@ export default {
   },
   updateBotModel(botId, model) {
     return axios.put(`${BASE_URL}/api/ai_bots/${botId}/model`, { model }).then(res => res.data);
+  },
+  resetAgendaStatus(groupId, stage) {
+    return axios.patch(`${BASE_URL}/api/chat/agenda/reset_status/${groupId}?stage=${stage}`)
+      .then(res => res.data);
   },
 };

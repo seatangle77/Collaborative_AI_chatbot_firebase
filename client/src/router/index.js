@@ -1,20 +1,24 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import PersonalDashboard from "../personal_device/PersonalDashboard.vue";
 
 const routes = [
   {
     path: "/",
-    redirect: "/meeting",
+    redirect: "/public-display",
   },
   {
     path: "/personal-dashboard",
-    name: "PersonalDashboard",
-    component: PersonalDashboard,
+    name: "PersonalWorkspace",
+    component: () => import("../views/PersonalWorkspace.vue"),
   },
   {
-    path: "/meeting",
-    name: "MeetingView",
-    component: () => import("../views/MeetingView.vue"),
+    path: "/public-display",
+    name: "PublicScreen",
+    component: () => import("../views/PublicScreen.vue"),
+  },
+  {
+    path: "/admin",
+    name: "AdminPage",
+    component: () => import("../views/AdminPage.vue"),
   }
 ];
 

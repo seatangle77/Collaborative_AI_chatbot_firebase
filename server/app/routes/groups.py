@@ -1,3 +1,4 @@
+import asyncio
 from fastapi import APIRouter, HTTPException
 from app.database import db
 from pydantic import BaseModel
@@ -44,9 +45,67 @@ async def update_group_info(group_id: str, update_data: GroupUpdateRequest):
     if not update_fields:
         raise HTTPException(status_code=400, detail="未提供任何更新字段")
     doc_ref = db.collection("groups").document(group_id)
-    if not doc_ref.get().exists:
+    existing_doc = doc_ref.get()
+    if not existing_doc.exists:
         raise HTTPException(status_code=404, detail="未找到该小组")
 
-    doc_ref.update(update_fields)
-    updated_doc = doc_ref.get()
-    return {"message": "小组信息已更新", "data": updated_doc.to_dict() | {"id": updated_doc.id}}
+    await asyncio.to_thread(doc_ref.update, update_fields)
+    updated_data = existing_doc.to_dict() | update_fields | {"id": existing_doc.id}
+    return {"message": "小组信息已更新", "data": updated_data}
+
+@router.get("/api/user/{user_id}/group-context")
+async def get_group_context_by_user(user_id: str):
+    import time
+    start_time = time.time()
+
+    # 1. 查询 group_memberships，找到对应 group_id
+    memberships = list(db.collection("group_memberships").where("user_id", "==", user_id).stream())
+    if not memberships:
+        raise HTTPException(status_code=404, detail="未找到该用户所在的小组")
+
+    group_id = memberships[0].to_dict().get("group_id")
+
+    # 2. 获取小组详情
+    group_doc = db.collection("groups").document(group_id).get()
+    if not group_doc.exists:
+        raise HTTPException(status_code=404, detail="未找到小组详情")
+    group_data = group_doc.to_dict() | {"id": group_doc.id}
+
+    # 3. 获取组员列表
+    member_docs = list(db.collection("group_memberships").where("group_id", "==", group_id).stream())
+    member_ids = [doc.to_dict().get("user_id") for doc in member_docs]
+
+    # 批量查询用户信息
+    user_info_docs = await asyncio.gather(
+        *[asyncio.to_thread(db.collection("users_info").document(uid).get) for uid in member_ids]
+    )
+    users_info = []
+    for i, udoc in enumerate(user_info_docs):
+        if udoc.exists:
+            user_data = udoc.to_dict()
+            user_data["user_id"] = member_ids[i]
+            users_info.append(user_data)
+
+    # 4. 获取最新 session
+    session_docs = list(db.collection("chat_sessions")
+        .where("group_id", "==", group_id)
+        .order_by("created_at", direction="DESCENDING")
+        .limit(1)
+        .stream())
+    session_data = session_docs[0].to_dict() | {"id": session_docs[0].id} if session_docs else None
+
+    # 5. 获取该小组的 AI Bot
+    ai_bot_docs = list(db.collection("ai_bots")
+        .where("group_id", "==", group_id)
+        .limit(1)
+        .stream())
+    ai_bot_data = ai_bot_docs[0].to_dict() | {"id": ai_bot_docs[0].id} if ai_bot_docs else None
+
+    print(f"✅ get_group_context_by_user 用时: {round(time.time() - start_time, 3)}s")
+
+    return {
+        "group": group_data,
+        "members": users_info,
+        "session": session_data,
+        "bot": ai_bot_data
+    }

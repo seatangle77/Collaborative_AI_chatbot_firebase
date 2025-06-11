@@ -1,9 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional
 from app.database import db as firestore_db
-from app.websocket_routes import push_chat_message
 
 router = APIRouter()
 
@@ -28,28 +27,6 @@ class ChatMessage(BaseModel):
     speaking_duration: Optional[int] = 0
     session_id: Optional[str] = None
     msgid: Optional[str] = None
-
-# ========== 📌 发送聊天消息 ==========
-@router.post("/api/chat/send")
-async def send_chat_message(payload: ChatMessage):
-    """
-    发送聊天消息，同时存入数据库并通过 WebSocket 推送
-    """
-    from google.cloud import firestore
-
-    data = payload.dict()
-    data["created_at"] = firestore.SERVER_TIMESTAMP  # ✅ 添加 Firestore 时间戳
-
-    # ✅ 插入数据库
-    doc_ref = firestore_db.collection("chat_messages").add(data)
-    # 重新获取插入后的文档，确保 created_at 被 Firestore 正常填充并可序列化
-    doc_snapshot = firestore_db.collection("chat_messages").document(doc_ref[1].id).get()
-    inserted_data = doc_snapshot.to_dict() | {"id": doc_ref[1].id}
-
-    if inserted_data:
-        await push_chat_message(payload.group_id, inserted_data)  # ✅ WebSocket 推送消息
-
-    return inserted_data
 
 # ========== 📌 获取当前小组的活跃聊天会话 ==========
 @router.get("/api/sessions/{group_id}")
@@ -182,3 +159,55 @@ async def delete_agenda(agenda_id: str):
         return {"message": "议程已删除", "data": deleted.to_dict() | {"id": agenda_id}}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"删除议程失败: {str(e)}")
+
+
+# ========== 📌 批量更新议程状态 ==========
+@router.patch("/api/chat/agenda/reset_status/{group_id}")
+async def reset_agenda_status(group_id: str, stage: int = Query(...)):
+    """
+    根据阶段重设小组的议程状态
+    参数：
+      - group_id: 小组 ID
+      - stage: 当前阶段（0 表示全部未开始，1 表示第一个进行中，2 表示第二个进行中等）
+    """
+    try:
+        print(f"🚀 reset_agenda_status called with group_id={group_id}, stage={stage}")
+
+        agendas_ref = firestore_db.collection("chat_agendas").where("group_id", "==", group_id).order_by("created_at")
+        agendas = list(agendas_ref.stream())
+
+        print(f"📋 Retrieved {len(agendas)} agendas")
+
+        if not agendas:
+            raise HTTPException(status_code=404, detail="未找到该小组的议程")
+
+        if stage == 5:
+            for doc in agendas:
+                doc_ref = firestore_db.collection("chat_agendas").document(doc.id)
+                doc_ref.update({"status": "completed"})
+            from app.websocket_routes import push_agenda_stage
+            await push_agenda_stage(group_id, stage)
+            return {"message": "所有议程状态已更新为 completed"}
+        else:
+            for idx, doc in enumerate(agendas):
+                doc_ref = firestore_db.collection("chat_agendas").document(doc.id)
+                if stage == 0:
+                    new_status = "not_started"
+                elif idx < stage - 1:
+                    new_status = "completed"
+                elif idx == stage - 1:
+                    new_status = "in_progress"
+                else:
+                    new_status = "not_started"
+
+                print(f"🔧 Updating agenda {doc.id}: index={idx}, new_status={new_status}")
+                doc_ref.update({"status": new_status})
+
+            from app.websocket_routes import push_agenda_stage
+            await push_agenda_stage(group_id, stage)
+
+        return {"message": f"议程状态已更新至阶段 {stage}"}
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"更新议程状态失败: {str(e)}")

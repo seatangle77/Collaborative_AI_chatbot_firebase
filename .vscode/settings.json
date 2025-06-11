@@ -1,0 +1,3 @@
+{
+  "firestore-explorer.serviceAccountKeyPath": "./firebase-key.json"
+}

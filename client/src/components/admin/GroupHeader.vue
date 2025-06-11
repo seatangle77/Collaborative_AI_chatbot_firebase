@@ -1,0 +1,189 @@
+<template>
+  <div class="group-overview">
+    <div class="group-overview-bar">
+      <div class="top-row">
+        <div style="display: flex; flex-direction: column">
+          <div class="left-info">
+            <el-select
+              v-model="localSelectedGroupId"
+              class="group-select"
+              size="small"
+              @change="handleGroupChange"
+              placeholder="请选择小组"
+            >
+              <el-option
+                v-for="g in allGroups"
+                :key="g.id"
+                :label="g.name"
+                :value="g.id"
+              />
+            </el-select>
+            <span class="goal" v-if="goal">目标：{{ goal }}</span>
+          </div>
+        </div>
+        <div class="right-info">
+          <el-space>
+            <el-tag
+              v-for="(member, index) in members"
+              :key="index"
+              size="small"
+              type="success"
+            >
+              {{ member.name }}
+            </el-tag>
+            <el-tag
+              size="small"
+              type="info"
+              v-if="bot?.name"
+              @click="showModelDialog = true"
+              style="cursor: pointer"
+            >
+              🤖 {{ bot.name }}
+            </el-tag>
+          </el-space>
+        </div>
+      </div>
+      <div class="session-row">
+        <div class="session-name">{{ sessionTitle }}</div>
+      </div>
+    </div>
+  </div>
+  <el-dialog v-model="showModelDialog" title="选择 AI 模型" width="300px">
+    <el-select
+      v-model="localSelectedAiProvider"
+      placeholder="请选择模型"
+      style="width: 100%"
+      @change="handleModelChange"
+    >
+      <el-option
+        v-for="(label, value) in aiModelOptions"
+        :key="value"
+        :label="label"
+        :value="value"
+      />
+    </el-select>
+  </el-dialog>
+</template>
+
+<script setup>
+import { ref, watch, computed } from "vue";
+import { ElMessage, ElDialog } from "element-plus";
+import { aiModelOptions } from "../../utils/constants";
+import api from "../../services/apiService";
+
+const props = defineProps({
+  group: Object,
+  members: Array,
+  goal: String,
+  sessionTitle: String,
+  sessionId: String,
+  allGroups: Array,
+  selectedGroupId: String,
+  bot: Object, // ✅ 当前小组的机器人
+});
+
+const emit = defineEmits(["updateGroup"]);
+
+const localSelectedGroupId = ref(props.selectedGroupId);
+
+watch(
+  () => props.selectedGroupId,
+  (val) => {
+    localSelectedGroupId.value = val;
+  }
+);
+
+const handleGroupChange = (newId) => {
+  emit("updateGroup", newId);
+};
+
+const showModelDialog = ref(false);
+const localSelectedAiProvider = ref(props.bot?.model || "");
+
+const handleModelChange = async (newModel) => {
+  if (props.bot?.id) {
+    try {
+      await api.updateBotModel(props.bot.id, newModel);
+      ElMessage.success("AI 模型已更新！");
+      localSelectedAiProvider.value = newModel;
+    } catch (error) {
+      console.error("更新 AI 模型失败:", error);
+    }
+  }
+  showModelDialog.value = false;
+};
+</script>
+
+<style scoped>
+.group-overview {
+  width: 100%;
+}
+
+.group-overview-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 1.25rem;
+  font-size: 14px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.session-row {
+  width: 100%;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.session-name {
+  padding-top: 1rem;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+}
+
+.left-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  min-height: 32px;
+}
+
+.right-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.right-info > .el-tag:last-child {
+  margin-left: 0.5rem;
+}
+
+.group-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #303133;
+}
+
+.goal {
+  font-size: 14px;
+  color: #606266;
+}
+
+.group-select {
+  width: 160px;
+  margin-bottom: 0;
+}
+</style>
