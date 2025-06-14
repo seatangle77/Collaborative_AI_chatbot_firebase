@@ -275,7 +275,7 @@ onMounted(async () => {
     } catch (err) {
       console.error("❌ Interval execution failed:", err);
     }
-  }, 5000);
+  }, 10000);
 
   provider.awareness.on("change", updateCollaborators);
   updateCollaborators();

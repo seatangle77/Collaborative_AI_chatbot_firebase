@@ -1,0 +1,34 @@
+2025-06-12 11:23:12,917 tencent_speech.log-INFO  start:311 9273fa52-473c-11f0-8880-a6cf704f3a84 recognition start
+2025-06-12 11:23:13,296 tencent_speech.log-INFO  on_message:259 9273fa52-473c-11f0-8880-a6cf704f3a84 recognition complete
+2025-06-12 11:46:31,111 tencent_speech.log-INFO  start:311 d3d76bca-473f-11f0-9411-a6cf704f3a84 recognition start
+2025-06-12 11:46:31,283 tencent_speech.log-INFO  on_message:259 d3d76bca-473f-11f0-9411-a6cf704f3a84 recognition complete
+2025-06-12 11:46:55,250 tencent_speech.log-INFO  start:311 e23ac6e4-473f-11f0-9a26-a6cf704f3a84 recognition start
+2025-06-12 11:46:55,416 tencent_speech.log-INFO  on_message:259 e23ac6e4-473f-11f0-9a26-a6cf704f3a84 recognition complete
+2025-06-12 11:48:10,566 tencent_speech.log-INFO  start:311 0f1f2894-4740-11f0-81b7-a6cf704f3a84 recognition start
+2025-06-12 11:49:36,368 tencent_speech.log-INFO  on_message:259 0f1f2894-4740-11f0-81b7-a6cf704f3a84 recognition complete
+2025-06-12 13:16:29,138 tencent_speech.log-INFO  start:311 655109f6-474c-11f0-ba23-a6cf704f3a84 recognition start
+2025-06-12 13:17:37,185 tencent_speech.log-INFO  on_message:259 655109f6-474c-11f0-ba23-a6cf704f3a84 recognition complete
+2025-06-12 13:24:33,644 tencent_speech.log-INFO  start:311 861ac31a-474d-11f0-b546-a6cf704f3a84 recognition start
+2025-06-12 13:24:51,965 tencent_speech.log-INFO  on_message:259 861ac31a-474d-11f0-b546-a6cf704f3a84 recognition complete
+2025-06-12 13:27:13,268 tencent_speech.log-INFO  start:311 e53f7d9a-474d-11f0-943e-a6cf704f3a84 recognition start
+2025-06-12 13:27:32,211 tencent_speech.log-INFO  on_message:259 e53f7d9a-474d-11f0-943e-a6cf704f3a84 recognition complete
+2025-06-12 13:42:07,927 tencent_speech.log-INFO  start:311 fa819100-474f-11f0-a3b1-a6cf704f3a84 recognition start
+2025-06-12 13:42:11,615 tencent_speech.log-ERROR  on_error:275 websocket error 404 Not Found  voice id fa819100-474f-11f0-a3b1-a6cf704f3a84
+2025-06-12 13:42:11,811 tencent_speech.log-ERROR  on_error:275 websocket error 404 Not Found  voice id fa819100-474f-11f0-a3b1-a6cf704f3a84
+2025-06-12 13:42:26,506 tencent_speech.log-ERROR  on_message:251 fa819100-474f-11f0-a3b1-a6cf704f3a84 server recognition fail 客户端超过15秒未发送音频数据
+2025-06-12 13:42:26,509 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id fa819100-474f-11f0-a3b1-a6cf704f3a84
+2025-06-12 13:42:26,509 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id fa819100-474f-11f0-a3b1-a6cf704f3a84
+2025-06-12 13:42:47,207 tencent_speech.log-INFO  start:311 11eb3882-4750-11f0-9ef7-a6cf704f3a84 recognition start
+2025-06-12 13:42:49,054 tencent_speech.log-ERROR  on_message:251 11eb3882-4750-11f0-9ef7-a6cf704f3a84 server recognition fail 请检查是否开通跨境流量并开通跨境流量后付费(https://console.cloud.tencent.com/asr/settings)或者购买跨境资源包(https://buy.cloud.tencent.com/asr)进行使用
+2025-06-12 13:42:49,056 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id 11eb3882-4750-11f0-9ef7-a6cf704f3a84
+2025-06-12 13:42:49,056 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id 11eb3882-4750-11f0-9ef7-a6cf704f3a84
+2025-06-12 13:45:36,931 tencent_speech.log-INFO  start:311 77151192-4750-11f0-aded-a6cf704f3a84 recognition start
+2025-06-12 13:45:39,884 tencent_speech.log-ERROR  on_error:275 websocket error 404 Not Found  voice id 77151192-4750-11f0-aded-a6cf704f3a84
+2025-06-12 13:45:40,076 tencent_speech.log-ERROR  on_error:275 websocket error 404 Not Found  voice id 77151192-4750-11f0-aded-a6cf704f3a84
+2025-06-12 13:45:54,846 tencent_speech.log-ERROR  on_message:251 77151192-4750-11f0-aded-a6cf704f3a84 server recognition fail 客户端超过15秒未发送音频数据
+2025-06-12 13:45:54,848 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id 77151192-4750-11f0-aded-a6cf704f3a84
+2025-06-12 13:45:54,849 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id 77151192-4750-11f0-aded-a6cf704f3a84
+2025-06-12 13:49:56,870 tencent_speech.log-INFO  start:311 12049100-4751-11f0-a20c-a6cf704f3a84 recognition start
+2025-06-12 13:50:34,789 tencent_speech.log-INFO  on_message:259 12049100-4751-11f0-a20c-a6cf704f3a84 recognition complete
+2025-06-12 13:58:15,029 tencent_speech.log-INFO  start:311 3af19b5c-4752-11f0-bcd4-a6cf704f3a84 recognition start
+2025-06-12 13:58:35,139 tencent_speech.log-INFO  on_message:259 3af19b5c-4752-11f0-bcd4-a6cf704f3a84 recognition complete

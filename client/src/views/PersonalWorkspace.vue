@@ -39,7 +39,7 @@
       <div class="section-row">
         <section class="note-section">
           <NoteEditor
-            v-if="group?.note_id"
+            v-if="group?.note_id && showNoteEditor"
             :key="activeTab"
             :user-id="userId"
             :discussion-id="discussionId"
@@ -50,8 +50,44 @@
           />
         </section>
         <section class="feedback-section">
-          <CognitiveFeedback :stage="currentStage" />
+          <CognitiveFeedback
+            :stage="currentStage"
+            :feedback-data="{
+              cognitive: aiSummary?.cognitive || {},
+              behavior: aiSummary?.behavior || {},
+              attention: aiSummary?.attention || {},
+            }"
+          />
         </section>
+      </div>
+
+      <div class="analysis-panel">
+        <el-date-picker
+          v-model="startTime"
+          type="datetime"
+          placeholder="开始时间"
+        />
+        <el-date-picker
+          v-model="endTime"
+          type="datetime"
+          placeholder="结束时间"
+        />
+        <el-button type="primary" @click="handleIntervalSummary"
+          >Interval Summary</el-button
+        >
+        <el-date-picker
+          v-model="startTime"
+          type="datetime"
+          placeholder="开始时间"
+        />
+        <el-date-picker
+          v-model="endTime"
+          type="datetime"
+          placeholder="结束时间"
+        />
+        <el-button type="danger" @click="handleAnomalyCheck"
+          >Anomaly Detection</el-button
+        >
       </div>
     </div>
   </div>
@@ -67,6 +103,10 @@ import {
   nextTick,
   watchEffect,
 } from "vue";
+// AI 三维度总结
+const aiSummary = ref(null);
+// 控制 NoteEditor 显示/隐藏的开关
+const showNoteEditor = ref(false);
 import CognitiveFeedback from "@/components/personal/CognitiveFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
@@ -77,11 +117,15 @@ import {
   closeWebSocket,
 } from "../services/websocketManager";
 
-import { ElButton } from "element-plus";
+import { ElButton, ElDatePicker } from "element-plus";
 import "element-plus/es/components/button/style/css";
+import "element-plus/es/components/date-picker/style/css";
 import { VideoCamera } from "@element-plus/icons-vue";
 
-const components = { ElButton, VideoCamera };
+const components = { ElButton, ElDatePicker, VideoCamera };
+
+const startTime = ref(new Date("2025-06-17T10:00:00"));
+const endTime = ref(new Date("2025-06-17T10:07:50"));
 
 const currentStage = ref(null); // 设置为 null 更安全，兼容后续判断
 
@@ -95,6 +139,8 @@ const session = ref(null);
 const bot = ref(null);
 const agenda = ref([]);
 const members = ref([]);
+
+const memberList = ref([]);
 
 const userId = computed(() => selectedUserId.value);
 
@@ -234,6 +280,13 @@ watch(selectedUserId, async (newUserId) => {
         }
       });
     }
+
+    memberList.value =
+      context.members?.map((m) => ({
+        id: m.user_id,
+        name: m.name,
+      })) || [];
+    console.log("👥 当前小组成员列表:", memberList.value.slice());
   } catch (error) {
     console.error("❌ 获取用户上下文失败:", error);
     user.value = {};
@@ -247,6 +300,61 @@ watch(selectedUserId, async (newUserId) => {
 onBeforeUnmount(() => {
   closeWebSocket();
 });
+// 区间统计按钮点击处理
+// 时间格式化函数：将 Date 格式为本地时区的 ISO 字符串（不带 Z、不带偏移）
+function formatToLocalISO(datetime) {
+  const pad = (num) => String(num).padStart(2, "0");
+  const year = datetime.getFullYear();
+  const month = pad(datetime.getMonth() + 1);
+  const day = pad(datetime.getDate());
+  const hour = pad(datetime.getHours());
+  const minute = pad(datetime.getMinutes());
+  const second = pad(datetime.getSeconds());
+  return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+}
+
+async function handleIntervalSummary() {
+  const groupId = group.value?.id;
+  const roundIndex = currentStage.value || 1;
+  const payload = {
+    groupId,
+    roundIndex,
+    startTime: formatToLocalISO(startTime.value),
+    endTime: formatToLocalISO(endTime.value),
+    members: memberList.value.slice(),
+  };
+  try {
+    const result = await api.getIntervalSummary(
+      payload.groupId,
+      payload.roundIndex,
+      payload.startTime,
+      payload.endTime,
+      payload.members
+    );
+    console.log("✅ Interval Summary Result:", result);
+    aiSummary.value = result;
+  } catch (err) {
+    console.error("❌ Interval Summary Error:", err);
+  }
+}
+
+async function handleAnomalyCheck() {
+  const groupId = group.value?.id;
+  const roundIndex = currentStage.value || 1;
+  const payload = {
+    group_id: groupId,
+    round_index: roundIndex,
+    start_time: formatToLocalISO(startTime.value),
+    end_time: formatToLocalISO(endTime.value),
+    members: memberList.value.slice(),
+  };
+  try {
+    const result = await api.getAnomalyStatus(payload);
+    console.log("✅ Anomaly Detection Result:", result);
+  } catch (err) {
+    console.error("❌ Anomaly Detection Error:", err);
+  }
+}
 </script>
 
 <style scoped>
@@ -343,5 +451,16 @@ onBeforeUnmount(() => {
   min-height: 500px;
   border-radius: 8px;
   overflow: hidden;
+}
+
+.analysis-panel {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: fit-content;
 }
 </style>

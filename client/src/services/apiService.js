@@ -69,4 +69,24 @@ export default {
     return axios.patch(`${BASE_URL}/api/chat/agenda/reset_status/${groupId}?stage=${stage}`)
       .then(res => res.data);
   },
+
+  getAnomalyStatus(data) {
+    return axios.post(`${BASE_URL}/analysis/anomalies`, data).then(res => res.data);
+  },
+
+  getIntervalSummary(groupId, roundIndex, startTime, endTime, memberList) {
+    return axios.post(`${BASE_URL}/analysis/interval_summary`, {
+      group_id: groupId,
+      round_index: roundIndex,
+      start_time: startTime,
+      end_time: endTime,
+      members: memberList
+    }).then(res => res.data);
+  },
+
+  getRoundSummaryCombined(groupId, roundIndex, startTime, endTime) {
+    return axios.get(`${BASE_URL}/analysis/round_summary_combined`, {
+      params: { group_id: groupId, round_index: roundIndex, start_time: startTime, end_time: endTime }
+    }).then(res => res.data);
+  },
 };

@@ -6,6 +6,7 @@ from .users import router as users_router
 from .groups import router as groups_router
 from .chat import router as chat_router
 from .ai_bots import router as ai_bots_router
+from .analysis import router as analysis_router
 
 
 # 创建主路由对象
@@ -16,3 +17,4 @@ router.include_router(users_router)
 router.include_router(groups_router)
 router.include_router(chat_router)
 router.include_router(ai_bots_router)
+router.include_router(analysis_router)

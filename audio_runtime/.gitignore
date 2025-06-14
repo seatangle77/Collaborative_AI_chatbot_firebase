@@ -2,3 +2,7 @@
 .venv
 
 newenv
+
+.env
+
+firebase-key.json

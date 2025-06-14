@@ -1,0 +1,24 @@
+1
+2025-06-12 13:58:13,359 --> 2025-06-12 13:58:16,319
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "来试一下能不能入库。", "start": "2025-06-12T13:58:13.359864", "end": "2025-06-12T13:58:16.319864", "duration": 2.96}
+
+2
+2025-06-12 13:58:18,059 --> 2025-06-12 13:58:19,299
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "unknown", "speaker": "unknown", "text": "OK.", "start": "2025-06-12T13:58:18.059864", "end": "2025-06-12T13:58:19.299864", "duration": 1.24}
+
+3
+2025-06-12 13:58:19,299 --> 2025-06-12 13:58:21,459
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "好像可以了，可以了。", "start": "2025-06-12T13:58:19.299864", "end": "2025-06-12T13:58:21.459864", "duration": 2.16}
+
+4
+2025-06-12 13:58:21,459 --> 2025-06-12 13:58:23,779
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "就是可以正常的入库了。", "start": "2025-06-12T13:58:21.459864", "end": "2025-06-12T13:58:23.779864", "duration": 2.32}
+
+5
+2025-06-12 13:58:24,019 --> 2025-06-12 13:58:25,919
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie", "text": "", "start": "2025-06-12T13:58:24.019864", "end": "2025-06-12T13:58:25.919864", "duration": 1.9}
+
+6
+2025-06-12 13:58:25,919 --> 2025-06-12 13:58:29,979
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "非常感谢大家来我们这次的会议。", "start": "2025-06-12T13:58:25.919864", "end": "2025-06-12T13:58:29.979864", "duration": 4.06}
+

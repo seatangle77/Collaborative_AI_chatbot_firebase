@@ -1,0 +1,8 @@
+[
+    {"name": "charlie", "file": "p1.wav"},
+    {"name": "charlie-1", "file": "p1-1.wav"},
+    {"name": "alice", "file": "p2.wav"},
+    {"name": "alice-1", "file": "p2-1.wav"},
+    {"name": "bob", "file": "p3.wav"},
+    {"name": "bob-1", "file": "p3-1.wav"}
+]
