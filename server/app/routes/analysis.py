@@ -56,18 +56,31 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     # 发送推送通知到客户端
-    message = messaging.Message(
-        notification=messaging.Notification(
-            title="📡 异常分析完成",
-            body="新的异常检测结果已生成，点击查看分析详情。"
-        ),
-        token="替换为你App记录的设备Token"
-    )
-    try:
-        response = messaging.send(message)
-        print("✅ 推送成功:", response)
-    except Exception as e:
-        print("❌ 推送失败:", e)
+    from firebase_admin import firestore
+    db = firestore.client()
+
+    # 写死 user_id
+    target_user_id = "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3"
+    user_doc = db.collection("users_info").document(target_user_id).get()
+    if user_doc.exists:
+        device_token = user_doc.to_dict().get("device_token")
+        if device_token:
+            message = messaging.Message(
+                notification=messaging.Notification(
+                    title="📡 异常分析完成",
+                    body="新的异常检测结果已生成，点击查看分析详情。"
+                ),
+                token=device_token
+            )
+            try:
+                response = messaging.send(message)
+                print("✅ 推送成功:", response)
+            except Exception as e:
+                print("❌ 推送失败:", e)
+        else:
+            print("⚠️ 用户未设置 device_token")
+    else:
+        print("❌ 用户不存在:", target_user_id)
 
     return result
 
