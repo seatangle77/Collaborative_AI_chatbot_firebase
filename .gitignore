@@ -2,3 +2,5 @@
 .venv
 
 firebase-key.json
+
+audio_runtime/asr_record.py

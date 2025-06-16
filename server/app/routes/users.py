@@ -1,3 +1,4 @@
+from fastapi import Body
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
@@ -26,6 +27,7 @@ class UserInfoUpdateRequest(BaseModel):
     name: Optional[str] = None
     academic_background: Optional[dict] = None  # JSON 字段
     academic_advantages: Optional[str] = None
+    device_token: Optional[str] = None
 
 # ✅ 更新用户信息
 @router.put("/api/users/{user_id}")
@@ -46,3 +48,22 @@ async def update_user_info(user_id: str, update_data: UserInfoUpdateRequest):
     updated_doc = doc_ref.get()
 
     return {"message": "用户信息已更新", "data": updated_doc.to_dict()}
+
+
+# 仅更新用户 device_token 字段
+@router.put("/api/users/{user_id}/device_token")
+async def update_user_device_token(user_id: str, token_data: dict = Body(...)):
+    """
+    仅更新用户的 device_token 字段
+    """
+    device_token = token_data.get("device_token")
+    if not device_token:
+        raise HTTPException(status_code=400, detail="未提供 device_token")
+
+    doc_ref = db.collection("users_info").document(user_id)
+    doc = doc_ref.get()
+    if not doc.exists:
+        raise HTTPException(status_code=404, detail="未找到该用户")
+
+    doc_ref.update({"device_token": device_token})
+    return {"message": "device_token 已更新", "device_token": device_token}

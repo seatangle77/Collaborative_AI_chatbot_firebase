@@ -3,6 +3,14 @@ from typing import Dict, Any, List
 # 模拟缓存：用于暂存 interval summary 结果
 interval_summary_cache: Dict[str, List[Dict[str, Any]]] = {}
 
+# Firebase Admin SDK 导入与初始化
+from firebase_admin import messaging, credentials, initialize_app
+import firebase_admin
+import os
+if not len(firebase_admin._apps):
+    cred = credentials.Certificate("./server/firebase-key.json")
+    initialize_app(cred)
+
 from fastapi import APIRouter, Query, HTTPException
 import json
 from pydantic import BaseModel
@@ -42,11 +50,25 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     # 保存分析结果为文件
     import uuid
     from datetime import datetime
-    import os
     os.makedirs("analysis_outputs", exist_ok=True)
     file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
+
+    # 发送推送通知到客户端
+    message = messaging.Message(
+        notification=messaging.Notification(
+            title="📡 异常分析完成",
+            body="新的异常检测结果已生成，点击查看分析详情。"
+        ),
+        token="替换为你App记录的设备Token"
+    )
+    try:
+        response = messaging.send(message)
+        print("✅ 推送成功:", response)
+    except Exception as e:
+        print("❌ 推送失败:", e)
+
     return result
 
 
