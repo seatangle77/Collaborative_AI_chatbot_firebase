@@ -3,6 +3,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 from app.database import db
+from firebase_admin import messaging
 
 router = APIRouter()
 
@@ -11,7 +12,23 @@ router = APIRouter()
 async def get_users():
     users_ref = db.collection("users_info")
     docs = users_ref.stream()
-    return [doc.to_dict() for doc in docs]
+    users = [doc.to_dict() for doc in docs]
+
+    # 仅向指定 device_token 推送消息
+    try:
+        message = messaging.Message(
+            data={
+                "type": "info",
+                "summary": "用户列表已刷新",
+                "suggestion": f"当前共 {len(users)} 名用户"
+            },
+            token="fbgSliOyQ_-Rp31Prdfkb6:APA91bHwV-_TbgDX-ZlWbEFGmcKoxoYesR-q-sGl0pdIsvCBMxmOIA3oh2ergjVJ6saQLk8JRL6qO8Ns38szDmWjzVzxNjAKessTW-qsjCrJYYAOHaPjhEM"
+        )
+        messaging.send(message)
+    except Exception as e:
+        print(f"❌ 推送通知失败: {e}")
+
+    return users
 
 # ✅ 获取指定用户信息
 @router.get("/api/users/{user_id}")
