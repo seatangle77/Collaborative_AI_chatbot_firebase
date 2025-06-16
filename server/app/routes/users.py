@@ -19,11 +19,9 @@ async def get_users():
         token = next((u.get("device_token") for u in users if u.get("device_token")), None)
         if token:
             message = messaging.Message(
-                notification=messaging.Notification(
-                    title="✅ 用户列表更新",
-                    body=f"当前共 {len(users)} 名用户，点击查看详情。"
-                ),
                 data={
+                    "title": "✅ 用户列表更新",
+                    "body": f"当前共 {len(users)} 名用户，点击查看详情。",
                     "type": "info",
                     "summary": "用户列表已刷新",
                     "suggestion": f"当前共 {len(users)} 名用户"
