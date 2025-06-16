@@ -66,12 +66,10 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         device_token = user_doc.to_dict().get("device_token")
         if device_token:
             message = messaging.Message(
-                notification=messaging.Notification(
-                    title="📡 异常分析完成",
-                    body="新的异常检测结果已生成，点击查看分析详情。"
-                ),
                 data={
                     "type": "anomaly",
+                    "title": "📡 异常分析完成",
+                    "body": "新的异常检测结果已生成，点击查看分析详情。",
                     "summary": result.get("summary", "暂无摘要"),
                     "suggestion": result.get("detail", {}).get("suggestion", "")
                 },
