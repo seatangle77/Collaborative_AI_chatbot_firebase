@@ -70,6 +70,11 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                     title="📡 异常分析完成",
                     body="新的异常检测结果已生成，点击查看分析详情。"
                 ),
+                data={
+                    "type": "anomaly",
+                    "summary": result.get("summary", "暂无摘要"),
+                    "suggestion": result.get("detail", {}).get("suggestion", "")
+                },
                 token=device_token
             )
             try:
