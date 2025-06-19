@@ -16,7 +16,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_all_anomalies(chunk_data: dict) -> dict:
-    model = genai.GenerativeModel("gemini-2.5-pro-preview-06-05")
+    model = genai.GenerativeModel("gemini-1.5-flash")
 
     cognitive_input = build_cognitive_anomaly_input(chunk_data)
     behavior_input = build_behavior_anomaly_input(chunk_data)

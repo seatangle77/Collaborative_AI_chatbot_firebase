@@ -106,7 +106,7 @@ import {
 // AI 三维度总结
 const aiSummary = ref(null);
 // 控制 NoteEditor 显示/隐藏的开关
-const showNoteEditor = ref(false);
+const showNoteEditor = ref(true);
 import CognitiveFeedback from "@/components/personal/CognitiveFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";

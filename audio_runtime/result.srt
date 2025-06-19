@@ -1,24 +1,20 @@
 1
-2025-06-12 13:58:13,359 --> 2025-06-12 13:58:16,319
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "来试一下能不能入库。", "start": "2025-06-12T13:58:13.359864", "end": "2025-06-12T13:58:16.319864", "duration": 2.96}
+2025-06-17 14:32:47,502 --> 2025-06-17 14:32:49,242
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "unknown", "speaker": "unknown", "text": "嗯。", "start": "2025-06-17T14:32:47.502625", "end": "2025-06-17T14:32:49.242625", "duration": 1.74}
 
 2
-2025-06-12 13:58:18,059 --> 2025-06-12 13:58:19,299
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "unknown", "speaker": "unknown", "text": "OK.", "start": "2025-06-12T13:58:18.059864", "end": "2025-06-12T13:58:19.299864", "duration": 1.24}
+2025-06-17 14:32:49,482 --> 2025-06-17 14:32:52,622
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "好像是可以，嗯。", "start": "2025-06-17T14:32:49.482625", "end": "2025-06-17T14:32:52.622625", "duration": 3.14}
 
 3
-2025-06-12 13:58:19,299 --> 2025-06-12 13:58:21,459
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "好像可以了，可以了。", "start": "2025-06-12T13:58:19.299864", "end": "2025-06-12T13:58:21.459864", "duration": 2.16}
+2025-06-17 14:32:54,082 --> 2025-06-17 14:33:01,282
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "VGiuH2tvo2XGq9SvWbEOIA7O89p2", "speaker": "Bob", "text": "啊对对对，现在我的声音已经预录进去了，他就已经在好像可以对对。", "start": "2025-06-17T14:32:54.082625", "end": "2025-06-17T14:33:01.282625", "duration": 7.2}
 
 4
-2025-06-12 13:58:21,459 --> 2025-06-12 13:58:23,779
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "就是可以正常的入库了。", "start": "2025-06-12T13:58:21.459864", "end": "2025-06-12T13:58:23.779864", "duration": 2.32}
+2025-06-17 14:33:01,282 --> 2025-06-17 14:33:02,902
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "unknown", "speaker": "unknown", "text": "翻译我的。", "start": "2025-06-17T14:33:01.282625", "end": "2025-06-17T14:33:02.902625", "duration": 1.62}
 
 5
-2025-06-12 13:58:24,019 --> 2025-06-12 13:58:25,919
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie", "text": "", "start": "2025-06-12T13:58:24.019864", "end": "2025-06-12T13:58:25.919864", "duration": 1.9}
-
-6
-2025-06-12 13:58:25,919 --> 2025-06-12 13:58:29,979
-{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3", "speaker": "Charlie-1", "text": "非常感谢大家来我们这次的会议。", "start": "2025-06-12T13:58:25.919864", "end": "2025-06-12T13:58:29.979864", "duration": 4.06}
+2025-06-17 14:33:03,962 --> 2025-06-17 14:33:07,982
+{"group_name": "groupB", "group_id": "1178968c-480b-4ece-bbba-d759eb70f16b", "session_id": "59aa08a1-1048-4214-935b-3b3015c3900a", "user_id": "YccE6pL9uVaGnHQbXxO99hNVqqG2", "speaker": "Alice", "text": "对稍微稍微有一点点延迟，但是。", "start": "2025-06-17T14:33:03.962625", "end": "2025-06-17T14:33:07.982625", "duration": 4.02}
 

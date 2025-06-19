@@ -1,6 +1,11 @@
 <template>
   <div class="note-editor">
-    <div class="note-title">协作笔记</div>
+    <div class="note-title-wrapper">
+      <div class="note-title">协作笔记</div>
+      <el-button size="small" type="primary" @click="editorStarted = true"
+        >开始写入数据</el-button
+      >
+    </div>
     <div class="collaborators">
       <span
         v-for="(user, index) in collaborators"
@@ -161,6 +166,7 @@ const currentMember = computed(() =>
 );
 
 const editorContainer = ref(null);
+const editorStarted = ref(false);
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(
   "wss://yjs-server-lime.onrender.com",
@@ -224,7 +230,7 @@ onMounted(async () => {
   let lastContentSavedAt = Date.now();
 
   quill.on("text-change", (delta, oldDelta, source) => {
-    if (source !== "user") return;
+    if (!editorStarted.value || source !== "user") return;
     pendingDeltas.push(delta);
   });
 
@@ -237,6 +243,7 @@ onMounted(async () => {
   // 每 5 秒合并一次 delta，记录编辑行为
   deltaFlushInterval = setInterval(() => {
     try {
+      if (!editorStarted.value) return;
       const currentDelta = quill.getContents();
       const deltaChanged =
         JSON.stringify(currentDelta.ops) !== JSON.stringify(lastSavedDelta.ops);
@@ -283,6 +290,7 @@ onMounted(async () => {
   // 不再依赖 noteRef 读取旧数据，统一使用 note_contents 表存储内容
 
   ytext.observe(() => {
+    if (!editorStarted.value) return;
     const now = Date.now();
     if (now - lastContentSavedAt >= 60000) {
       // 采用 quill.root.innerHTML 作为富文本存储
@@ -341,14 +349,19 @@ onBeforeUnmount(() => {
   line-height: 1.7;
 }
 
+.note-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
 .note-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
 }
-.edit-btn {
-  margin-top: 1ren;
-}
+
 .quill-editor {
   height: 400px;
   border: 1px solid #aaa;
