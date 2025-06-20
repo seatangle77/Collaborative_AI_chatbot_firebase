@@ -21,23 +21,26 @@ async def get_users():
     print("🟢 [get_users] API 已被触发")
     # 🧪 使用写死 registration_ids 测试 JPush 批量推送
     try:
-        registration_ids = [
-            "你的JPushRegistrationID1",
-            "你的JPushRegistrationID2"
-        ]
-        print(f"🧪 使用 registration_ids: {registration_ids}")
-        for registration_id in registration_ids:
-            send_jpush_notification(
-                alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
-                registration_id=registration_id,
-                extras={
-                    "type": "info",
-                    "summary": "用户列表已刷新",
-                    "suggestion": f"当前共 {len(users)} 名用户",
-                    "title": "✅ 用户列表更新",
-                    "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-                }
-            )
+        registration_ids = []
+        for user in users:
+            token = user.get("device_token")
+            if token:
+                registration_ids.append(token)
+
+        print(f"🧪 获取到的 registration_ids: {registration_ids}")
+        # ✅ 写死 JPush 推送 ID 测试
+        test_registration_id = "170976fa8bbd2444e5d"
+        send_jpush_notification(
+            alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
+            registration_id=test_registration_id,
+            extras={
+                "type": "info",
+                "summary": "用户列表已刷新",
+                "suggestion": f"当前共 {len(users)} 名用户",
+                "title": "✅ 用户列表更新",
+                "body": f"当前共 {len(users)} 名用户，点击查看详情。"
+            }
+        )
         # # FCM 批量推送（已注释）
         # tokens = [
         #     "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY",
