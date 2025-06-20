@@ -27,11 +27,9 @@ async def get_users():
             alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
             registration_id=registration_id,
             extras={
-                "type": "info",
                 "summary": "用户列表已刷新",
                 "suggestion": f"当前共 {len(users)} 名用户",
-                "title": "✅ 用户列表更新",
-                "body": f"当前共 {len(users)} 名用户，点击查看详情。"
+                "title": "✅ 用户列表更新"
             }
         )
         # # FCM 推送（已注释）

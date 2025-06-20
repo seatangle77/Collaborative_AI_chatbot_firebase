@@ -22,7 +22,9 @@ def send_jpush_notification(alert, registration_id=None, extras=None):
         push.audience = jpush.audience(jpush.registration_id(registration_id))
     else:
         push.audience = jpush.all_
-    push.notification = jpush.notification(alert=alert, android=extras, ios=extras)
+    push.notification = jpush.notification(alert=alert)
+    if extras:
+        push.message = jpush.message(msg_content=alert, extras=extras)
     try:
         response = push.send()
         print(f"✅ JPush 推送成功: {response}")
@@ -35,4 +37,4 @@ def send_jpush_notification(alert, registration_id=None, extras=None):
         print(f"❌ JPush 推送失败: {e}")
     except Exception as e:
         print(f"❌ JPush 未知异常: {e}")
-    return None 
+    return None
