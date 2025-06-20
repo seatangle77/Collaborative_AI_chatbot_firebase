@@ -18,11 +18,14 @@ async def get_users():
     users = [doc.to_dict() for doc in docs]
 
     print("🟢 [get_users] API 已被触发")
-    # 🧪 使用写死 token 测试 FCM 推送
+    # 🧪 使用写死 tokens 测试 FCM 批量推送
     try:
-        token = "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
-        print(f"🧪 使用写死 token: {token}")
-        message = messaging.Message(
+        tokens = [
+            "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY",
+            "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
+        ]
+        print(f"🧪 使用 tokens: {tokens}")
+        message = messaging.MulticastMessage(
             notification=messaging.Notification(
                 title="✅ 用户列表更新",
                 body=f"当前共 {len(users)} 名用户，点击查看详情。"
@@ -34,13 +37,11 @@ async def get_users():
                 "title": "✅ 用户列表更新",
                 "body": f"当前共 {len(users)} 名用户，点击查看详情。"
             },
-            token=token
+            tokens=tokens
         )
-        print("🚀 正在尝试推送 FCM 通知...")
-        print(f"📦 发送消息内容: {message}")
-        response = messaging.send(message)
-        print(f"✅ 推送成功 token: {token}")
-        print(f"📬 FCM 响应: {response}")
+        print("🚀 正在尝试批量推送 FCM 通知...")
+        response = messaging.send_multicast(message)
+        print(f"✅ 推送成功: {response.success_count} 条，失败: {response.failure_count} 条")
     except Exception as e:
         print(f"❌ 推送通知失败: {e}")
 
