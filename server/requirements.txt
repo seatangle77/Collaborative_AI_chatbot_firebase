@@ -9,3 +9,4 @@ jinja2
 # 如果你用 asyncpg / sqlite 等数据库，记得加上
 # asyncpg==0.27.0
 # databases==0.6.1
+jpush

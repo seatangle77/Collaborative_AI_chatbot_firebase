@@ -19,6 +19,7 @@ from app.preprocessor_summary import extract_chunk_data
 from app.preprocessor_anomaly import extract_chunk_data_anomaly
 from app.analyze_chunk_with_ai import analyze_cognitive, analyze_behavior, analyze_attention
 from app.analyze_chunk_with_ai_anomaly import analyze_all_anomalies
+from app.jpush_api import send_jpush_notification
 
 router = APIRouter()
 
@@ -36,7 +37,7 @@ class IntervalSummaryRequest(BaseModel):
 
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
-async def get_anomaly_status(req: IntervalSummaryRequest):
+async def get_anomaly_status(req: IntervalSummaryRequest, push_type: str = Query("fcm")):
     members = [{"user_id": m.id, "name": m.name} for m in req.members]
 
     raw_data = extract_chunk_data_anomaly(
@@ -65,21 +66,36 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     if user_doc.exists:
         device_token = user_doc.to_dict().get("device_token")
         if device_token:
-            message = messaging.Message(
-                data={
-                    "type": "anomaly",
-                    "title": "📡 异常分析完成",
-                    "body": "新的异常检测结果已生成，点击查看分析详情。",
-                    "summary": result.get("summary", "暂无摘要"),
-                    "suggestion": result.get("detail", {}).get("suggestion", "")
-                },
-                token=device_token
-            )
-            try:
-                response = messaging.send(message)
-                print("✅ 推送成功:", response)
-            except Exception as e:
-                print("❌ 推送失败:", e)
+            if push_type == "jpush":
+                # JPush 推送
+                send_jpush_notification(
+                    alert="📡 异常分析完成：新的异常检测结果已生成，点击查看分析详情。",
+                    registration_id=device_token,
+                    extras={
+                        "type": "anomaly",
+                        "title": "📡 异常分析完成",
+                        "body": "新的异常检测结果已生成，点击查看分析详情。",
+                        "summary": result.get("summary", "暂无摘要"),
+                        "suggestion": result.get("detail", {}).get("suggestion", "")
+                    }
+                )
+            else:
+                # FCM 推送（原有逻辑）
+                message = messaging.Message(
+                    data={
+                        "type": "anomaly",
+                        "title": "📡 异常分析完成",
+                        "body": "新的异常检测结果已生成，点击查看分析详情。",
+                        "summary": result.get("summary", "暂无摘要"),
+                        "suggestion": result.get("detail", {}).get("suggestion", "")
+                    },
+                    token=device_token
+                )
+                try:
+                    response = messaging.send(message)
+                    print("✅ 推送成功:", response)
+                except Exception as e:
+                    print("❌ 推送失败:", e)
         else:
             print("⚠️ 用户未设置 device_token")
     else:
