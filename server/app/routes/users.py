@@ -4,7 +4,6 @@ from pydantic import BaseModel
 from typing import Optional
 from app.database import db
 from firebase_admin import messaging
-from app.jpush_api import send_jpush_notification
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,41 +18,29 @@ async def get_users():
     users = [doc.to_dict() for doc in docs]
 
     print("🟢 [get_users] API 已被触发")
-    # 🧪 使用写死 registration_id 测试 JPush 推送
+    # 🧪 使用写死 token 测试 FCM 推送
     try:
-        registration_id = "160a3797c92315ac0e3"
-        print(f"🧪 使用写死 registration_id: {registration_id}")
-        send_jpush_notification(
-            alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
-            registration_id=registration_id,
-            extras={
+        token = "fbgSliOyQ_-Rp31Prdfkb6:APA91bHwV-_TbgDX-ZlWbEFGmcKoxoYesR-q-sGl0pdIsvCBMxmOIA3oh2ergjVJ6saQLk8JRL6qO8Ns38szDmWjzVzxNjAKessTW-qsjCrJYYAOHaPjhEM"
+        print(f"🧪 使用写死 token: {token}")
+        message = messaging.Message(
+            notification=messaging.Notification(
+                title="✅ 用户列表更新",
+                body=f"当前共 {len(users)} 名用户，点击查看详情。"
+            ),
+            data={
+                "type": "info",
                 "summary": "用户列表已刷新",
                 "suggestion": f"当前共 {len(users)} 名用户",
-                "title": "✅ 用户列表更新"
-            }
+                "title": "✅ 用户列表更新",
+                "body": f"当前共 {len(users)} 名用户，点击查看详情。"
+            },
+            token=token
         )
-        # # FCM 推送（已注释）
-        # token = "fbgSliOyQ_-Rp31Prdfkb6:APA91bHwV-_TbgDX-ZlWbEFGmcKoxoYesR-q-sGl0pdIsvCBMxmOIA3oh2ergjVJ6saQLk8JRL6qO8Ns38szDmWjzVzxNjAKessTW-qsjCrJYYAOHaPjhEM"
-        # print(f"🧪 使用写死 token: {token}")
-        # message = messaging.Message(
-        #     notification=messaging.Notification(
-        #         title="✅ 用户列表更新",
-        #         body=f"当前共 {len(users)} 名用户，点击查看详情。"
-        #     ),
-        #     data={
-        #         "type": "info",
-        #         "summary": "用户列表已刷新",
-        #         "suggestion": f"当前共 {len(users)} 名用户",
-        #         "title": "✅ 用户列表更新",
-        #         "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-        #     },
-        #     token=token
-        # )
-        # print("🚀 正在尝试推送 FCM 通知...")
-        # print(f"📦 发送消息内容: {message}")
-        # response = messaging.send(message)
-        # print(f"✅ 推送成功 token: {token}")
-        # print(f"📬 FCM 响应: {response}")
+        print("🚀 正在尝试推送 FCM 通知...")
+        print(f"📦 发送消息内容: {message}")
+        response = messaging.send(message)
+        print(f"✅ 推送成功 token: {token}")
+        print(f"📬 FCM 响应: {response}")
     except Exception as e:
         print(f"❌ 推送通知失败: {e}")
 
