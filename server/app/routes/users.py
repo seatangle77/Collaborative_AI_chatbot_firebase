@@ -25,23 +25,26 @@ async def get_users():
             "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
         ]
         print(f"🧪 使用 tokens: {tokens}")
-        message = messaging.MulticastMessage(
-            notification=messaging.Notification(
-                title="✅ 用户列表更新",
-                body=f"当前共 {len(users)} 名用户，点击查看详情。"
-            ),
-            data={
-                "type": "info",
-                "summary": "用户列表已刷新",
-                "suggestion": f"当前共 {len(users)} 名用户",
-                "title": "✅ 用户列表更新",
-                "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-            },
-            tokens=tokens
-        )
-        print("🚀 正在尝试批量推送 FCM 通知...")
-        response = messaging.send_multicast(message)
-        print(f"✅ 推送成功: {response.success_count} 条，失败: {response.failure_count} 条")
+        for token in tokens:
+            message = messaging.Message(
+                notification=messaging.Notification(
+                    title="✅ 用户列表更新",
+                    body=f"当前共 {len(users)} 名用户，点击查看详情。"
+                ),
+                data={
+                    "type": "info",
+                    "summary": "用户列表已刷新",
+                    "suggestion": f"当前共 {len(users)} 名用户",
+                    "title": "✅ 用户列表更新",
+                    "body": f"当前共 {len(users)} 名用户，点击查看详情。"
+                },
+                token=token
+            )
+            try:
+                response = messaging.send(message)
+                print(f"✅ 推送成功至: {token}")
+            except Exception as e:
+                print(f"❌ 推送失败至 {token}：{e}")
     except Exception as e:
         print(f"❌ 推送通知失败: {e}")
 
