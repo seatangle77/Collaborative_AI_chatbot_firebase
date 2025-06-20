@@ -21,7 +21,7 @@ async def get_users():
     print("🟢 [get_users] API 已被触发")
     # 🧪 使用写死 registration_id 测试 JPush 推送
     try:
-        registration_id = "你的JPushRegistrationID"
+        registration_id = "160a3797c92315ac0e3"
         print(f"🧪 使用写死 registration_id: {registration_id}")
         send_jpush_notification(
             alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
