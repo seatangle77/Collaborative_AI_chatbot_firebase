@@ -20,7 +20,7 @@ async def get_users():
     print("🟢 [get_users] API 已被触发")
     # 🧪 使用写死 token 测试 FCM 推送
     try:
-        token = "fbgSliOyQ_-Rp31Prdfkb6:APA91bHwV-_TbgDX-ZlWbEFGmcKoxoYesR-q-sGl0pdIsvCBMxmOIA3oh2ergjVJ6saQLk8JRL6qO8Ns38szDmWjzVzxNjAKessTW-qsjCrJYYAOHaPjhEM"
+        token = "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY"
         print(f"🧪 使用写死 token: {token}")
         message = messaging.Message(
             notification=messaging.Notification(
