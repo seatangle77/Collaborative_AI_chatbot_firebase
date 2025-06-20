@@ -5,6 +5,7 @@ from typing import Optional
 from app.database import db
 from firebase_admin import messaging
 from dotenv import load_dotenv
+from app.jpush_api import send_jpush_notification
 
 load_dotenv()
 
@@ -18,33 +19,51 @@ async def get_users():
     users = [doc.to_dict() for doc in docs]
 
     print("🟢 [get_users] API 已被触发")
-    # 🧪 使用写死 tokens 测试 FCM 批量推送
+    # 🧪 使用写死 registration_ids 测试 JPush 批量推送
     try:
-        tokens = [
-            "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY",
-            "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
+        registration_ids = [
+            "你的JPushRegistrationID1",
+            "你的JPushRegistrationID2"
         ]
-        print(f"🧪 使用 tokens: {tokens}")
-        for token in tokens:
-            message = messaging.Message(
-                notification=messaging.Notification(
-                    title="✅ 用户列表更新",
-                    body=f"当前共 {len(users)} 名用户，点击查看详情。"
-                ),
-                data={
+        print(f"🧪 使用 registration_ids: {registration_ids}")
+        for registration_id in registration_ids:
+            send_jpush_notification(
+                alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
+                registration_id=registration_id,
+                extras={
                     "type": "info",
                     "summary": "用户列表已刷新",
                     "suggestion": f"当前共 {len(users)} 名用户",
                     "title": "✅ 用户列表更新",
                     "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-                },
-                token=token
+                }
             )
-            try:
-                response = messaging.send(message)
-                print(f"✅ 推送成功至: {token}")
-            except Exception as e:
-                print(f"❌ 推送失败至 {token}：{e}")
+        # # FCM 批量推送（已注释）
+        # tokens = [
+        #     "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY",
+        #     "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
+        # ]
+        # print(f"🧪 使用 tokens: {tokens}")
+        # for token in tokens:
+        #     message = messaging.Message(
+        #         notification=messaging.Notification(
+        #             title="✅ 用户列表更新",
+        #             body=f"当前共 {len(users)} 名用户，点击查看详情。"
+        #         ),
+        #         data={
+        #             "type": "info",
+        #             "summary": "用户列表已刷新",
+        #             "suggestion": f"当前共 {len(users)} 名用户",
+        #             "title": "✅ 用户列表更新",
+        #             "body": f"当前共 {len(users)} 名用户，点击查看详情。"
+        #         },
+        #         token=token
+        #     )
+        #     try:
+        #         response = messaging.send(message)
+        #         print(f"✅ 推送成功至: {token}")
+        #     except Exception as e:
+        #         print(f"❌ 推送失败至 {token}：{e}")
     except Exception as e:
         print(f"❌ 推送通知失败: {e}")
 
