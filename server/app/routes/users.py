@@ -19,57 +19,7 @@ async def get_users():
     users = [doc.to_dict() for doc in docs]
 
     print("🟢 [get_users] API 已被触发")
-    # 🧪 使用写死 registration_ids 测试 JPush 批量推送
-    try:
-        registration_ids = []
-        for user in users:
-            token = user.get("device_token")
-            if token:
-                registration_ids.append(token)
-
-        print(f"🧪 获取到的 registration_ids: {registration_ids}")
-        # ✅ 写死 JPush 推送 ID 测试
-        test_registration_id = "170976fa8bbd2444e5d"
-        send_jpush_notification(
-            alert=f"✅ 用户列表更新：当前共 {len(users)} 名用户，点击查看详情。",
-            registration_id=test_registration_id,
-            extras={
-                "type": "info",
-                "summary": "用户列表已刷新",
-                "suggestion": f"当前共 {len(users)} 名用户",
-                "title": "✅ 用户列表更新",
-                "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-            }
-        )
-        # # FCM 批量推送（已注释）
-        # tokens = [
-        #     "exi6Sk9qRiCLuQgOaSGWv3:APA91bGIc7beHBH9khzTQz0G45S5tH9ZI9blkUs8aWc6ra7eB_ekpMO5g-H5TFVZ7VjbOvOWUIvgZ1gkeRjp3Uk3UOhuCqunpmdeIe7u4LM9zR2MnWG3EdY",
-        #     "fwffQyoSR9iNtfKB888iFM:APA91bGY-WUkWenyCvfgBQExQktCpqzjOs78TwbWTSrM9idz1g00OJlL38XQL20fbBiYq8ewn7vg8JXGFP8vmBsujEUw7vFE8KgZ6SYBSnLtEFS_jtOarZA"
-        # ]
-        # print(f"🧪 使用 tokens: {tokens}")
-        # for token in tokens:
-        #     message = messaging.Message(
-        #         notification=messaging.Notification(
-        #             title="✅ 用户列表更新",
-        #             body=f"当前共 {len(users)} 名用户，点击查看详情。"
-        #         ),
-        #         data={
-        #             "type": "info",
-        #             "summary": "用户列表已刷新",
-        #             "suggestion": f"当前共 {len(users)} 名用户",
-        #             "title": "✅ 用户列表更新",
-        #             "body": f"当前共 {len(users)} 名用户，点击查看详情。"
-        #         },
-        #         token=token
-        #     )
-        #     try:
-        #         response = messaging.send(message)
-        #         print(f"✅ 推送成功至: {token}")
-        #     except Exception as e:
-        #         print(f"❌ 推送失败至 {token}：{e}")
-    except Exception as e:
-        print(f"❌ 推送通知失败: {e}")
-
+    # 移除推送逻辑，只返回用户列表
     return users
 
 # ✅ 获取指定用户信息
@@ -125,4 +75,22 @@ async def update_user_device_token(user_id: str, token_data: dict = Body(...)):
         raise HTTPException(status_code=404, detail="未找到该用户")
 
     doc_ref.update({"device_token": device_token})
+    
+    # 更新成功后发送极光推送通知
+    try:
+        send_jpush_notification(
+            alert="✅ 设备令牌更新成功：您的设备已成功注册推送服务。",
+            registration_id=device_token,
+            extras={
+                "type": "device_token_update",
+                "title": "✅ 设备令牌更新成功",
+                "body": "您的设备已成功注册推送服务。",
+                "user_id": user_id,
+                "status": "success"
+            }
+        )
+        print(f"✅ 设备令牌更新成功，已推送通知至: {device_token}")
+    except Exception as e:
+        print(f"⚠️ 推送通知失败: {e}")
+    
     return {"message": "device_token 已更新", "device_token": device_token}
