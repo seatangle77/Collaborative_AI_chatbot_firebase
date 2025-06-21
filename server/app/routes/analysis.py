@@ -27,12 +27,18 @@ class Member(BaseModel):
     id: str
     name: str
 
+class CurrentUser(BaseModel):
+    user_id: str
+    name: str
+    device_token: str
+
 class IntervalSummaryRequest(BaseModel):
     group_id: str
     round_index: int
     start_time: str
     end_time: str
     members: List[Member]
+    current_user: CurrentUser  # 前端直接传入当前用户信息
 
 
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
@@ -56,48 +62,28 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
-    # 发送推送通知到客户端
-    from firebase_admin import firestore
-    db = firestore.client()
-
-    # 写死 user_id
-    target_user_id = "0AlcY0xmqSTWXxAm2f5cT0tNEbJ3"
-    user_doc = db.collection("users_info").document(target_user_id).get()
-    if user_doc.exists:
-        device_token = user_doc.to_dict().get("device_token")
-        if device_token:
-            # JPush 推送
-            send_jpush_notification(
-                alert="📡 异常分析完成：新的异常检测结果已生成，点击查看分析详情。",
-                registration_id=device_token,
-                extras={
-                    "type": "anomaly",
-                    "title": "📡 异常分析完成",
-                    "body": "新的异常检测结果已生成，点击查看分析详情。",
-                    "summary": result.get("summary", "暂无摘要"),
-                    "suggestion": result.get("detail", {}).get("suggestion", "")
-                }
-            )
-            # # FCM 推送（已注释）
-            # message = messaging.Message(
-            #     data={
-            #         "type": "anomaly",
-            #         "title": "📡 异常分析完成",
-            #         "body": "新的异常检测结果已生成，点击查看分析详情。",
-            #         "summary": result.get("summary", "暂无摘要"),
-            #         "suggestion": result.get("detail", {}).get("suggestion", "")
-            #     },
-            #     token=device_token
-            # )
-            # try:
-            #     response = messaging.send(message)
-            #     print("✅ 推送成功:", response)
-            # except Exception as e:
-            #     print("❌ 推送失败:", e)
-        else:
-            print("⚠️ 用户未设置 device_token")
+    # 使用前端传入的当前用户信息发送推送通知
+    current_user = req.current_user
+    device_token = current_user.device_token
+    
+    if device_token:
+        # JPush 推送
+        send_jpush_notification(
+            alert=f"📡 异常分析完成：{current_user.name}，新的异常检测结果已生成，点击查看分析详情。",
+            registration_id=device_token,
+            extras={
+                "type": "anomaly",
+                "title": "📡 异常分析完成",
+                "body": f"{current_user.name}，新的异常检测结果已生成，点击查看分析详情。",
+                "summary": result.get("summary", "暂无摘要"),
+                "suggestion": result.get("detail", {}).get("suggestion", ""),
+                "user_id": current_user.user_id,
+                "user_name": current_user.name
+            }
+        )
+        print(f"✅ 异常分析完成，已推送通知至用户 {current_user.name}({current_user.user_id})")
     else:
-        print("❌ 用户不存在:", target_user_id)
+        print(f"⚠️ 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
 
     return result
 

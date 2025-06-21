@@ -347,6 +347,11 @@ async function handleAnomalyCheck() {
     start_time: formatToLocalISO(startTime.value),
     end_time: formatToLocalISO(endTime.value),
     members: memberList.value.slice(),
+    current_user: {
+      user_id: user.value?.id || selectedUserId.value,
+      name: user.value?.name || "",
+      device_token: user.value?.device_token || ""
+    }
   };
   try {
     const result = await api.getAnomalyStatus(payload);
