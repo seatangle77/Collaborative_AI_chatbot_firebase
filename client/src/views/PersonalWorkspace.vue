@@ -236,7 +236,7 @@ function sendUserInfoToExtension(newUserId, context) {
 watch(selectedUserId, async (newUserId) => {
   try {
     const context = await api.getUserGroupContext(newUserId);
-    user.value = context.user;
+    
     group.value = context.group;
     session.value = context.session;
     bot.value = context.bot;
@@ -339,8 +339,52 @@ async function handleIntervalSummary() {
 }
 
 async function handleAnomalyCheck() {
+  console.log("🔍 handleAnomalyCheck 开始执行");
+  console.log("📊 当前 selectedUserId.value:", selectedUserId.value);
+  console.log("📊 当前 users.value 长度:", users.value.length);
+  console.log("📊 users.value 前几个用户:", users.value.slice(0, 3));
+  
+  // 从 users 列表中根据 selectedUserId 找到当前用户
+  let currentUser = users.value.find(u => u.id === selectedUserId.value);
+  console.log("🔍 找到的当前用户:", currentUser);
+  
+  // 如果没有找到，尝试其他可能的字段名
+  if (!currentUser) {
+    console.log("⚠️ 使用 id 字段未找到用户，尝试其他字段名...");
+    const currentUserById = users.value.find(u => u.user_id === selectedUserId.value);
+    const currentUserByUid = users.value.find(u => u.uid === selectedUserId.value);
+    console.log("🔍 使用 user_id 字段查找:", currentUserById);
+    console.log("🔍 使用 uid 字段查找:", currentUserByUid);
+    
+    // 使用找到的用户
+    if (currentUserById) {
+      currentUser = currentUserById;
+    } else if (currentUserByUid) {
+      currentUser = currentUserByUid;
+    }
+  }
+  
   const groupId = group.value?.id;
   const roundIndex = currentStage.value || 1;
+  
+  // 确保当前用户信息存在
+  const currentUserId = currentUser?.id || currentUser?.user_id || currentUser?.uid || selectedUserId.value;
+  const currentUserName = currentUser?.name || "";
+  const currentUserDeviceToken = currentUser?.device_token || "";
+  
+  console.log("🔍 提取的用户信息:");
+  console.log("  - currentUserId:", currentUserId);
+  console.log("  - currentUserName:", currentUserName);
+  console.log("  - currentUserDeviceToken:", currentUserDeviceToken);
+  
+  // 验证必要字段
+  if (!currentUserId) {
+    console.error("❌ 当前用户ID不存在");
+    console.error("❌ currentUser?.id:", currentUser?.id);
+    console.error("❌ selectedUserId.value:", selectedUserId.value);
+    return;
+  }
+  
   const payload = {
     group_id: groupId,
     round_index: roundIndex,
@@ -348,11 +392,14 @@ async function handleAnomalyCheck() {
     end_time: formatToLocalISO(endTime.value),
     members: memberList.value.slice(),
     current_user: {
-      user_id: user.value?.id || selectedUserId.value,
-      name: user.value?.name || "",
-      device_token: user.value?.device_token || ""
+      user_id: currentUserId,
+      name: currentUserName,
+      device_token: currentUserDeviceToken
     }
   };
+  
+  console.log("📤 发送异常检测请求:", JSON.stringify(payload, null, 2));
+  
   try {
     const result = await api.getAnomalyStatus(payload);
     console.log("✅ Anomaly Detection Result:", result);
