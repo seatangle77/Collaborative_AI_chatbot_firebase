@@ -9,7 +9,8 @@ from app.preprocessor_anomaly import (
 )
 import concurrent.futures
 
-# ✅ 加载 .env
+# 优先加载 .env.local（如果有），再加载 .env
+load_dotenv('.env.local')
 load_dotenv()
 
 # ✅ 设置环境变量供 SDK 使用

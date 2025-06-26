@@ -4,7 +4,9 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env.local"))
+# 优先加载 .env.local（如果有），再加载 .env
+load_dotenv('.env.local')
+load_dotenv()
 
 # 环境区分加载 firebase_key_dict
 ENV = os.getenv("ENV", "development")

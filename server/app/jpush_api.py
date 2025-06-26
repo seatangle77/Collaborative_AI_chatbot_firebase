@@ -1,6 +1,11 @@
 import os
+from dotenv import load_dotenv
 import jpush
 from jpush import common, JPush
+
+# 优先加载 .env.local（如果有），再加载 .env
+load_dotenv('.env.local')
+load_dotenv()
 
 JPUSH_APP_KEY = os.getenv("JPUSH_APP_KEY", "你的AppKey")
 JPUSH_MASTER_SECRET = os.getenv("JPUSH_MASTER_SECRET", "你的MasterSecret")
@@ -8,6 +13,8 @@ JPUSH_MASTER_SECRET = os.getenv("JPUSH_MASTER_SECRET", "你的MasterSecret")
 # 检查配置
 if JPUSH_APP_KEY == "你的AppKey" or JPUSH_MASTER_SECRET == "你的MasterSecret":
     print("⚠️ 警告：JPush AppKey 或 MasterSecret 未正确配置")
+
+print(f"[调试] JPUSH_APP_KEY={JPUSH_APP_KEY}, JPUSH_MASTER_SECRET={JPUSH_MASTER_SECRET}")
 
 _jpush = JPush(JPUSH_APP_KEY, JPUSH_MASTER_SECRET)
 _jpush.set_logging("WARNING")  # 改为WARNING级别，减少调试日志
