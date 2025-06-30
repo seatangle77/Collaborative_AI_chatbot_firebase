@@ -8,34 +8,68 @@
       :members="members"
       :session="session"
       :bot="bot"
-      :agenda="agenda"
+      :route-name="route.params.name"
     />
     <div class="content-container">
-      <header class="workspace-header">
-        <p v-if="currentStage === 0 || currentStage === null">
-          🚀 讨论即将开始
-        </p>
-        <p v-else-if="currentAgenda">
-          <span style="font-size: 1.2rem"
-            >📌 当前议程阶段 {{ currentAgenda.agenda_title }}：</span
-          ><br />
-          <span class="agenda-description">
-            {{ currentAgenda.agenda_description || "（无描述）" }}
-          </span>
-          <el-button type="primary" icon="VideoCamera" @click="joinMeeting">
-            加入会议
-          </el-button>
-        </p>
-        <p v-else-if="currentStage === 5">✅ 所有议程已完成</p>
-        <p v-else>⏳ 等待议程阶段更新...</p>
-      </header>
-
+      <el-collapse v-model="contentCollapsed">
+        <el-collapse-item name="info">
+          <template #title>
+            <div class="custom-collapse-title">
+              {{ session?.session_title || "议程内容" }}
+            </div>
+          </template>
+          <div
+            v-if="showAgendaPanel && agendaList.length === 1"
+            class="agenda-panel flex-row"
+          >
+            <div class="agenda-flex-row">
+              <div class="agenda-left">
+                <div class="agenda-task-prompt">
+                  {{ agendaList[0].agenda_title }}
+                </div>
+                <div
+                  class="agenda-desc"
+                  v-html="formatAgendaDesc(agendaList[0].agenda_description)"
+                ></div>
+              </div>
+              <div class="agenda-right">
+                <div class="output-req-row">
+                  <div
+                    v-for="(req, key) in agendaList[0].output_requirements"
+                    :key="key"
+                    class="output-req-card"
+                  >
+                    <div class="output-req-title">{{ req.title }}</div>
+                    <div class="output-req-instructions">
+                      {{ req.instructions }}
+                    </div>
+                    <div
+                      v-if="req.example && req.example.length"
+                      class="output-req-example"
+                    >
+                      <div class="example-title">示例：</div>
+                      <ul>
+                        <li v-for="(ex, idx) in req.example" :key="idx">
+                          <div class="example-point">{{ ex.point }}</div>
+                          <div class="example-support">{{ ex.support }}</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div v-else class="workspace-header">
+            <p>欢迎来到个人工作区</p>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
       <div
         v-if="meetingStarted"
         id="jitsi-container"
         class="meeting-container"
       />
-
       <div class="section-row">
         <section class="note-section">
           <NoteEditor
@@ -51,7 +85,6 @@
         </section>
         <section class="feedback-section">
           <CognitiveFeedback
-            :stage="currentStage"
             :feedback-data="{
               cognitive: aiSummary?.cognitive || {},
               behavior: aiSummary?.behavior || {},
@@ -60,7 +93,6 @@
           />
         </section>
       </div>
-
       <div class="analysis-panel">
         <el-date-picker
           v-model="startTime"
@@ -97,16 +129,11 @@
 import {
   ref,
   onMounted,
-  watch,
-  computed,
   onBeforeUnmount,
   nextTick,
-  watchEffect,
+  computed,
+  watch,
 } from "vue";
-// AI 三维度总结
-const aiSummary = ref(null);
-// 控制 NoteEditor 显示/隐藏的开关
-const showNoteEditor = ref(true);
 import CognitiveFeedback from "@/components/personal/CognitiveFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
@@ -116,65 +143,66 @@ import {
   onMessage,
   closeWebSocket,
 } from "../services/websocketManager";
-
-import { ElButton, ElDatePicker } from "element-plus";
+import {
+  ElButton,
+  ElDatePicker,
+  ElCollapse,
+  ElCollapseItem,
+} from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
+import "element-plus/es/components/collapse/style/css";
 import { VideoCamera } from "@element-plus/icons-vue";
+import { useRoute } from "vue-router";
 
-const components = { ElButton, ElDatePicker, VideoCamera };
-
+const components = {
+  ElButton,
+  ElDatePicker,
+  ElCollapse,
+  ElCollapseItem,
+  VideoCamera,
+};
+const aiSummary = ref(null);
+const showNoteEditor = ref(true);
 const startTime = ref(new Date("2025-06-17T10:00:00"));
 const endTime = ref(new Date("2025-06-17T10:07:50"));
-
-const currentStage = ref(null); // 设置为 null 更安全，兼容后续判断
-
 const user = ref({});
 const users = ref([]);
 const selectedUserId = ref("");
 const discussionId = "discussion_001";
-
 const group = ref(null);
 const session = ref(null);
 const bot = ref(null);
-const agenda = ref([]);
 const members = ref([]);
-
 const memberList = ref([]);
-
 const userId = computed(() => selectedUserId.value);
-
-const currentAgenda = computed(() => {
-  if (
-    typeof currentStage.value === "number" &&
-    currentStage.value >= 1 &&
-    currentStage.value <= agenda.value.length
-  ) {
-    return agenda.value[currentStage.value - 1];
-  }
-  return null;
-});
-
 const meetingStarted = ref(false);
 const jitsiApi = ref(null);
-
 const activeTab = ref("note");
+const currentStage = ref(null);
+const agendaList = ref([]);
+const showAgendaPanel = ref(false);
+const contentCollapsed = ref(["info"]);
+const route = useRoute();
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
-    activeTab.value = ""; // 暂时清空 key
+    activeTab.value = "";
     nextTick(() => {
-      activeTab.value = "note"; // 重新设置 key 以强制刷新 NoteEditor
+      activeTab.value = "note";
     });
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
+  console.log("路由参数 name:", route.params.name);
   document.addEventListener("visibilitychange", handleVisibilityChange);
+  users.value = await api.getUsers();
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
+  closeWebSocket();
 });
 
 function joinMeeting() {
@@ -182,9 +210,7 @@ function joinMeeting() {
     console.warn("JitsiMeetExternalAPI 未加载，稍后重试...");
     return;
   }
-
   if (meetingStarted.value) return;
-
   meetingStarted.value = true;
   nextTick(() => {
     const domain = "meet.jit.si";
@@ -199,10 +225,6 @@ function joinMeeting() {
     jitsiApi.value = api;
   });
 }
-
-onMounted(async () => {
-  users.value = await api.getUsers();
-});
 
 // 修改：定义发送用户信息到插件的函数，接受 newUserId, context 两个参数
 function sendUserInfoToExtension(newUserId, context) {
@@ -236,56 +258,37 @@ function sendUserInfoToExtension(newUserId, context) {
 watch(selectedUserId, async (newUserId) => {
   try {
     const context = await api.getUserGroupContext(newUserId);
-    
     group.value = context.group;
     session.value = context.session;
     bot.value = context.bot;
     members.value = context.members || [];
-
     sendUserInfoToExtension(newUserId, context);
-
-    if (context.session?.id) {
-      try {
-        const agendas = await api.getAgendas(context.session.id);
-        agenda.value = agendas || [];
-      } catch (error) {
-        console.error("获取议程失败:", error);
-        agenda.value = [];
-      }
-    }
-
     if (context.group?.id) {
       console.log("🛰 初始化 WebSocket，groupId:", context.group.id);
       initWebSocket(context.group.id);
-
-      // 避免重复注册，先清理
       onMessage("agenda_stage_update", async (raw) => {
         try {
-          console.log("📨 WebSocket 收到原始消息:", raw);
           const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
           const stage = parsed?.stage;
           if (typeof stage === "number") {
-            console.log("✅ WebSocket 阶段更新为:", stage);
             currentStage.value = stage;
-
-            // 注册监听器
-            watch(currentStage, (newStage, oldStage) => {
-              // Removed debug console
-            });
-          } else {
-            console.warn("⚠️ 未解析到合法的 stage:", parsed);
+            if (session.value?.id) {
+              const agendas = await api.getAgendas(session.value.id);
+              if (agendas && agendas.length === 1) {
+                agendaList.value = agendas;
+                showAgendaPanel.value = stage === 1;
+              } else {
+                showAgendaPanel.value = false;
+              }
+            }
           }
         } catch (err) {
           console.error("❌ WebSocket 消息解析失败:", err, raw);
         }
       });
     }
-
     memberList.value =
-      context.members?.map((m) => ({
-        id: m.user_id,
-        name: m.name,
-      })) || [];
+      context.members?.map((m) => ({ id: m.user_id, name: m.name })) || [];
     console.log("👥 当前小组成员列表:", memberList.value.slice());
   } catch (error) {
     console.error("❌ 获取用户上下文失败:", error);
@@ -293,7 +296,6 @@ watch(selectedUserId, async (newUserId) => {
     group.value = null;
     session.value = null;
     bot.value = null;
-    agenda.value = [];
   }
 });
 
@@ -343,19 +345,23 @@ async function handleAnomalyCheck() {
   console.log("📊 当前 selectedUserId.value:", selectedUserId.value);
   console.log("📊 当前 users.value 长度:", users.value.length);
   console.log("📊 users.value 前几个用户:", users.value.slice(0, 3));
-  
+
   // 从 users 列表中根据 selectedUserId 找到当前用户
-  let currentUser = users.value.find(u => u.id === selectedUserId.value);
+  let currentUser = users.value.find((u) => u.id === selectedUserId.value);
   console.log("🔍 找到的当前用户:", currentUser);
-  
+
   // 如果没有找到，尝试其他可能的字段名
   if (!currentUser) {
     console.log("⚠️ 使用 id 字段未找到用户，尝试其他字段名...");
-    const currentUserById = users.value.find(u => u.user_id === selectedUserId.value);
-    const currentUserByUid = users.value.find(u => u.uid === selectedUserId.value);
+    const currentUserById = users.value.find(
+      (u) => u.user_id === selectedUserId.value
+    );
+    const currentUserByUid = users.value.find(
+      (u) => u.uid === selectedUserId.value
+    );
     console.log("🔍 使用 user_id 字段查找:", currentUserById);
     console.log("🔍 使用 uid 字段查找:", currentUserByUid);
-    
+
     // 使用找到的用户
     if (currentUserById) {
       currentUser = currentUserById;
@@ -363,20 +369,24 @@ async function handleAnomalyCheck() {
       currentUser = currentUserByUid;
     }
   }
-  
+
   const groupId = group.value?.id;
   const roundIndex = currentStage.value || 1;
-  
+
   // 确保当前用户信息存在
-  const currentUserId = currentUser?.id || currentUser?.user_id || currentUser?.uid || selectedUserId.value;
+  const currentUserId =
+    currentUser?.id ||
+    currentUser?.user_id ||
+    currentUser?.uid ||
+    selectedUserId.value;
   const currentUserName = currentUser?.name || "";
   const currentUserDeviceToken = currentUser?.device_token || "";
-  
+
   console.log("🔍 提取的用户信息:");
   console.log("  - currentUserId:", currentUserId);
   console.log("  - currentUserName:", currentUserName);
   console.log("  - currentUserDeviceToken:", currentUserDeviceToken);
-  
+
   // 验证必要字段
   if (!currentUserId) {
     console.error("❌ 当前用户ID不存在");
@@ -384,7 +394,7 @@ async function handleAnomalyCheck() {
     console.error("❌ selectedUserId.value:", selectedUserId.value);
     return;
   }
-  
+
   const payload = {
     group_id: groupId,
     round_index: roundIndex,
@@ -394,18 +404,37 @@ async function handleAnomalyCheck() {
     current_user: {
       user_id: currentUserId,
       name: currentUserName,
-      device_token: currentUserDeviceToken
-    }
+      device_token: currentUserDeviceToken,
+    },
   };
-  
+
   console.log("📤 发送异常检测请求:", JSON.stringify(payload, null, 2));
-  
+
   try {
     const result = await api.getAnomalyStatus(payload);
     console.log("✅ Anomaly Detection Result:", result);
   } catch (err) {
     console.error("❌ Anomaly Detection Error:", err);
   }
+}
+
+function formatAgendaDesc(desc) {
+  if (!desc) return "";
+  return desc
+    .replace(/(任务[：:]?)/g, '<b style="font-size:1.1em;">$1</b>')
+    .replace(
+      /(建议[：:]?)/g,
+      '<b style="font-size:1.1em;color:#3478f6;">$1</b>'
+    )
+    .replace(
+      /(目标[：:]?)/g,
+      '<b style="font-size:1.1em;color:#e67e22;">$1</b>'
+    )
+    .replace(
+      /(思考[：:]?)/g,
+      '<b style="font-size:1.1em;color:#16a085;">$1</b>'
+    )
+    .replace(/\\n/g, "<br/>");
 }
 </script>
 
@@ -432,7 +461,6 @@ async function handleAnomalyCheck() {
   font-size: 1.25rem;
   font-weight: 600;
   text-align: center;
-  padding: 1rem 0;
   background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
@@ -514,5 +542,125 @@ async function handleAnomalyCheck() {
   border-radius: 10px;
   margin: 0 auto;
   width: fit-content;
+}
+
+.el-collapse,
+.el-collapse-item,
+.custom-collapse-title {
+  width: 100% !important;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  color: #555;
+}
+.agenda-panel {
+  width: 100% !important;
+}
+.agenda-meta {
+  width: 100vw;
+  max-width: 900px;
+  margin: 0 auto 8px auto;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+}
+.goal-grey,
+.session-grey {
+  color: #888;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+.agenda-task-prompt {
+  font-size: 1.13rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 12px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+.agenda-desc {
+  font-size: 1rem;
+  color: #222;
+  width: 100%;
+  text-align: left;
+  line-height: 1.6;
+  overflow-y: auto;
+}
+.agenda-desc b {
+  font-weight: 700;
+}
+.agenda-panel.flex-row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+.agenda-flex-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 98%;
+  align-items: stretch;
+  justify-content: center;
+}
+.agenda-left,
+.agenda-right {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+}
+.output-req-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+.output-req-card {
+  margin-bottom: 0;
+  background: #fff;
+  border-radius: 6px;
+  padding: 12px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  font-size: 1rem;
+  flex: 1 1 0;
+  min-width: 0;
+}
+.output-req-title {
+  font-weight: 700;
+  color: #3478f6;
+  margin-bottom: 6px;
+  font-size: 1.13rem;
+}
+.output-req-instructions {
+  color: #222;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+.example-title {
+  color: #e67e22;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.example-point {
+  font-weight: 500;
+  color: #222;
+  font-size: 1rem;
+}
+.example-support {
+  color: #888;
+  font-size: 0.98em;
+  margin-left: 8px;
 }
 </style>

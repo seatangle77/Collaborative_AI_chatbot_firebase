@@ -69,31 +69,6 @@ const allocatedTime = computed(() => {
   return agenda.value.items?.[currentStage.value]?.allocated_time_minutes || 0;
 });
 
-// 封装议程获取逻辑，便于复用和与 Public 页面结构统一
-const fetchChatAgendas = async (sessionId) => {
-  try {
-    const agendas = await api.getAgendas(sessionId);
-    // 返回带 items 属性的对象
-    return { items: agendas || [] };
-  } catch (err) {
-    console.error("获取议程失败", err);
-    return { items: [] };
-  }
-};
-
-const fetchSessionAndData = async (groupId) => {
-  try {
-    const sessionInfo = await api.getSession(groupId);
-    session.value = sessionInfo;
-
-    // 使用 fetchChatAgendas 替代原先直接请求
-    agenda.value = await fetchChatAgendas(sessionInfo.id);
-  } catch (err) {
-    console.error("获取 session 或议程失败", err);
-    agenda.value = { items: [] };
-  }
-};
-
 const selectGroup = async (groupId) => {
   selectedGroupId.value = groupId;
   const groupData = groups.value.find((g) => g.id === groupId);

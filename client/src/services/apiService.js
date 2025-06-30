@@ -17,9 +17,6 @@ export default {
   getChatHistory(groupId) {
     return axios.get(`${BASE_URL}/api/chat/${groupId}`).then(res => res.data);
   },
-  getAgendas(sessionId) {
-    return axios.get(`${BASE_URL}/api/chat/agenda/session/${sessionId}`).then(res => res.data);
-  },
   getChatSummaries(sessionId) {
     return axios.get(`${BASE_URL}/api/chat_summaries/session/${sessionId}`).then(res => res.data);
   },
@@ -88,5 +85,9 @@ export default {
     return axios.get(`${BASE_URL}/analysis/round_summary_combined`, {
       params: { group_id: groupId, round_index: roundIndex, start_time: startTime, end_time: endTime }
     }).then(res => res.data);
+  },
+
+  getAgendas(sessionId) {
+    return axios.get(`${BASE_URL}/api/chat/agenda/session/${sessionId}`).then(res => res.data);
   },
 };

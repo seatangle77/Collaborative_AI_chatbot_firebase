@@ -7,7 +7,6 @@
             <el-select
               v-model="localSelectedGroupId"
               class="group-select"
-              size="small"
               @change="handleGroupChange"
               placeholder="请选择小组"
             >
@@ -18,7 +17,9 @@
                 :value="g.id"
               />
             </el-select>
-            <span class="goal" v-if="goal">目标：{{ goal }}</span>
+            <span class="goal" v-if="goal"
+              ><span class="goal-label">目标：</span>{{ goal }}</span
+            >
           </div>
         </div>
         <div class="right-info">
@@ -26,25 +27,22 @@
             <el-tag
               v-for="(member, index) in members"
               :key="index"
-              size="small"
               type="success"
+              size="small"
             >
               {{ member.name }}
             </el-tag>
             <el-tag
-              size="small"
               type="info"
               v-if="bot?.name"
               @click="showModelDialog = true"
               style="cursor: pointer"
+              size="small"
             >
               🤖 {{ bot.name }}
             </el-tag>
           </el-space>
         </div>
-      </div>
-      <div class="session-row">
-        <div class="session-name">{{ sessionTitle }}</div>
       </div>
     </div>
   </div>
@@ -80,22 +78,31 @@ const props = defineProps({
   allGroups: Array,
   selectedGroupId: String,
   bot: Object, // ✅ 当前小组的机器人
+  routeName: String, // 新增
 });
 
 const emit = defineEmits(["updateGroup"]);
 
-const localSelectedGroupId = ref(props.selectedGroupId);
-
-watch(
-  () => props.selectedGroupId,
-  (val) => {
-    localSelectedGroupId.value = val;
-  }
-);
-
 const handleGroupChange = (newId) => {
   emit("updateGroup", newId);
 };
+
+const localSelectedGroupId = ref(props.selectedGroupId);
+
+// 监听 routeName 和 allGroups，自动匹配 group
+watch(
+  [() => props.routeName, () => props.allGroups],
+  ([newRouteName, newAllGroups]) => {
+    if (newRouteName && Array.isArray(newAllGroups)) {
+      const match = newAllGroups.find(g => g.name === newRouteName);
+      if (match) {
+        localSelectedGroupId.value = match.id;
+        handleGroupChange(match.id);
+      }
+    }
+  },
+  { immediate: true }
+);
 
 const showModelDialog = ref(false);
 const localSelectedAiProvider = ref(props.bot?.model || "");
@@ -123,9 +130,8 @@ const handleModelChange = async (newModel) => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0.75rem 1.25rem;
-  font-size: 14px;
-  background-color: #ffffff;
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: #fff;
   border-radius: 12px;
   box-sizing: border-box;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -142,48 +148,64 @@ const handleModelChange = async (newModel) => {
 .session-row {
   width: 100%;
   text-align: center;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-.session-name {
-  padding-top: 1rem;
-  font-size: 18px;
+.session-title {
+  font-size: 1.3rem;
   font-weight: 500;
-  color: #000;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 0;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
 }
 
 .left-info {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 1rem;
-  min-height: 32px;
+  gap: 1.5rem;
 }
 
 .right-info {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.9rem;
   align-items: center;
   flex-wrap: wrap;
 }
 
+.el-tag {
+  display: flex;
+  align-items: center;
+}
+
 .right-info > .el-tag:last-child {
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
 }
 
 .group-title {
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 1.18rem;
   color: #303133;
 }
 
 .goal {
-  font-size: 14px;
-  color: #606266;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: #555;
+  margin-left: 12px;
+  line-height: 1.4;
+}
+
+.goal-label {
+  color: #d4913a;
+  font-weight: 500;
 }
 
 .group-select {
-  width: 160px;
+  width: 180px;
   margin-bottom: 0;
+  font-size: 1rem;
 }
 </style>

@@ -165,48 +165,33 @@ async def delete_agenda(agenda_id: str):
 @router.patch("/api/chat/agenda/reset_status/{group_id}")
 async def reset_agenda_status(group_id: str, stage: int = Query(...)):
     """
-    根据阶段重设小组的议程状态
-    参数：
-      - group_id: 小组 ID
-      - stage: 当前阶段（0 表示全部未开始，1 表示第一个进行中，2 表示第二个进行中等）
+    只处理唯一议程的状态切换
+    stage=0 -> not_started
+    stage=1 -> in_progress
+    stage>=2 -> completed
     """
     try:
-        print(f"🚀 reset_agenda_status called with group_id={group_id}, stage={stage}")
-
         agendas_ref = firestore_db.collection("chat_agendas").where("group_id", "==", group_id).order_by("created_at")
         agendas = list(agendas_ref.stream())
 
-        print(f"📋 Retrieved {len(agendas)} agendas")
-
         if not agendas:
             raise HTTPException(status_code=404, detail="未找到该小组的议程")
+        if len(agendas) != 1:
+            raise HTTPException(status_code=400, detail="议程数量不是1，数据异常")
 
-        if stage == 5:
-            for doc in agendas:
-                doc_ref = firestore_db.collection("chat_agendas").document(doc.id)
-                doc_ref.update({"status": "completed"})
-            from app.websocket_routes import push_agenda_stage
-            await push_agenda_stage(group_id, stage)
-            return {"message": "所有议程状态已更新为 completed"}
+        doc = agendas[0]
+        doc_ref = firestore_db.collection("chat_agendas").document(doc.id)
+        if stage == 0:
+            new_status = "not_started"
+        elif stage == 1:
+            new_status = "in_progress"
         else:
-            for idx, doc in enumerate(agendas):
-                doc_ref = firestore_db.collection("chat_agendas").document(doc.id)
-                if stage == 0:
-                    new_status = "not_started"
-                elif idx < stage - 1:
-                    new_status = "completed"
-                elif idx == stage - 1:
-                    new_status = "in_progress"
-                else:
-                    new_status = "not_started"
+            new_status = "completed"
+        doc_ref.update({"status": new_status})
 
-                print(f"🔧 Updating agenda {doc.id}: index={idx}, new_status={new_status}")
-                doc_ref.update({"status": new_status})
-
-            from app.websocket_routes import push_agenda_stage
-            await push_agenda_stage(group_id, stage)
-
-        return {"message": f"议程状态已更新至阶段 {stage}"}
+        from app.websocket_routes import push_agenda_stage
+        await push_agenda_stage(group_id, stage)
+        return {"message": f"唯一议程状态已更新为 {new_status}"}
     except Exception as e:
         import traceback
         traceback.print_exc()

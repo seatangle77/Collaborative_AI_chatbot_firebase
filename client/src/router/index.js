@@ -6,12 +6,12 @@ const routes = [
     redirect: "/public-display",
   },
   {
-    path: "/personal-dashboard",
+    path: "/personal-dashboard/:name",
     name: "PersonalWorkspace",
     component: () => import("../views/PersonalWorkspace.vue"),
   },
   {
-    path: "/public-display",
+    path: "/public-display/:name",
     name: "PublicScreen",
     component: () => import("../views/PublicScreen.vue"),
   },

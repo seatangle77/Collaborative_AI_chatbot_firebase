@@ -49,9 +49,6 @@
           </el-space>
         </div>
       </div>
-      <div class="session-row">
-        <div class="session-name">{{ sessionTitle }}</div>
-      </div>
     </div>
     <el-dialog v-model="showModelDialog" title="选择 AI 模型" width="300px">
       <p>当前模型：{{ bot.model }}</p>
@@ -60,7 +57,7 @@
 </template>
 
 <script setup>
-import { ref, watch, watchEffect, computed } from "vue";
+import { ref, watch, computed } from "vue";
 
 const props = defineProps({
   bot: Object,
@@ -69,29 +66,45 @@ const props = defineProps({
   members: Array,
   group: Object,
   session: Object, // added session prop to access session_title and session_date
+  routeName: String, // 新增
 });
 
 const emit = defineEmits(["update:selectedUserId"]);
 
+const handleUserChange = (newId) => {
+  emit("update:selectedUserId", newId);
+};
+
 // 双向绑定 selectedUserId，初始化时给它一个默认值
 const localSelectedUserId = ref("");
-watchEffect(() => {
-  localSelectedUserId.value =
-    props.selectedUserId || props.allUsers?.[0]?.user_id || "";
-});
+
+// 初始化时设置一次
+if (!localSelectedUserId.value && props.selectedUserId) {
+  localSelectedUserId.value = props.selectedUserId;
+}
+
+// 监听 selectedUserId prop 变化
 watch(
   () => props.selectedUserId,
   (val) => {
     localSelectedUserId.value = val;
   }
 );
-watch(localSelectedUserId, (newId) => {
-  emit("update:selectedUserId", newId);
-});
 
-const handleUserChange = (newId) => {
-  emit("update:selectedUserId", newId);
-};
+// 监听 routeName 和 allUsers，自动匹配 user
+watch(
+  [() => props.routeName, () => props.allUsers],
+  ([newRouteName, newAllUsers]) => {
+    if (newRouteName && Array.isArray(newAllUsers)) {
+      const match = newAllUsers.find(u => u.name === newRouteName);
+      if (match) {
+        localSelectedUserId.value = match.user_id;
+        handleUserChange(match.user_id); // 触发用户切换
+      }
+    }
+  },
+  { immediate: true }
+);
 
 const showModelDialog = ref(false);
 
@@ -144,10 +157,9 @@ const displayMemberName = (m) => {
 }
 
 .session-name {
-  padding-bottom: 1rem;
   font-size: 18px;
   font-weight: 500;
-  color: #000;
+  color: #555;
 }
 
 .left-info {
