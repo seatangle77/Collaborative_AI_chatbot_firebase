@@ -51,9 +51,37 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         round_index=req.round_index,
         start_time=req.start_time,
         end_time=req.end_time,
-        member_list=members
+        member_list=members,
+        current_user=req.current_user.dict()
     )
     result = analyze_all_anomalies(raw_data)
+    
+    # 解析AI返回的JSON结果
+    import re
+    summary = None
+    glasses_summary = None
+    detail = None
+    user_data_summary = None
+    try:
+        if isinstance(result.get("raw_response"), str):
+            raw = result["raw_response"]
+            # 用正则提取出 {...} 部分
+            match = re.search(r"{[\s\S]*}", raw)
+            if match:
+                json_str = match.group(0)
+                parsed_result = json.loads(json_str)
+                summary = parsed_result.get("summary")
+                glasses_summary = parsed_result.get("glasses_summary", "你当前状态需要关注")
+                detail = parsed_result.get("detail")
+                user_data_summary = parsed_result.get("user_data_summary")
+            else:
+                glasses_summary = "你当前状态需要关注"
+        else:
+            glasses_summary = "你当前状态需要关注"
+    except Exception as e:
+        print("解析glasses_summary失败：", e)
+        glasses_summary = "你当前状态需要关注"
+    
     # 保存分析结果为文件
     import uuid
     from datetime import datetime
@@ -62,30 +90,69 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
+    # 新建 anomaly_analysis_files 表并插入内容
+    from app.database import db
+    file_id = str(uuid.uuid4())
+    db.collection("anomaly_raw_json_input").document(file_id).set({
+        "id": file_id,
+        "group_id": req.group_id,
+        "created_at": datetime.now().isoformat(),
+        "raw_json": result  # 完整分析内容
+    })
+
+    # 新建anomaly_analysis_results表并插入数据
+    analysis_id = str(uuid.uuid4())
+    db.collection("anomaly_analysis_results").document(analysis_id).set({
+        "id": analysis_id,
+        "group_id": req.group_id,
+        "start_time": req.start_time,
+        "end_time": req.end_time,
+        "current_user": req.current_user.dict(),
+        "raw_response": result.get("raw_response"),
+        "summary": summary,
+        "glasses_summary": glasses_summary,
+        "detail": detail,
+        "user_data_summary": user_data_summary,
+        "created_at": datetime.now().isoformat()
+    })
+
     # 使用前端传入的当前用户信息发送推送通知
     current_user = req.current_user
     device_token = current_user.device_token
     
     if device_token:
-        # JPush 推送
+        # JPush 推送 - 使用眼镜版本
         send_jpush_notification(
-            alert=f"📡 异常分析完成：{current_user.name}，新的异常检测结果已生成，点击查看分析详情。",
+            alert=glasses_summary,  # 直接使用眼镜版本作为推送内容
             registration_id=device_token,
             extras={
                 "type": "anomaly",
-                "title": "📡 异常分析完成",
-                "body": f"{current_user.name}，新的异常检测结果已生成，点击查看分析详情。",
-                "summary": result.get("summary", "暂无摘要"),
-                "suggestion": result.get("detail", {}).get("suggestion", ""),
+                "title": "异常提醒",
+                "body": glasses_summary,  # 眼镜版本
+                "summary": summary or result.get("summary", "暂无摘要"),
+                "suggestion": (detail or {}).get("suggestion", "") if detail else result.get("detail", {}).get("suggestion", ""),
                 "user_id": current_user.user_id,
                 "user_name": current_user.name
             }
         )
         print(f"✅ 异常分析完成，已推送通知至用户 {current_user.name}({current_user.user_id})")
+        print(f"📱 眼镜显示内容：{glasses_summary}")
     else:
         print(f"⚠️ 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
 
-    return result
+    # 返回给前端更多信息
+    return {
+        "raw_response": result.get("raw_response"),
+        "summary": summary,
+        "glasses_summary": glasses_summary,
+        "detail": detail,
+        "user_data_summary": user_data_summary,
+        "current_user": req.current_user.dict(),
+        "group_id": req.group_id,
+        "start_time": req.start_time,
+        "end_time": req.end_time,
+        "analysis_id": analysis_id
+    }
 
 
 @router.post("/analysis/interval_summary")
@@ -201,3 +268,15 @@ async def round_summary_combined(
         "group_summary": group_summary,
         "members": members
     }
+
+@router.get("/analysis/anomaly_results_by_user")
+async def get_anomaly_results_by_user(group_id: str, user_id: str):
+    from app.database import db
+    # 查询anomaly_analysis_results表
+    results = db.collection("anomaly_analysis_results") \
+        .where("group_id", "==", group_id) \
+        .where("current_user.user_id", "==", user_id) \
+        .order_by("created_at", direction="DESCENDING") \
+        .stream()
+    data = [doc.to_dict() for doc in results]
+    return {"results": data}

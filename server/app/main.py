@@ -2,6 +2,7 @@ from fastapi import FastAPI, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import router  # 导入所有的 API 路由
 from app.websocket_routes import websocket_router
+from app.anomaly_polling_scheduler import router as anomaly_polling_router
 
 # ✅ 创建 FastAPI 实例
 app = FastAPI()
@@ -60,6 +61,7 @@ async def options_handler(request: Request):
 # ✅ 注册 API 路由
 app.include_router(router)
 app.include_router(websocket_router)
+app.include_router(anomaly_polling_router)
 
 
 # ✅ 根路径测试 API

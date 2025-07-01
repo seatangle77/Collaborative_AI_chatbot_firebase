@@ -69,6 +69,40 @@
                     </div>
                   </div>
                 </div>
+                <div v-if="agenda.allocated_time_minutes" class="agenda-timer-bar">
+                  <div style="width: 100%; height: 18px; background: #eee; border-radius: 9px; overflow: hidden; margin: 8px 0;">
+                    <div :style="{
+                      width: (
+                        agendaTimers[agenda.id]?.finished
+                          ? '100%'
+                          : (100 * (1 - (agendaTimers[agenda.id]?.timeLeft || 0) / (agenda.allocated_time_minutes * 60))) + '%'
+                    ),
+                    height: '100%',
+                    background: '#3478f6',
+                    transition: 'width 0.5s'
+                  }"></div>
+                  </div>
+                  <transition name="fade">
+                    <div v-if="agendaTimers[agenda.id]?.timeLeft <= 300 && !agendaTimers[agenda.id]?.finished" class="timer-warning">
+                      剩余时间：{{ formatTime(agendaTimers[agenda.id]?.timeLeft) }}
+                    </div>
+                  </transition>
+                  <transition name="fade">
+                    <div v-if="agendaTimers[agenda.id]?.finished" class="agenda-finished-tip">
+                      🎉 任务已完成！
+                    </div>
+                  </transition>
+                  <el-button
+                    type="danger"
+                    size="small"
+                    style="margin-top: 10px;"
+                    :loading="anomalyPollingLoading"
+                    :disabled="anomalyPollingStopped"
+                    @click="stopAnomalyPolling"
+                  >
+                    Stop Anomaly Polling
+                  </el-button>
+                </div>
               </div>
             </div>
           </el-collapse-item>
@@ -88,7 +122,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick } from "vue";
+import { ref, computed, onMounted, nextTick, watch } from "vue";
 import GroupOverview from "@/components/public/GroupOverview.vue";
 import api from "../services/apiService";
 import { ElButton, ElCollapse, ElCollapseItem } from "element-plus";
@@ -96,6 +130,7 @@ import "element-plus/es/components/button/style/css";
 import { VideoCamera } from "@element-plus/icons-vue";
 import StartMeetingPanel from "@/components/public/StartMeetingPanel.vue";
 import { useRoute } from "vue-router";
+import apiService from '../services/apiService';
 
 const components = { ElButton, ElCollapse, ElCollapseItem, VideoCamera };
 const aiBots = ref([]);
@@ -124,6 +159,9 @@ const filteredMembers = computed(() => {
   if (!users.value || !groupMembers.value.length) return [];
   return groupMembers.value.map((uid) => users.value[uid]).filter(Boolean);
 });
+
+const anomalyPollingLoading = ref(false);
+const anomalyPollingStopped = ref(false);
 
 const selectGroup = async (groupId) => {
   selectedGroupId.value = groupId;
@@ -161,6 +199,15 @@ async function startMeeting() {
       agendaList.value = agendas || [];
       showAgendaPanel.value = true;
       await api.resetAgendaStatus(selectedGroupId.value, 1);
+      // 新增：启动AI异常分析轮询
+      anomalyPollingLoading.value = true;
+      anomalyPollingStopped.value = false;
+      try {
+        await apiService.startAnomalyPolling(selectedGroupId.value);
+      } catch (e) {
+        // 可选：处理异常
+      }
+      anomalyPollingLoading.value = false;
     } catch (e) {
       agendaList.value = [];
       showAgendaPanel.value = false;
@@ -191,6 +238,17 @@ async function startMeeting() {
   });
 }
 
+async function stopAnomalyPolling() {
+  anomalyPollingLoading.value = true;
+  try {
+    await apiService.stopAnomalyPolling(selectedGroupId.value);
+    anomalyPollingStopped.value = true;
+  } catch (e) {
+    // 可选：处理异常
+  }
+  anomalyPollingLoading.value = false;
+}
+
 const fetchAllAiBots = async () => {
   try {
     const bots = await api.getAiBots();
@@ -218,6 +276,50 @@ function formatAgendaDesc(desc) {
     )
     .replace(/\\n/g, "<br/>");
 }
+
+// 新增：进度条与倒计时相关
+const agendaTimers = ref({}); // { agendaId: { timeLeft, interval, finished } }
+
+function startAgendaTimer(agenda) {
+  if (!agenda.allocated_time_minutes) return;
+  const totalSeconds = agenda.allocated_time_minutes * 60;
+  if (!agendaTimers.value[agenda.id]) {
+    agendaTimers.value[agenda.id] = {
+      timeLeft: totalSeconds,
+      interval: null,
+      finished: false,
+    };
+  }
+  if (agendaTimers.value[agenda.id].interval) return;
+  agendaTimers.value[agenda.id].interval = setInterval(() => {
+    if (agendaTimers.value[agenda.id].timeLeft > 0) {
+      agendaTimers.value[agenda.id].timeLeft--;
+    } else {
+      agendaTimers.value[agenda.id].finished = true;
+      clearInterval(agendaTimers.value[agenda.id].interval);
+      agendaTimers.value[agenda.id].interval = null;
+    }
+  }, 1000);
+}
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const s = (seconds % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+watch(agendaList, (newList) => {
+  // 新议程数据时，启动所有计时器
+  console.log('watch agendaList:', newList);
+  if (Array.isArray(newList)) {
+    newList.forEach((agenda) => {
+      console.log('agenda id:', agenda.id, 'allocated_time_minutes:', agenda.allocated_time_minutes);
+      if (agenda.allocated_time_minutes) {
+        startAgendaTimer(agenda);
+      }
+    });
+  }
+});
 
 onMounted(async () => {
   // 打印路由参数 name
@@ -510,5 +612,37 @@ onMounted(async () => {
 
 ::v-deep(.el-collapse-item__wrap) {
   margin: 0;
+}
+
+.agenda-timer-bar {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer-warning {
+  color: #e67e22;
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-top: 4px;
+  animation: blink 1s step-end infinite alternate;
+}
+@keyframes blink {
+  0% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+.agenda-finished-tip {
+  color: #67c23a;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 8px;
+  animation: pop 0.5s;
+}
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
 }
 </style>

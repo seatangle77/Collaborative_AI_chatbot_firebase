@@ -10,12 +10,23 @@
       :bot="bot"
       :route-name="route.params.name"
     />
+    <el-button
+      v-if="showAgendaPanel"
+      class="history-feedback-float-btn"
+      type="success"
+      @click="openHistoryDrawer"
+      size="large"
+    >
+      历史异常反馈
+    </el-button>
     <div class="content-container">
       <el-collapse v-model="contentCollapsed">
-        <el-collapse-item name="info">
+        <el-collapse-item name="info" class="center-collapse-title">
           <template #title>
-            <div class="custom-collapse-title">
-              {{ session?.session_title || "议程内容" }}
+            <div class="agenda-header-row" style="position: relative; display: flex; align-items: center;">
+              <div class="custom-collapse-title">
+                {{ session?.session_title || "议程内容" }}
+              </div>
             </div>
           </template>
           <div
@@ -71,7 +82,7 @@
         class="meeting-container"
       />
       <div class="section-row">
-        <section class="note-section">
+        <section class="note-section" style=" width: 100vw; max-width: 100vw;">
           <NoteEditor
             v-if="group?.note_id && showNoteEditor"
             :key="activeTab"
@@ -83,31 +94,58 @@
             :members="members"
           />
         </section>
-        <section class="feedback-section">
-          <CognitiveFeedback
-            :feedback-data="{
-              cognitive: aiSummary?.cognitive || {},
-              behavior: aiSummary?.behavior || {},
-              attention: aiSummary?.attention || {},
-            }"
-          />
-        </section>
       </div>
+      <el-drawer
+        v-model="drawerVisible"
+        title="异常反馈"
+        :with-header="true"
+        size="40%"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+      >
+        <AbnormalFeedback
+          v-if="anomalyData"
+          :anomaly-data="anomalyData"
+        />
+      </el-drawer>
+      <el-drawer
+        v-model="historyDrawerVisible"
+        title="历史异常反馈"
+        size="60%"
+        :with-header="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+      >
+        <el-table :data="anomalyHistory" style="width: 100%" v-loading="historyLoading">
+          <el-table-column prop="created_at" label="时间" width="180">
+            <template #default="scope">
+              {{ formatDate(scope.row.created_at) }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="summary" label="摘要">
+            <template #default="scope">
+              <span v-html="scope.row.summary"></span>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" width="100">
+            <template #default="scope">
+              <el-button size="small" @click="viewHistoryDetail(scope.row)">查看</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-drawer>
+      <el-drawer
+        v-model="historyDetailDrawerVisible"
+        title="异常反馈详情"
+        size="50%"
+        :with-header="true"
+        :close-on-click-modal="false"
+        :destroy-on-close="true"
+      >
+        <AbnormalFeedback v-if="historyDetail" :anomaly-data="historyDetail" />
+      </el-drawer>
       <div class="analysis-panel">
-        <el-date-picker
-          v-model="startTime"
-          type="datetime"
-          placeholder="开始时间"
-        />
-        <el-date-picker
-          v-model="endTime"
-          type="datetime"
-          placeholder="结束时间"
-        />
-        <el-button type="primary" @click="handleIntervalSummary"
-          >Interval Summary</el-button
-        >
-        <el-date-picker
+        <!-- <el-date-picker
           v-model="startTime"
           type="datetime"
           placeholder="开始时间"
@@ -119,7 +157,7 @@
         />
         <el-button type="danger" @click="handleAnomalyCheck"
           >Anomaly Detection</el-button
-        >
+        > -->
       </div>
     </div>
   </div>
@@ -134,7 +172,7 @@ import {
   computed,
   watch,
 } from "vue";
-import CognitiveFeedback from "@/components/personal/CognitiveFeedback.vue";
+import AbnormalFeedback from "@/components/personal/AbnormalFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
 import api from "../services/apiService";
@@ -148,6 +186,7 @@ import {
   ElDatePicker,
   ElCollapse,
   ElCollapseItem,
+  ElDrawer,
 } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
@@ -161,8 +200,9 @@ const components = {
   ElCollapse,
   ElCollapseItem,
   VideoCamera,
+  ElDrawer,
 };
-const aiSummary = ref(null);
+const anomalyData = ref(null);
 const showNoteEditor = ref(true);
 const startTime = ref(new Date("2025-06-17T10:00:00"));
 const endTime = ref(new Date("2025-06-17T10:07:50"));
@@ -184,6 +224,12 @@ const agendaList = ref([]);
 const showAgendaPanel = ref(false);
 const contentCollapsed = ref(["info"]);
 const route = useRoute();
+const drawerVisible = ref(false);
+const historyDrawerVisible = ref(false);
+const historyDetailDrawerVisible = ref(false);
+const anomalyHistory = ref([]);
+const historyDetail = ref(null);
+const historyLoading = ref(false);
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
@@ -334,7 +380,6 @@ async function handleIntervalSummary() {
       payload.members
     );
     console.log("✅ Interval Summary Result:", result);
-    aiSummary.value = result;
   } catch (err) {
     console.error("❌ Interval Summary Error:", err);
   }
@@ -412,7 +457,22 @@ async function handleAnomalyCheck() {
 
   try {
     const result = await api.getAnomalyStatus(payload);
-    console.log("✅ Anomaly Detection Result:", result);
+    // 解析 raw_response 字段
+    let parsed = null;
+    if (result && result.raw_response) {
+      let jsonStr = result.raw_response.trim();
+      // 如果是 markdown 代码块包裹
+      if (jsonStr.startsWith('```json')) {
+        jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
+      }
+      try {
+        parsed = JSON.parse(jsonStr);
+      } catch (e) {
+        console.error("❌ 解析异常检测结果失败:", e, jsonStr);
+      }
+    }
+    anomalyData.value = parsed;
+    console.log("✅ Anomaly Data:", parsed);
   } catch (err) {
     console.error("❌ Anomaly Detection Error:", err);
   }
@@ -435,6 +495,47 @@ function formatAgendaDesc(desc) {
       '<b style="font-size:1.1em;color:#16a085;">$1</b>'
     )
     .replace(/\\n/g, "<br/>");
+}
+
+watch(anomalyData, (val) => {
+  drawerVisible.value = !!val;
+});
+
+function openHistoryDrawer() {
+  if (!group.value?.id || !userId.value) return;
+  historyDrawerVisible.value = true;
+  historyLoading.value = true;
+  api.getAnomalyResultsByUser(group.value.id, userId.value)
+    .then(res => {
+      anomalyHistory.value = res.results || [];
+    })
+    .finally(() => {
+      historyLoading.value = false;
+    });
+}
+
+function viewHistoryDetail(row) {
+  // 只展示 raw_response 内容
+  let parsed = null;
+  if (row && row.raw_response) {
+    let jsonStr = row.raw_response.trim();
+    if (jsonStr.startsWith('```json')) {
+      jsonStr = jsonStr.replace(/^```json|```$/g, '').trim();
+    }
+    try {
+      parsed = JSON.parse(jsonStr);
+    } catch (e) {
+      console.error('❌ 解析历史异常 raw_response 失败:', e, jsonStr);
+    }
+  }
+  historyDetail.value = parsed;
+  historyDetailDrawerVisible.value = true;
+}
+
+function formatDate(str) {
+  if (!str) return '';
+  const d = new Date(str);
+  return d.toLocaleString();
 }
 </script>
 
@@ -467,14 +568,13 @@ function formatAgendaDesc(desc) {
 }
 
 .section-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1rem 1rem;
-  background-color: #fff;
+  display: block;
   width: 100vw;
+  background-color: #fff;
   border-radius: 10px;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .feedback-section,
@@ -551,6 +651,7 @@ function formatAgendaDesc(desc) {
   box-sizing: border-box;
   font-size: 1.2rem;
   color: #555;
+  margin-left: 150x;
 }
 .agenda-panel {
   width: 100% !important;
@@ -662,5 +763,33 @@ function formatAgendaDesc(desc) {
   color: #888;
   font-size: 0.98em;
   margin-left: 8px;
+}
+.note-section {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  min-height: 500px;
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+.feedback-section {
+  /* 只作为抽屉容器，不占用页面空间 */
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+.history-feedback-float-btn {
+  position: fixed;
+  right: 32px;
+  top: 80px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(52,120,246,0.12);
+}
+::v-deep.center-collapse-title .el-collapse-item__header {
+  justify-content: center;
 }
 </style>

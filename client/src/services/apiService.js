@@ -90,4 +90,21 @@ export default {
   getAgendas(sessionId) {
     return axios.get(`${BASE_URL}/api/chat/agenda/session/${sessionId}`).then(res => res.data);
   },
+
+  // 获取某用户历史异常分析结果
+  async getAnomalyResultsByUser(groupId, userId) {
+    const res = await fetch(`${BASE_URL}/analysis/anomaly_results_by_user?group_id=${groupId}&user_id=${userId}`);
+    if (!res.ok) throw new Error('获取历史异常分析失败');
+    return await res.json();
+  },
+
+  // 启动AI异常分析轮询
+  async startAnomalyPolling(group_id) {
+    return await axios.post(`${BASE_URL}/analysis/anomaly_polling/start`, { group_id });
+  },
+
+  // 停止AI异常分析轮询
+  async stopAnomalyPolling(group_id) {
+    return await axios.post(`${BASE_URL}/analysis/anomaly_polling/stop`, { group_id });
+  },
 };

@@ -4,7 +4,7 @@ from datetime import datetime
 from datetime import timezone, timedelta
 from google.cloud.firestore_v1.base_query import FieldFilter
 
-def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list) -> dict:
+def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list, current_user: dict) -> dict:
     """
     获取当前 chunk 内所有用户的行为数据，准备送入 GPT 处理。
     返回结构包含每位用户的行为/标签数据。
@@ -116,8 +116,36 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             "pageBehaviorLogs": pageBehaviorLogs,
             "unique_note_contents": note_contents
         },
-        "speech_counts": speech_counts
+        "speech_counts": speech_counts,
+        "current_user": current_user
     }
+
+    # 查询anomaly_analysis_results表，获取current_user的前两次AI分析历史
+    try:
+        results = db.collection("anomaly_analysis_results") \
+            .where("group_id", "==", group_id) \
+            .where("current_user.user_id", "==", current_user["user_id"]) \
+            .order_by("created_at", direction="DESCENDING") \
+            .limit(2) \
+            .stream()
+        history = [doc.to_dict() for doc in results]
+        anomaly_history = []
+        for h in history:
+            anomaly_history.append({
+                "detail": h.get("detail"),
+                "glasses_summary": h.get("glasses_summary"),
+                "summary": h.get("summary"),
+                "user_data_summary": h.get("user_data_summary"),
+                "start_time": h.get("start_time"),
+                "end_time": h.get("end_time")
+            })
+        if len(anomaly_history) == 0:
+            chunk_data["anomaly_history"] = None
+        else:
+            chunk_data["anomaly_history"] = anomaly_history
+    except Exception as e:
+        print("查询anomaly_analysis_results历史失败：", e)
+        chunk_data["anomaly_history"] = None
 
     from uuid import uuid4
     os.makedirs("debug_anomaly_outputs", exist_ok=True)
@@ -166,4 +194,13 @@ def build_attention_anomaly_input(chunk_data: dict) -> dict:
         "note_edit_history": chunk_data["raw_tables"]["note_edit_history"],
         "pageBehaviorLogs": chunk_data["raw_tables"]["pageBehaviorLogs"],
         "speech_transcripts": chunk_data["raw_tables"]["speech_transcripts"],
+    }
+
+def build_anomaly_history_input(chunk_data: dict) -> dict:
+    """
+    构建用于异常历史分析的输入结构。
+    """
+    return {
+        "current_user": chunk_data.get("current_user"),
+        "anomaly_history": chunk_data.get("anomaly_history")
     }
