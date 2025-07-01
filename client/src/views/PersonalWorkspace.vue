@@ -537,6 +537,37 @@ function formatDate(str) {
   const d = new Date(str);
   return d.toLocaleString();
 }
+
+// 新增：写入 chrome.storage.local 的方法
+function saveUserToChromeStorage(userId, userName) {
+  if (!window.chrome || !window.chrome.storage) {
+    console.warn("chrome.storage 不可用");
+    return;
+  }
+  window.chrome.storage.local.get(['pluginData'], (result) => {
+    const pluginData = result.pluginData || {};
+    pluginData.user = {
+      user_id: userId,
+      name: userName,
+    };
+    window.chrome.storage.local.set({ pluginData }, () => {
+      console.log("已写入 pluginData.user:", pluginData.user);
+    });
+  });
+}
+
+// 监听 selectedUserId、route.params.name、users 变化，写入 chrome.storage.local
+watch([
+  selectedUserId,
+  () => route.params.name,
+  users
+], ([newUserId, routeName, userList]) => {
+  if (!newUserId || !userList.length) return;
+  // 找到当前用户
+  let currentUser = userList.find(u => u.id === newUserId || u.user_id === newUserId || u.uid === newUserId);
+  const userName = routeName || currentUser?.name || "";
+  saveUserToChromeStorage(newUserId, userName);
+}, { immediate: true });
 </script>
 
 <style scoped>

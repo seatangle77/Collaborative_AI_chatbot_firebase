@@ -1,6 +1,28 @@
 import axios from 'axios';
 const BASE_URL = import.meta.env.VITE_API_BASE;
 axios.defaults.withCredentials = true;
+
+/**
+ * 记录异常反馈点击
+ * @param {Object} payload
+ * @param {string} payload.group_id
+ * @param {string} payload.user_id
+ * @param {string} payload.click_type  // 'More' | 'Less' | 'Share'
+ * @param {string} payload.anomaly_analysis_results_id
+ * @param {string} [payload.detail_type]
+ * @param {string} [payload.detail_status]
+ * @param {Array<string>} [payload.share_to_user_ids]
+ */
+async function feedbackClick(payload) {
+  return await fetch('/analysis/anomaly_polling/feedback_click', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  }).then(res => res.json());
+}
+
 export default {
   getAgenda() { return axios.get(`${BASE_URL}/api/chat/agenda`).then(res => res.data); },
   getTerm(word) { return axios.get(`${BASE_URL}/api/discussion/terms/${word}`).then(res => res.data); },
@@ -107,4 +129,6 @@ export default {
   async stopAnomalyPolling(group_id) {
     return await axios.post(`${BASE_URL}/analysis/anomaly_polling/stop`, { group_id });
   },
+
+  feedbackClick,
 };

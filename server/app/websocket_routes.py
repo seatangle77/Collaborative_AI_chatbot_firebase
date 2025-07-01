@@ -41,3 +41,17 @@ async def push_agenda_stage(group_id: str, stage: int):
             await client.send_text(payload)
 
     print(f"📤 已向 group {group_id} 推送议程阶段: {stage}")
+
+async def push_personal_share_message(user_id: str, from_user: str, detail_type: str, detail_status: str, group_id: str):
+    """向指定用户推送Share异常消息"""
+    if user_id in connected_clients:
+        payload = json.dumps({
+            "type": "share",
+            "from_user": from_user,
+            "detail_type": detail_type,
+            "detail_status": detail_status,
+            "group_id": group_id
+        })
+        for client in connected_clients[user_id]:
+            await client.send_text(payload)
+        print(f"📤 已向 user {user_id} 推送Share异常: {detail_type}, {detail_status}")

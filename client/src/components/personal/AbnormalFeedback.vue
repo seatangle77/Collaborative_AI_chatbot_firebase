@@ -128,6 +128,7 @@
 import { ref, computed, watch, nextTick, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { marked } from "marked";
+import api from '@/services/apiService';
 
 const props = defineProps({
   anomalyData: Object,
@@ -276,20 +277,43 @@ onMounted(async () => {
   }
 });
 
+// Share 选中的用户ID数组（如无可选用户，默认空数组）
+const selectedUserIds = ref([]); // 你可以根据实际需求实现用户选择
+
+async function callFeedbackClick(clickType) {
+  const anomaly = props.anomalyData || {};
+  const payload = {
+    group_id: anomaly.group_id,
+    user_id: anomaly.user_id,
+    click_type: clickType,
+    anomaly_analysis_results_id: anomaly.anomaly_analysis_results_id,
+    detail_type: anomaly.detail?.type,
+    detail_status: anomaly.detail?.status,
+    share_to_user_ids: clickType === 'Share' ? selectedUserIds.value : [],
+  };
+  try {
+    await api.feedbackClick(payload);
+    // 可选：根据类型提示
+    if (clickType === 'Less') {
+      ElMessage.info('已降低后续异常提示频率');
+    } else if (clickType === 'Share') {
+      ElMessage.success('已触发分享功能');
+    }
+  } catch (e) {
+    ElMessage.error('反馈记录失败');
+  }
+}
+
 function onMore() {
   showMore.value = true;
+  callFeedbackClick('More');
 }
 function onLess() {
   showMore.value = false;
-  lessFeedback();
+  callFeedbackClick('Less');
 }
-function lessFeedback() {
-  // 这里可以调用实际的降低提示频率的逻辑
-  ElMessage.info("已降低后续异常提示频率（示例）");
-}
-
 function shareFeedback() {
-  ElMessage.success("已触发分享功能（可自定义为复制、弹窗、分享链接等）");
+  callFeedbackClick('Share');
 }
 
 // markdown 转 html 工具
