@@ -4,3 +4,6 @@
 firebase-key.json
 
 audio_runtime/asr_record.py
+
+client/package.json
+client/package-lock.json
