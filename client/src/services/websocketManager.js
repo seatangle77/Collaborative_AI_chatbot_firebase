@@ -1,12 +1,14 @@
 let ws = null;
 const listeners = {};
 
+const WS_BASE_URL = import.meta.env.VITE_WS_BASE || 'wss://collaborative-backend.onrender.com';
+
 export function initWebSocket(groupId) {
   if (ws) {
     ws.close();
   }
 
-  ws = new WebSocket(`ws://localhost:8000/ws/${groupId}`);
+  ws = new WebSocket(`${WS_BASE_URL}/ws/${groupId}`);
 
   ws.onopen = () => {
     console.log("🔌 WebSocket connected");

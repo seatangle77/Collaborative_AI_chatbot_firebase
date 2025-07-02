@@ -10,6 +10,27 @@
       :bot="bot"
       :route-name="route.params.name"
     />
+    <div class="share-status-card" style="margin-bottom: 16px;">
+      <template v-if="shareMessage">
+        <div class="card-exception">
+          <div class="exception-title">
+            <span>组员 {{ shareMessage.from_user }} 分享了异常</span>
+          </div>
+          <div class="exception-detail">
+            <span>类型：{{ shareMessage.detail_type }}</span>
+            <span style="margin-left: 16px;">状态：{{ shareMessage.detail_status }}</span>
+          </div>
+          <div class="exception-time">
+            <span>收到时间：{{ new Date(shareMessage.receivedAt).toLocaleTimeString() }}</span>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="card-normal">
+          <span>当前状态良好，未检测到异常分享</span>
+        </div>
+      </template>
+    </div>
     <el-button
       v-if="showAgendaPanel"
       class="history-feedback-float-btn"
@@ -230,6 +251,8 @@ const historyDetailDrawerVisible = ref(false);
 const anomalyHistory = ref([]);
 const historyDetail = ref(null);
 const historyLoading = ref(false);
+const shareMessage = ref(null);
+const shareMessageTimer = ref(null);
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
@@ -244,11 +267,23 @@ onMounted(async () => {
   console.log("路由参数 name:", route.params.name);
   document.addEventListener("visibilitychange", handleVisibilityChange);
   users.value = await api.getUsers();
+  onMessage("share", (payload) => {
+    if (!payload || payload.from_user === userId.value) return;
+    shareMessage.value = {
+      ...payload,
+      receivedAt: Date.now(),
+    };
+    if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
+    shareMessageTimer.value = setTimeout(() => {
+      shareMessage.value = null;
+    }, 3 * 60 * 1000);
+  });
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
   closeWebSocket();
+  if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
 });
 
 function joinMeeting() {
@@ -272,7 +307,6 @@ function joinMeeting() {
   });
 }
 
-// 修改：定义发送用户信息到插件的函数，接受 newUserId, context 两个参数
 function sendUserInfoToExtension(newUserId, context) {
   if (!window || !window.postMessage) return;
   if (!context) return;
@@ -348,8 +382,7 @@ watch(selectedUserId, async (newUserId) => {
 onBeforeUnmount(() => {
   closeWebSocket();
 });
-// 区间统计按钮点击处理
-// 时间格式化函数：将 Date 格式为本地时区的 ISO 字符串（不带 Z、不带偏移）
+
 function formatToLocalISO(datetime) {
   const pad = (num) => String(num).padStart(2, "0");
   const year = datetime.getFullYear();
@@ -391,11 +424,9 @@ async function handleAnomalyCheck() {
   console.log("📊 当前 users.value 长度:", users.value.length);
   console.log("📊 users.value 前几个用户:", users.value.slice(0, 3));
 
-  // 从 users 列表中根据 selectedUserId 找到当前用户
   let currentUser = users.value.find((u) => u.id === selectedUserId.value);
   console.log("🔍 找到的当前用户:", currentUser);
 
-  // 如果没有找到，尝试其他可能的字段名
   if (!currentUser) {
     console.log("⚠️ 使用 id 字段未找到用户，尝试其他字段名...");
     const currentUserById = users.value.find(
@@ -407,7 +438,6 @@ async function handleAnomalyCheck() {
     console.log("🔍 使用 user_id 字段查找:", currentUserById);
     console.log("🔍 使用 uid 字段查找:", currentUserByUid);
 
-    // 使用找到的用户
     if (currentUserById) {
       currentUser = currentUserById;
     } else if (currentUserByUid) {
@@ -418,7 +448,6 @@ async function handleAnomalyCheck() {
   const groupId = group.value?.id;
   const roundIndex = currentStage.value || 1;
 
-  // 确保当前用户信息存在
   const currentUserId =
     currentUser?.id ||
     currentUser?.user_id ||
@@ -432,7 +461,6 @@ async function handleAnomalyCheck() {
   console.log("  - currentUserName:", currentUserName);
   console.log("  - currentUserDeviceToken:", currentUserDeviceToken);
 
-  // 验证必要字段
   if (!currentUserId) {
     console.error("❌ 当前用户ID不存在");
     console.error("❌ currentUser?.id:", currentUser?.id);
@@ -457,11 +485,9 @@ async function handleAnomalyCheck() {
 
   try {
     const result = await api.getAnomalyStatus(payload);
-    // 解析 raw_response 字段
     let parsed = null;
     if (result && result.raw_response) {
       let jsonStr = result.raw_response.trim();
-      // 如果是 markdown 代码块包裹
       if (jsonStr.startsWith('```json')) {
         jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
       }
@@ -515,7 +541,6 @@ function openHistoryDrawer() {
 }
 
 function viewHistoryDetail(row) {
-  // 只展示 raw_response 内容
   let parsed = null;
   if (row && row.raw_response) {
     let jsonStr = row.raw_response.trim();
@@ -538,7 +563,6 @@ function formatDate(str) {
   return d.toLocaleString();
 }
 
-// 新增：写入 chrome.storage.local 的方法
 function saveUserToChromeStorage(userId, userName) {
   if (!window.chrome || !window.chrome.storage) {
     console.warn("chrome.storage 不可用");
@@ -556,14 +580,12 @@ function saveUserToChromeStorage(userId, userName) {
   });
 }
 
-// 监听 selectedUserId、route.params.name、users 变化，写入 chrome.storage.local
 watch([
   selectedUserId,
   () => route.params.name,
   users
 ], ([newUserId, routeName, userList]) => {
   if (!newUserId || !userList.length) return;
-  // 找到当前用户
   let currentUser = userList.find(u => u.id === newUserId || u.user_id === newUserId || u.uid === newUserId);
   const userName = routeName || currentUser?.name || "";
   saveUserToChromeStorage(newUserId, userName);
@@ -616,10 +638,6 @@ watch([
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   min-height: 500px;
 }
-/* 可选：如果希望认知反馈区域略窄，可使用如下设置
-.feedback-section { flex: 0.9; }
-.note-section { flex: 1.1; }
-*/
 
 .meeting-controls {
   width: 100%;
@@ -806,7 +824,6 @@ watch([
   padding: 0;
 }
 .feedback-section {
-  /* 只作为抽屉容器，不占用页面空间 */
   width: 0;
   height: 0;
   padding: 0;
@@ -822,5 +839,35 @@ watch([
 }
 ::v-deep.center-collapse-title .el-collapse-item__header {
   justify-content: center;
+}
+.share-status-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 16px auto;
+  padding: 16px 24px;
+  border-radius: 10px;
+  background: #f6faff;
+  box-shadow: 0 2px 8px rgba(52,120,246,0.08);
+  font-size: 1.1rem;
+}
+.card-exception {
+  color: #d35400;
+}
+.exception-title {
+  font-weight: bold;
+  font-size: 1.15em;
+  margin-bottom: 6px;
+}
+.exception-detail {
+  margin-bottom: 4px;
+}
+.exception-time {
+  font-size: 0.95em;
+  color: #888;
+}
+.card-normal {
+  color: #16a085;
+  font-weight: 600;
+  font-size: 1.1em;
 }
 </style>
