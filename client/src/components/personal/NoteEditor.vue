@@ -2,7 +2,7 @@
   <div class="note-editor">
     <div class="note-title-wrapper">
       <div class="note-title">协作笔记</div>
-      <el-button size="small" type="primary" @click="editorStarted = true"
+      <el-button size="small" class="start-write-btn" type="primary" @click="editorStarted = true"
         >开始写入数据</el-button
       >
     </div>
@@ -341,6 +341,10 @@ onBeforeUnmount(() => {
 <style scoped>
 @import "quill/dist/quill.snow.css";
 
+.start-write-btn {
+  height: 32px;
+}
+
 .note-editor {
   padding: 20px;
   background-color: #fdfdfd;
@@ -353,7 +357,6 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .note-title {

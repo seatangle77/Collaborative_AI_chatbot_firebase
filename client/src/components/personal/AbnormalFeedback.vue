@@ -83,7 +83,19 @@
           </div>
           <div class="info-block">
             <span class="info-label">历史对比：</span>
+            <template v-if="historyComparisonTable && historyComparisonTable.data.length">
+              <el-table :data="historyComparisonTable.data" class="history-compare-table" style="width: 100%; margin-bottom: 8px;">
+                <el-table-column
+                  v-for="col in historyComparisonTable.columns"
+                  :key="col.prop"
+                  :prop="col.prop"
+                  :label="col.label"
+                  align="center"
+                />
+              </el-table>
+            </template>
             <span
+              v-else
               class="info-content"
               v-html="md2html(anomalyData.more_info.history_comparison)"
             ></span>
@@ -282,18 +294,32 @@ const selectedUserIds = ref([]); // 你可以根据实际需求实现用户选�
 
 async function callFeedbackClick(clickType) {
   const anomaly = props.anomalyData || {};
+  // 校验必填字段
+  if (!anomaly.group_id || !anomaly.user_id) {
+    ElMessage.error('反馈参数缺失：group_id 或 user_id');
+    return;
+  }
+  if (!anomaly.anomaly_analysis_results_id) {
+    ElMessage.error('反馈参数缺失：anomaly_analysis_results_id');
+    return;
+  }
+  if (!anomaly.detail || !anomaly.detail.type || !anomaly.detail.status) {
+    ElMessage.error('反馈参数缺失：异常类型或状态');
+    return;
+  }
+
   const payload = {
-    group_id: anomaly.group_id,
-    user_id: anomaly.user_id,
+    group_id: String(anomaly.group_id),
+    user_id: String(anomaly.user_id),
     click_type: clickType,
-    anomaly_analysis_results_id: anomaly.anomaly_analysis_results_id,
-    detail_type: anomaly.detail?.type,
-    detail_status: anomaly.detail?.status,
-    share_to_user_ids: clickType === 'Share' ? selectedUserIds.value : [],
+    anomaly_analysis_results_id: String(anomaly.anomaly_analysis_results_id),
+    detail_type: String(anomaly.detail.type),
+    detail_status: String(anomaly.detail.status),
+    share_to_user_ids: clickType === 'Share' ? (selectedUserIds.value || []) : [],
   };
+
   try {
     await api.feedbackClick(payload);
-    // 可选：根据类型提示
     if (clickType === 'Less') {
       ElMessage.info('已降低后续异常提示频率');
     } else if (clickType === 'Share') {
@@ -321,6 +347,35 @@ function md2html(str) {
   if (!str) return "";
   return marked.parse(str);
 }
+
+// 解析 markdown 表格为结构化数据
+function parseMarkdownTable(md) {
+  if (!md) return null;
+  const lines = md.trim().split('\n').filter(l => l.trim());
+  if (lines.length < 2) return null;
+  // 取表头
+  const headerLine = lines[0].replace(/^\||\|$/g, '');
+  const headers = headerLine.split('|').map(h => h.trim());
+  // 过滤掉分隔线
+  const dataLines = lines.slice(2);
+  const data = dataLines.map(line => {
+    const cells = line.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+    const row = {};
+    headers.forEach((h, i) => {
+      row[h] = cells[i] || '';
+    });
+    return row;
+  });
+  return {
+    columns: headers.map(h => ({ prop: h, label: h })),
+    data
+  };
+}
+
+const historyComparisonTable = computed(() => {
+  const md = props.anomalyData?.more_info?.history_comparison;
+  return parseMarkdownTable(md);
+});
 </script>
 
 <style scoped>
@@ -435,40 +490,59 @@ function md2html(str) {
 .info-content {
   color: #222;
 }
-.suggestion-list {
-  margin: 0 0 0 8px;
-  padding: 0;
-  list-style: disc inside;
-}
-.priority {
-  color: #e67e22;
-  margin-right: 4px;
-}
-.button-row {
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-}
-.info-content table,
-.summary-content table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 8px 0;
-  background: #fff;
-}
-.info-content th,
-.info-content td,
-.summary-content th,
-.summary-content td {
-  border: 1px solid #d0d7de;
-  padding: 6px 10px;
-  text-align: left;
-  font-size: 13px;
+.info-content table tr {
+  border-bottom: 1px solid #d0d7de !important;
 }
 .info-content th,
 .summary-content th {
   background: #f0f6ff;
   font-weight: 600;
   color: #3478f6;
+}
+.el-table.history-compare-table {
+  font-size: 13px;
+  background: #f9f9f9;
+  border-radius: 0;
+  border: none;
+}
+.el-table.history-compare-table th {
+  background: #f0f6ff !important;
+  color: #3478f6 !important;
+  font-weight: 600;
+  border: none !important;
+  text-align: center;
+}
+.el-table.history-compare-table td {
+  background: #f9f9f9 !important;
+  color: #222 !important;
+  border: none !important;
+  text-align: center;
+}
+.el-table.history-compare-table tr {
+  border-bottom: 1px solid #d0d7de !important;
+}
+.el-table.history-compare-table .el-table__body tr:last-child td {
+  border-bottom: none !important;
+}
+:deep(.el-table.history-compare-table .cell) {
+  line-height: 18px;
+  padding: 2px 6px;
+}
+:deep(.el-table.history-compare-table),
+:deep(.el-table.history-compare-table .el-table__body),
+:deep(.el-table.history-compare-table .el-table__row),
+:deep(.el-table.history-compare-table .el-table__cell),
+:deep(.el-table.history-compare-table .cell),
+:deep(.el-table.history-compare-table td) {
+  background: #f9f9f9 !important;
+  color: #222 !important;
+}
+:deep(.el-table.history-compare-table thead) {
+  background: #f0f6ff !important;
+}
+:deep(.el-table.history-compare-table th) {
+  background: #f0f6ff !important;
+  color: #222 !important;
+  font-weight: 600;
 }
 </style>

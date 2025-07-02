@@ -13,9 +13,9 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000, // ✅ 这里是你的前端端口
-   // https: {
-     // key: fs.readFileSync('./local.dev-key.pem'),
-      //cert: fs.readFileSync('./local.dev.pem'),
+    // https: {
+    // key: fs.readFileSync('./local.dev-key.pem'),
+    //cert: fs.readFileSync('./local.dev.pem'),
     //},
     proxy: {
       "/api": {
@@ -24,6 +24,7 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
+      '/analysis': 'http://localhost:8000', // 后端端口如有不同请修改
     },
   },
 });

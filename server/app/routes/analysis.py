@@ -120,6 +120,20 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     current_user = req.current_user
     device_token = current_user.device_token
     
+    # 构造返回给前端的数据
+    response_data = {
+        "raw_response": result.get("raw_response"),
+        "summary": summary,
+        "glasses_summary": glasses_summary,
+        "detail": detail,
+        "user_data_summary": user_data_summary,
+        "current_user": req.current_user.dict(),
+        "group_id": req.group_id,
+        "start_time": req.start_time,
+        "end_time": req.end_time,
+        "analysis_id": analysis_id
+    }
+    
     if device_token:
         # JPush 推送 - 使用眼镜版本
         send_jpush_notification(
@@ -139,6 +153,14 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         print(f"📱 眼镜显示内容：{glasses_summary}")
     else:
         print(f"⚠️ 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
+
+    # WebSocket 推送 - 向PC页面推送完整分析结果
+    try:
+        from app.websocket_routes import push_anomaly_analysis_result
+        await push_anomaly_analysis_result(current_user.user_id, response_data)
+        print(f"📡 已通过WebSocket向PC页面推送异常分析结果给用户 {current_user.name}({current_user.user_id})")
+    except Exception as e:
+        print(f"⚠️ WebSocket推送失败: {e}")
 
     # 返回给前端更多信息
     return {
@@ -270,13 +292,47 @@ async def round_summary_combined(
     }
 
 @router.get("/analysis/anomaly_results_by_user")
-async def get_anomaly_results_by_user(group_id: str, user_id: str):
+async def get_anomaly_results_by_user(
+    user_id: str = Query(..., description="用户ID"),
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(10, ge=1, le=100, description="每页条数，最大100")
+):
     from app.database import db
-    # 查询anomaly_analysis_results表
-    results = db.collection("anomaly_analysis_results") \
-        .where("group_id", "==", group_id) \
-        .where("current_user.user_id", "==", user_id) \
-        .order_by("created_at", direction="DESCENDING") \
-        .stream()
-    data = [doc.to_dict() for doc in results]
-    return {"results": data}
+    
+    try:
+        # 先获取所有匹配的文档（不排序）
+        base_query = db.collection("anomaly_analysis_results") \
+            .where("current_user.user_id", "==", user_id)
+        
+        # 获取总数
+        total_docs = list(base_query.stream())
+        total = len(total_docs)
+        
+        # 在内存中排序和分页
+        sorted_docs = sorted(total_docs, key=lambda doc: doc.get("created_at") or "", reverse=True)
+        
+        # 计算偏移量
+        offset = (page - 1) * page_size
+        
+        # 获取分页数据
+        paginated_docs = sorted_docs[offset:offset + page_size]
+        data = [doc.to_dict() for doc in paginated_docs]
+        
+        return {
+            "results": data,
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
+        
+    except Exception as e:
+        print(f"查询异常分析结果失败: {e}")
+        # 返回空结果而不是抛出异常
+        return {
+            "results": [],
+            "total": 0,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": 0
+        }

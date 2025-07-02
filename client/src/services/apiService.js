@@ -13,14 +13,9 @@ axios.defaults.withCredentials = true;
  * @param {string} [payload.detail_status]
  * @param {Array<string>} [payload.share_to_user_ids]
  */
-async function feedbackClick(payload) {
-  return await fetch('/analysis/anomaly_polling/feedback_click', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  }).then(res => res.json());
+function feedbackClick(payload) {
+  return axios.post(`${BASE_URL}/analysis/anomaly_polling/feedback_click`, payload)
+    .then(res => res.data);
 }
 
 export default {

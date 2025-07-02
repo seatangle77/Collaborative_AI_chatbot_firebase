@@ -10,160 +10,135 @@
       :bot="bot"
       :route-name="route.params.name"
     />
-    <div class="share-status-card" style="margin-bottom: 16px;">
-      <template v-if="shareMessage">
-        <div class="card-exception">
-          <div class="exception-title">
-            <span>组员 {{ shareMessage.from_user }} 分享了异常</span>
-          </div>
-          <div class="exception-detail">
-            <span>类型：{{ shareMessage.detail_type }}</span>
-            <span style="margin-left: 16px;">状态：{{ shareMessage.detail_status }}</span>
-          </div>
-          <div class="exception-time">
-            <span>收到时间：{{ new Date(shareMessage.receivedAt).toLocaleTimeString() }}</span>
-          </div>
-        </div>
-      </template>
-      <template v-else>
-        <div class="card-normal">
-          <span>当前状态良好，未检测到异常分享</span>
-        </div>
-      </template>
-    </div>
-    <el-button
-      v-if="showAgendaPanel"
-      class="history-feedback-float-btn"
-      type="success"
-      @click="openHistoryDrawer"
-      size="large"
-    >
-      历史异常反馈
-    </el-button>
+
     <div class="content-container">
-      <el-collapse v-model="contentCollapsed">
-        <el-collapse-item name="info" class="center-collapse-title">
-          <template #title>
-            <div class="agenda-header-row" style="position: relative; display: flex; align-items: center;">
-              <div class="custom-collapse-title">
-                {{ session?.session_title || "议程内容" }}
-              </div>
-            </div>
-          </template>
-          <div
-            v-if="showAgendaPanel && agendaList.length === 1"
-            class="agenda-panel flex-row"
-          >
-            <div class="agenda-flex-row">
-              <div class="agenda-left">
-                <div class="agenda-task-prompt">
-                  {{ agendaList[0].agenda_title }}
+      <div class="main-content-layout">
+        <div class="left-panel">
+          <el-collapse v-model="contentCollapsed">
+            <el-collapse-item name="info" class="center-collapse-title">
+              <template #title>
+                <div class="agenda-header-row" style="position: relative; display: flex; align-items: center;">
+                  <div class="custom-collapse-title">
+                    {{ session?.session_title || "议程内容" }}
+                  </div>
                 </div>
-                <div
-                  class="agenda-desc"
-                  v-html="formatAgendaDesc(agendaList[0].agenda_description)"
-                ></div>
-              </div>
-              <div class="agenda-right">
-                <div class="output-req-row">
-                  <div
-                    v-for="(req, key) in agendaList[0].output_requirements"
-                    :key="key"
-                    class="output-req-card"
-                  >
-                    <div class="output-req-title">{{ req.title }}</div>
-                    <div class="output-req-instructions">
-                      {{ req.instructions }}
+              </template>
+              <div
+                v-if="showAgendaPanel && agendaList.length === 1"
+                class="agenda-panel flex-row"
+              >
+                <div class="agenda-flex-row">
+                  <div class="agenda-left">
+                    <div class="agenda-task-prompt">
+                      {{ agendaList[0].agenda_title }}
                     </div>
                     <div
-                      v-if="req.example && req.example.length"
-                      class="output-req-example"
-                    >
-                      <div class="example-title">示例：</div>
-                      <ul>
-                        <li v-for="(ex, idx) in req.example" :key="idx">
-                          <div class="example-point">{{ ex.point }}</div>
-                          <div class="example-support">{{ ex.support }}</div>
-                        </li>
-                      </ul>
+                      class="agenda-desc"
+                      v-html="formatAgendaDesc(agendaList[0].agenda_description)"
+                    ></div>
+                  </div>
+                  <div class="agenda-right">
+                    <div class="output-req-row">
+                      <div
+                        v-for="(req, key) in agendaList[0].output_requirements"
+                        :key="key"
+                        class="output-req-card"
+                      >
+                        <div class="output-req-title">{{ req.title }}</div>
+                        <div class="output-req-instructions">
+                          {{ req.instructions }}
+                        </div>
+                        <div
+                          v-if="req.example && req.example.length"
+                          class="output-req-example"
+                        >
+                          <div class="example-title">示例：</div>
+                          <ul>
+                            <li v-for="(ex, idx) in req.example" :key="idx">
+                              <div class="example-point">{{ ex.point }}</div>
+                              <div class="example-support">{{ ex.support }}</div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="workspace-header">
+                <p>欢迎来到个人工作区</p>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+        </div>
+        
+        <div class="right-panel">
+          <div class="members-status-card">
+            <div class="members-status-list">
+              <div 
+                v-for="member in memberStatusList" 
+                :key="member.user_id" 
+                class="member-status-item"
+              >
+                <div class="member-avatar">
+                  <span
+                    class="collaborator-avatar"
+                    :style="{ backgroundColor: getAvatarColor(member) }"
+                    :title="member.name"
+                  >
+                    {{ member.name?.charAt(0) || 'U' }}
+                  </span>
+                </div>
+                <div class="member-info">
+                  <div class="member-name">{{ member.name }}</div>
+                  <div class="member-status">
+                    <el-tag v-if="member.status === 'abnormal'" type="danger" size="small">
+                      异常：{{ member.detail_type }}（{{ member.detail_status }}）
+                    </el-tag>
+                    <el-tag v-else type="success" size="small">正常</el-tag>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div v-else class="workspace-header">
-            <p>欢迎来到个人工作区</p>
-          </div>
-        </el-collapse-item>
-      </el-collapse>
+        </div>
+      </div>
       <div
         v-if="meetingStarted"
         id="jitsi-container"
         class="meeting-container"
       />
       <div class="section-row">
-        <section class="note-section" style=" width: 100vw; max-width: 100vw;">
-          <NoteEditor
-            v-if="group?.note_id && showNoteEditor"
-            :key="activeTab"
+        <div class="note-history-layout">
+          <section class="note-section">
+            <NoteEditor
+              v-if="group?.note_id && showNoteEditor"
+              :key="activeTab"
+              :user-id="userId"
+              :discussion-id="discussionId"
+              :note-id="group.note_id"
+              :session="session"
+              :bot="bot"
+              :members="members"
+            />
+          </section>
+          <AnomalyHistoryPanel
             :user-id="userId"
-            :discussion-id="discussionId"
-            :note-id="group.note_id"
-            :session="session"
-            :bot="bot"
-            :members="members"
+            :group-id="group?.id"
+            @view-detail="handleViewDetail"
+            class="history-panel"
           />
-        </section>
+        </div>
       </div>
       <el-drawer
         v-model="drawerVisible"
-        title="异常反馈"
-        :with-header="true"
-        size="40%"
-        :close-on-click-modal="false"
-        :destroy-on-close="true"
-      >
-        <AbnormalFeedback
-          v-if="anomalyData"
-          :anomaly-data="anomalyData"
-        />
-      </el-drawer>
-      <el-drawer
-        v-model="historyDrawerVisible"
-        title="历史异常反馈"
-        size="60%"
-        :with-header="true"
-        :close-on-click-modal="false"
-        :destroy-on-close="true"
-      >
-        <el-table :data="anomalyHistory" style="width: 100%" v-loading="historyLoading">
-          <el-table-column prop="created_at" label="时间" width="180">
-            <template #default="scope">
-              {{ formatDate(scope.row.created_at) }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="summary" label="摘要">
-            <template #default="scope">
-              <span v-html="scope.row.summary"></span>
-            </template>
-          </el-table-column>
-          <el-table-column label="操作" width="100">
-            <template #default="scope">
-              <el-button size="small" @click="viewHistoryDetail(scope.row)">查看</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-drawer>
-      <el-drawer
-        v-model="historyDetailDrawerVisible"
-        title="异常反馈详情"
+        :title="drawerSource === 'history' ? '历史异常反馈' : '实时异常反馈'"
         size="50%"
         :with-header="true"
         :close-on-click-modal="false"
         :destroy-on-close="true"
       >
-        <AbnormalFeedback v-if="historyDetail" :anomaly-data="historyDetail" />
+        <AbnormalFeedback v-if="drawerData" :anomaly-data="drawerData" />
       </el-drawer>
       <div class="analysis-panel">
         <!-- <el-date-picker
@@ -196,6 +171,7 @@ import {
 import AbnormalFeedback from "@/components/personal/AbnormalFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
+import AnomalyHistoryPanel from '@/components/personal/AnomalyHistoryPanel.vue';
 import api from "../services/apiService";
 import {
   initWebSocket,
@@ -208,11 +184,15 @@ import {
   ElCollapse,
   ElCollapseItem,
   ElDrawer,
+  ElAvatar,
+  ElTag,
 } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
 import "element-plus/es/components/collapse/style/css";
-import { VideoCamera } from "@element-plus/icons-vue";
+import "element-plus/es/components/avatar/style/css";
+import "element-plus/es/components/tag/style/css";
+import { VideoCamera, Warning } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
 
 const components = {
@@ -222,6 +202,8 @@ const components = {
   ElCollapseItem,
   VideoCamera,
   ElDrawer,
+  ElAvatar,
+  ElTag,
 };
 const anomalyData = ref(null);
 const showNoteEditor = ref(true);
@@ -237,6 +219,27 @@ const bot = ref(null);
 const members = ref([]);
 const memberList = ref([]);
 const userId = computed(() => selectedUserId.value);
+
+const abnormalMap = ref({}); // { user_id: { detail_type, detail_status, timer } }
+
+// 颜色分配与协作笔记一致
+const avatarColors = [
+  "#f94144", "#f3722c", "#f8961e", "#f9844a",
+  "#f9c74f", "#90be6d", "#43aa8b", "#577590"
+];
+function getAvatarColor(user) {
+  if (user.color) return user.color;
+  // hash name or id
+  const str = user.user_id || user.id || user.name || "";
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  return avatarColors[Math.abs(hash) % avatarColors.length];
+}
+
+// 过滤出当前用户外的其他组员
+const otherMembers = computed(() => {
+  return members.value.filter(member => member.user_id !== userId.value);
+});
 const meetingStarted = ref(false);
 const jitsiApi = ref(null);
 const activeTab = ref("note");
@@ -246,13 +249,19 @@ const showAgendaPanel = ref(false);
 const contentCollapsed = ref(["info"]);
 const route = useRoute();
 const drawerVisible = ref(false);
+const drawerData = ref(null);
+const drawerSource = ref('history'); // 'history' or 'realtime'
 const historyDrawerVisible = ref(false);
-const historyDetailDrawerVisible = ref(false);
 const anomalyHistory = ref([]);
 const historyDetail = ref(null);
 const historyLoading = ref(false);
 const shareMessage = ref(null);
 const shareMessageTimer = ref(null);
+
+// 1. 新增分页相关变量
+const historyPage = ref(1);
+const historyPageSize = ref(10);
+const historyTotal = ref(0);
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
@@ -267,16 +276,40 @@ onMounted(async () => {
   console.log("路由参数 name:", route.params.name);
   document.addEventListener("visibilitychange", handleVisibilityChange);
   users.value = await api.getUsers();
+  
+  // 监听异常分享消息
   onMessage("share", (payload) => {
     if (!payload || payload.from_user === userId.value) return;
-    shareMessage.value = {
-      ...payload,
-      receivedAt: Date.now(),
-    };
-    if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
-    shareMessageTimer.value = setTimeout(() => {
-      shareMessage.value = null;
+    // 设置异常
+    const uid = payload.from_user;
+    if (abnormalMap.value[uid] && abnormalMap.value[uid].timer) {
+      clearTimeout(abnormalMap.value[uid].timer);
+    }
+    const timer = setTimeout(() => {
+      abnormalMap.value[uid] = null;
+      abnormalMap.value = { ...abnormalMap.value };
     }, 3 * 60 * 1000);
+    abnormalMap.value[uid] = {
+      detail_type: payload.detail_type,
+      detail_status: payload.detail_status,
+      receivedAt: Date.now(),
+      timer
+    };
+    abnormalMap.value = { ...abnormalMap.value };
+  });
+  
+  // 监听异常分析结果推送
+  onMessage("anomaly_analysis", (payload) => {
+    console.log("📨 收到异常分析结果推送:", payload);
+    if (!payload || !payload.data) {
+      console.warn("⚠️ 异常分析结果数据格式不正确");
+      return;
+    }
+    // 处理异常分析结果
+    handleAnomalyAnalysisResult(payload.data);
+
+    // 自动刷新历史异常反馈
+    loadHistoryData();
   });
 });
 
@@ -284,6 +317,7 @@ onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
   closeWebSocket();
   if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
+  Object.values(abnormalMap.value).forEach(v => v && v.timer && clearTimeout(v.timer));
 });
 
 function joinMeeting() {
@@ -370,6 +404,9 @@ watch(selectedUserId, async (newUserId) => {
     memberList.value =
       context.members?.map((m) => ({ id: m.user_id, name: m.name })) || [];
     console.log("👥 当前小组成员列表:", memberList.value.slice());
+    
+    // 自动加载历史异常反馈数据
+    loadHistoryData();
   } catch (error) {
     console.error("❌ 获取用户上下文失败:", error);
     user.value = {};
@@ -524,21 +561,11 @@ function formatAgendaDesc(desc) {
 }
 
 watch(anomalyData, (val) => {
-  drawerVisible.value = !!val;
+  if (val) {
+    historyDetail.value = null; // 清除历史详情，显示实时异常
+    drawerVisible.value = true;
+  }
 });
-
-function openHistoryDrawer() {
-  if (!group.value?.id || !userId.value) return;
-  historyDrawerVisible.value = true;
-  historyLoading.value = true;
-  api.getAnomalyResultsByUser(group.value.id, userId.value)
-    .then(res => {
-      anomalyHistory.value = res.results || [];
-    })
-    .finally(() => {
-      historyLoading.value = false;
-    });
-}
 
 function viewHistoryDetail(row) {
   let parsed = null;
@@ -554,7 +581,7 @@ function viewHistoryDetail(row) {
     }
   }
   historyDetail.value = parsed;
-  historyDetailDrawerVisible.value = true;
+  drawerVisible.value = true;
 }
 
 function formatDate(str) {
@@ -590,6 +617,88 @@ watch([
   const userName = routeName || currentUser?.name || "";
   saveUserToChromeStorage(newUserId, userName);
 }, { immediate: true });
+
+// 组员面板数据
+const memberStatusList = computed(() => {
+  return members.value
+    .filter(member => member.user_id !== userId.value)
+    .map(member => {
+      const abnormal = abnormalMap.value[member.user_id];
+      return {
+        ...member,
+        abnormal,
+        status: abnormal ? 'abnormal' : 'normal',
+        detail_type: abnormal?.detail_type,
+        detail_status: abnormal?.detail_status
+      };
+    });
+});
+
+function handleAnomalyAnalysisResult(data) {
+  console.log("📨 处理异常分析结果:", data);
+  // 解析异常分析结果
+  let parsedData = null;
+  if (typeof data === 'string') {
+    try {
+      parsedData = JSON.parse(data);
+    } catch (e) {
+      console.error("❌ 解析异常分析结果失败:", e);
+      return;
+    }
+  } else {
+    parsedData = data;
+  }
+  // 补全 group_id、user_id、anomaly_analysis_results_id
+  drawerData.value = {
+    ...parsedData,
+    group_id: group.value?.id,
+    user_id: userId.value,
+    anomaly_analysis_results_id: parsedData.anomaly_analysis_results_id || parsedData.id || parsedData.result_id || ""
+  };
+  drawerSource.value = 'realtime';
+  drawerVisible.value = true;
+}
+
+// 2. 修改 loadHistoryData 方法，支持分页
+function loadHistoryData(page = historyPage.value, pageSize = historyPageSize.value) {
+  if (!group.value?.id || !userId.value) return;
+  historyLoading.value = true;
+  api.getAnomalyResultsByUser(group.value.id, userId.value, page, pageSize)
+    .then(res => {
+      anomalyHistory.value = res.results || [];
+      historyTotal.value = res.total || 0;
+      historyPage.value = res.page || 1;
+      historyPageSize.value = res.page_size || 10;
+    })
+    .catch(err => {
+      console.error("❌ 加载历史异常反馈失败:", err);
+    })
+    .finally(() => {
+      historyLoading.value = false;
+    });
+}
+
+// 3. 分页事件
+function onHistoryPageChange(page) {
+  historyPage.value = page;
+  loadHistoryData(page, historyPageSize.value);
+}
+function onHistoryPageSizeChange(size) {
+  historyPageSize.value = size;
+  historyPage.value = 1;
+  loadHistoryData(1, size);
+}
+
+function handleViewDetail(detail) {
+  drawerData.value = {
+    ...detail,
+    group_id: group.value?.id,
+    user_id: userId.value,
+    anomaly_analysis_results_id: detail.id || detail.anomaly_analysis_results_id || detail.result_id || ""
+  };
+  drawerSource.value = 'history';
+  drawerVisible.value = true;
+}
 </script>
 
 <style scoped>
@@ -610,14 +719,153 @@ watch([
   box-sizing: border-box;
 }
 
-.workspace-header {
+.main-content-layout {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
   width: 100%;
-  font-size: 1.25rem;
+  margin: 0 auto;
+  padding: 0 20px;
+  background:#fff;
+}
+
+.left-panel {
+  flex: 3;
+  min-width: 0;
+}
+
+.right-panel {
+  flex: 1;
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.members-status-card {
+  background: #ffffff;
+  padding: 16px;
+  position: sticky;
+  top: 20px;
+}
+
+.members-status-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  color: #303133;
+  border-bottom: 2px solid #e4e7ed;
+  padding-bottom: 8px;
+}
+
+.members-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.member-status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e4e7ed;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.member-status-item:hover {
+  background-color: #f5f7fa;
+  border-color: #c0c4cc;
+}
+
+.member-avatar {
+  flex-shrink: 0;
+}
+
+.member-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.member-name {
+  font-size: 0.9rem;
   font-weight: 600;
-  text-align: center;
-  background-color: #fff;
+  color: #303133;
+}
+
+.member-status {
+  display: flex;
+  align-items: center;
+}
+
+.share-message-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 16px auto;
+  padding: 16px 24px;
   border-radius: 10px;
-  box-sizing: border-box;
+  background: #f6faff;
+  box-shadow: 0 2px 8px rgba(52,120,246,0.08);
+  font-size: 1.1rem;
+}
+
+.share-message-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.share-message-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.share-message-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.share-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.value {
+  color: #303133;
+}
+
+.share-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.share-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.share-message-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 .section-row {
@@ -630,123 +878,74 @@ watch([
   padding: 0;
 }
 
-.feedback-section,
-.note-section {
-  flex: 1;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  min-height: 500px;
-}
-
-.meeting-controls {
-  width: 100%;
-  max-width: 1000px;
-  text-align: center;
-}
-
-.meeting-controls button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  background-color: #3478f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  transition: background-color 0.3s ease;
-}
-.meeting-controls button:hover {
-  background-color: #0056d2;
-}
-.agenda-title {
-  display: block;
-  font-weight: 700;
-  font-size: 1.15rem;
-  color: #111;
-  margin-bottom: 0.5rem;
-}
-
-.agenda-description {
-  display: block;
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.6;
-  white-space: pre-wrap;
-}
-
-.meeting-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 1rem auto;
-  min-height: 500px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.analysis-panel {
+.note-history-layout {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  padding: 1rem;
-  background: #fff;
-  border-radius: 10px;
+  gap: 20px;
   margin: 0 auto;
-  width: fit-content;
+  padding: 0 20px;
 }
 
-.el-collapse,
-.el-collapse-item,
-.custom-collapse-title {
-  width: 100% !important;
-  box-sizing: border-box;
-  font-size: 1.2rem;
-  color: #555;
-  margin-left: 150x;
+.note-section {
+  flex: 3;
+  min-width: 0;
 }
+
+.history-panel {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.note-title-wrapper,
+.history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+  padding: 0 0 8px 0;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.note-title,
+.history-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #303133;
+  margin: 0;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.note-title-wrapper .el-button,
+.history-header .el-button {
+  margin-left: 16px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+.history-content {
+  height: calc(100vh - 400px);
+  min-height: 400px;
+}
+
+.workspace-header {
+  width: 100%;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
 .agenda-panel {
   width: 100% !important;
-}
-.agenda-meta {
-  width: 100vw;
-  max-width: 900px;
-  margin: 0 auto 8px auto;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  justify-content: center;
-}
-.goal-grey,
-.session-grey {
-  color: #888;
-  font-size: 0.95rem;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-}
-.agenda-task-prompt {
-  font-size: 1.13rem;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 12px;
-  text-align: left;
-  letter-spacing: 0.5px;
-  line-height: 1.7;
-}
-.agenda-desc {
-  font-size: 1rem;
-  color: #222;
-  width: 100%;
-  text-align: left;
-  line-height: 1.6;
-  overflow-y: auto;
-}
-.agenda-desc b {
-  font-weight: 700;
-}
-.agenda-panel.flex-row {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
-  justify-content: center;
 }
 .agenda-flex-row {
   display: flex;
@@ -786,88 +985,63 @@ watch([
   flex: 1 1 0;
   min-width: 0;
 }
-.output-req-title {
-  font-weight: 700;
-  color: #3478f6;
-  margin-bottom: 6px;
+.agenda-task-prompt {
   font-size: 1.13rem;
-}
-.output-req-instructions {
-  color: #222;
-  font-size: 1rem;
-  margin-bottom: 8px;
-}
-.example-title {
-  color: #e67e22;
   font-weight: 600;
-  margin-bottom: 4px;
-  font-size: 1rem;
-}
-.example-point {
-  font-weight: 500;
   color: #222;
+  margin-bottom: 12px;
+  text-align: left;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+.agenda-desc {
   font-size: 1rem;
-}
-.example-support {
-  color: #888;
-  font-size: 0.98em;
-  margin-left: 8px;
-}
-.note-section {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  min-height: 500px;
-  width: 100vw;
-  max-width: 100vw;
-  margin: 0;
-  padding: 0;
-}
-.feedback-section {
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-}
-.history-feedback-float-btn {
-  position: fixed;
-  right: 32px;
-  top: 80px;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(52,120,246,0.12);
-}
-::v-deep.center-collapse-title .el-collapse-item__header {
-  justify-content: center;
-}
-.share-status-card {
+  color: #222;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto 16px auto;
-  padding: 16px 24px;
-  border-radius: 10px;
-  background: #f6faff;
-  box-shadow: 0 2px 8px rgba(52,120,246,0.08);
-  font-size: 1.1rem;
+  text-align: left;
+  line-height: 1.6;
+  overflow-y: auto;
 }
-.card-exception {
-  color: #d35400;
+.agenda-desc b {
+  font-weight: 700;
 }
-.exception-title {
+
+::v-deep.center-collapse-title .el-collapse-item__header {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+::v-deep.center-collapse-title .el-collapse-item__wrap {
+  border-bottom: none !important;
+}
+::v-deep .el-collapse {
+  border: none !important;
+  box-shadow: none !important;
+}
+.custom-collapse-title{
+color: #555;
+font-size: 1.1rem;
+text-align: center;
+width: 75vw;
+}
+
+.collaborator-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
   font-weight: bold;
-  font-size: 1.15em;
-  margin-bottom: 6px;
+  color: white;
 }
-.exception-detail {
-  margin-bottom: 4px;
-}
-.exception-time {
-  font-size: 0.95em;
-  color: #888;
-}
-.card-normal {
-  color: #16a085;
+
+.note-title,
+.history-title {
+  font-size: 1.1rem;
   font-weight: 600;
-  font-size: 1.1em;
+  color: #303133;
+  margin: 0;
+  line-height: 1.5;
 }
 </style>
