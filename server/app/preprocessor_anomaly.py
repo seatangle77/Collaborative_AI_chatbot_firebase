@@ -4,29 +4,45 @@ from datetime import datetime
 from datetime import timezone, timedelta
 from google.cloud.firestore_v1.base_query import FieldFilter
 
+def parse_iso_time(iso_str):
+    if not iso_str:
+        return None
+    if isinstance(iso_str, dict) and "_seconds" in iso_str:
+        # Firestore timestamp dict
+        return datetime.fromtimestamp(
+            iso_str["_seconds"] + iso_str.get("_nanoseconds", 0) / 1e9,
+            tz=timezone.utc
+        )
+    if iso_str.endswith("Z"):
+        iso_str = iso_str.replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(iso_str)
+    except Exception:
+        return None
+
 def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list, current_user: dict) -> dict:
     """
     获取当前 chunk 内所有用户的行为数据，准备送入 GPT 处理。
     返回结构包含每位用户的行为/标签数据。
     """
-    def parse_firestore_time(chinese_str):
-        try:
-            return datetime.strptime(chinese_str, "%Y年%m月%d日 UTC+8 %H:%M:%S").replace(tzinfo=timezone(timedelta(hours=8)))
-        except Exception:
-            return None
-
-    # Ensure start_time_dt and end_time_dt are timezone-aware, set to UTC+8
-    start_time_dt = datetime.fromisoformat(start_time).replace(tzinfo=timezone(timedelta(hours=8)))
-    end_time_dt = datetime.fromisoformat(end_time).replace(tzinfo=timezone(timedelta(hours=8)))
+    # 统一解析为datetime对象
+    start_time_dt = parse_iso_time(start_time)
+    end_time_dt = parse_iso_time(end_time)
 
     user_ids = [m["user_id"] for m in member_list]
     # print("📋 活跃用户 user_ids:", user_ids)
     # print("🧪 extract_chunk_data inputs:", {"group_id": group_id, "start_time": start_time, "end_time": end_time})
 
     def filter_time_range(item_start, item_end=None):
-        # 判断时间字符串是否在 start_time 和 end_time 范围内
-        # item_end 如果为空，则只判断 item_start 是否在范围内
-        return (start_time <= item_start <= end_time) if item_end is None else (item_start <= end_time and item_end >= start_time)
+        start = parse_iso_time(item_start)
+        end = parse_iso_time(item_end) if item_end else None
+        if not start:
+            return False
+        if end:
+            # 有开始和结束，判断区间是否有交集
+            return (start_time_dt <= start <= end_time_dt) or (start_time_dt <= end <= end_time_dt)
+        else:
+            return start_time_dt <= start <= end_time_dt
 
     # 查询 speech_transcripts
     speech_transcripts = [doc.to_dict() for doc in db.collection("speech_transcripts").where(filter=FieldFilter("group_id", "==", group_id)).stream()]
@@ -39,12 +55,6 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     #print(f"🎯 speech_transcripts count: {len(speech_transcripts)}")
 
     # 查询 note_edit_history
-    def parse_firestore_timestamp(ts):
-        if isinstance(ts, dict) and "_seconds" in ts:
-            return datetime.fromtimestamp(
-                ts["_seconds"] + ts.get("_nanoseconds", 0) / 1e9
-            ).replace(tzinfo=timezone(timedelta(hours=8)))
-        return None
     note_edit_history = []
     if member_list:
         for m in member_list:
@@ -54,12 +64,9 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
 
     filtered_note_edit_history = []
     for e in note_edit_history:
-        ts = parse_firestore_timestamp(e.get("timestamp"))
-
-        
+        ts = parse_iso_time(e.get("updatedAt"))
         if ts and start_time_dt <= ts <= end_time_dt:
             filtered_note_edit_history.append(e)
-
     note_edit_history = filtered_note_edit_history
     #print(f"📝 note_edit_history count: {len(note_edit_history)}")
 
@@ -77,8 +84,8 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             pageBehaviorLogs.append(data)
     filtered_logs = []
     for b in pageBehaviorLogs:
-        ws = parse_firestore_time(b.get("windowStart"))
-        we = parse_firestore_time(b.get("windowEnd"))
+        ws = parse_iso_time(b.get("windowStart"))
+        we = parse_iso_time(b.get("windowEnd"))
         if ws and we and start_time_dt <= ws <= end_time_dt:
             filtered_logs.append(b)
     pageBehaviorLogs = filtered_logs
@@ -96,8 +103,7 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
 
     note_contents = []
     for n in note_contents_all:
-        ts_str = n.get("updatedAt", "")
-        ts = parse_firestore_time(ts_str)
+        ts = parse_iso_time(n.get("updatedAt", ""))
         if ts and start_time_dt <= ts <= end_time_dt:
             note_contents.append(n)
     #print(f"📝 note_contents: {note_contents}")

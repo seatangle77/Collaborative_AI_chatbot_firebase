@@ -4,6 +4,8 @@
 # 忽略 .env 文件
 .env
 
+package.json
+
 # 忽略构建文件
 /dist
 /build
@@ -13,3 +15,4 @@
 
 # 忽略日志文件
 *.log
+

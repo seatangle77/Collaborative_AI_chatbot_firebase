@@ -135,7 +135,7 @@ function getAffectedTextFromDelta(delta, quillInstance) {
           const styleDesc = Object.entries(seg.formats)
             .map(([k, v]) => `${k}: ${v}`)
             .join(", ");
-          return `将“${displayText}”设为样式（${styleDesc}）`;
+          return `将"${displayText}"设为样式（${styleDesc}）`;
         })
         .join("；");
     }
@@ -268,7 +268,7 @@ onMounted(async () => {
         isDelete: combinedDelta.ops?.some((op) => op.delete),
         hasHeader: combinedDelta.ops?.some((op) => op.attributes?.header),
         hasList: combinedDelta.ops?.some((op) => op.attributes?.list),
-        timestamp: Timestamp.now(),
+        updatedAt: new Date().toISOString(),
         summary,
         affectedText,
       })
@@ -312,7 +312,7 @@ onMounted(async () => {
         userId: props.userId,
         content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
         html, // 可粘贴富文本格式
-        updatedAt: Timestamp.now(),
+        updatedAt: new Date().toISOString(),
       })
         .then(() => {
           console.log("💾 Note content saved to note_contents");

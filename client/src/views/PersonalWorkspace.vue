@@ -1013,7 +1013,7 @@ function handleViewDetail(detail) {
 ::v-deep.center-collapse-title .el-collapse-item__wrap {
   border-bottom: none !important;
 }
-::v-deep .el-collapse {
+:deep(.el-collapse) {
   border: none !important;
   box-shadow: none !important;
 }

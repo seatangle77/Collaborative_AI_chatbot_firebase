@@ -10,7 +10,8 @@ export default defineConfig({
       targets: [
         { src: 'src/content.js', dest: 'src' }, // 保留内容脚本复制
         { src: 'src/background.js', dest: 'src' },
-        { src: 'src/firebase.js', dest: 'src' }
+        { src: 'src/firebase.js', dest: 'src' },
+        { src: 'public/*.png', dest: '.' } // 复制图标文件
       ]
     })
   ],

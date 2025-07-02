@@ -3,6 +3,12 @@
   "name": "TabBehavior (Minimal)",
   "version": "0.1",
   "description": "A minimal Chrome extension to read tab information.",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "permissions": [
     "tabs",
     "storage",
@@ -19,8 +25,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["src/content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ]
     }
   ],
   "action": {
@@ -28,8 +38,12 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["detail.html"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "detail.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }
