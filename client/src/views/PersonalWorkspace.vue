@@ -120,6 +120,7 @@
               :session="session"
               :bot="bot"
               :members="members"
+              :editor-started="editorStarted"
             />
           </section>
           <AnomalyHistoryPanel
@@ -173,11 +174,8 @@ import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
 import AnomalyHistoryPanel from '@/components/personal/AnomalyHistoryPanel.vue';
 import api from "../services/apiService";
-import {
-  initWebSocket,
-  onMessage,
-  closeWebSocket,
-} from "../services/websocketManager";
+import { connectGroupWebSocket, onGroupMessage, closeGroupWebSocket } from '@/services/groupWebSocket';
+import { connectUserWebSocket, onUserMessage, closeUserWebSocket, userWsStatus } from '@/services/userWebSocket';
 import {
   ElButton,
   ElDatePicker,
@@ -257,6 +255,7 @@ const historyDetail = ref(null);
 const historyLoading = ref(false);
 const shareMessage = ref(null);
 const shareMessageTimer = ref(null);
+const editorStarted = ref(false);
 
 // 1. 新增分页相关变量
 const historyPage = ref(1);
@@ -277,8 +276,18 @@ onMounted(async () => {
   document.addEventListener("visibilitychange", handleVisibilityChange);
   users.value = await api.getUsers();
   
-  // 监听异常分享消息
-  onMessage("share", (payload) => {
+  // 连接个人ws，只有 userId 有值时才连接
+  watch(userId, (newUserId) => {
+    if (newUserId) {
+      connectUserWebSocket(newUserId);
+    }
+  }, { immediate: true });
+  // 监听个人ws状态
+  watch(userWsStatus, (status) => {
+    console.log('[userWs] 连接状态:', status);
+  });
+  // 监听个人ws消息
+  onUserMessage("share", (payload) => {
     if (!payload || payload.from_user === userId.value) return;
     // 设置异常
     const uid = payload.from_user;
@@ -297,25 +306,54 @@ onMounted(async () => {
     };
     abnormalMap.value = { ...abnormalMap.value };
   });
-  
-  // 监听异常分析结果推送
-  onMessage("anomaly_analysis", (payload) => {
+  onUserMessage("anomaly_analysis", (payload) => {
     console.log("📨 收到异常分析结果推送:", payload);
     if (!payload || !payload.data) {
       console.warn("⚠️ 异常分析结果数据格式不正确");
       return;
     }
-    // 处理异常分析结果
     handleAnomalyAnalysisResult(payload.data);
-
-    // 自动刷新历史异常反馈
     loadHistoryData();
+  });
+
+  onUserMessage("personal_task_started", (payload) => {
+    editorStarted.value = true;
+    showAgendaPanel.value = true;
+    if (session.value?.id) {
+      api.getAgendas(session.value.id).then(agendas => {
+        agendaList.value = agendas;
+      });
+    }
+  });
+
+  // 连接群组ws
+  watch(group, (newGroup) => {
+    if (newGroup && newGroup.id) {
+      connectGroupWebSocket(newGroup.id);
+    }
+  }, { immediate: true });
+  // 监听群组ws消息
+  onGroupMessage("agenda_stage_update", (data) => {
+    editorStarted.value = true;
+    const stage = data.stage;
+    currentStage.value = stage;
+    if (session.value?.id) {
+      api.getAgendas(session.value.id).then(agendas => {
+        if (agendas && agendas.length === 1) {
+          agendaList.value = agendas;
+          showAgendaPanel.value = stage === 1;
+        } else {
+          showAgendaPanel.value = false;
+        }
+      });
+    }
   });
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
-  closeWebSocket();
+  closeGroupWebSocket();
+  closeUserWebSocket();
   if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
   Object.values(abnormalMap.value).forEach(v => v && v.timer && clearTimeout(v.timer));
 });
@@ -379,27 +417,6 @@ watch(selectedUserId, async (newUserId) => {
     sendUserInfoToExtension(newUserId, context);
     if (context.group?.id) {
       console.log("🛰 初始化 WebSocket，groupId:", context.group.id);
-      initWebSocket(context.group.id);
-      onMessage("agenda_stage_update", async (raw) => {
-        try {
-          const parsed = typeof raw === "string" ? JSON.parse(raw) : raw;
-          const stage = parsed?.stage;
-          if (typeof stage === "number") {
-            currentStage.value = stage;
-            if (session.value?.id) {
-              const agendas = await api.getAgendas(session.value.id);
-              if (agendas && agendas.length === 1) {
-                agendaList.value = agendas;
-                showAgendaPanel.value = stage === 1;
-              } else {
-                showAgendaPanel.value = false;
-              }
-            }
-          }
-        } catch (err) {
-          console.error("❌ WebSocket 消息解析失败:", err, raw);
-        }
-      });
     }
     memberList.value =
       context.members?.map((m) => ({ id: m.user_id, name: m.name })) || [];
@@ -414,10 +431,6 @@ watch(selectedUserId, async (newUserId) => {
     session.value = null;
     bot.value = null;
   }
-});
-
-onBeforeUnmount(() => {
-  closeWebSocket();
 });
 
 function formatToLocalISO(datetime) {
@@ -699,6 +712,12 @@ function handleViewDetail(detail) {
   drawerSource.value = 'history';
   drawerVisible.value = true;
 }
+
+watch(agendaList, (newList) => {
+  if (newList && newList.length > 0) {
+    contentCollapsed.value = ['info'];
+  }
+});
 </script>
 
 <style scoped>

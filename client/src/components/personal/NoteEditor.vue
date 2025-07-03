@@ -2,7 +2,7 @@
   <div class="note-editor">
     <div class="note-title-wrapper">
       <div class="note-title">协作笔记</div>
-      <el-button size="small" class="start-write-btn" type="primary" @click="editorStarted = true"
+      <el-button size="small" class="start-write-btn" type="primary" @click="$emit('start-edit')"
         >开始写入数据</el-button
       >
     </div>
@@ -69,6 +69,10 @@ const props = defineProps({
     required: false,
     default: () => [],
   },
+  editorStarted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 import { computed } from "vue";
@@ -168,7 +172,6 @@ const currentMember = computed(() =>
 );
 
 const editorContainer = ref(null);
-const editorStarted = ref(false);
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(
   "wss://yjs-server-lime.onrender.com",
@@ -232,7 +235,7 @@ onMounted(async () => {
   let lastContentSavedAt = Date.now();
 
   quill.on("text-change", (delta, oldDelta, source) => {
-    if (!editorStarted.value || source !== "user") return;
+    if (!props.editorStarted || source !== "user") return;
     pendingDeltas.push(delta);
   });
 
@@ -245,7 +248,7 @@ onMounted(async () => {
   // 每 5 秒合并一次 delta，记录编辑行为
   deltaFlushInterval = setInterval(() => {
     try {
-      if (!editorStarted.value) return;
+      if (!props.editorStarted) return;
       const currentDelta = quill.getContents();
       const deltaChanged =
         JSON.stringify(currentDelta.ops) !== JSON.stringify(lastSavedDelta.ops);
@@ -292,7 +295,7 @@ onMounted(async () => {
   // 不再依赖 noteRef 读取旧数据，统一使用 note_contents 表存储内容
 
   ytext.observe(() => {
-    if (!editorStarted.value) return;
+    if (!props.editorStarted) return;
     const now = Date.now();
     if (now - lastContentSavedAt >= 60000) {
       // 采用 quill.root.innerHTML 作为富文本存储
@@ -328,8 +331,7 @@ onMounted(async () => {
 
   // 监听 WebSocket 连接成功，自动触发"开始写入数据"
   vueWatch(connectionStatus, (newStatus) => {
-    if (newStatus === 'connected' && !editorStarted.value) {
-      editorStarted.value = true;
+    if (newStatus === 'connected' && !props.editorStarted) {
       console.log('🟢 WebSocket 连接成功，自动触发写入数据');
     }
   });

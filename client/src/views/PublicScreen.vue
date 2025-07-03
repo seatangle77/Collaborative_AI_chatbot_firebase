@@ -131,6 +131,7 @@ import { VideoCamera } from "@element-plus/icons-vue";
 import StartMeetingPanel from "@/components/public/StartMeetingPanel.vue";
 import { useRoute } from "vue-router";
 import apiService from '../services/apiService';
+import { sendControlMessage } from "@/services/websocketService";
 
 const components = { ElButton, ElCollapse, ElCollapseItem, VideoCamera };
 const aiBots = ref([]);
@@ -152,6 +153,7 @@ const jitsiApi = ref(null);
 const showAgendaPanel = ref(false);
 const jitsiReady = ref(false);
 const contentCollapsed = ref(["info"]);
+const editorStarted = ref(false);
 
 const route = useRoute();
 
@@ -198,12 +200,16 @@ async function startMeeting() {
       const agendas = await api.getAgendas(selectedSessionId.value);
       agendaList.value = agendas || [];
       showAgendaPanel.value = true;
+      // 调用重置议程状态接口，并加日志
+      console.log('[startMeeting] 调用 resetAgendaStatus', selectedGroupId.value, 1);
       await api.resetAgendaStatus(selectedGroupId.value, 1);
       // 新增：启动AI异常分析轮询
       anomalyPollingLoading.value = true;
       anomalyPollingStopped.value = false;
       try {
         await apiService.startAnomalyPolling(selectedGroupId.value);
+        // 新增：广播任务已开启
+        sendControlMessage(selectedGroupId.value, { type: "task_started" });
       } catch (e) {
         // 可选：处理异常
       }
@@ -217,6 +223,7 @@ async function startMeeting() {
   // 插入 Jitsi 视频会议
   if (meetingStarted.value) return;
   meetingStarted.value = true;
+  editorStarted.value = true;
 
   nextTick(() => {
     if (typeof window.JitsiMeetExternalAPI !== "function") {
@@ -320,6 +327,29 @@ watch(agendaList, (newList) => {
     });
   }
 });
+
+// 新增 group ws 监听日志
+let groupWs = null;
+watch(selectedGroupId, (newGroupId) => {
+  if (groupWs) {
+    groupWs.close();
+    groupWs = null;
+  }
+  if (newGroupId) {
+    groupWs = new WebSocket(`${import.meta.env.VITE_WS_BASE || 'ws://localhost:8000'}/ws/${newGroupId}`);
+    groupWs.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        console.log('[groupWs] 收到消息:', data);
+        if (data.type === "agenda_stage_update") {
+          // 这里可以同步 UI
+        }
+      } catch (err) {
+        console.error("❌ group ws 消息解析失败:", err, event.data);
+      }
+    };
+  }
+}, { immediate: true });
 
 onMounted(async () => {
   // 打印路由参数 name
