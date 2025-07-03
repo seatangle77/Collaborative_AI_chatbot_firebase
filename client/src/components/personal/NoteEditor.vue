@@ -50,6 +50,8 @@ import {
 import { collection as firestoreCollection } from "firebase/firestore"; // 避免命名冲突
 import { firestore } from "@/firebase"; // 请确保你的 firebase 配置文件路径正确
 import { debounce } from "lodash-es";
+import { connectionStatus } from '@/services/websocketManager';
+import { watch as vueWatch } from 'vue';
 
 import Delta from "quill-delta";
 
@@ -321,6 +323,14 @@ onMounted(async () => {
           console.error("❌ Failed to save note content", err);
         });
       lastContentSavedAt = now;
+    }
+  });
+
+  // 监听 WebSocket 连接成功，自动触发"开始写入数据"
+  vueWatch(connectionStatus, (newStatus) => {
+    if (newStatus === 'connected' && !editorStarted.value) {
+      editorStarted.value = true;
+      console.log('🟢 WebSocket 连接成功，自动触发写入数据');
     }
   });
 });

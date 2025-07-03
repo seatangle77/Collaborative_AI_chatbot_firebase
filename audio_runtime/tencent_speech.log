@@ -60,3 +60,8 @@
 2025-07-02 18:37:32,852 tencent_speech.log-ERROR  on_error:275 websocket error Timeout of 60.0s exceeded, last exception: 503 failed to connect to all addresses; last error: UNAVAILABLE: ipv4:142.250.217.74:443: Failed to connect to remote host: Timeout occurred: FD shutdown  voice id 1d3a8702-5730-11f0-b2ef-a6cf704f3a84
 2025-07-02 18:41:59,383 tencent_speech.log-INFO  start:311 2e82d5a4-5731-11f0-ba1a-a6cf704f3a84 recognition start
 2025-07-02 18:42:27,095 tencent_speech.log-INFO  on_message:259 2e82d5a4-5731-11f0-ba1a-a6cf704f3a84 recognition complete
+2025-07-02 22:54:46,500 tencent_speech.log-INFO  start:311 7ed155b2-5754-11f0-91ec-a6cf704f3a84 recognition start
+2025-07-02 22:56:57,686 tencent_speech.log-INFO  start:311 cd029eee-5754-11f0-8f32-a6cf704f3a84 recognition start
+2025-07-02 23:02:07,606 tencent_speech.log-INFO  on_message:259 cd029eee-5754-11f0-8f32-a6cf704f3a84 recognition complete
+2025-07-02 23:17:38,487 tencent_speech.log-INFO  start:311 b095d67e-5757-11f0-8714-a6cf704f3a84 recognition start
+2025-07-02 23:23:31,043 tencent_speech.log-INFO  on_message:259 b095d67e-5757-11f0-8714-a6cf704f3a84 recognition complete

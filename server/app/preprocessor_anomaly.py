@@ -16,7 +16,11 @@ def parse_iso_time(iso_str):
     if iso_str.endswith("Z"):
         iso_str = iso_str.replace("Z", "+00:00")
     try:
-        return datetime.fromisoformat(iso_str)
+        dt = datetime.fromisoformat(iso_str)
+        # 关键处理：无时区标识时设为东八区
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone(timedelta(hours=8)))
+        return dt
     except Exception:
         return None
 
