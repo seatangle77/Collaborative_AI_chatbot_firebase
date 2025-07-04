@@ -44,8 +44,14 @@ class IntervalSummaryRequest(BaseModel):
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
 async def get_anomaly_status(req: IntervalSummaryRequest):
+    import time
+    total_start_time = time.time()
+    print(f"🚀 [异常分析] 开始分析group_id={req.group_id}，用户={req.current_user.name}...")
+    
     members = [{"user_id": m.id, "name": m.name} for m in req.members]
 
+    # 阶段1: 数据预处理
+    stage1_start = time.time()
     raw_data = extract_chunk_data_anomaly(
         group_id=req.group_id,
         round_index=req.round_index,
@@ -54,8 +60,17 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         member_list=members,
         current_user=req.current_user.dict()
     )
-    result = analyze_all_anomalies(raw_data)
+    stage1_duration = time.time() - stage1_start
+    print(f"📊 [异常分析] 阶段1-数据预处理完成，耗时{stage1_duration:.2f}秒")
     
+    # 阶段2: AI分析
+    stage2_start = time.time()
+    result = analyze_all_anomalies(raw_data)
+    stage2_duration = time.time() - stage2_start
+    print(f"🤖 [异常分析] 阶段2-AI分析完成，耗时{stage2_duration:.2f}秒")
+    
+    # 阶段3: 结果解析
+    stage3_start = time.time()
     # 解析AI返回的JSON结果
     import re
     summary = None
@@ -81,7 +96,11 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     except Exception as e:
         print("解析glasses_summary失败：", e)
         glasses_summary = "你当前状态需要关注"
+    stage3_duration = time.time() - stage3_start
+    print(f"📝 [异常分析] 阶段3-结果解析完成，耗时{stage3_duration:.2f}秒")
     
+    # 阶段4: 文件存储
+    stage4_start = time.time()
     # 保存分析结果为文件
     import uuid
     from datetime import datetime
@@ -89,7 +108,11 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
+    stage4_duration = time.time() - stage4_start
+    print(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
 
+    # 阶段5: 数据库存储
+    stage5_start = time.time()
     # 新建 anomaly_analysis_files 表并插入内容
     from app.database import db
     file_id = str(uuid.uuid4())
@@ -115,7 +138,11 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "user_data_summary": user_data_summary,
         "created_at": datetime.now().isoformat()
     })
+    stage5_duration = time.time() - stage5_start
+    print(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
 
+    # 阶段6: 推送通知
+    stage6_start = time.time()
     # 使用前端传入的当前用户信息发送推送通知
     current_user = req.current_user
     device_token = current_user.device_token
@@ -131,8 +158,13 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "group_id": req.group_id,
         "start_time": req.start_time,
         "end_time": req.end_time,
-        "analysis_id": analysis_id
+        "analysis_id": analysis_id,
+        "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
     }
+    
+    print(f"🔍 [调试] 推送数据中的ID字段:")
+    print(f"  - analysis_id: {analysis_id}")
+    print(f"  - anomaly_analysis_results_id: {analysis_id}")
     
     if device_token:
         # JPush 推送 - 使用眼镜版本
@@ -149,18 +181,24 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                 "user_name": current_user.name
             }
         )
-        print(f"✅ 异常分析完成，已推送通知至用户 {current_user.name}({current_user.user_id})")
-        print(f"📱 眼镜显示内容：{glasses_summary}")
+        print(f"✅ [异常分析] JPush推送完成，用户 {current_user.name}({current_user.user_id})")
+        print(f"📱 [异常分析] 眼镜显示内容：{glasses_summary}")
     else:
-        print(f"⚠️ 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
+        print(f"⚠️ [异常分析] 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
 
     # WebSocket 推送 - 向PC页面推送完整分析结果
     try:
         from app.websocket_routes import push_anomaly_analysis_result
         await push_anomaly_analysis_result(current_user.user_id, response_data)
-        print(f"📡 已通过WebSocket向PC页面推送异常分析结果给用户 {current_user.name}({current_user.user_id})")
+        print(f"📡 [异常分析] WebSocket推送完成，用户 {current_user.name}({current_user.user_id})")
     except Exception as e:
-        print(f"⚠️ WebSocket推送失败: {e}")
+        print(f"⚠️ [异常分析] WebSocket推送失败: {e}")
+    
+    stage6_duration = time.time() - stage6_start
+    print(f"📤 [异常分析] 阶段6-推送通知完成，耗时{stage6_duration:.2f}秒")
+
+    total_duration = time.time() - total_start_time
+    print(f"✅ [异常分析] group_id={req.group_id}，用户={req.current_user.name}分析完成，总耗时{total_duration:.2f}秒")
 
     # 返回给前端更多信息
     return {
@@ -173,7 +211,8 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "group_id": req.group_id,
         "start_time": req.start_time,
         "end_time": req.end_time,
-        "analysis_id": analysis_id
+        "analysis_id": analysis_id,
+        "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
     }
 
 

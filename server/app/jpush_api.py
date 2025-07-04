@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 import jpush
 from jpush import common, JPush
+import time
 
 # 优先加载 .env.local（如果有），再加载 .env
 load_dotenv('.env.local')
@@ -27,6 +28,9 @@ def send_jpush_notification(alert, registration_id=None, extras=None):
     :param extras: 附加数据（字典）
     :return: 发送结果
     """
+    start_time = time.time()
+    print(f"📤 [JPush推送] 开始推送通知，设备ID: {registration_id}")
+    
     try:
         push = _jpush.create_push()
         push.platform = jpush.all_
@@ -39,18 +43,23 @@ def send_jpush_notification(alert, registration_id=None, extras=None):
             push.message = jpush.message(msg_content=alert, extras=extras)
         
         response = push.send()
-        print(f"✅ JPush 推送成功: {response}")
+        duration = time.time() - start_time
+        print(f"✅ [JPush推送] 推送成功，耗时{duration:.2f}秒: {response}")
         return response
         
     except common.Unauthorized as e:
-        print(f"❌ JPush 鉴权失败，请检查AppKey和MasterSecret: {e}")
+        duration = time.time() - start_time
+        print(f"❌ [JPush推送] 鉴权失败，耗时{duration:.2f}秒，请检查AppKey和MasterSecret: {e}")
         return None
     except common.APIConnectionException as e:
-        print(f"❌ JPush 连接失败: {e}")
+        duration = time.time() - start_time
+        print(f"❌ [JPush推送] 连接失败，耗时{duration:.2f}秒: {e}")
         return None
     except common.JPushFailure as e:
-        print(f"❌ JPush 推送失败: {e}")
+        duration = time.time() - start_time
+        print(f"❌ [JPush推送] 推送失败，耗时{duration:.2f}秒: {e}")
         return None
     except Exception as e:
-        print(f"❌ JPush 未知异常: {e}")
+        duration = time.time() - start_time
+        print(f"❌ [JPush推送] 未知异常，耗时{duration:.2f}秒: {e}")
         return None

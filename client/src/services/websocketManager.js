@@ -81,6 +81,7 @@ export function initWebSocket(groupId) {
       const data = JSON.parse(event.data);
       const type = data.type || data.event;
       const payload = data.payload ?? data;
+
       console.log('📨 WebSocket 收到消息:', type, payload);
       if (listeners[type]) {
         listeners[type].forEach((cb) => cb(payload));
@@ -128,7 +129,7 @@ function stopTimeoutCheck() {
 export function closeWebSocket() {
   isManualClose = true; // 标记为主动关闭
   if (ws) {
-    ws.close();
+    ws.close(1000, '主动关闭'); // 1000表示正常关闭
     ws = null;
   }
   stopTimeoutCheck();

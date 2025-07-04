@@ -8,6 +8,7 @@ from app.preprocessor_anomaly import (
     build_attention_anomaly_input
 )
 import concurrent.futures
+import time
 
 # 优先加载 .env.local（如果有），再加载 .env
 load_dotenv('.env.local')
@@ -17,8 +18,13 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_all_anomalies(chunk_data: dict) -> dict:
+    total_start_time = time.time()
+    print(f"🚀 [AI分析] 开始调用Gemini AI进行异常分析...")
+    
     model = genai.GenerativeModel("gemini-1.5-flash")
 
+    # 阶段1: 构建输入数据
+    stage1_start = time.time()
     cognitive_input = build_cognitive_anomaly_input(chunk_data)
     behavior_input = build_behavior_anomaly_input(chunk_data)
     attention_input = build_attention_anomaly_input(chunk_data)
@@ -36,7 +42,11 @@ def analyze_all_anomalies(chunk_data: dict) -> dict:
     cognitive_json = json.dumps(cognitive_input, ensure_ascii=False, indent=2)
     behavior_json = json.dumps(behavior_input, ensure_ascii=False, indent=2)
     attention_json = json.dumps(attention_input, ensure_ascii=False, indent=2)
+    stage1_duration = time.time() - stage1_start
+    print(f"📋 [AI分析] 阶段1-构建输入数据完成，耗时{stage1_duration:.2f}秒")
 
+    # 阶段2: 构建提示词
+    stage2_start = time.time()
     prompt_text = f"""
 你是一个多维度小组协作分析专家，专门分析**当前用户**在小组讨论中的异常状态，并对比其他组员。
 
@@ -158,12 +168,21 @@ user_data_summary: {{
 
 请严格按照上述 JSON 格式一次性完整输出，所有必填字段必须生成，便于后续解析。
 """
+    stage2_duration = time.time() - stage2_start
+    print(f"📝 [AI分析] 阶段2-构建提示词完成，耗时{stage2_duration:.2f}秒")
 
-    print("🚀 开始调用 [Anomaly AI 综合分析] ...")
+    # 阶段3: 调用AI模型
+    stage3_start = time.time()
+    print("🚀 [AI分析] 开始调用 [Anomaly AI 综合分析] ...")
     response = model.generate_content(
         contents=[{"role": "user", "parts": [{"text": prompt_text}]}],
         generation_config=genai.types.GenerationConfig(temperature=0.7)
     )
-    print("✅ [Anomaly AI] 返回结果：", response.text)
+    stage3_duration = time.time() - stage3_start
+    print(f"✅ [AI分析] 阶段3-AI调用完成，耗时{stage3_duration:.2f}秒")
+    print(f"✅ [AI分析] [Anomaly AI] 返回结果：", response.text)
+
+    total_duration = time.time() - total_start_time
+    print(f"✅ [AI分析] Gemini AI异常分析完成，总耗时{total_duration:.2f}秒")
 
     return {"raw_response": response.text}

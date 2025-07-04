@@ -109,8 +109,8 @@ export default {
   },
 
   // 获取某用户历史异常分析结果
-  async getAnomalyResultsByUser(groupId, userId) {
-    const res = await fetch(`${BASE_URL}/analysis/anomaly_results_by_user?group_id=${groupId}&user_id=${userId}`);
+  async getAnomalyResultsByUser(groupId, userId, page = 1, pageSize = 10) {
+    const res = await fetch(`${BASE_URL}/analysis/anomaly_results_by_user?user_id=${userId}&page=${page}&page_size=${pageSize}`);
     if (!res.ok) throw new Error('获取历史异常分析失败');
     return await res.json();
   },

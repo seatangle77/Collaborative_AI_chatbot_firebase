@@ -69,7 +69,11 @@
                 <p>欢迎来到个人工作区</p>
               </div>
             </el-collapse-item>
-          </el-collapse>
+                      </el-collapse>
+            
+            <div v-if="anomalyData" class="anomaly-feedback-section">
+            <AbnormalFeedback :anomaly-data="anomalyData" :members="members" />
+          </div>
         </div>
         
         <div class="right-panel">
@@ -92,9 +96,9 @@
                 <div class="member-info">
                   <div class="member-name">{{ member.name }}</div>
                   <div class="member-status">
-                    <el-tag v-if="member.status === 'abnormal'" type="danger" size="small">
+                    <div v-if="member.status === 'abnormal'" class="abnormal-detail">
                       异常：{{ member.detail_type }}（{{ member.detail_status }}）
-                    </el-tag>
+                    </div>
                     <el-tag v-else type="success" size="small">正常</el-tag>
                   </div>
                 </div>
@@ -139,7 +143,7 @@
         :close-on-click-modal="false"
         :destroy-on-close="true"
       >
-        <AbnormalFeedback v-if="drawerData" :anomaly-data="drawerData" />
+        <AbnormalFeedback v-if="drawerData" :anomaly-data="drawerData" :members="members" />
       </el-drawer>
       <div class="analysis-panel">
         <!-- <el-date-picker
@@ -184,6 +188,7 @@ import {
   ElDrawer,
   ElAvatar,
   ElTag,
+  ElMessage,
 } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
@@ -192,6 +197,7 @@ import "element-plus/es/components/avatar/style/css";
 import "element-plus/es/components/tag/style/css";
 import { VideoCamera, Warning } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
+
 
 const components = {
   ElButton,
@@ -253,8 +259,6 @@ const historyDrawerVisible = ref(false);
 const anomalyHistory = ref([]);
 const historyDetail = ref(null);
 const historyLoading = ref(false);
-const shareMessage = ref(null);
-const shareMessageTimer = ref(null);
 const editorStarted = ref(false);
 
 // 1. 新增分页相关变量
@@ -289,7 +293,12 @@ onMounted(async () => {
   // 监听个人ws消息
   onUserMessage("share", (payload) => {
     if (!payload || payload.from_user === userId.value) return;
-    // 设置异常
+    
+    // 获取发送者姓名
+    const fromUser = members.value.find(m => m.user_id === payload.from_user);
+    const fromUserName = fromUser?.name || payload.from_user;
+    
+    // 设置异常状态（用于组员状态面板）
     const uid = payload.from_user;
     if (abnormalMap.value[uid] && abnormalMap.value[uid].timer) {
       clearTimeout(abnormalMap.value[uid].timer);
@@ -305,6 +314,9 @@ onMounted(async () => {
       timer
     };
     abnormalMap.value = { ...abnormalMap.value };
+    
+    // 显示通知
+    ElMessage.info(`${fromUserName} 分享了异常信息：${payload.detail_type}`);
   });
   onUserMessage("anomaly_analysis", (payload) => {
     console.log("📨 收到异常分析结果推送:", payload);
@@ -354,7 +366,6 @@ onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
   closeGroupWebSocket();
   closeUserWebSocket();
-  if (shareMessageTimer.value) clearTimeout(shareMessageTimer.value);
   Object.values(abnormalMap.value).forEach(v => v && v.timer && clearTimeout(v.timer));
 });
 
@@ -555,22 +566,8 @@ async function handleAnomalyCheck() {
 }
 
 function formatAgendaDesc(desc) {
-  if (!desc) return "";
-  return desc
-    .replace(/(任务[：:]?)/g, '<b style="font-size:1.1em;">$1</b>')
-    .replace(
-      /(建议[：:]?)/g,
-      '<b style="font-size:1.1em;color:#3478f6;">$1</b>'
-    )
-    .replace(
-      /(目标[：:]?)/g,
-      '<b style="font-size:1.1em;color:#e67e22;">$1</b>'
-    )
-    .replace(
-      /(思考[：:]?)/g,
-      '<b style="font-size:1.1em;color:#16a085;">$1</b>'
-    )
-    .replace(/\\n/g, "<br/>");
+  if (!desc) return '';
+  return desc.replace(/\n/g, '<br/>');
 }
 
 watch(anomalyData, (val) => {
@@ -661,12 +658,28 @@ function handleAnomalyAnalysisResult(data) {
   } else {
     parsedData = data;
   }
+  
+  // 确保score字段存在，用于判断是否显示
+  if (!parsedData.score) {
+    parsedData.score = { "是否提示": true };
+  }
+  
+  // 调试：检查ID字段
+  console.log("🔍 [调试] 检查ID字段:");
+  console.log("  - anomaly_analysis_results_id:", parsedData.anomaly_analysis_results_id);
+  console.log("  - analysis_id:", parsedData.analysis_id);
+  console.log("  - id:", parsedData.id);
+  console.log("  - result_id:", parsedData.result_id);
+  
   // 补全 group_id、user_id、anomaly_analysis_results_id
+  const anomalyId = parsedData.anomaly_analysis_results_id || parsedData.analysis_id || parsedData.id || parsedData.result_id || "";
+  console.log("🔍 [调试] 最终使用的ID:", anomalyId);
+  
   drawerData.value = {
     ...parsedData,
     group_id: group.value?.id,
     user_id: userId.value,
-    anomaly_analysis_results_id: parsedData.anomaly_analysis_results_id || parsedData.id || parsedData.result_id || ""
+    anomaly_analysis_results_id: anomalyId
   };
   drawerSource.value = 'realtime';
   drawerVisible.value = true;
@@ -703,11 +716,29 @@ function onHistoryPageSizeChange(size) {
 }
 
 function handleViewDetail(detail) {
+  // 解析历史记录的raw_response获取完整数据
+  let parsedData = null;
+  if (detail.raw_response) {
+    let jsonStr = detail.raw_response.trim();
+    if (jsonStr.startsWith('```json')) {
+      jsonStr = jsonStr.replace(/^```json|```$/g, '').trim();
+    }
+    try {
+      parsedData = JSON.parse(jsonStr);
+    } catch (e) {
+      console.error('❌ 解析历史异常 raw_response 失败:', e, jsonStr);
+    }
+  }
+  
+  // 合并数据，确保兼容性
   drawerData.value = {
-    ...detail,
+    ...parsedData, // 从raw_response解析的完整数据
+    ...detail, // 数据库中的字段（会覆盖解析的重复字段）
     group_id: group.value?.id,
     user_id: userId.value,
-    anomaly_analysis_results_id: detail.id || detail.anomaly_analysis_results_id || detail.result_id || ""
+    anomaly_analysis_results_id: detail.id || detail.anomaly_analysis_results_id || detail.result_id || "",
+    // 确保score字段存在，用于判断是否显示
+    score: parsedData?.score || { "是否提示": true }
   };
   drawerSource.value = 'history';
   drawerVisible.value = true;
@@ -718,6 +749,8 @@ watch(agendaList, (newList) => {
     contentCollapsed.value = ['info'];
   }
 });
+
+
 </script>
 
 <style scoped>
@@ -742,7 +775,6 @@ watch(agendaList, (newList) => {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   background:#fff;
@@ -816,75 +848,8 @@ watch(agendaList, (newList) => {
 
 .member-status {
   display: flex;
-  align-items: center;
-}
-
-.share-message-card {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 16px auto;
-  padding: 16px 24px;
-  border-radius: 10px;
-  background: #f6faff;
-  box-shadow: 0 2px 8px rgba(52,120,246,0.08);
-  font-size: 1.1rem;
-}
-
-.share-message-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.share-message-content {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.share-message-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.share-user {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.value {
-  color: #303133;
-}
-
-.share-details {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.share-time {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.share-message-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .section-row {
@@ -1062,5 +1027,18 @@ width: 75vw;
   color: #303133;
   margin: 0;
   line-height: 1.5;
+}
+
+.abnormal-detail {
+  background: #ffeaea;
+  color: #e74c3c;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  word-break: break-all;
+  white-space: pre-line;
+  max-width: 95%;
 }
 </style>

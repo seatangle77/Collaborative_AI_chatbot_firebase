@@ -74,14 +74,14 @@
             <div ref="radarChartRef" style="width: 100%; height: 300px"></div>
           </div>
           <el-divider />
-          <div class="info-block">
+          <div v-if="anomalyData.more_info?.detailed_reasoning" class="info-block">
             <span class="info-label">详细推理：</span>
             <span
               class="info-content"
               v-html="md2html(anomalyData.more_info.detailed_reasoning)"
             ></span>
           </div>
-          <div class="info-block">
+          <div v-if="anomalyData.more_info?.history_comparison" class="info-block">
             <span class="info-label">历史对比：</span>
             <template v-if="historyComparisonTable && historyComparisonTable.data.length">
               <el-table :data="historyComparisonTable.data" class="history-compare-table" style="width: 100%; margin-bottom: 8px;">
@@ -100,14 +100,14 @@
               v-html="md2html(anomalyData.more_info.history_comparison)"
             ></span>
           </div>
-          <div class="info-block">
+          <div v-if="anomalyData.more_info?.group_comparison" class="info-block">
             <span class="info-label">组内对比：</span>
             <span
               class="info-content"
               v-html="md2html(anomalyData.more_info.group_comparison)"
             ></span>
           </div>
-          <div class="info-block">
+          <div v-if="anomalyData.more_info?.collaboration_strategies" class="info-block">
             <span class="info-label">协作建议：</span>
             <span
               class="info-content"
@@ -144,6 +144,10 @@ import api from '@/services/apiService';
 
 const props = defineProps({
   anomalyData: Object,
+  members: {
+    type: Array,
+    default: () => []
+  }
 });
 
 const showMore = ref(false);
@@ -153,11 +157,20 @@ let barChart = null;
 let radarChart = null;
 
 const shouldShow = computed(() => {
-  return (
-    props.anomalyData &&
-    props.anomalyData.score &&
-    props.anomalyData.score["是否提示"] === true
-  );
+  // 检查基本数据是否存在
+  if (!props.anomalyData) return false;
+  
+  // 检查是否有score字段且是否提示为true
+  if (props.anomalyData.score && props.anomalyData.score["是否提示"] === true) {
+    return true;
+  }
+  
+  // 如果没有score字段，但有基本的异常信息，也显示
+  if (props.anomalyData.summary && props.anomalyData.detail) {
+    return true;
+  }
+  
+  return false;
 });
 
 const sortedExtraSuggestions = computed(() => {
@@ -289,9 +302,6 @@ onMounted(async () => {
   }
 });
 
-// Share 选中的用户ID数组（如无可选用户，默认空数组）
-const selectedUserIds = ref([]); // 你可以根据实际需求实现用户选择
-
 async function callFeedbackClick(clickType) {
   const anomaly = props.anomalyData || {};
   // 校验必填字段
@@ -308,6 +318,20 @@ async function callFeedbackClick(clickType) {
     return;
   }
 
+  // 如果是Share，自动获取所有其他组员的ID
+  let shareToUserIds = [];
+  if (clickType === 'Share') {
+    const currentUserId = anomaly.user_id;
+    shareToUserIds = props.members
+      .filter(member => member.user_id !== currentUserId)
+      .map(member => member.user_id);
+    
+    if (shareToUserIds.length === 0) {
+      ElMessage.warning('没有其他组员可以分享');
+      return;
+    }
+  }
+
   const payload = {
     group_id: String(anomaly.group_id),
     user_id: String(anomaly.user_id),
@@ -315,7 +339,7 @@ async function callFeedbackClick(clickType) {
     anomaly_analysis_results_id: String(anomaly.anomaly_analysis_results_id),
     detail_type: String(anomaly.detail.type),
     detail_status: String(anomaly.detail.status),
-    share_to_user_ids: clickType === 'Share' ? (selectedUserIds.value || []) : [],
+    share_to_user_ids: shareToUserIds,
   };
 
   try {
@@ -323,7 +347,7 @@ async function callFeedbackClick(clickType) {
     if (clickType === 'Less') {
       ElMessage.info('已降低后续异常提示频率');
     } else if (clickType === 'Share') {
-      ElMessage.success('已触发分享功能');
+      ElMessage.success(`已成功分享给 ${shareToUserIds.length} 个组员`);
     }
   } catch (e) {
     ElMessage.error('反馈记录失败');
