@@ -1,0 +1,2418 @@
+{
+  "time_range": {
+    "start": "2025-07-06T09:09:21",
+    "end": "2025-07-06T09:11:21"
+  },
+  "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+  "users": [
+    {
+      "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+      "name": "TestUser2",
+      "speech_count": 3
+    },
+    {
+      "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+      "name": "TestUser1",
+      "speech_count": 5
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [
+      {
+        "end": "2025-07-06T09:09:34.470422",
+        "start": "2025-07-06T09:09:31.530422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 2.94,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "unknown",
+        "text": "太没有耐心，你就学会。",
+        "transcript_id": "0a2aafa2-239f-42e5-a974-6f866e13a20d",
+        "user_id": "unknown",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:09:54.030422",
+        "start": "2025-07-06T09:09:34.690422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 19.34,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser1-1",
+        "text": "我真的他好污好污，哎，好像有那为不要脸的人，他就是H也是人类厉害，他不是gpt，他这个是腾讯，是腾讯就是你怎么会会激发这种东西，腾讯就是想打拼确就。Ion the street, everything just in my pop place.",
+        "transcript_id": "1e6ccf51-68b9-4fb8-9ac5-f10ba4592400",
+        "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:01.450422",
+        "start": "2025-07-06T09:09:54.670422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 6.78,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser2-1",
+        "text": "还好，我就是耐心很好的。我这里朋么去，你真的是一个挺糟糕的这个。",
+        "transcript_id": "c6e7fad8-0bc9-4751-b8db-2c439bb88b29",
+        "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:16.910422",
+        "start": "2025-07-06T09:10:13.730422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 3.18,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "unknown",
+        "text": "嗯吧，应该应该不会有事吧。",
+        "transcript_id": "94b2f73f-71ad-40a9-95f0-05511df35242",
+        "user_id": "unknown",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:20.510422",
+        "start": "2025-07-06T09:10:18.250422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 2.26,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "unknown",
+        "text": "重新来一遍吧。",
+        "transcript_id": "8a3f42c0-47e9-48e0-a8c8-4a4c6be9c927",
+        "user_id": "unknown",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:28.310422",
+        "start": "2025-07-06T09:10:21.710422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 6.6,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "unknown",
+        "text": "",
+        "transcript_id": "7600bfaf-8ae3-41f4-8db0-d36c4b0a38b7",
+        "user_id": "unknown",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:49.510422",
+        "start": "2025-07-06T09:10:33.510422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 16.0,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser1-1",
+        "text": "再再说几句话，你等一下，他两分钟没没化啥说出来又说你就我就是会会说话那种，但是但是其实完全就GVT乱搞啊，他连数数字也是自己乱搞每个数字嘛。",
+        "transcript_id": "7774a392-d9f8-4206-a80b-93958a2f21fb",
+        "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:10:57.690422",
+        "start": "2025-07-06T09:10:49.510422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 8.18,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser1",
+        "text": "准备贴，你说要他评分那些，他就写出来，你到底什么时候有问题？那些数字也是乱搞了吧？",
+        "transcript_id": "92e78f76-69c7-4246-893a-7f795274e762",
+        "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:11:11.910422",
+        "start": "2025-07-06T09:10:57.990422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 13.92,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser1",
+        "text": "哎，他这种东西有些他就是很主观的在那个对对呀，所以本就是给他一个很，所以其实还还是挺大问题的，这样的话比较他就不应该拿我历史数据出来，然后说你只说了三句话。",
+        "transcript_id": "46454dbe-5bdd-437e-8d67-3651e1eef092",
+        "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:11:14.830422",
+        "start": "2025-07-06T09:11:11.910422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 2.92,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser2-1",
+        "text": "那你给他就是这些，你要他怎么弄啊？",
+        "transcript_id": "938d132f-8c57-48db-867b-c4313e94c7ec",
+        "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:11:18.410422",
+        "start": "2025-07-06T09:11:14.830422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 3.58,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser1",
+        "text": "然后我天呐，那他统计的也有问题。",
+        "transcript_id": "c412e943-dec9-487a-8f9d-5c1814b5e8c7",
+        "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "group_key": "groupG"
+      },
+      {
+        "end": "2025-07-06T09:09:31.530422",
+        "start": "2025-07-06T09:09:20.370422",
+        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+        "duration": 11.16,
+        "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+        "speaker": "TestUser2-1",
+        "text": "啊，你可以干不来，烦死了。不，我不会搞啊。不对，我就是一个很有耐性子的人。你赖个鸡巴，要保就是小，他会把鸡房写出来吗？",
+        "transcript_id": "4d32c93b-e0da-4b03-b8db-a7ff7249716d",
+        "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "group_key": "groupG"
+      }
+    ],
+    "note_edit_history": [
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 53,
+        "delta": [
+          {
+            "retain": 42
+          },
+          {
+            "insert": "\n"
+          },
+          {
+            "retain": 1
+          },
+          {
+            "delete": 9
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-06T09:09:30.320Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 43,
+        "delta": [
+          {
+            "retain": 36
+          },
+          {
+            "insert": "\n"
+          },
+          {
+            "delete": 6
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-06T09:09:50.327Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "奇怪",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 40,
+        "delta": [
+          {
+            "retain": 37
+          },
+          {
+            "insert": "奇怪\n"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-06T09:10:00.403Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "重新来一次吧",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 43,
+        "delta": [
+          {
+            "insert": "重新来一次吧\n"
+          },
+          {
+            "delete": 36
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-06T09:10:26.140Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "就是复制\n好了",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 14,
+        "delta": [
+          {
+            "retain": 7
+          },
+          {
+            "insert": "就是复制\n好了"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-06T09:10:36.139Z",
+        "isDelete": false
+      }
+    ],
+    "pageBehaviorLogs": [
+      {
+        "windowEnd": "2025-07-06T09:09:40.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:39.926Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:39.926Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "Google",
+              "timestamp": "2025-07-06T09:09:39.926Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/webhp?hl=en&sa=X&sqi=2&ved=0ahUKEwiHqNvW7aeOAxUW0jQHHUzIMDoQPAgI"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:09:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 223,
+                "x": 152
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:27.101Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "character ai - Google 搜索",
+              "timestamp": "2025-07-06T09:09:36.532Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:09:20.301Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:09:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 2,
+                "x": 1161
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:36.854Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 197,
+                "x": 890
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:37.398Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 294,
+                "x": 872
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:37.458Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 2,
+                "x": 892
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:46.052Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "character ai - Google 搜索",
+              "timestamp": "2025-07-06T09:09:46.540Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:09:20.301Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:09:50.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 981,
+                "x": 616
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:40.818Z",
+              "tabId": 2046890048
+            },
+            {
+              "position": {
+                "y": 421,
+                "x": 581
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:41.313Z",
+              "tabId": 2046890048
+            },
+            {
+              "position": {
+                "y": 418,
+                "x": 509
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:41.817Z",
+              "tabId": 2046890048
+            },
+            {
+              "position": {
+                "y": 412,
+                "x": 507
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-06T09:09:42.083Z",
+              "tabId": 2046890048
+            },
+            {
+              "position": {
+                "y": 468,
+                "x": 479
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:42.877Z",
+              "tabId": 2046890048
+            },
+            {
+              "position": {
+                "y": 627,
+                "x": 408
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:44.092Z",
+              "tabId": 2046890048
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:49.931Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:49.931Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:09:49.931Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 224,
+                "x": 92
+              },
+              "type": "click",
+              "count": 3,
+              "timestamp": "2025-07-06T09:09:47.263Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 224,
+                "x": 92
+              },
+              "type": "click",
+              "count": 4,
+              "timestamp": "2025-07-06T09:09:48.301Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 224,
+                "x": 93
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:49.536Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 240,
+                "x": 106
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:52.351Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 3,
+                "x": 611
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:54.944Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 0,
+                "x": 1109
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:55.446Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "character ai - Google 搜索",
+              "timestamp": "2025-07-06T09:09:56.540Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:09:20.301Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:00.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:59.931Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:59.931Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:09:59.931Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:10.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:09.930Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:09.930Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:09.930Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "character ai - Google 搜索",
+              "timestamp": "2025-07-06T09:10:06.544Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "character ai - Google 搜索",
+            "timestamp": "2025-07-06T09:09:57.180Z",
+            "tabId": 2046890034,
+            "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:20.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:19.934Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:19.934Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:19.934Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 47,
+                "x": 302
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-06T09:10:09.629Z",
+              "tabId": 2046890034
+            },
+            {
+              "position": {
+                "y": 30,
+                "x": 569
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:13.747Z",
+              "tabId": 2046890034
+            },
+            {
+              "position": {
+                "y": 6,
+                "x": 1248
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:15.118Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 18,
+                "x": 1109
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:16.305Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:10:16.543Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 175,
+                "x": 658
+              },
+              "type": "click",
+              "count": 5,
+              "timestamp": "2025-07-06T09:10:16.825Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 175,
+                "x": 657
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:19.457Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 238,
+                "x": 314
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:20.019Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 140,
+                "x": 86
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:20.528Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 111,
+                "x": 69
+              },
+              "type": "click",
+              "count": 6,
+              "timestamp": "2025-07-06T09:10:21.538Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 111,
+                "x": 69
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:22.241Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:10:26.541Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:30.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:29.930Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:29.930Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:29.930Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:40.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:39.934Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:39.934Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:39.934Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 107,
+                "x": 91
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:32.969Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:10:36.544Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 43,
+                "x": 340
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:40.231Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 262,
+                "x": 800
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:40.936Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 14,
+                "x": 1284
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:41.870Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 188,
+                "x": 1048
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:42.375Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 216,
+                "x": 942
+              },
+              "type": "click",
+              "count": 7,
+              "timestamp": "2025-07-06T09:10:42.667Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 215,
+                "x": 942
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:43.169Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 12,
+                "x": 1282
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:43.753Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 165,
+                "x": 1136
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:10:44.259Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:10:46.544Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:10:50.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:49.935Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:49.935Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:49.935Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:10:56.544Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:56.545Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:56.545Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:10:56.545Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:00.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:10:59.934Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:10:59.934Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:10:59.934Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:10:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-06T09:11:04.836Z",
+              "maxDepth": 0.9993351063829787,
+              "tabId": 2046890028
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-06T09:11:05.337Z",
+              "maxDepth": 0.9993351063829787,
+              "tabId": 2046890028
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-06T09:11:06.517Z",
+              "maxDepth": 0.9993351063829787,
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:11:06.541Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:11:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:10.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:11:09.935Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:09.935Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:11:09.935Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:11:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 180,
+                "x": 1110
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:11:15.744Z",
+              "tabId": 2046890028
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-06T09:11:16.383Z",
+              "maxDepth": 0.9993351063829787,
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "谷歌趋势 - Google 搜索",
+              "timestamp": "2025-07-06T09:11:16.544Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&sca_esv=af8c07535bb77c30&sxsrf=AE3TifMcEKAKe4s2K8gFHKzGpWkfcoAGxA%3A1751793008566&ei=cD1qaIyuIq2k2roP2qLs8QE&ved=0ahUKEwiMpvu_8aeOAxUtklYBHVoROx4Q4dUDCBA&uact=5&oq=%E8%B0%B7%E6%AD%8C%E8%B6%8B%E5%8A%BF&gs_lp=Egxnd3Mtd2l6LXNlcnAiDOiwt-atjOi2i-WKvzIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIHEAAYgAQYDDIIEAAYogQYiQUyBRAAGO8FMggQABiiBBiJBTIFEAAY7wVItBpQjQZYuBhwAngDkAEAmAGxBaAB3xOqAQcyLTUuNS0yuAEDyAEA-AEBmAILoAKEFMICBBAAGEfCAgoQABiwAxjWBBhHwgIKECMYgAQYJxiKBcICBRAAGIAEwgILEC4YgAQY0QMYxwHCAg0QLhiABBjRAxjHARgMwgIHEC4YgAQYDMICChAAGIAEGEMYigWYAwCIBgGQBgqSBws0LjAuNS4wLjEuMaAHriyyBwkyLTUuMC4xLjG4B_YTwgcFMC43LjTIBx4&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:10:16.136Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:11:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:11:20.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:11:19.931Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:11:19.932Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "chatgpt - Google Search",
+              "timestamp": "2025-07-06T09:11:19.932Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=chatgpt&sca_esv=af8c07535bb77c30&hl=en&sxsrf=AE3TifMx1AD3hTAlwi4MpnshevzcfyvrGg%3A1751792970711&source=hp&ei=Sj1qaMHOKbjd2roPlb7EeQ&iflsig=AOw8s4IAAAAAaGpLWtdJ7qdIexRx5p7pn2ZQkC-Qbegj&oq=&gs_lp=Egdnd3Mtd2l6GgIYASIAKgIIATIHECMYJxjqAjIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzIKECMYJxjqAhiLAzINEC4Y0QMYxwEYJxjqAkidCFAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIIqAIGmAMI8QXcze5N-J3M5ZIHATGgBwCyBwC4BwDCBwMyLTHIBwY&sclient=gws-wiz"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:11:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:09:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 10,
+                "x": 1136
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:17.793Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 197,
+                "x": 890
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:18.297Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 209,
+                "x": 876
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-06T09:09:18.900Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 208,
+                "x": 876
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:19.316Z",
+              "tabId": 2046890025
+            },
+            {
+              "position": {
+                "y": 111,
+                "x": 1206
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:20.466Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 528,
+                "x": 840
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:20.995Z",
+              "tabId": 2046890028
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-06T09:09:21.281Z",
+              "maxDepth": 0.0013297872340425532,
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 294,
+                "x": 872
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:21.717Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 323,
+                "x": 751
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-06T09:09:22.048Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 315,
+                "x": 747
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:24.910Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 266,
+                "x": 377
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:25.412Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 243,
+                "x": 178
+              },
+              "type": "click",
+              "count": 2,
+              "timestamp": "2025-07-06T09:09:25.905Z",
+              "tabId": 2046890028
+            },
+            {
+              "position": {
+                "y": 243,
+                "x": 177
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-06T09:09:26.024Z",
+              "tabId": 2046890028
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "香港科技大学（广州）空间管理系统 --- Space Management System of Hong Kong University of Science and Technology (Guangzhou)",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889794,
+              "url": "https://libroombooking.hkust-gz.edu.cn/#/ic/researchSpace/2/2"
+            },
+            {
+              "active": false,
+              "title": "(1) 启动命令",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889865,
+              "url": "https://www.notion.so/1d8b6e9e67df80588966f0e667b8db78"
+            },
+            {
+              "active": false,
+              "title": "Usage & Billing | Google AI Studio",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889868,
+              "url": "https://aistudio.google.com/usage?project=gen-lang-client-0280028392"
+            },
+            {
+              "active": false,
+              "title": "Collaborative-AI-Chatbot - Cloud Firestore - 数据 - Firebase 控制台",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889874,
+              "url": "https://console.firebase.google.com/project/collaborative-ai-chatbot/firestore/databases/-default-/data"
+            },
+            {
+              "active": false,
+              "title": "microsoft/vscode-python: Python extension for Visual Studio Code",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889881,
+              "url": "https://github.com/microsoft/vscode-python"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889940,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "collaborative-backend ・ Web Service ・ Render Dashboard",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046889968,
+              "url": "https://dashboard.render.com/web/srv-d0m96eodl3ps73c5if70/deploys/dep-d1jm9b3uibrs73cgn7lg?r=2025-07-04%4005%3A19%3A46%7E2025-07-04%4005%3A23%3A51"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046890025,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046890028,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "character ai - Google 搜索",
+              "timestamp": "2025-07-06T09:09:26.530Z",
+              "tabId": 2046890034,
+              "url": "https://www.google.com.hk/search?q=character+ai&sca_esv=af8c07535bb77c30&sxsrf=AE3TifP5HO0_xRG2gODjWH_KrCEWUPW__Q%3A1751791804174&ei=vDhqaOiuCsif0-kPnqCe8Qo&oq=AI&gs_lp=Egxnd3Mtd2l6LXNlcnAiAkFJKgIIAzIPECMYgAQYsAMYExgnGIoFMgcQIxiwAxgnMhMQLhiABBiwAxjRAxjHARgnGIoFMgkQABiwAxgHGB4yCRAAGLADGAcYHjIJEAAYsAMYBxgeMgkQABiwAxgHGB4yCRAAGLADGAcYHjILEAAYsAMYBxgKGB4yFBAuGIAEGLADGNEDGMcBGMgD2AEBMhQQLhiABBiwAxjRAxjHARjIA9gBAUi5DlAAWABwAXgAkAEAmAEAoAEAqgEAuAEByAEAmAIBoAIJmAMAiAYBkAYLugYECAEYCJIHATGgBwCyBwC4BwDCBwMzLTHIBwk&sclient=gws-wiz-serp"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-06T09:09:20.301Z",
+            "tabId": 2046890028,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-06T09:09:30.000Z",
+        "userId": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser2"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-06T09:09:29.922Z",
+              "tabId": 2046889976,
+              "url": "chrome://extensions/"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-06T09:09:29.922Z",
+              "tabId": 2046890024,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser2"
+            },
+            {
+              "active": true,
+              "title": "openai - Google Search",
+              "timestamp": "2025-07-06T09:09:29.922Z",
+              "tabId": 2046890048,
+              "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "openai - Google Search",
+            "timestamp": "2025-07-06T09:09:28.909Z",
+            "tabId": 2046890048,
+            "url": "https://www.google.com/search?q=openai&oq=&gs_lcrp=EgZjaHJvbWUqCQgBECMYJxjqAjIJCAAQIxgnGOoCMgkIARAjGCcY6gIyDAgCECMYJxjqAhiLAzIMCAMQIxgnGOoCGIsDMgwIBBAjGCcY6gIYiwMyDAgFECMYJxjqAhiLAzIPCAYQLhgnGMcBGOoCGNED0gEJMTQ3N2oxajE1qAIHsAIB8QWiUulFVJUuB_EFolLpRVSVLgc&sourceid=chrome&ie=UTF-8"
+          }
+        },
+        "windowStart": "2025-07-06T09:09:20.000Z"
+      }
+    ],
+    "unique_note_contents": []
+  },
+  "speech_counts": {
+    "unknown": 4,
+    "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2": 5,
+    "HGa3L2y3eSf7KXYQs793vLWnQRu2": 3
+  },
+  "current_user": {
+    "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+    "name": "TestUser2",
+    "device_token": "170976fa8bbd2444e5d"
+  },
+  "anomaly_history": null
+}

@@ -1,6 +1,7 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 import json
 import time
+from datetime import timezone
 import asyncio
 from datetime import datetime
 
@@ -55,8 +56,8 @@ async def user_websocket_endpoint(websocket: WebSocket, user_id: str):
     
     connected_users[user_id] = websocket
     connection_metadata[user_id] = {
-        "last_heartbeat": datetime.now(),
-        "connected_at": datetime.now()
+        "last_heartbeat": datetime.now(timezone.utc),
+        "connected_at": datetime.now(timezone.utc)
     }
     
     print(f"🔌 [WebSocket] 用户{user_id}连接建立，开始心跳监控")
@@ -75,16 +76,16 @@ async def user_websocket_endpoint(websocket: WebSocket, user_id: str):
                     # 确保用户元数据存在
                     if user_id not in connection_metadata:
                         connection_metadata[user_id] = {
-                            "last_heartbeat": datetime.now(),
-                            "connected_at": datetime.now()
+                            "last_heartbeat": datetime.now(timezone.utc),
+                            "connected_at": datetime.now(timezone.utc)
                         }
                         print(f"⚠️ [WebSocket] 用户{user_id}元数据缺失，已重新创建")
                     else:
-                        connection_metadata[user_id]["last_heartbeat"] = datetime.now()
+                        connection_metadata[user_id]["last_heartbeat"] = datetime.now(timezone.utc)
                     
                     await websocket.send_text(json.dumps({
                         "type": "heartbeat_ack",
-                        "timestamp": datetime.now().isoformat()
+                        "timestamp": datetime.now(timezone.utc).isoformat()
                     }))
                     print(f"💓 [WebSocket] 用户{user_id}心跳响应 (8秒间隔)")
                     continue
@@ -241,7 +242,7 @@ async def heartbeat_checker():
     """定期检查WebSocket连接状态 - 适配8秒心跳间隔"""
     while True:
         try:
-            current_time = datetime.now()
+            current_time = datetime.now(timezone.utc)
             disconnected_users = []
             
             for user_id, metadata in connection_metadata.items():
@@ -276,7 +277,7 @@ async def start_heartbeat_checker():
 @websocket_router.get("/websocket/status")
 async def get_websocket_status():
     """获取WebSocket连接状态"""
-    current_time = datetime.now()
+    current_time = datetime.now(timezone.utc)
     
     # 统计用户连接信息
     user_connections = []

@@ -104,8 +104,9 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     # 保存分析结果为文件
     import uuid
     from datetime import datetime
+    from datetime import timezone
     os.makedirs("analysis_outputs", exist_ok=True)
-    file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
+    file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
     stage4_duration = time.time() - stage4_start
@@ -119,7 +120,7 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     db.collection("anomaly_raw_json_input").document(file_id).set({
         "id": file_id,
         "group_id": req.group_id,
-        "created_at": datetime.now().isoformat(),
+        "created_at": datetime.now(timezone.utc).isoformat(),
         "raw_json": result  # 完整分析内容
     })
 
@@ -136,7 +137,7 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "glasses_summary": glasses_summary,
         "detail": detail,
         "user_data_summary": user_data_summary,
-        "created_at": datetime.now().isoformat()
+        "created_at": datetime.now(timezone.utc).isoformat()
     })
     stage5_duration = time.time() - stage5_start
     print(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
@@ -247,7 +248,7 @@ async def interval_summary(req: IntervalSummaryRequest):
         "behavior": beh_result,
         "attention": attn_result
     }
-    file_name = f"analysis_outputs/interval_{uuid.uuid4()}_{datetime.now().strftime('%Y%m%d%H%M%S')}.json"
+    file_name = f"analysis_outputs/interval_{uuid.uuid4()}_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
     with open(file_name, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

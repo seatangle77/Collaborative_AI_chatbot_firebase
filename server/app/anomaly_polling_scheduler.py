@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 import threading
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import time
 
 # APScheduler全局调度器
@@ -70,7 +70,7 @@ def get_group_members_simple(group_id: str):
 def anomaly_polling_job(group_id, user_id, interval_minutes=2):
     import time
     total_start_time = time.time()
-    current_time = datetime.now()
+    current_time = datetime.now(timezone.utc)
     
     # 记录任务执行历史（用于监控间隔变化）
     job_id = f"anomaly_polling_{group_id}_{user_id}"
@@ -119,7 +119,7 @@ def anomaly_polling_job(group_id, user_id, interval_minutes=2):
         stage3_start = time.time()
         member_objs = [Member(id=m.get("user_id"), name=m.get("name", "未知成员")) for m in members]
         # 自动计算分析窗口：end_time=now，start_time=now-interval_minutes
-        end_time = datetime.now()
+        end_time = datetime.now(timezone.utc)
         start_time = end_time - timedelta(minutes=interval_minutes)
         end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%S")
         start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%S")
@@ -183,7 +183,7 @@ def start_anomaly_polling(req: GroupPollingRequest):
                 continue  # 已有任务
             
             # 计算下次执行时间（等待完整间隔）
-            now = datetime.now()
+            now = datetime.now(timezone.utc)
             next_run = now + timedelta(minutes=2)  # 2分钟后执行第一次
             
             job = scheduler.add_job(
@@ -248,13 +248,13 @@ def set_anomaly_polling_interval(req: MemberPollingRequest):
         print(f"📊 [间隔调整] 间隔变化: {old_interval}分钟 → {req.interval_minutes}分钟")
     
     # 记录Less点击事件
-    less_click_id = f"{req.group_id}_{req.user_id}_{int(datetime.now().timestamp())}"
+    less_click_id = f"{req.group_id}_{req.user_id}_{int(datetime.now(timezone.utc).timestamp())}"
     db.collection("feedback_clicks").document(less_click_id).set({
         "id": less_click_id,
         "group_id": req.group_id,
         "user_id": req.user_id,
         "anomaly_analysis_results_id": getattr(req, "anomaly_analysis_results_id", None),
-        "clicked_at": datetime.now().isoformat()
+        "clicked_at": datetime.now(timezone.utc).isoformat()
     })
     print(f"💾 [间隔调整] 已记录反馈点击事件")
     
@@ -266,7 +266,7 @@ def set_anomaly_polling_interval(req: MemberPollingRequest):
             print(f"🗑️ [间隔调整] 已移除原有任务")
         
         # 新建任务，使用新的interval_minutes
-        now = datetime.now()
+        now = datetime.now(timezone.utc)
         next_run = now + timedelta(minutes=req.interval_minutes)  # 等待完整间隔后执行
         
         job = scheduler.add_job(
@@ -303,7 +303,7 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
         "user_id": req.user_id,
         "click_type": req.click_type,
         "anomaly_analysis_results_id": req.anomaly_analysis_results_id,
-        "clicked_at": datetime.now().isoformat(),
+        "clicked_at": datetime.now(timezone.utc).isoformat(),
         "detail_type": req.detail_type,
         "detail_status": req.detail_status,
         "share_to_user_ids": req.share_to_user_ids
@@ -330,7 +330,7 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
                 print(f"🗑️ [反馈点击] 已移除原有任务")
             
             # 创建新任务，间隔为3分钟
-            now = datetime.now()
+            now = datetime.now(timezone.utc)
             next_run = now + timedelta(minutes=3)  # 3分钟后执行第一次
             
             job = scheduler.add_job(
@@ -371,7 +371,7 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
 def get_polling_status():
     """获取轮询任务状态"""
     import time
-    current_time = datetime.now()
+    current_time = datetime.now(timezone.utc)
     
     status_info = {
         "current_time": current_time.strftime('%Y-%m-%d %H:%M:%S'),

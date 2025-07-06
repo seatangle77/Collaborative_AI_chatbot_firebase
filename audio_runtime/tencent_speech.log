@@ -66,3 +66,20 @@
 2025-07-02 23:17:38,487 tencent_speech.log-INFO  start:311 b095d67e-5757-11f0-8714-a6cf704f3a84 recognition start
 2025-07-02 23:23:31,043 tencent_speech.log-INFO  on_message:259 b095d67e-5757-11f0-8714-a6cf704f3a84 recognition complete
 2025-07-04 10:22:01,979 tencent_speech.log-INFO  start:311 ab7dc7c4-587d-11f0-9235-a6cf704f3a84 recognition start
+2025-07-04 15:05:50,026 tencent_speech.log-ERROR  on_message:251 ab7dc7c4-587d-11f0-9235-a6cf704f3a84 server recognition fail 因机器负载过高、网络抖动等导致失败，请重新发起新识别
+2025-07-04 15:05:50,039 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id ab7dc7c4-587d-11f0-9235-a6cf704f3a84
+2025-07-04 15:05:50,039 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id ab7dc7c4-587d-11f0-9235-a6cf704f3a84
+2025-07-06 13:29:16,874 tencent_speech.log-INFO  start:311 28d63794-5a2a-11f0-bbb0-a6cf704f3a84 recognition start
+2025-07-06 13:33:29,342 tencent_speech.log-INFO  on_message:259 28d63794-5a2a-11f0-bbb0-a6cf704f3a84 recognition complete
+2025-07-06 13:35:20,628 tencent_speech.log-INFO  start:311 01a69abe-5a2b-11f0-aaaf-a6cf704f3a84 recognition start
+2025-07-06 13:40:05,268 tencent_speech.log-INFO  on_message:259 01a69abe-5a2b-11f0-aaaf-a6cf704f3a84 recognition complete
+2025-07-06 16:36:50,096 tencent_speech.log-INFO  start:311 5c479de2-5a44-11f0-92c7-a6cf704f3a84 recognition start
+2025-07-06 16:37:48,436 tencent_speech.log-INFO  on_message:259 5c479de2-5a44-11f0-92c7-a6cf704f3a84 recognition complete
+2025-07-06 16:39:15,135 tencent_speech.log-INFO  start:311 b2bac33e-5a44-11f0-9be8-a6cf704f3a84 recognition start
+2025-07-06 16:39:47,148 tencent_speech.log-INFO  on_message:259 b2bac33e-5a44-11f0-9be8-a6cf704f3a84 recognition complete
+2025-07-06 16:42:23,666 tencent_speech.log-INFO  start:311 231a6f58-5a45-11f0-9bd6-a6cf704f3a84 recognition start
+2025-07-06 16:45:33,572 tencent_speech.log-INFO  on_message:259 231a6f58-5a45-11f0-9bd6-a6cf704f3a84 recognition complete
+2025-07-06 16:49:20,944 tencent_speech.log-INFO  start:311 1bd1bd22-5a46-11f0-b3cc-a6cf704f3a84 recognition start
+2025-07-06 16:55:34,793 tencent_speech.log-INFO  on_message:259 1bd1bd22-5a46-11f0-b3cc-a6cf704f3a84 recognition complete
+2025-07-06 17:09:06,262 tencent_speech.log-INFO  start:311 de530f7a-5a48-11f0-b5cf-a6cf704f3a84 recognition start
+2025-07-06 17:13:44,580 tencent_speech.log-INFO  on_message:259 de530f7a-5a48-11f0-b5cf-a6cf704f3a84 recognition complete
