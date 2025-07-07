@@ -77,6 +77,9 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     glasses_summary = None
     detail = None
     user_data_summary = None
+    more_info = None
+    score = None
+    should_push = False
     try:
         if isinstance(result.get("raw_response"), str):
             raw = result["raw_response"]
@@ -89,13 +92,27 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                 glasses_summary = parsed_result.get("glasses_summary", "你当前状态需要关注")
                 detail = parsed_result.get("detail")
                 user_data_summary = parsed_result.get("user_data_summary")
+                more_info = parsed_result.get("more_info")
+                score = parsed_result.get("score")
+                
+                # 根据score的总分判断是否推送
+                if score and isinstance(score, dict) and "总评分" in score:
+                    total_score = score.get("总评分", 0)
+                    should_push = total_score > 70
+                    print(f"📊 [异常分析] 分析评分：{total_score}，推送阈值：70，是否推送：{should_push}")
+                else:
+                    should_push = True  # 如果没有score信息，默认推送
+                    print(f"⚠️ [异常分析] 未找到评分信息，默认推送")
             else:
                 glasses_summary = "你当前状态需要关注"
+                should_push = True
         else:
             glasses_summary = "你当前状态需要关注"
+            should_push = True
     except Exception as e:
-        print("解析glasses_summary失败：", e)
+        print("解析AI响应失败：", e)
         glasses_summary = "你当前状态需要关注"
+        should_push = True
     stage3_duration = time.time() - stage3_start
     print(f"📝 [异常分析] 阶段3-结果解析完成，耗时{stage3_duration:.2f}秒")
     
@@ -137,6 +154,9 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "glasses_summary": glasses_summary,
         "detail": detail,
         "user_data_summary": user_data_summary,
+        "more_info": more_info,
+        "score": score,
+        "should_push": should_push,
         "created_at": datetime.now(timezone.utc).isoformat()
     })
     stage5_duration = time.time() - stage5_start
@@ -155,6 +175,9 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "glasses_summary": glasses_summary,
         "detail": detail,
         "user_data_summary": user_data_summary,
+        "more_info": more_info,
+        "score": score,
+        "should_push": should_push,
         "current_user": req.current_user.dict(),
         "group_id": req.group_id,
         "start_time": req.start_time,
@@ -167,7 +190,8 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
     print(f"  - analysis_id: {analysis_id}")
     print(f"  - anomaly_analysis_results_id: {analysis_id}")
     
-    if device_token:
+    # 根据评分决定是否推送通知
+    if should_push and device_token:
         # JPush 推送 - 使用眼镜版本
         send_jpush_notification(
             alert=glasses_summary,  # 直接使用眼镜版本作为推送内容
@@ -184,10 +208,12 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         )
         print(f"✅ [异常分析] JPush推送完成，用户 {current_user.name}({current_user.user_id})")
         print(f"📱 [异常分析] 眼镜显示内容：{glasses_summary}")
+    elif not should_push:
+        print(f"⏭️ [异常分析] 评分不足70分，跳过推送，用户 {current_user.name}({current_user.user_id})")
     else:
         print(f"⚠️ [异常分析] 用户 {current_user.name}({current_user.user_id}) 未提供 device_token")
 
-    # WebSocket 推送 - 向PC页面推送完整分析结果
+    # WebSocket 推送 - 向PC页面推送完整分析结果（无论评分如何都推送）
     try:
         from app.websocket_routes import push_anomaly_analysis_result
         await push_anomaly_analysis_result(current_user.user_id, response_data)
@@ -208,6 +234,9 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
         "glasses_summary": glasses_summary,
         "detail": detail,
         "user_data_summary": user_data_summary,
+        "more_info": more_info,
+        "score": score,
+        "should_push": should_push,
         "current_user": req.current_user.dict(),
         "group_id": req.group_id,
         "start_time": req.start_time,

@@ -68,11 +68,18 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             unique_speech_transcripts.append(transcript)
     
     speech_transcripts = unique_speech_transcripts
-    # 按 user_id 统计发言次数
-    from collections import Counter
+    # 按 user_id 统计发言次数和时长
+    from collections import Counter, defaultdict
     speech_counts = Counter(s["user_id"] for s in speech_transcripts if s.get("user_id"))
+    speech_durations = defaultdict(float)
+    
+    for s in speech_transcripts:
+        if s.get("user_id") and s.get("duration"):
+            speech_durations[s["user_id"]] += s["duration"]
+    
     for m in member_list:
         m["speech_count"] = speech_counts.get(m["user_id"], 0)
+        m["speech_duration"] = round(speech_durations.get(m["user_id"], 0), 2)
     query1_duration = time.time() - query1_start
     print(f"🎤 [数据预处理] 查询1-speech_transcripts完成，耗时{query1_duration:.2f}秒，找到{len(speech_transcripts)}条记录")
 
@@ -162,15 +169,22 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             "unique_note_contents": note_contents
         },
         "speech_counts": speech_counts,
+        "speech_durations": dict(speech_durations),
         "current_user": current_user
     }
 
     # 查询5: anomaly_analysis_results历史
     query5_start = time.time()
     try:
+        # 计算时间范围：从start_time往前半小时到start_time
+        history_start_time = start_time_dt - timedelta(minutes=30)
+        history_start_time_str = history_start_time.isoformat()
+        
         results = db.collection("anomaly_analysis_results") \
             .where("group_id", "==", group_id) \
             .where("current_user.user_id", "==", current_user["user_id"]) \
+            .where("created_at", ">=", history_start_time_str) \
+            .where("created_at", "<=", start_time) \
             .order_by("created_at", direction="DESCENDING") \
             .limit(2) \
             .stream()

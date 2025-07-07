@@ -319,7 +319,7 @@ onMounted(async () => {
     ElMessage.info(`${fromUserName} 分享了异常信息：${payload.detail_type}`);
   });
   onUserMessage("anomaly_analysis", (payload) => {
-    console.log("📨 收到异常分析结果推送:", payload);
+    // 移除调试打印，只保留原有逻辑
     if (!payload || !payload.data) {
       console.warn("⚠️ 异常分析结果数据格式不正确");
       return;

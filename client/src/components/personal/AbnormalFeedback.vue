@@ -65,7 +65,7 @@
             Share
           </el-button>
         </div>
-        <div v-if="showMore && anomalyData.more_info" class="more-info">
+        <div v-if="showMore && (anomalyData.more_info || anomalyData.user_data_summary)" class="more-info">
           <div v-if="anomalyData.user_data_summary">
             <div
               ref="barChartRef"
@@ -73,7 +73,11 @@
             ></div>
             <div ref="radarChartRef" style="width: 100%; height: 300px"></div>
           </div>
-          <el-divider />
+          <div v-if="!anomalyData.more_info && anomalyData.user_data_summary" class="info-block">
+            <span class="info-label">提示：</span>
+            <span class="info-content">当前显示的是用户行为数据图表，详细的分析信息将在后续更新中提供。</span>
+          </div>
+          <el-divider v-if="anomalyData.more_info" />
           <div v-if="anomalyData.more_info?.detailed_reasoning" class="info-block">
             <span class="info-label">详细推理：</span>
             <span
@@ -304,6 +308,7 @@ onMounted(async () => {
 
 async function callFeedbackClick(clickType) {
   const anomaly = props.anomalyData || {};
+  
   // 校验必填字段
   if (!anomaly.group_id || !anomaly.user_id) {
     ElMessage.error('反馈参数缺失：group_id 或 user_id');

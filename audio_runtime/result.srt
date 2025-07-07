@@ -1,124 +1,100 @@
 1
-2025-07-06 09:09:04,490 --> 2025-07-06 09:09:06,370
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "大概是要改一下。", "start": "2025-07-06T09:09:04.490422", "end": "2025-07-06T09:09:06.370422", "duration": 1.88}
+2025-07-07 02:26:46,649 --> 2025-07-07 02:26:51,009
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-07T02:26:46.649572", "end": "2025-07-07T02:26:51.009572", "duration": 4.36}
 
 2
-2025-07-06 09:09:17,030 --> 2025-07-06 09:09:18,630
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-06T09:09:17.030422", "end": "2025-07-06T09:09:18.630422", "duration": 1.6}
+2025-07-07 02:27:09,429 --> 2025-07-07 02:27:15,949
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "好，现在重新开始我们的一个实验。", "start": "2025-07-07T02:27:09.429572", "end": "2025-07-07T02:27:15.949572", "duration": 6.52}
 
 3
-2025-07-06 09:09:20,370 --> 2025-07-06 09:09:31,530
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "啊，你可以干不来，烦死了。不，我不会搞啊。不对，我就是一个很有耐性子的人。你赖个鸡巴，要保就是小，他会把鸡房写出来吗？", "start": "2025-07-06T09:09:20.370422", "end": "2025-07-06T09:09:31.530422", "duration": 11.16}
+2025-07-07 02:27:17,169 --> 2025-07-07 02:27:18,469
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-07T02:27:17.169572", "end": "2025-07-07T02:27:18.469572", "duration": 1.3}
 
 4
-2025-07-06 09:09:31,530 --> 2025-07-06 09:09:34,470
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "太没有耐心，你就学会。", "start": "2025-07-06T09:09:31.530422", "end": "2025-07-06T09:09:34.470422", "duration": 2.94}
+2025-07-07 02:27:27,029 --> 2025-07-07 02:27:42,409
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "哎，不想说话，不知道为什么，我们讨论是这么的没有意思的，所以不是很想说话。然后不知道这里会不会断开链接。", "start": "2025-07-07T02:27:27.029572", "end": "2025-07-07T02:27:42.409572", "duration": 15.38}
 
 5
-2025-07-06 09:09:34,690 --> 2025-07-06 09:09:54,030
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "我真的他好污好污，哎，好像有那为不要脸的人，他就是H也是人类厉害，他不是gpt，他这个是腾讯，是腾讯就是你怎么会会激发这种东西，腾讯就是想打拼确就。Ion the street, everything just in my pop place.", "start": "2025-07-06T09:09:34.690422", "end": "2025-07-06T09:09:54.030422", "duration": 19.34}
+2025-07-07 02:27:43,949 --> 2025-07-07 02:27:47,969
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "因为我不说话的话，你现在这里会怎样？", "start": "2025-07-07T02:27:43.949572", "end": "2025-07-07T02:27:47.969572", "duration": 4.02}
 
 6
-2025-07-06 09:09:54,670 --> 2025-07-06 09:10:01,450
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "还好，我就是耐心很好的。我这里朋么去，你真的是一个挺糟糕的这个。", "start": "2025-07-06T09:09:54.670422", "end": "2025-07-06T09:10:01.450422", "duration": 6.78}
+2025-07-07 02:27:48,429 --> 2025-07-07 02:27:50,829
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "我不知道。", "start": "2025-07-07T02:27:48.429572", "end": "2025-07-07T02:27:50.829572", "duration": 2.4}
 
 7
-2025-07-06 09:10:13,730 --> 2025-07-06 09:10:16,910
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "嗯吧，应该应该不会有事吧。", "start": "2025-07-06T09:10:13.730422", "end": "2025-07-06T09:10:16.910422", "duration": 3.18}
+2025-07-07 02:27:55,209 --> 2025-07-07 02:28:05,609
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "哎哎，再等等吧，等再再等左右，再等一个小时，再等几分钟，他就会有消息跑出来了。", "start": "2025-07-07T02:27:55.209572", "end": "2025-07-07T02:28:05.609572", "duration": 10.4}
 
 8
-2025-07-06 09:10:18,250 --> 2025-07-06 09:10:20,510
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "重新来一遍吧。", "start": "2025-07-06T09:10:18.250422", "end": "2025-07-06T09:10:20.510422", "duration": 2.26}
+2025-07-07 02:28:05,609 --> 2025-07-07 02:28:09,089
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "然后这就是一个比较完善的。", "start": "2025-07-07T02:28:05.609572", "end": "2025-07-07T02:28:09.089572", "duration": 3.48}
 
 9
-2025-07-06 09:10:21,710 --> 2025-07-06 09:10:28,310
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-06T09:10:21.710422", "end": "2025-07-06T09:10:28.310422", "duration": 6.6}
+2025-07-07 02:28:09,329 --> 2025-07-07 02:28:10,669
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "整页。", "start": "2025-07-07T02:28:09.329572", "end": "2025-07-07T02:28:10.669572", "duration": 1.34}
 
 10
-2025-07-06 09:10:33,510 --> 2025-07-06 09:10:49,510
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "再再说几句话，你等一下，他两分钟没没化啥说出来又说你就我就是会会说话那种，但是但是其实完全就GVT乱搞啊，他连数数字也是自己乱搞每个数字嘛。", "start": "2025-07-06T09:10:33.510422", "end": "2025-07-06T09:10:49.510422", "duration": 16.0}
+2025-07-07 02:28:26,809 --> 2025-07-07 02:28:34,909
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "因为实在真的是没时间了，我除了晚上自己睡觉，然后就是吃饭，接下来就是这个。", "start": "2025-07-07T02:28:26.809572", "end": "2025-07-07T02:28:34.909572", "duration": 8.1}
 
 11
-2025-07-06 09:10:49,510 --> 2025-07-06 09:10:57,690
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "准备贴，你说要他评分那些，他就写出来，你到底什么时候有问题？那些数字也是乱搞了吧？", "start": "2025-07-06T09:10:49.510422", "end": "2025-07-06T09:10:57.690422", "duration": 8.18}
+2025-07-07 02:28:34,949 --> 2025-07-07 02:28:37,749
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "东西还有联系用户。", "start": "2025-07-07T02:28:34.949572", "end": "2025-07-07T02:28:37.749572", "duration": 2.8}
 
 12
-2025-07-06 09:10:57,990 --> 2025-07-06 09:11:11,910
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "哎，他这种东西有些他就是很主观的在那个对对呀，所以本就是给他一个很，所以其实还还是挺大问题的，这样的话比较他就不应该拿我历史数据出来，然后说你只说了三句话。", "start": "2025-07-06T09:10:57.990422", "end": "2025-07-06T09:11:11.910422", "duration": 13.92}
+2025-07-07 02:28:37,909 --> 2025-07-07 02:28:41,429
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "真的觉得超级烦的。", "start": "2025-07-07T02:28:37.909572", "end": "2025-07-07T02:28:41.429572", "duration": 3.52}
 
 13
-2025-07-06 09:11:11,910 --> 2025-07-06 09:11:14,830
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "那你给他就是这些，你要他怎么弄啊？", "start": "2025-07-06T09:11:11.910422", "end": "2025-07-06T09:11:14.830422", "duration": 2.92}
+2025-07-07 02:28:41,429 --> 2025-07-07 02:28:46,949
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "不知道怎办，或有一些页面或许可以。", "start": "2025-07-07T02:28:41.429572", "end": "2025-07-07T02:28:46.949572", "duration": 5.52}
 
 14
-2025-07-06 09:11:14,830 --> 2025-07-06 09:11:18,410
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "然后我天呐，那他统计的也有问题。", "start": "2025-07-06T09:11:14.830422", "end": "2025-07-06T09:11:18.410422", "duration": 3.58}
+2025-07-07 02:28:47,029 --> 2025-07-07 02:28:49,889
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "哎，就是切换一下吧。", "start": "2025-07-07T02:28:47.029572", "end": "2025-07-07T02:28:49.889572", "duration": 2.86}
 
 15
-2025-07-06 09:11:18,870 --> 2025-07-06 09:11:33,510
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "肯定就是不是你想象现在很多人那些产品也是这样，就是觉得PPT你问他什么，他都可以答。但其实很多他就是在搞啊，就是我们怎么发一个消息，然后让他评估这个相似度有百分之多少。这种我觉得他就是。", "start": "2025-07-06T09:11:18.870422", "end": "2025-07-06T09:11:33.510422", "duration": 14.64}
+2025-07-07 02:29:06,529 --> 2025-07-07 02:29:10,709
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "是的，应该可以了。现在等一下，等一下他。", "start": "2025-07-07T02:29:06.529572", "end": "2025-07-07T02:29:10.709572", "duration": 4.18}
 
 16
-2025-07-06 09:11:33,630 --> 2025-07-06 09:11:48,670
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "就是完全，你就是想让他告白，他怎么知道你是百分之多少？我就问你，你的百分之几是按什么来量化？是哪个加两分，哪个减两分，什么之类你自己都说不清楚。然后，你要他有一个主观的分数，那他不就给你主观的水平感，真的。", "start": "2025-07-06T09:11:33.630422", "end": "2025-07-06T09:11:48.670422", "duration": 15.04}
+2025-07-07 02:29:13,069 --> 2025-07-07 02:29:15,749
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-07T02:29:13.069572", "end": "2025-07-07T02:29:15.749572", "duration": 2.68}
 
 17
-2025-07-06 09:11:48,670 --> 2025-07-06 09:11:56,890
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "你看T二三四五四，我觉得他也是在告啊，我这个他可能他可能这个要我自己去统计，不应该他去。", "start": "2025-07-06T09:11:48.670422", "end": "2025-07-06T09:11:56.890422", "duration": 8.22}
+2025-07-07 02:29:15,749 --> 2025-07-07 02:29:22,969
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "等一下尝试一下，让这个啊程序一起去。", "start": "2025-07-07T02:29:15.749572", "end": "2025-07-07T02:29:22.969572", "duration": 7.22}
 
 18
-2025-07-06 09:11:57,410 --> 2025-07-06 09:12:11,490
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "干快说出来哦，这个你自己算的，你自己啊，你这个都是在给他统计的。因为我我让他结构化输出来，谁谁知道结构话说出来的东西是高的，我我有把那个次数给他的。", "start": "2025-07-06T09:11:57.410422", "end": "2025-07-06T09:12:11.490422", "duration": 14.08}
+2025-07-07 02:29:43,929 --> 2025-07-07 02:29:45,109
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-07T02:29:43.929572", "end": "2025-07-07T02:29:45.109572", "duration": 1.18}
 
 19
-2025-07-06 09:12:11,630 --> 2025-07-06 09:12:15,530
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "我要把每个人的发言次数给他的，那你看对不对？", "start": "2025-07-06T09:12:11.630422", "end": "2025-07-06T09:12:15.530422", "duration": 3.9}
+2025-07-07 02:29:51,029 --> 2025-07-07 02:29:52,269
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "行行。", "start": "2025-07-07T02:29:51.029572", "end": "2025-07-07T02:29:52.269572", "duration": 1.24}
 
 20
-2025-07-06 09:12:15,530 --> 2025-07-06 09:12:18,670
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "原始pro给他的数据，你不是有录下来吗？", "start": "2025-07-06T09:12:15.530422", "end": "2025-07-06T09:12:18.670422", "duration": 3.14}
+2025-07-07 02:29:59,149 --> 2025-07-07 02:30:03,069
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "对，现在为什么会这样？", "start": "2025-07-07T02:29:59.149572", "end": "2025-07-07T02:30:03.069572", "duration": 3.92}
 
 21
-2025-07-06 09:12:19,070 --> 2025-07-06 09:12:20,790
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "看看对不对嘛？", "start": "2025-07-06T09:12:19.070422", "end": "2025-07-06T09:12:20.790422", "duration": 1.72}
+2025-07-07 02:30:03,229 --> 2025-07-07 02:30:07,829
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "尾巴越改越乱了。", "start": "2025-07-07T02:30:03.229572", "end": "2025-07-07T02:30:07.829572", "duration": 4.6}
 
 22
-2025-07-06 09:12:23,190 --> 2025-07-06 09:12:26,270
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "等等一下按时间去看。", "start": "2025-07-06T09:12:23.190422", "end": "2025-07-06T09:12:26.270422", "duration": 3.08}
+2025-07-07 02:30:21,229 --> 2025-07-07 02:30:24,809
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "再来一遍吧，再来一遍吧。", "start": "2025-07-07T02:30:21.229572", "end": "2025-07-07T02:30:24.809572", "duration": 3.58}
 
 23
-2025-07-06 09:12:26,310 --> 2025-07-06 09:12:27,870
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "材，材质的。", "start": "2025-07-06T09:12:26.310422", "end": "2025-07-06T09:12:27.870422", "duration": 1.56}
+2025-07-07 02:30:50,849 --> 2025-07-07 02:30:55,249
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "好奇怪，不知道发生什么事。", "start": "2025-07-07T02:30:50.849572", "end": "2025-07-07T02:30:55.249572", "duration": 4.4}
 
 24
-2025-07-06 09:12:27,870 --> 2025-07-06 09:12:30,930
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "哦，有，只有三五个嘛，一个个看。", "start": "2025-07-06T09:12:27.870422", "end": "2025-07-06T09:12:30.930422", "duration": 3.06}
+2025-07-07 02:30:55,249 --> 2025-07-07 02:30:56,809
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "真的好奇怪。", "start": "2025-07-07T02:30:55.249572", "end": "2025-07-07T02:30:56.809572", "duration": 1.56}
 
 25
-2025-07-06 09:12:31,350 --> 2025-07-06 09:12:34,850
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "等一下，我要让他发第二次。", "start": "2025-07-06T09:12:31.350422", "end": "2025-07-06T09:12:34.850422", "duration": 3.5}
-
-26
-2025-07-06 09:12:35,030 --> 2025-07-06 09:12:38,650
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "那对也要看看他自己的评分。", "start": "2025-07-06T09:12:35.030422", "end": "2025-07-06T09:12:38.650422", "duration": 3.62}
-
-27
-2025-07-06 09:12:39,070 --> 2025-07-06 09:13:04,310
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2", "speaker": "TestUser2-1", "text": "你就说话吧，让他发发了第二次再走。嗯，我就是会好好说话的。我就是嘴嘴又大，就是这对人性格又好。然后就是全身都是gay一种经常是美女长寿。他还有这个手机，这个手机真的是折腾人，那个手机里不开，他又收不到消息。你看现在才收到，他不能让他一直待机己的嘛。", "start": "2025-07-06T09:12:39.070422", "end": "2025-07-06T09:13:04.310422", "duration": 25.24}
-
-28
-2025-07-06 09:13:04,310 --> 2025-07-06 09:13:18,750
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "是的，这个手机可能要就是什么机的亮屏的休眠时间比较什么，他休眠了真的是完全没消息。这这个手机修眠了是有消息，这个这全部都要晒一次，这都不也学不，我真的是服了。", "start": "2025-07-06T09:13:04.310422", "end": "2025-07-06T09:13:18.750422", "duration": 14.44}
-
-29
-2025-07-06 09:13:24,870 --> 2025-07-06 09:13:28,170
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "好了，应该可以再来一次。", "start": "2025-07-06T09:13:24.870422", "end": "2025-07-06T09:13:28.170422", "duration": 3.3}
-
-30
-2025-07-06 09:13:28,890 --> 2025-07-06 09:13:31,330
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1-1", "text": "那等一下，说错的东西，笑死了。", "start": "2025-07-06T09:13:28.890422", "end": "2025-07-06T09:13:31.330422", "duration": 2.44}
-
-31
-2025-07-06 09:13:36,230 --> 2025-07-06 09:13:40,142
-{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2", "speaker": "TestUser1", "text": "两分钟内频繁切换页面。他真的是。", "start": "2025-07-06T09:13:36.230422", "end": "2025-07-06T09:13:40.142422", "duration": 3.912}
+2025-07-07 02:30:59,169 --> 2025-07-07 02:31:00,509
+{"group_name": "groupG", "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "嗯。", "start": "2025-07-07T02:30:59.169572", "end": "2025-07-07T02:31:00.509572", "duration": 1.34}
 
