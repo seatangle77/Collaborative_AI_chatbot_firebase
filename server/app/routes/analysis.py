@@ -98,7 +98,7 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                 # 根据score的总分判断是否推送
                 if score and isinstance(score, dict) and "总评分" in score:
                     total_score = score.get("总评分", 0)
-                    should_push = total_score > 70
+                    should_push = total_score > 50
                     print(f"📊 [异常分析] 分析评分：{total_score}，推送阈值：70，是否推送：{should_push}")
                 else:
                     should_push = True  # 如果没有score信息，默认推送
