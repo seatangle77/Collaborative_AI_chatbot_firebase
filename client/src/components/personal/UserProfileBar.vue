@@ -10,6 +10,7 @@
               size="small"
               @change="handleUserChange"
               placeholder="请选择用户"
+              style="display: none"
             >
               <el-option
                 v-for="u in allUsers"

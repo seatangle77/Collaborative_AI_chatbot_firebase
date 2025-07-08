@@ -2,7 +2,7 @@
   <div class="note-editor">
     <div class="note-title-wrapper">
       <div class="note-title">协作笔记</div>
-      <el-button size="small" class="start-write-btn" type="primary" @click="$emit('start-edit')"
+      <el-button style="display: none" size="small" class="start-write-btn" type="primary" @click="$emit('start-edit')"
         >开始写入数据</el-button
       >
     </div>

@@ -181,10 +181,10 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
         history_start_time_str = history_start_time.isoformat()
         
         results = db.collection("anomaly_analysis_results") \
-            .where("group_id", "==", group_id) \
-            .where("current_user.user_id", "==", current_user["user_id"]) \
-            .where("created_at", ">=", history_start_time_str) \
-            .where("created_at", "<=", start_time) \
+            .where(filter=FieldFilter("group_id", "==", group_id)) \
+            .where(filter=FieldFilter("current_user.user_id", "==", current_user["user_id"])) \
+            .where(filter=FieldFilter("created_at", ">=", history_start_time_str)) \
+            .where(filter=FieldFilter("created_at", "<=", start_time)) \
             .order_by("created_at", direction="DESCENDING") \
             .limit(2) \
             .stream()
