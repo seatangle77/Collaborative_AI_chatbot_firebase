@@ -1,0 +1,1017 @@
+{
+  "time_range": {
+    "start": "2025-07-08T15:06:34",
+    "end": "2025-07-08T15:08:34"
+  },
+  "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+  "users": [
+    {
+      "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+      "name": "TestUser2",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+      "name": "TestUser1",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "9WW5I5naK6U20OIQulZEhLOvzWR2",
+      "name": "TestUser3",
+      "speech_count": 0,
+      "speech_duration": 0
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [],
+    "note_edit_history": [
+      {
+        "affectedText": "自我意识崛起，注重个体价值：\nZ世代普遍对自我价值的实现有较高追求，不再像前几代人那样过度关注外部评价和传统权威，而是更注重内心的感受和自我认同。\n追求个性化和自由，拒绝被标签化：\nZ世代普遍追求与众不同，喜欢彰显个性，对各种标签和刻板印象持抵触态度。他们更愿意根据自己的喜好和价值观来塑造自我形象，并以此来表达自我。\n对新事物接受度高，乐于尝试新鲜事物：\nZ世代是在互联网时代成长起来的一代，对新科技、新文化、新观念接受度高，乐于尝试新鲜事物，并积极参与到各种新潮流中。\n社交需求旺盛，热衷社群互动：\nZ世代普遍热衷于社交媒体，热衷于在线互动，追求社群归属感。他们通过社交平台建立人际关系，分享生活，表达观点，寻求共鸣。\n务实理性，对未来充满不确定性：u\nZ世代在追求个性和自由的同时，也表现出一定的务实理性。他们对未来充满不确定性，更注重实际的成长和发展，对物质和精神生活都有着自己的规划。",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 399,
+        "delta": [
+          {
+            "delete": 399
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-08T15:07:06.382Z",
+        "isDelete": true
+      }
+    ],
+    "pageBehaviorLogs": [
+      {
+        "windowEnd": "2025-07-08T15:06:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": true,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:47.150Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Lindy — Meet Your AI Assistant",
+            "timestamp": "2025-07-08T15:06:18.620Z",
+            "tabId": 2046891608,
+            "url": "https://www.lindy.ai/"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 3,
+                "x": 368
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:56.952Z",
+              "tabId": 2046891577
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:57.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 184,
+                "x": 486
+              },
+              "type": "click",
+              "count": 4,
+              "timestamp": "2025-07-08T15:07:02.142Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 185,
+                "x": 486
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:07:02.398Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 218,
+                "x": 495
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:07:03.722Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 46,
+                "x": 631
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:07:04.227Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 35,
+                "x": 675
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:07:04.863Z",
+              "tabId": 2046891577
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:07.148Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:17.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:27.146Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:37.153Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:07:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 192,
+                "x": 670
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:07:38.397Z",
+              "tabId": 2046891577
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:47.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:08:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:07:57.149Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:07:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:08:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:08:07.152Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:08:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:08:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:17.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:17.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:08:17.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:08:17.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:08:17.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:08:17.152Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:08:17.152Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:08:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:08:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 590,
+                "x": 241
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:08:20.011Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 281,
+                "x": 694
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:08:20.929Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 36,
+                "x": 708
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:08:21.556Z",
+              "tabId": 2046891577
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:08:27.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:06:56.370Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:08:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:06:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": true,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:37.152Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Lindy — Meet Your AI Assistant",
+            "timestamp": "2025-07-08T15:06:18.620Z",
+            "tabId": 2046891608,
+            "url": "https://www.lindy.ai/"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:30.000Z"
+      }
+    ],
+    "unique_note_contents": []
+  },
+  "speech_counts": {},
+  "speech_durations": {},
+  "current_user": {
+    "user_id": "9WW5I5naK6U20OIQulZEhLOvzWR2",
+    "name": "TestUser3",
+    "device_token": "190e35f7e1667a5c222"
+  },
+  "anomaly_history": null
+}

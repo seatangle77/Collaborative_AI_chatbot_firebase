@@ -165,7 +165,7 @@ const shouldShow = computed(() => {
   if (!props.anomalyData) return false;
   
   // 检查是否有score字段且是否提示为true
-  if (props.anomalyData.score && props.anomalyData.score["是否提示"] === true) {
+  if (props.anomalyData.score && props.anomalyData.score["should_notify"] === true) {
     return true;
   }
   

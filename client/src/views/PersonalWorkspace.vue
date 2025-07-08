@@ -661,7 +661,7 @@ function handleAnomalyAnalysisResult(data) {
   
   // 确保score字段存在，用于判断是否显示
   if (!parsedData.score) {
-    parsedData.score = { "是否提示": true };
+    parsedData.score = { "should_notify": true };
   }
   
   // 调试：检查ID字段
@@ -738,7 +738,7 @@ function handleViewDetail(detail) {
     user_id: userId.value,
     anomaly_analysis_results_id: detail.id || detail.anomaly_analysis_results_id || detail.result_id || "",
     // 确保score字段存在，用于判断是否显示
-    score: parsedData?.score || { "是否提示": true }
+    score: parsedData?.score || { "should_notify": true }
   };
   drawerSource.value = 'history';
   drawerVisible.value = true;

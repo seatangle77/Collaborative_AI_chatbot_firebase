@@ -95,14 +95,20 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                 more_info = parsed_result.get("more_info")
                 score = parsed_result.get("score")
                 
-                # 根据score的总分判断是否推送
-                if score and isinstance(score, dict) and "总评分" in score:
-                    total_score = score.get("总评分", 0)
-                    should_push = total_score > 50
-                    print(f"📊 [异常分析] 分析评分：{total_score}，推送阈值：70，是否推送：{should_push}")
+                # 根据score的状态评分和内容相似度评分判断是否推送
+                if score and isinstance(score, dict):
+                    state_score = score.get("state_score")
+                    content_similarity_score = score.get("content_similarity_score")
+                    should_push = False
+                    if state_score is not None and content_similarity_score is not None:
+                        should_push = (state_score < 25 or state_score > 75) or (content_similarity_score < 50)
+                        print(f"📊 [异常分析] 状态评分：{state_score}，内容相似度评分：{content_similarity_score}，推送阈值：状态评分<25或>75，内容相似度评分<50，是否推送：{should_push}")
+                    else:
+                        should_push = True  # 如果没有评分信息，默认推送
+                        print(f"⚠️ [异常分析] 未找到完整评分信息，默认推送")
                 else:
-                    should_push = True  # 如果没有score信息，默认推送
-                    print(f"⚠️ [异常分析] 未找到评分信息，默认推送")
+                    should_push = False  # 如果没有score信息，默认不推送
+                    print(f"⚠️ [异常分析] 未找到评分信息，默认不推送")
             else:
                 glasses_summary = "你当前状态需要关注"
                 should_push = True

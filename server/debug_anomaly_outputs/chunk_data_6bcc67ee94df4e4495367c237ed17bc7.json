@@ -1,0 +1,1528 @@
+{
+  "time_range": {
+    "start": "2025-07-08T15:04:34",
+    "end": "2025-07-08T15:06:34"
+  },
+  "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+  "users": [
+    {
+      "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+      "name": "TestUser2",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+      "name": "TestUser1",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "9WW5I5naK6U20OIQulZEhLOvzWR2",
+      "name": "TestUser3",
+      "speech_count": 0,
+      "speech_duration": 0
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [],
+    "note_edit_history": [
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "charCount": 508,
+        "delta": [
+          {
+            "retain": 399
+          },
+          {
+            "delete": 109
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-08T15:04:41.190Z",
+        "isDelete": true
+      }
+    ],
+    "pageBehaviorLogs": [
+      {
+        "windowEnd": "2025-07-08T15:04:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:47.150Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:47.150Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:04:47.150Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:04:47.150Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:04:47.150Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:04:39.015Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOn1yyrq72p67TG67fkR44_Zfbrmw:1751979807528&ei=HxdtaMiAIOTg2roPi7rzuQE&start=10&sa=N&sstk=Ac65TH7rmG3YJadfV1sbU6ZQewGDKshM3YaTZaeWQymTUQpb7xAvBru4FMHpopXROjgUz2JLzGlM2vXkCw4EMU1YdrlOieVlaaNipg&ved=2ahUKEwiIjNOwqa2OAxVksFYBHQvdPBcQ8NMDegQICBAW&biw=1085&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:04:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 218,
+                "x": 338
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:49.144Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 228,
+                "x": 348
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:51.108Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 227,
+                "x": 348
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:51.681Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 214,
+                "x": 369
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:52.377Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 2,
+                "x": 595
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:55.493Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 39,
+                "x": 535
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:56.129Z",
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891601,
+              "url": ""
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:04:57.150Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:04:39.015Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOn1yyrq72p67TG67fkR44_Zfbrmw:1751979807528&ei=HxdtaMiAIOTg2roPi7rzuQE&start=10&sa=N&sstk=Ac65TH7rmG3YJadfV1sbU6ZQewGDKshM3YaTZaeWQymTUQpb7xAvBru4FMHpopXROjgUz2JLzGlM2vXkCw4EMU1YdrlOieVlaaNipg&ved=2ahUKEwiIjNOwqa2OAxVksFYBHQvdPBcQ8NMDegQICBAW&biw=1085&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:04:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 54,
+                "x": 505
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:57.829Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 12,
+                "x": 626
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:58.813Z",
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:04:59.146Z",
+              "maxDepth": 0.0006188118811881188,
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:04:59.664Z",
+              "maxDepth": 0.07487623762376237,
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:00.163Z",
+              "maxDepth": 0.14665841584158415,
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:00.680Z",
+              "maxDepth": 0.2599009900990099,
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:01.344Z",
+              "maxDepth": 0.2636138613861386,
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 271,
+                "x": 529
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:01.840Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 6,
+                "x": 547
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:06.375Z",
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:06.929Z",
+              "maxDepth": 0.30383663366336633,
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "scite.ai",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891601,
+              "url": "https://scite.ai/assistant"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:07.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:05:06.198Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:07.803Z",
+              "maxDepth": 0.7629950495049505,
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 409,
+                "x": 600
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:08.846Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 46,
+                "x": 1060
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:09.360Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 12,
+                "x": 1073
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:11.915Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 176,
+                "x": 868
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:14.070Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 177,
+                "x": 865
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:14.824Z",
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": true,
+              "title": "scite.ai",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891601,
+              "url": "https://scite.ai/assistant"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:17.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "scite.ai",
+            "timestamp": "2025-07-08T15:05:15.592Z",
+            "tabId": 2046891601,
+            "url": "https://scite.ai/assistant"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 8,
+                "x": 505
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:19.012Z",
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:05:19.845Z",
+              "maxDepth": 0.7629950495049505,
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 567,
+                "x": 434
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:20.578Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 650,
+                "x": 349
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:21.579Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 650,
+                "x": 343
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-08T15:05:22.149Z",
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "scite.ai",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891601,
+              "url": "https://scite.ai/assistant"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:27.152Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:05:18.835Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 628,
+                "x": 332
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:27.760Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 426,
+                "x": 385
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:28.770Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 261,
+                "x": 481
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:30.511Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 160,
+                "x": 542
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:31.072Z",
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:37.149Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:05:18.835Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifMQ4MpmcEC6r5jybijn2NjYT20oPg:1751979904628&ei=gBdtaJaTJrWB2roPqJX7oA4&start=20&sa=N&sstk=Ac65TH4v2toKzd_NFgWcbiUcoNC-6NQQPm4jFIkP8dRw0IydTqdzvISbfHuHq3MJxanlrApq54gc2Tz76EsnbREzXbqjiUck4TRJMtl8sKON6tyXU55098EzNrcbHsZGh9bm&ved=2ahUKEwiW0_neqa2OAxW1gFYBHajKHuQ4ChDw0wN6BAgHEBc&biw=1281&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:30.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:05:50.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 6,
+                "x": 631
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:38.364Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 499,
+                "x": 677
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:39.054Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 556,
+                "x": 666
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:39.624Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 555,
+                "x": 666
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:41.277Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 352,
+                "x": 744
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:46.379Z",
+              "tabId": 2046891604
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": true,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:47.149Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+            "timestamp": "2025-07-08T15:05:37.494Z",
+            "tabId": 2046891604,
+            "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:40.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:06:00.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 491,
+                "x": 13
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:52.216Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 458,
+                "x": 173
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:52.721Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 364,
+                "x": 288
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-08T15:05:53.040Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 343,
+                "x": 320
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:53.227Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 462,
+                "x": 530
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:53.842Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 409,
+                "x": 588
+              },
+              "type": "click",
+              "count": 2,
+              "timestamp": "2025-07-08T15:05:54.457Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 408,
+                "x": 588
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:54.678Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 407,
+                "x": 590
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:55.403Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 538,
+                "x": 605
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:55.911Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 538,
+                "x": 605
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:56.789Z",
+              "tabId": 2046891604
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": true,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:05:57.148Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+            "timestamp": "2025-07-08T15:05:37.494Z",
+            "tabId": 2046891604,
+            "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+          }
+        },
+        "windowStart": "2025-07-08T15:05:50.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:06:10.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 7,
+                "x": 650
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:57.816Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 379,
+                "x": 253
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:05:59.912Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 241,
+                "x": 607
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:00.419Z",
+              "tabId": 2046891604
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": true,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:07.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+            "timestamp": "2025-07-08T15:05:37.494Z",
+            "tabId": 2046891604,
+            "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:00.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:06:20.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 4,
+                "x": 586
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:09.016Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 251,
+                "x": 379
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:09.660Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 413,
+                "x": 140
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:10.163Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 0,
+                "x": 417
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:10.680Z",
+              "tabId": 2046891604
+            },
+            {
+              "position": {
+                "y": 12,
+                "x": 507
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:11.983Z",
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:06:12.652Z",
+              "maxDepth": 0.568122555410691,
+              "tabId": 2046891581
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:06:13.212Z",
+              "maxDepth": 0.6052803129074316,
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 577,
+                "x": 498
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:13.617Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 460,
+                "x": 346
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:14.127Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 451,
+                "x": 341
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:15.080Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 380,
+                "x": 419
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:16.129Z",
+              "tabId": 2046891581
+            },
+            {
+              "position": {
+                "y": 239,
+                "x": 563
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:06:16.671Z",
+              "tabId": 2046891581
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": true,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": false,
+              "title": "",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891608,
+              "url": ""
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:17.147Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "AI assistant - Google Search",
+            "timestamp": "2025-07-08T15:06:11.775Z",
+            "tabId": 2046891581,
+            "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:10.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:06:30.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOCHXET_uLayeE4ySydceJT5_sh4g:1751987086519&ei=jjNtaOm8H8Wp2roPuMXl0QE&start=0&sa=N&sstk=Ac65TH7yfVEJjG2p3NYMeYrLtojIfnocp-kSSIZKmQHvy0sW8prPEsmpp0n_X0zPjIqRAazV2Pv7cn3hyqLITrO0lz_jeRPLMgCAQVyjDC86c6lF4w9facWcOZdj4b16GVQ16RFXdjyxmr9v_A-hvVUK0C0AAEOh7UQ&ved=2ahUKEwjpu8W_xK2OAxXFlFYBHbhiORo4FBDy0wN6BAgIEAQ&biw=1281&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891604,
+              "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1d3p8lu/whats_the_best_ai_personal_assistant/"
+            },
+            {
+              "active": true,
+              "title": "Lindy — Meet Your AI Assistant",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891608,
+              "url": "https://www.lindy.ai/"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:06:27.151Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Lindy — Meet Your AI Assistant",
+            "timestamp": "2025-07-08T15:06:18.620Z",
+            "tabId": 2046891608,
+            "url": "https://www.lindy.ai/"
+          }
+        },
+        "windowStart": "2025-07-08T15:06:20.000Z"
+      },
+      {
+        "windowEnd": "2025-07-08T15:04:40.000Z",
+        "userId": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+        "behaviorData": {
+          "tabBehaviorLogs": [
+            {
+              "position": {
+                "y": 147,
+                "x": 1117
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-08T15:04:27.828Z",
+              "tabId": 2046891520
+            },
+            {
+              "position": {
+                "y": 147,
+                "x": 1115
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:28.794Z",
+              "tabId": 2046891520
+            },
+            {
+              "position": {
+                "y": 230,
+                "x": 668
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:29.294Z",
+              "tabId": 2046891520
+            },
+            {
+              "position": {
+                "y": 221,
+                "x": 665
+              },
+              "type": "click",
+              "count": 2,
+              "timestamp": "2025-07-08T15:04:29.746Z",
+              "tabId": 2046891520
+            },
+            {
+              "position": {
+                "y": 220,
+                "x": 661
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:30.400Z",
+              "tabId": 2046891520
+            },
+            {
+              "position": {
+                "y": 35,
+                "x": 493
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:31.362Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 233,
+                "x": 577
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:31.881Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 356,
+                "x": 600
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:32.397Z",
+              "tabId": 2046891577
+            },
+            {
+              "type": "scroll",
+              "timestamp": "2025-07-08T15:04:32.631Z",
+              "maxDepth": 0.0056179775280898875,
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 358,
+                "x": 600
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:33.413Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 659,
+                "x": 418
+              },
+              "type": "click",
+              "count": 1,
+              "timestamp": "2025-07-08T15:04:33.766Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 683,
+                "x": 358
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:33.927Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 660,
+                "x": 50
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:34.927Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 652,
+                "x": 43
+              },
+              "type": "click",
+              "count": 2,
+              "timestamp": "2025-07-08T15:04:35.912Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 652,
+                "x": 43
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:36.357Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 602,
+                "x": 337
+              },
+              "type": "click",
+              "count": 3,
+              "timestamp": "2025-07-08T15:04:36.858Z",
+              "tabId": 2046891577
+            },
+            {
+              "position": {
+                "y": 601,
+                "x": 337
+              },
+              "type": "mousemove",
+              "timestamp": "2025-07-08T15:04:36.994Z",
+              "tabId": 2046891577
+            }
+          ],
+          "user": {
+            "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
+            "user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2",
+            "group_id": "fcdf6669-745a-44e0-88b9-5c361e78d31e",
+            "userName": "TestUser1"
+          },
+          "tabHistory": [
+            {
+              "active": false,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:37.150Z",
+              "tabId": 2046891520,
+              "url": "http://localhost:3000/#/public-display/Group%20G"
+            },
+            {
+              "active": true,
+              "title": "Collaborative Platform",
+              "timestamp": "2025-07-08T15:04:37.150Z",
+              "tabId": 2046891577,
+              "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+            },
+            {
+              "active": false,
+              "title": "AI assistant - Google Search",
+              "timestamp": "2025-07-08T15:04:37.150Z",
+              "tabId": 2046891581,
+              "url": "https://www.google.com/search?q=AI+assistant&sca_esv=06aa7bafa5db9320&sxsrf=AE3TifOn1yyrq72p67TG67fkR44_Zfbrmw:1751979807528&ei=HxdtaMiAIOTg2roPi7rzuQE&start=10&sa=N&sstk=Ac65TH7rmG3YJadfV1sbU6ZQewGDKshM3YaTZaeWQymTUQpb7xAvBru4FMHpopXROjgUz2JLzGlM2vXkCw4EMU1YdrlOieVlaaNipg&ved=2ahUKEwiIjNOwqa2OAxVksFYBHQvdPBcQ8NMDegQICBAW&biw=1085&bih=835&dpr=2"
+            },
+            {
+              "active": false,
+              "title": "隆重推出 Gemini，您的全新个人 AI 助手 --- Introducing Gemini, your new personal AI assistant",
+              "timestamp": "2025-07-08T15:04:37.150Z",
+              "tabId": 2046891585,
+              "url": "https://gemini.google/assistant/?hl=en"
+            },
+            {
+              "active": false,
+              "title": "扩展程序",
+              "timestamp": "2025-07-08T15:04:37.150Z",
+              "tabId": 2046891592,
+              "url": "chrome://extensions/"
+            }
+          ],
+          "activeTab": {
+            "active": true,
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-08T15:04:31.162Z",
+            "tabId": 2046891577,
+            "url": "http://localhost:3000/#/personal-dashboard/TestUser1"
+          }
+        },
+        "windowStart": "2025-07-08T15:04:30.000Z"
+      }
+    ],
+    "unique_note_contents": []
+  },
+  "speech_counts": {},
+  "speech_durations": {},
+  "current_user": {
+    "user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2",
+    "name": "TestUser2",
+    "device_token": "170976fa8bbd2444e5d"
+  },
+  "anomaly_history": null
+}
