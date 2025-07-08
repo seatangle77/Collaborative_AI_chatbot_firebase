@@ -101,7 +101,7 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
                     content_similarity_score = score.get("content_similarity_score")
                     should_push = False
                     if state_score is not None and content_similarity_score is not None:
-                        should_push = (state_score < 25 or state_score > 75) or (content_similarity_score < 50)
+                        should_push = (state_score < 25 or state_score > 75) and (content_similarity_score < 50)
                         print(f"📊 [异常分析] 状态评分：{state_score}，内容相似度评分：{content_similarity_score}，推送阈值：状态评分<25或>75，内容相似度评分<50，是否推送：{should_push}")
                     else:
                         should_push = True  # 如果没有评分信息，默认推送
