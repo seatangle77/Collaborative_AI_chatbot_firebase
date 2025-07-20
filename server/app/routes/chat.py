@@ -2,7 +2,8 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional
-from app.database import db as firestore_db
+from server.app.database import db as firestore_db
+from server.app.websocket_routes import push_agenda_stage
 
 router = APIRouter()
 
@@ -189,7 +190,6 @@ async def reset_agenda_status(group_id: str, stage: int = Query(...)):
             new_status = "completed"
         doc_ref.update({"status": new_status})
 
-        from app.websocket_routes import push_agenda_stage
         await push_agenda_stage(group_id, stage)
         return {"message": f"唯一议程状态已更新为 {new_status}"}
     except Exception as e:

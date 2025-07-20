@@ -2,10 +2,10 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 import json
-from app.preprocessor_anomaly import (
-    build_cognitive_anomaly_input,
-    build_behavior_anomaly_input,
-    build_attention_anomaly_input
+from server.app.anomaly_preprocessor import (
+  build_cognitive_anomaly_input,
+  build_behavior_anomaly_input,
+  build_attention_anomaly_input, build_anomaly_history_input
 )
 import concurrent.futures
 import time
@@ -31,7 +31,6 @@ def analyze_all_anomalies(chunk_data: dict) -> dict:
     anomaly_history_input = None
     anomaly_history_json = None
     try:
-        from app.preprocessor_anomaly import build_anomaly_history_input
         anomaly_history_input = build_anomaly_history_input(chunk_data)
         anomaly_history_json = json.dumps(anomaly_history_input, ensure_ascii=False, indent=2)
     except Exception as e:

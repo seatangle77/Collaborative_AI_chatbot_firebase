@@ -1,6 +1,6 @@
 import asyncio
 from fastapi import APIRouter, HTTPException
-from app.database import db
+from server.app.database import db
 from pydantic import BaseModel
 from typing import Optional
 

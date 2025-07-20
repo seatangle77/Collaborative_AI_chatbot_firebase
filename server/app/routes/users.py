@@ -2,10 +2,10 @@ from fastapi import Body
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-from app.database import db
+from server.app.database import db
 from firebase_admin import messaging
 from dotenv import load_dotenv
-from app.jpush_api import send_jpush_notification
+from server.app.jpush_api import send_jpush_notification
 
 load_dotenv()
 

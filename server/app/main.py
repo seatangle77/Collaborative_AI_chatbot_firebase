@@ -1,8 +1,10 @@
+import uvicorn
 from fastapi import FastAPI, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import router  # 导入所有的 API 路由
-from app.websocket_routes import websocket_router
-from app.anomaly_polling_scheduler import router as anomaly_polling_router
+
+from server.app.logger.logger_loader import logger
+from server.app.routes import router  # 导入所有的 API 路由
+from server.app.websocket_routes import websocket_router
 
 # ✅ 创建 FastAPI 实例
 app = FastAPI()
@@ -61,7 +63,7 @@ async def options_handler(request: Request):
 # ✅ 注册 API 路由
 app.include_router(router)
 app.include_router(websocket_router)
-app.include_router(anomaly_polling_router)
+
 
 
 # ✅ 根路径测试 API
@@ -70,8 +72,7 @@ async def root():
     return {"message": "Welcome to Collaborative AI Chatbot API with WebSocket!"}
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("server.app.main:app", host="0.0.0.0", port=8000, reload=True)
 
 # Note: To adapt the WebSocket connection protocol for different environments,
 # update the frontend WebSocket initialization logic as follows:
