@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: ""
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+    startCommand: PYTHONPATH=$(pwd) uvicorn server.app.main:app --host 0.0.0.0 --port 10000
     envVars:
       - key: ENV
         value: production
