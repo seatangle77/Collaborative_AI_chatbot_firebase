@@ -2,7 +2,12 @@
   <div class="note-editor">
     <div class="note-title-wrapper">
       <div class="note-title">协作笔记</div>
-      <el-button style="display: none" size="small" class="start-write-btn" type="primary" @click="$emit('start-edit')"
+      <el-button
+        style="display: none"
+        size="small"
+        class="start-write-btn"
+        type="primary"
+        @click="$emit('start-edit')"
         >开始写入数据</el-button
       >
     </div>
@@ -14,22 +19,36 @@
       >
         <span
           class="collaborator-avatar"
-          :style="{ backgroundColor: user.color }"
+          :style="{ backgroundColor: user.color || '#1a365d' }"
           :title="user.name"
         >
-          {{ user.name[0] }}
+          {{ user.name ? user.name[0] : "?" }}
         </span>
       </span>
     </div>
+
     <div ref="editorContainer" class="quill-editor"></div>
+    <div class="editor-footer">
+      <div class="word-count">字数: {{ wordCount }}</div>
+      <div class="save-status" :class="{ saving: isSaving, saved: isSaved }">
+        {{ saveStatusText }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
+import QuillCursors from "quill-cursors";
+import ColorClass from "quill/formats/color";
+Quill.register("modules/cursors", QuillCursors);
+Quill.register(ColorClass, true);
 import * as Y from "yjs";
 import { QuillBinding } from "y-quill";
 import Quill from "quill";
 import { WebsocketProvider } from "y-websocket";
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
+
 import {
   ref,
   onMounted,
@@ -50,8 +69,8 @@ import {
 import { collection as firestoreCollection } from "firebase/firestore"; // 避免命名冲突
 import { firestore } from "@/firebase"; // 请确保你的 firebase 配置文件路径正确
 import { debounce } from "lodash-es";
-import { connectionStatus } from '@/services/websocketManager';
-import { watch as vueWatch } from 'vue';
+import { connectionStatus } from "@/services/websocketManager";
+import { watch as vueWatch } from "vue";
 
 import Delta from "quill-delta";
 
@@ -71,22 +90,24 @@ const props = defineProps({
   },
   editorStarted: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 import { computed } from "vue";
 
 function getRandomColor() {
   const colors = [
-    "#f94144",
-    "#f3722c",
-    "#f8961e",
-    "#f9844a",
-    "#f9c74f",
-    "#90be6d",
-    "#43aa8b",
-    "#577590",
+    "#1a365d", // 深蓝色
+    "#2d3748", // 深灰色
+    "#742a2a", // 深红色
+    "#22543d", // 深绿色
+    "#553c9a", // 深紫色
+    "#744210", // 深棕色
+    "#2c7a7b", // 深青色
+    "#4a5568", // 深灰蓝色
+    "#2d3748", // 深灰
+    "#1a202c", // 深黑
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
@@ -172,6 +193,11 @@ const currentMember = computed(() =>
 );
 
 const editorContainer = ref(null);
+const wordCount = ref(0);
+const isSaving = ref(false);
+const isSaved = ref(false);
+const saveStatusText = ref("已保存");
+
 const ydoc = new Y.Doc();
 const provider = new WebsocketProvider(
   "wss://yjs-server-lime.onrender.com",
@@ -207,14 +233,49 @@ let hasInsertedInitialContent = false;
 
 let quill;
 let deltaFlushInterval;
+let isApplyingColor = false;
 
 onMounted(async () => {
   await nextTick(); // 确保 DOM 完全挂载
   console.log("📦 Quill container loaded:", editorContainer.value);
 
   if (editorContainer.value) {
+    // 定义工具栏配置
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      [{ font: [] }],
+      [{ size: ["small", false, "large", "huge"] }],
+      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ direction: "rtl" }],
+      [{ align: [] }],
+      ["blockquote", "code-block"],
+      ["link", "image", "video"],
+      ["undo", "redo"],
+      ["clean"],
+    ];
+
     quill = new Quill(editorContainer.value, {
       theme: "snow",
+      modules: {
+        toolbar: toolbarOptions,
+        history: {
+          delay: 2000,
+          maxStack: 500,
+          userOnly: true,
+        },
+        cursors: true,
+      },
+      placeholder: "开始编写你的协作笔记...",
+      readOnly: false,
+    });
+    // 监听 selection-change 事件，更新本地 awareness 的 cursor 字段
+    quill.on("selection-change", (range, oldRange, source) => {
+      if (source !== "user") return;
+      provider.awareness.setLocalStateField("cursor", range);
     });
   } else {
     console.warn("❗ editorContainer is null, cannot initialize Quill");
@@ -222,6 +283,30 @@ onMounted(async () => {
   }
 
   console.log("✅ Quill initialized", quill);
+
+  // 添加自定义工具栏按钮
+  const toolbar = quill.getModule("toolbar");
+
+  // 添加撤销/重做按钮
+  toolbar.addHandler("undo", function () {
+    quill.history.undo();
+  });
+
+  toolbar.addHandler("redo", function () {
+    quill.history.redo();
+  });
+
+  // 添加工具栏提示
+  const toolbarButtons =
+    toolbar.container.querySelectorAll("button, .ql-picker");
+  toolbarButtons.forEach((button) => {
+    button.addEventListener("mouseenter", function () {
+      const title = this.getAttribute("data-value") || this.title;
+      if (title) {
+        this.setAttribute("title", title);
+      }
+    });
+  });
 
   if (editorContainer.value && editorContainer.value.firstChild) {
     new QuillBinding(ytext, quill, provider.awareness);
@@ -236,7 +321,37 @@ onMounted(async () => {
 
   quill.on("text-change", (delta, oldDelta, source) => {
     if (!props.editorStarted || source !== "user") return;
+    if (isApplyingColor) return;
+
+    const userColor = provider.awareness.getLocalState()?.user?.color;
+    const opsWithColor = delta.ops.map((op) => {
+      if (op.insert && typeof op.insert === "string") {
+        return {
+          insert: op.insert,
+          attributes: {
+            ...(op.attributes || {}),
+            color: userColor,
+          },
+        };
+      }
+      return op;
+    });
+
+    if (opsWithColor.some((op) => op.attributes?.color)) {
+      isApplyingColor = true;
+      quill.updateContents({ ops: opsWithColor }, "user");
+      isApplyingColor = false;
+    }
+
     pendingDeltas.push(delta);
+
+    // 更新字数统计
+    const text = quill.getText();
+    wordCount.value = text.length;
+    // 更新保存状态
+    isSaving.value = true;
+    isSaved.value = false;
+    saveStatusText.value = "保存中...";
   });
 
   function combineDeltas(deltas) {
@@ -279,10 +394,22 @@ onMounted(async () => {
       })
         .then(() => {
           console.log("📝 [Auto] Edit log saved (fallback or normal)");
+          // 更新保存状态
+          isSaving.value = false;
+          isSaved.value = true;
+          saveStatusText.value = "已保存";
+
+          // 3秒后重置状态
+          setTimeout(() => {
+            isSaved.value = false;
+          }, 3000);
         })
         .catch((error) => {
           console.error("❌ Failed to save edit log", error);
           console.log("❗ combinedDelta:", combinedDelta);
+          // 保存失败状态
+          isSaving.value = false;
+          saveStatusText.value = "保存失败";
         });
     } catch (err) {
       console.error("❌ Interval execution failed:", err);
@@ -291,6 +418,24 @@ onMounted(async () => {
 
   provider.awareness.on("change", updateCollaborators);
   updateCollaborators();
+
+  // 协作光标显示
+  const cursors = quill.getModule("cursors");
+  provider.awareness.on("change", () => {
+    cursors.clearCursors();
+    provider.awareness.getStates().forEach((state, clientId) => {
+      if (clientId === provider.awareness.clientID) return;
+      const user = state.user;
+      const cursor = state.cursor;
+      if (user && cursor) {
+        cursors.setCursor(clientId, {
+          ...cursor,
+          color: user.color,
+          name: user.name,
+        });
+      }
+    });
+  });
 
   // 不再依赖 noteRef 读取旧数据，统一使用 note_contents 表存储内容
 
@@ -331,8 +476,8 @@ onMounted(async () => {
 
   // 监听 WebSocket 连接成功，自动触发"开始写入数据"
   vueWatch(connectionStatus, (newStatus) => {
-    if (newStatus === 'connected' && !props.editorStarted) {
-      console.log('🟢 WebSocket 连接成功，自动触发写入数据');
+    if (newStatus === "connected" && !props.editorStarted) {
+      console.log("🟢 WebSocket 连接成功，自动触发写入数据");
     }
   });
 });
@@ -360,9 +505,11 @@ onBeforeUnmount(() => {
 .note-editor {
   padding: 20px;
   background-color: #fdfdfd;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 15px;
   line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
 }
 
 .note-title-wrapper {
@@ -379,8 +526,148 @@ onBeforeUnmount(() => {
 
 .quill-editor {
   height: 400px;
-  border: 1px solid #aaa;
+  border: 1px solid #e1e5e9;
   background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.quill-editor .ql-toolbar {
+  border-bottom: 1px solid #e1e5e9;
+  background-color: #f8f9fa;
+}
+
+.quill-editor .ql-container {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.quill-editor .ql-editor {
+  min-height: 350px;
+  padding: 20px;
+}
+
+.quill-editor .ql-editor p {
+  margin-bottom: 12px;
+}
+
+.quill-editor .ql-editor h1,
+.quill-editor .ql-editor h2,
+.quill-editor .ql-editor h3,
+.quill-editor .ql-editor h4,
+.quill-editor .ql-editor h5,
+.quill-editor .ql-editor h6 {
+  margin-top: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.quill-editor .ql-editor blockquote {
+  border-left: 4px solid #007bff;
+  padding-left: 16px;
+  margin: 16px 0;
+  color: #6c757d;
+}
+
+.quill-editor .ql-editor code {
+  background-color: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+
+.quill-editor .ql-editor pre {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.editor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e1e5e9;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.word-count {
+  font-weight: 500;
+}
+
+.save-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.save-status.saving {
+  color: #ffc107;
+}
+
+.save-status.saved {
+  color: #28a745;
+}
+
+.save-status.saving::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  animation: pulse 1.5s infinite;
+}
+
+.save-status.saved::before {
+  content: "✓";
+  color: #28a745;
+  font-weight: bold;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .note-editor {
+    padding: 12px;
+  }
+
+  .quill-editor {
+    height: 300px;
+  }
+
+  .quill-editor .ql-editor {
+    padding: 12px;
+    min-height: 250px;
+  }
+
+  .editor-footer {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  .quill-editor .ql-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .quill-editor .ql-toolbar .ql-formats {
+    margin-bottom: 4px;
+  }
 }
 
 .collaborators {
@@ -399,5 +686,111 @@ onBeforeUnmount(() => {
   font-size: 12px;
   font-weight: bold;
   color: white;
+}
+
+/* 用户编辑颜色样式 */
+.quill-editor .ql-editor .ql-cursor {
+  border-left: 2px solid;
+  border-right: none;
+  margin-left: -1px;
+  margin-right: -1px;
+  pointer-events: none;
+}
+
+.quill-editor .ql-editor .ql-cursor::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+  border: 1px solid #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 用户选择文本的高亮颜色 */
+.quill-editor .ql-editor .ql-selection {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 确保用户颜色在编辑器中可见 */
+.quill-editor .ql-editor [data-yjs-user] {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+/* 用户编辑颜色样式 - 深色系 */
+.quill-editor .ql-editor [data-yjs-user] {
+  position: relative;
+  border-radius: 2px;
+  padding: 2px 4px;
+  margin: 1px 0;
+}
+
+/* 深色系用户颜色 - 使用 CSS 变量 */
+.quill-editor .ql-editor [data-yjs-user-color="#1a365d"] {
+  background-color: rgba(26, 54, 93, 0.08);
+  border-left: 3px solid #1a365d;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#2d3748"] {
+  background-color: rgba(45, 55, 72, 0.08);
+  border-left: 3px solid #2d3748;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#742a2a"] {
+  background-color: rgba(116, 42, 42, 0.08);
+  border-left: 3px solid #742a2a;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#22543d"] {
+  background-color: rgba(34, 84, 61, 0.08);
+  border-left: 3px solid #22543d;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#553c9a"] {
+  background-color: rgba(85, 60, 154, 0.08);
+  border-left: 3px solid #553c9a;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#744210"] {
+  background-color: rgba(116, 66, 16, 0.08);
+  border-left: 3px solid #744210;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#2c7a7b"] {
+  background-color: rgba(44, 122, 123, 0.08);
+  border-left: 3px solid #2c7a7b;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#4a5568"] {
+  background-color: rgba(74, 85, 104, 0.08);
+  border-left: 3px solid #4a5568;
+  padding-left: 8px;
+  margin-left: -8px;
+}
+
+.quill-editor .ql-editor [data-yjs-user-color="#1a202c"] {
+  background-color: rgba(26, 32, 44, 0.08);
+  border-left: 3px solid #1a202c;
+  padding-left: 8px;
+  margin-left: -8px;
 }
 </style>

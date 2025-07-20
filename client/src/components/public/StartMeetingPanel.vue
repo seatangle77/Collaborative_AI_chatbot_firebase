@@ -4,11 +4,9 @@
     <el-button 
       type="primary" 
       @click="$emit('start-meeting')"
-      :disabled="!jitsiReady"
-      :loading="!jitsiReady"
     >
       <VideoCamera style="margin-right: 8px" />
-      {{ jitsiReady ? '开始' : '加载中...' }}
+      开始
     </el-button>
   </div>
 </template>
@@ -18,12 +16,7 @@ import { ElButton } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import { VideoCamera } from "@element-plus/icons-vue";
 
-defineProps({
-  jitsiReady: {
-    type: Boolean,
-    default: false
-  }
-});
+// 组件属性已简化，不再需要 jitsiReady
 </script>
 
 <style scoped>

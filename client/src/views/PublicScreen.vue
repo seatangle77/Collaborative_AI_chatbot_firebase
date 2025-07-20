@@ -26,7 +26,6 @@
             <StartMeetingPanel
               v-if="!showAgendaPanel"
               @start-meeting="startMeeting"
-              :jitsi-ready="jitsiReady"
             />
             <div v-if="showAgendaPanel" class="agenda-panel flex-row">
               <div
@@ -110,11 +109,7 @@
       </div>
       <div class="content-inner">
         <main class="main-content">
-          <div
-            v-if="meetingStarted"
-            id="jitsi-container"
-            class="meeting-container"
-          />
+          <!-- Jitsi 会议容器已移除 -->
         </main>
       </div>
     </div>
@@ -148,12 +143,9 @@ const sessionName = ref("");
 const selectedSessionId = ref(null);
 const selectedSessionTitle = ref("");
 const agendaList = ref([]);
-const meetingStarted = ref(false);
-const jitsiApi = ref(null);
 const showAgendaPanel = ref(false);
-const jitsiReady = ref(false);
 const contentCollapsed = ref(["info"]);
-const editorStarted = ref(false);
+
 
 const route = useRoute();
 
@@ -219,30 +211,6 @@ async function startMeeting() {
       showAgendaPanel.value = false;
     }
   }
-
-  // 插入 Jitsi 视频会议
-  if (meetingStarted.value) return;
-  meetingStarted.value = true;
-  editorStarted.value = true;
-
-  nextTick(() => {
-    if (typeof window.JitsiMeetExternalAPI !== "function") {
-      console.error("JitsiMeetExternalAPI not loaded.");
-      return;
-    }
-
-    const domain = "meet.jit.si";
-    const roomName = `GroupMeeting_${selectedGroupId.value || "default"}`;
-    const options = {
-      roomName,
-      width: "100vw",
-      height: 600,
-      parentNode: document.querySelector("#jitsi-container"),
-    };
-
-    const api = new window.JitsiMeetExternalAPI(domain, options);
-    jitsiApi.value = api;
-  });
 }
 
 async function stopAnomalyPolling() {
@@ -359,22 +327,6 @@ onMounted(async () => {
   await fetchAllAiBots();
   const defaultId = groups.value[0].id;
   await selectGroup(defaultId);
-  // 动态加载 Jitsi external_api.js
-  if (!window.JitsiMeetExternalAPI) {
-    const script = document.createElement("script");
-    script.src = "https://meet.jit.si/external_api.js";
-    script.async = true;
-    script.onload = () => {
-      console.log("✅ Jitsi external_api.js 加载完成");
-      jitsiReady.value = true;
-    };
-    script.onerror = () => {
-      console.error("❌ Jitsi external_api.js 加载失败");
-    };
-    document.body.appendChild(script);
-  } else {
-    jitsiReady.value = true;
-  }
 });
 </script>
 
@@ -470,19 +422,7 @@ onMounted(async () => {
   }
 }
 
-.meeting-container {
-  width: 100vw;
-  /* 高度自适应：减去顶部内容和 agenda 区域高度 */
-  flex: 1 1 auto;
-  max-height: calc(100vh - 180px);
-  height: 80vh;
-  margin: 0;
-  border-radius: 0;
-  overflow: hidden;
-  background: #000;
-  display: block;
-  transition: height 0.3s;
-}
+
 
 .agenda-panel {
   width: 100%;

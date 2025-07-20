@@ -11,3 +11,4 @@ jinja2
 # databases==0.6.1
 jpush
 apscheduler
+loguru
