@@ -2,7 +2,7 @@ from typing import Dict, Any, List
 
 from fastapi import BackgroundTasks
 
-from server.app.anomaly_analyze import analyze_anomaly_status
+from server.app.anomaly_analyze import analyze_anomaly_status, Member, CurrentUser
 from server.app.anomaly_polling_scheduler import polling_start_anomaly, polling_stop_anomaly, \
     polling_set_anomaly_interval, feedback_setting, polling_get_status, polling_trigger_now
 from server.app.database import db
@@ -26,15 +26,6 @@ from pydantic import BaseModel
 from server.app.jpush_api import jpush_personal_share_message
 
 router = APIRouter()
-
-class Member(BaseModel):
-    id: str
-    name: str
-
-class CurrentUser(BaseModel):
-    user_id: str
-    name: str
-    device_token: str
 
 class IntervalSummaryRequest(BaseModel):
     group_id: str

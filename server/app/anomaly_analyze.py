@@ -8,6 +8,7 @@ from typing import List
 
 import google.generativeai as genai
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
 from server.app.anomaly_preprocessor import (
     build_cognitive_anomaly_input,
@@ -18,8 +19,16 @@ from server.app.anomaly_preprocessor import extract_chunk_data_anomaly
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
-from server.app.routes.analysis import Member, CurrentUser
 from server.app.websocket_routes import push_anomaly_analysis_result
+
+class Member(BaseModel):
+    id: str
+    name: str
+
+class CurrentUser(BaseModel):
+    user_id: str
+    name: str
+    device_token: str
 
 # 优先加载 .env.local（如果有），再加载 .env
 load_dotenv('.env.local')
