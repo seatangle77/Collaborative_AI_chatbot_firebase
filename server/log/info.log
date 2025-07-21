@@ -1336,3 +1336,7 @@ RuntimeError: FIREBASE_KEY_JSON not set in .env.local for development mode
 [2025-07-21 13:53:26.538][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
 [2025-07-21 13:53:28.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:28.576Z"}
 [2025-07-21 13:53:28.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:53:34.524][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:34.523Z"}
+[2025-07-21 13:53:34.529][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:53:36.577][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:36.576Z"}
+[2025-07-21 13:53:36.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
