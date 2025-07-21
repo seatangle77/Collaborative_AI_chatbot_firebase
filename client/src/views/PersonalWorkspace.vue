@@ -17,7 +17,10 @@
           <el-collapse v-model="contentCollapsed">
             <el-collapse-item name="info" class="center-collapse-title">
               <template #title>
-                <div class="agenda-header-row" style="position: relative; display: flex; align-items: center;">
+                <div
+                  class="agenda-header-row"
+                  style="position: relative; display: flex; align-items: center"
+                >
                   <div class="custom-collapse-title">
                     {{ session?.session_title || "议程内容" }}
                   </div>
@@ -34,7 +37,9 @@
                     </div>
                     <div
                       class="agenda-desc"
-                      v-html="formatAgendaDesc(agendaList[0].agenda_description)"
+                      v-html="
+                        formatAgendaDesc(agendaList[0].agenda_description)
+                      "
                     ></div>
                   </div>
                   <div class="agenda-right">
@@ -56,7 +61,9 @@
                           <ul>
                             <li v-for="(ex, idx) in req.example" :key="idx">
                               <div class="example-point">{{ ex.point }}</div>
-                              <div class="example-support">{{ ex.support }}</div>
+                              <div class="example-support">
+                                {{ ex.support }}
+                              </div>
                             </li>
                           </ul>
                         </div>
@@ -69,19 +76,19 @@
                 <p>欢迎来到个人工作区</p>
               </div>
             </el-collapse-item>
-                      </el-collapse>
-            
-            <div v-if="anomalyData" class="anomaly-feedback-section">
+          </el-collapse>
+
+          <div v-if="anomalyData" class="anomaly-feedback-section">
             <AbnormalFeedback :anomaly-data="anomalyData" :members="members" />
           </div>
         </div>
-        
+
         <div class="right-panel">
           <div class="members-status-card">
             <div class="members-status-list">
-              <div 
-                v-for="member in memberStatusList" 
-                :key="member.user_id" 
+              <div
+                v-for="member in memberStatusList"
+                :key="member.user_id"
                 class="member-status-item"
               >
                 <div class="member-avatar">
@@ -90,14 +97,19 @@
                     :style="{ backgroundColor: getAvatarColor(member) }"
                     :title="member.name"
                   >
-                    {{ member.name?.charAt(0) || 'U' }}
+                    {{ member.name?.charAt(0) || "U" }}
                   </span>
                 </div>
                 <div class="member-info">
                   <div class="member-name">{{ member.name }}</div>
                   <div class="member-status">
-                    <div v-if="member.status === 'abnormal'" class="abnormal-detail">
-                      异常：{{ member.detail_type }}（{{ member.detail_status }}）
+                    <div
+                      v-if="member.status === 'abnormal'"
+                      class="abnormal-detail"
+                    >
+                      异常：{{ member.detail_type }}（{{
+                        member.detail_status
+                      }}）
                     </div>
                     <el-tag v-else type="success" size="small">正常</el-tag>
                   </div>
@@ -113,29 +125,90 @@
         class="meeting-container"
       />
       <div class="section-row">
-        <div class="note-history-layout">
-          <section class="note-section">
-            <div class="multi-note-editors">
-              <div 
-                v-for="member in members" 
-                :key="member.user_id" 
-                class="editor-container"
+        <div class="note-section">
+          <div class="note-tabs-layout">
+            <!-- 用户笔记 Tab 区域 -->
+            <div class="user-notes-tab-container">
+              <el-tabs
+                v-model="activeUserTab"
+                type="card"
+                class="user-notes-tabs"
+                tab-position="top"
               >
+                <el-tab-pane
+                  v-for="member in members"
+                  :key="member.user_id"
+                  :label="member.name"
+                  :name="member.user_id"
+                >
+                  <div class="tab-editor-container">
+                    <div class="editor-header">
+                      <span class="editor-title"
+                        >{{ member.name }} 的工作区</span
+                      >
+                      <span
+                        v-if="userId === member.user_id"
+                        class="current-user-badge"
+                        >（你）</span
+                      >
+                      <span v-else class="readonly-badge">只读</span>
+                    </div>
+                    <NoteEditor
+                      :note-id="`note-${group?.id}-${member.user_id}`"
+                      :user-id="userId"
+                      :members="members"
+                      :editor-started="
+                        editorStarted && userId === member.user_id
+                      "
+                      :read-only="userId !== member.user_id"
+                      :show-title="false"
+                    />
+                  </div>
+                </el-tab-pane>
+              </el-tabs>
+            </div>
+
+            <!-- 汇总笔记卡片 -->
+            <div
+              class="summary-note-container"
+              :class="{ expanded: isSummaryExpanded }"
+            >
+              <div class="editor-container">
                 <div class="editor-header">
-                  <span class="editor-title">{{ member.name }} 的工作区</span>
-                  <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
-                  <span v-else class="readonly-badge">只读</span>
+                  <span class="editor-title"
+                    >汇总协作笔记（所有成员可编辑）</span
+                  >
+                  <span class="current-user-badge">可编辑</span>
+                  <el-button
+                    type="primary"
+                    text
+                    size="default"
+                    class="expand-toggle-btn"
+                    @click="toggleSummaryExpand"
+                  >
+                    <el-icon size="18">
+                      <ArrowLeft v-if="!isSummaryExpanded" />
+                      <ArrowRight v-else />
+                    </el-icon>
+                  </el-button>
                 </div>
                 <NoteEditor
-                  :note-id="`note-${group?.id}-${member.user_id}`"
+                  :note-id="`summary-note-${group?.id}`"
                   :user-id="userId"
                   :members="members"
-                  :editor-started="editorStarted && userId === member.user_id"
-                  :read-only="userId !== member.user_id"
+                  :editor-started="editorStarted"
+                  :read-only="false"
+                  :show-title="false"
                 />
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </div>
+
+      <!-- 历史异常反馈面板独立一行 -->
+      <div class="section-row">
+        <div class="history-section">
           <AnomalyHistoryPanel
             :user-id="userId"
             :group-id="group?.id"
@@ -152,7 +225,11 @@
         :close-on-click-modal="false"
         :destroy-on-close="true"
       >
-        <AbnormalFeedback v-if="drawerData" :anomaly-data="drawerData" :members="members" />
+        <AbnormalFeedback
+          v-if="drawerData"
+          :anomaly-data="drawerData"
+          :members="members"
+        />
       </el-drawer>
       <div class="analysis-panel">
         <!-- <el-date-picker
@@ -185,10 +262,19 @@ import {
 import AbnormalFeedback from "@/components/personal/AbnormalFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
-import AnomalyHistoryPanel from '@/components/personal/AnomalyHistoryPanel.vue';
+import AnomalyHistoryPanel from "@/components/personal/AnomalyHistoryPanel.vue";
 import api from "../services/apiService";
-import { connectGroupWebSocket, onGroupMessage, closeGroupWebSocket } from '@/services/groupWebSocket';
-import { connectUserWebSocket, onUserMessage, closeUserWebSocket, userWsStatus } from '@/services/userWebSocket';
+import {
+  connectGroupWebSocket,
+  onGroupMessage,
+  closeGroupWebSocket,
+} from "@/services/groupWebSocket";
+import {
+  connectUserWebSocket,
+  onUserMessage,
+  closeUserWebSocket,
+  userWsStatus,
+} from "@/services/userWebSocket";
 import {
   ElButton,
   ElDatePicker,
@@ -198,15 +284,21 @@ import {
   ElAvatar,
   ElTag,
   ElMessage,
+  ElTabs,
+  ElTabPane,
 } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
 import "element-plus/es/components/collapse/style/css";
 import "element-plus/es/components/avatar/style/css";
 import "element-plus/es/components/tag/style/css";
-import { VideoCamera, Warning } from "@element-plus/icons-vue";
+import {
+  VideoCamera,
+  Warning,
+  ArrowRight,
+  ArrowLeft,
+} from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
-
 
 const components = {
   ElButton,
@@ -217,6 +309,10 @@ const components = {
   ElDrawer,
   ElAvatar,
   ElTag,
+  ElTabs,
+  ElTabPane,
+  ArrowRight,
+  ArrowLeft,
 };
 const anomalyData = ref(null);
 const showNoteEditor = ref(true);
@@ -237,21 +333,28 @@ const abnormalMap = ref({}); // { user_id: { detail_type, detail_status, timer }
 
 // 颜色分配与协作笔记一致
 const avatarColors = [
-  "#f94144", "#f3722c", "#f8961e", "#f9844a",
-  "#f9c74f", "#90be6d", "#43aa8b", "#577590"
+  "#f94144",
+  "#f3722c",
+  "#f8961e",
+  "#f9844a",
+  "#f9c74f",
+  "#90be6d",
+  "#43aa8b",
+  "#577590",
 ];
 function getAvatarColor(user) {
   if (user.color) return user.color;
   // hash name or id
   const str = user.user_id || user.id || user.name || "";
   let hash = 0;
-  for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  for (let i = 0; i < str.length; i++)
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
   return avatarColors[Math.abs(hash) % avatarColors.length];
 }
 
 // 过滤出当前用户外的其他组员
 const otherMembers = computed(() => {
-  return members.value.filter(member => member.user_id !== userId.value);
+  return members.value.filter((member) => member.user_id !== userId.value);
 });
 const meetingStarted = ref(false);
 const jitsiApi = ref(null);
@@ -263,7 +366,7 @@ const contentCollapsed = ref(["info"]);
 const route = useRoute();
 const drawerVisible = ref(false);
 const drawerData = ref(null);
-const drawerSource = ref('history'); // 'history' or 'realtime'
+const drawerSource = ref("history"); // 'history' or 'realtime'
 const historyDrawerVisible = ref(false);
 const anomalyHistory = ref([]);
 const historyDetail = ref(null);
@@ -274,6 +377,8 @@ const editorStarted = ref(false);
 const historyPage = ref(1);
 const historyPageSize = ref(10);
 const historyTotal = ref(0);
+const activeUserTab = ref("");
+const isSummaryExpanded = ref(false);
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
@@ -288,25 +393,29 @@ onMounted(async () => {
   console.log("路由参数 name:", route.params.name);
   document.addEventListener("visibilitychange", handleVisibilityChange);
   users.value = await api.getUsers();
-  
+
   // 连接个人ws，只有 userId 有值时才连接
-  watch(userId, (newUserId) => {
-    if (newUserId) {
-      connectUserWebSocket(newUserId);
-    }
-  }, { immediate: true });
+  watch(
+    userId,
+    (newUserId) => {
+      if (newUserId) {
+        connectUserWebSocket(newUserId);
+      }
+    },
+    { immediate: true }
+  );
   // 监听个人ws状态
   watch(userWsStatus, (status) => {
-    console.log('[userWs] 连接状态:', status);
+    console.log("[userWs] 连接状态:", status);
   });
   // 监听个人ws消息
   onUserMessage("share", (payload) => {
     if (!payload || payload.from_user === userId.value) return;
-    
+
     // 获取发送者姓名
-    const fromUser = members.value.find(m => m.user_id === payload.from_user);
+    const fromUser = members.value.find((m) => m.user_id === payload.from_user);
     const fromUserName = fromUser?.name || payload.from_user;
-    
+
     // 设置异常状态（用于组员状态面板）
     const uid = payload.from_user;
     if (abnormalMap.value[uid] && abnormalMap.value[uid].timer) {
@@ -320,10 +429,10 @@ onMounted(async () => {
       detail_type: payload.detail_type,
       detail_status: payload.detail_status,
       receivedAt: Date.now(),
-      timer
+      timer,
     };
     abnormalMap.value = { ...abnormalMap.value };
-    
+
     // 显示通知
     ElMessage.info(`${fromUserName} 分享了异常信息：${payload.detail_type}`);
   });
@@ -341,25 +450,29 @@ onMounted(async () => {
     editorStarted.value = true;
     showAgendaPanel.value = true;
     if (session.value?.id) {
-      api.getAgendas(session.value.id).then(agendas => {
+      api.getAgendas(session.value.id).then((agendas) => {
         agendaList.value = agendas;
       });
     }
   });
 
   // 连接群组ws
-  watch(group, (newGroup) => {
-    if (newGroup && newGroup.id) {
-      connectGroupWebSocket(newGroup.id);
-    }
-  }, { immediate: true });
+  watch(
+    group,
+    (newGroup) => {
+      if (newGroup && newGroup.id) {
+        connectGroupWebSocket(newGroup.id);
+      }
+    },
+    { immediate: true }
+  );
   // 监听群组ws消息
   onGroupMessage("agenda_stage_update", (data) => {
     editorStarted.value = true;
     const stage = data.stage;
     currentStage.value = stage;
     if (session.value?.id) {
-      api.getAgendas(session.value.id).then(agendas => {
+      api.getAgendas(session.value.id).then((agendas) => {
         if (agendas && agendas.length === 1) {
           agendaList.value = agendas;
           showAgendaPanel.value = stage === 1;
@@ -375,7 +488,9 @@ onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
   closeGroupWebSocket();
   closeUserWebSocket();
-  Object.values(abnormalMap.value).forEach(v => v && v.timer && clearTimeout(v.timer));
+  Object.values(abnormalMap.value).forEach(
+    (v) => v && v.timer && clearTimeout(v.timer)
+  );
 });
 
 function joinMeeting() {
@@ -441,7 +556,10 @@ watch(selectedUserId, async (newUserId) => {
     memberList.value =
       context.members?.map((m) => ({ id: m.user_id, name: m.name })) || [];
     console.log("👥 当前小组成员列表:", memberList.value.slice());
-    
+
+    // 设置默认Tab为当前用户
+    activeUserTab.value = newUserId;
+
     // 自动加载历史异常反馈数据
     loadHistoryData();
   } catch (error) {
@@ -558,7 +676,7 @@ async function handleAnomalyCheck() {
     let parsed = null;
     if (result && result.raw_response) {
       let jsonStr = result.raw_response.trim();
-      if (jsonStr.startsWith('```json')) {
+      if (jsonStr.startsWith("```json")) {
         jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
       }
       try {
@@ -575,8 +693,8 @@ async function handleAnomalyCheck() {
 }
 
 function formatAgendaDesc(desc) {
-  if (!desc) return '';
-  return desc.replace(/\n/g, '<br/>');
+  if (!desc) return "";
+  return desc.replace(/\n/g, "<br/>");
 }
 
 watch(anomalyData, (val) => {
@@ -590,13 +708,13 @@ function viewHistoryDetail(row) {
   let parsed = null;
   if (row && row.raw_response) {
     let jsonStr = row.raw_response.trim();
-    if (jsonStr.startsWith('```json')) {
-      jsonStr = jsonStr.replace(/^```json|```$/g, '').trim();
+    if (jsonStr.startsWith("```json")) {
+      jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
     }
     try {
       parsed = JSON.parse(jsonStr);
     } catch (e) {
-      console.error('❌ 解析历史异常 raw_response 失败:', e, jsonStr);
+      console.error("❌ 解析历史异常 raw_response 失败:", e, jsonStr);
     }
   }
   historyDetail.value = parsed;
@@ -604,7 +722,7 @@ function viewHistoryDetail(row) {
 }
 
 function formatDate(str) {
-  if (!str) return '';
+  if (!str) return "";
   const d = new Date(str);
   return d.toLocaleString();
 }
@@ -614,7 +732,7 @@ function saveUserToChromeStorage(userId, userName) {
     console.warn("chrome.storage 不可用");
     return;
   }
-  window.chrome.storage.local.get(['pluginData'], (result) => {
+  window.chrome.storage.local.get(["pluginData"], (result) => {
     const pluginData = result.pluginData || {};
     pluginData.user = {
       user_id: userId,
@@ -626,29 +744,32 @@ function saveUserToChromeStorage(userId, userName) {
   });
 }
 
-watch([
-  selectedUserId,
-  () => route.params.name,
-  users
-], ([newUserId, routeName, userList]) => {
-  if (!newUserId || !userList.length) return;
-  let currentUser = userList.find(u => u.id === newUserId || u.user_id === newUserId || u.uid === newUserId);
-  const userName = routeName || currentUser?.name || "";
-  saveUserToChromeStorage(newUserId, userName);
-}, { immediate: true });
+watch(
+  [selectedUserId, () => route.params.name, users],
+  ([newUserId, routeName, userList]) => {
+    if (!newUserId || !userList.length) return;
+    let currentUser = userList.find(
+      (u) =>
+        u.id === newUserId || u.user_id === newUserId || u.uid === newUserId
+    );
+    const userName = routeName || currentUser?.name || "";
+    saveUserToChromeStorage(newUserId, userName);
+  },
+  { immediate: true }
+);
 
 // 组员面板数据
 const memberStatusList = computed(() => {
   return members.value
-    .filter(member => member.user_id !== userId.value)
-    .map(member => {
+    .filter((member) => member.user_id !== userId.value)
+    .map((member) => {
       const abnormal = abnormalMap.value[member.user_id];
       return {
         ...member,
         abnormal,
-        status: abnormal ? 'abnormal' : 'normal',
+        status: abnormal ? "abnormal" : "normal",
         detail_type: abnormal?.detail_type,
-        detail_status: abnormal?.detail_status
+        detail_status: abnormal?.detail_status,
       };
     });
 });
@@ -657,7 +778,7 @@ function handleAnomalyAnalysisResult(data) {
   console.log("📨 处理异常分析结果:", data);
   // 解析异常分析结果
   let parsedData = null;
-  if (typeof data === 'string') {
+  if (typeof data === "string") {
     try {
       parsedData = JSON.parse(data);
     } catch (e) {
@@ -667,45 +788,57 @@ function handleAnomalyAnalysisResult(data) {
   } else {
     parsedData = data;
   }
-  
+
   // 确保score字段存在，用于判断是否显示
   if (!parsedData.score) {
-    parsedData.score = { "should_notify": true };
+    parsedData.score = { should_notify: true };
   }
-  
+
   // 调试：检查ID字段
   console.log("🔍 [调试] 检查ID字段:");
-  console.log("  - anomaly_analysis_results_id:", parsedData.anomaly_analysis_results_id);
+  console.log(
+    "  - anomaly_analysis_results_id:",
+    parsedData.anomaly_analysis_results_id
+  );
   console.log("  - analysis_id:", parsedData.analysis_id);
   console.log("  - id:", parsedData.id);
   console.log("  - result_id:", parsedData.result_id);
-  
+
   // 补全 group_id、user_id、anomaly_analysis_results_id
-  const anomalyId = parsedData.anomaly_analysis_results_id || parsedData.analysis_id || parsedData.id || parsedData.result_id || "";
+  const anomalyId =
+    parsedData.anomaly_analysis_results_id ||
+    parsedData.analysis_id ||
+    parsedData.id ||
+    parsedData.result_id ||
+    "";
   console.log("🔍 [调试] 最终使用的ID:", anomalyId);
-  
+
   drawerData.value = {
     ...parsedData,
     group_id: group.value?.id,
     user_id: userId.value,
-    anomaly_analysis_results_id: anomalyId
+    anomaly_analysis_results_id: anomalyId,
   };
-  drawerSource.value = 'realtime';
+  drawerSource.value = "realtime";
   drawerVisible.value = true;
 }
 
 // 2. 修改 loadHistoryData 方法，支持分页
-function loadHistoryData(page = historyPage.value, pageSize = historyPageSize.value) {
+function loadHistoryData(
+  page = historyPage.value,
+  pageSize = historyPageSize.value
+) {
   if (!group.value?.id || !userId.value) return;
   historyLoading.value = true;
-  api.getAnomalyResultsByUser(group.value.id, userId.value, page, pageSize)
-    .then(res => {
+  api
+    .getAnomalyResultsByUser(group.value.id, userId.value, page, pageSize)
+    .then((res) => {
       anomalyHistory.value = res.results || [];
       historyTotal.value = res.total || 0;
       historyPage.value = res.page || 1;
       historyPageSize.value = res.page_size || 10;
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("❌ 加载历史异常反馈失败:", err);
     })
     .finally(() => {
@@ -724,42 +857,45 @@ function onHistoryPageSizeChange(size) {
   loadHistoryData(1, size);
 }
 
+function toggleSummaryExpand() {
+  isSummaryExpanded.value = !isSummaryExpanded.value;
+}
+
 function handleViewDetail(detail) {
   // 解析历史记录的raw_response获取完整数据
   let parsedData = null;
   if (detail.raw_response) {
     let jsonStr = detail.raw_response.trim();
-    if (jsonStr.startsWith('```json')) {
-      jsonStr = jsonStr.replace(/^```json|```$/g, '').trim();
+    if (jsonStr.startsWith("```json")) {
+      jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
     }
     try {
       parsedData = JSON.parse(jsonStr);
     } catch (e) {
-      console.error('❌ 解析历史异常 raw_response 失败:', e, jsonStr);
+      console.error("❌ 解析历史异常 raw_response 失败:", e, jsonStr);
     }
   }
-  
+
   // 合并数据，确保兼容性
   drawerData.value = {
     ...parsedData, // 从raw_response解析的完整数据
     ...detail, // 数据库中的字段（会覆盖解析的重复字段）
     group_id: group.value?.id,
     user_id: userId.value,
-    anomaly_analysis_results_id: detail.id || detail.anomaly_analysis_results_id || detail.result_id || "",
+    anomaly_analysis_results_id:
+      detail.id || detail.anomaly_analysis_results_id || detail.result_id || "",
     // 确保score字段存在，用于判断是否显示
-    score: parsedData?.score || { "should_notify": true }
+    score: parsedData?.score || { should_notify: true },
   };
-  drawerSource.value = 'history';
+  drawerSource.value = "history";
   drawerVisible.value = true;
 }
 
 watch(agendaList, (newList) => {
   if (newList && newList.length > 0) {
-    contentCollapsed.value = ['info'];
+    contentCollapsed.value = ["info"];
   }
 });
-
-
 </script>
 
 <style scoped>
@@ -786,7 +922,7 @@ watch(agendaList, (newList) => {
   align-items: flex-start;
   /* margin: 0 auto;  删除居中 */
   padding: 0 20px;
-  background:#fff;
+  background: #fff;
   width: 100vw; /* 新增，铺满页面宽度 */
   box-sizing: border-box;
 }
@@ -873,22 +1009,20 @@ watch(agendaList, (newList) => {
   padding: 0;
 }
 
-.note-history-layout {
-  display: flex;
-  gap: 20px;
+.note-section {
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.note-section {
-  flex: 3;
-  min-width: 0;
+.history-section {
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .history-panel {
-  flex: 1;
-  min-width: 300px;
-  max-width: 400px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .note-title-wrapper,
@@ -1012,11 +1146,11 @@ watch(agendaList, (newList) => {
   border: none !important;
   box-shadow: none !important;
 }
-.custom-collapse-title{
-color: #555;
-font-size: 1.1rem;
-text-align: center;
-width: 75vw;
+.custom-collapse-title {
+  color: #555;
+  font-size: 1.1rem;
+  text-align: center;
+  width: 75vw;
 }
 
 .collaborator-avatar {
@@ -1053,21 +1187,136 @@ width: 75vw;
   max-width: 95%;
 }
 
+.note-tabs-layout {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  height: 600px;
+  min-height: 600px;
+  max-height: 600px;
+}
+
+.user-notes-tab-container {
+  flex: 3;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* --- Summary Note Container Styles (override and ensure no collapse/overflow) --- */
+.summary-note-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  flex: 1 1 0%;
+  min-width: 350px;
+  max-width: 400px;
+  transition: width 0.3s ease, flex-basis 0.3s ease;
+  flex-basis: auto;
+}
+.summary-note-container.expanded {
+  flex: 1 1 50%;
+  max-width: 50vw;
+  width: 50%;
+  flex-basis: 50%;
+}
+
+.expand-toggle-btn {
+  margin-left: auto;
+  padding: 8px 12px;
+  color: #606266;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.expand-toggle-btn:hover {
+  color: #409eff;
+  background-color: #f0f9ff;
+}
+
+.user-notes-tabs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-notes-tabs :deep(.el-tabs__header) {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.user-notes-tabs :deep(.el-tabs__content) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+  order: 2;
+}
+
+.user-notes-tabs :deep(.el-tab-pane) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-notes-tabs :deep(.el-tabs__nav-wrap) {
+  order: 1;
+}
+
+.user-notes-tabs :deep(.el-tabs__content) {
+  order: 2;
+}
+
+.tab-editor-container {
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .multi-note-editors {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
+/* --- Editor Container Styles for Summary (override and ensure no collapse/overflow) --- */
 .editor-container {
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  min-width: 300px;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  min-width: 320px;
   border: 1px solid #e4e7ed;
   border-radius: 8px;
-  overflow: hidden;
   background-color: #f9f9f9;
   margin-bottom: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.editor-container :deep(.note-editor) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.editor-container :deep(.quill-editor) {
+  flex: 1;
+  min-height: 200px;
+  overflow-y: auto;
 }
 
 .editor-header {
@@ -1080,6 +1329,13 @@ width: 75vw;
   font-size: 0.95rem;
   font-weight: 600;
   color: #303133;
+}
+
+.editor-header .editor-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .editor-title {
@@ -1107,5 +1363,233 @@ width: 75vw;
   font-size: 0.85rem;
   font-weight: 500;
   margin-left: 10px;
+}
+
+.editor-container,
+.tab-editor-container,
+.summary-note-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* 防止flex塌陷 */
+}
+
+.note-tabs-layout {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  height: 600px;
+  min-height: 600px;
+  max-height: 600px;
+}
+
+.user-notes-tab-container {
+  flex: 3;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.summary-note-container {
+  flex: 1 1 0%;
+  min-width: 350px;
+  max-width: 400px;
+  transition: width 0.3s ease, flex-basis 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  flex-basis: auto;
+}
+
+.summary-note-container.expanded {
+  flex: 1 1 50%;
+  max-width: 50vw;
+  width: 50%;
+  flex-basis: 50%;
+}
+
+.expand-toggle-btn {
+  margin-left: auto;
+  padding: 8px 12px;
+  color: #606266;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.expand-toggle-btn:hover {
+  color: #409eff;
+  background-color: #f0f9ff;
+}
+
+.user-notes-tabs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-notes-tabs :deep(.el-tabs__header) {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.user-notes-tabs :deep(.el-tabs__content) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+  order: 2;
+}
+
+.user-notes-tabs :deep(.el-tab-pane) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-notes-tabs :deep(.el-tabs__nav-wrap) {
+  order: 1;
+}
+
+.user-notes-tabs :deep(.el-tabs__content) {
+  order: 2;
+}
+
+.tab-editor-container {
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.multi-note-editors {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.editor-container {
+  flex: 1 1 0%;
+  min-width: 320px;
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.editor-container :deep(.note-editor) {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container :deep(.quill-editor) {
+  flex: 1;
+  min-height: 400px;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #f0f2f5;
+  border-bottom: 1px solid #e4e7ed;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #303133;
+}
+
+.editor-header .editor-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editor-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current-user-badge {
+  background-color: #409eff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.readonly-badge {
+  background-color: #e6a23c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.editor-container,
+.tab-editor-container,
+.summary-note-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* 防止flex塌陷 */
+  margin-bottom: 0;
+}
+
+.note-editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0; /* 防止父容器高度塌陷 */
+}
+
+.quill-editor {
+  flex: 1 1 0%;
+  min-height: 200px;
+  /* 保持原有样式 */
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-footer {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: #6c757d;
+  background: #f8f9fa;
+  border-top: 1px solid #e1e5e9;
+}
+
+/* Ensure Quill editor's .ql-container expands properly in summary note section */
+.editor-container :deep(.ql-container) {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+/* Slightly taller quill editor inside the summary note container */
+.summary-note-container :deep(.quill-editor) {
+  min-height: 210px;
 }
 </style>

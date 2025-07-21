@@ -301,3 +301,1032 @@ Traceback (most recent call last):
     raise RuntimeError("FIREBASE_KEY_JSON not set in .env.local for development mode")
 RuntimeError: FIREBASE_KEY_JSON not set in .env.local for development mode
 
+[2025-07-21 13:17:52.012][INFO][MainThread][server.app.logger.logger_loader:__init__:93] - Log files /Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/server/log/debug.log and /Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/server/log/info.log created.
+[2025-07-21 13:17:52.454][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Will watch for changes in these directories: ['/Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/server']
+
+[2025-07-21 13:17:52.454][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Uvicorn running on [1mhttp://0.0.0.0:8000[0m (Press CTRL+C to quit)
+
+[2025-07-21 13:17:52.455][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Started reloader process [[36m[1m7292[0m] using [36m[1mWatchFiles[0m
+
+[2025-07-21 13:17:52.654][INFO][MainThread][server.app.logger.logger_loader:__init__:93] - Log files /Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/server/log/debug.log and /Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/server/log/info.log created.
+[2025-07-21 13:17:52.960][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Started server process [[36m7294[0m]
+
+[2025-07-21 13:17:52.960][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Waiting for application startup.
+
+[2025-07-21 13:17:52.961][INFO][MainThread][server.app.websocket_routes:heartbeat_checker:130] - Start websocket server (heartbeat_checker). TID=40866805.
+[2025-07-21 13:17:52.961][INFO][MainThread][server.app.websocket_routes:_message_handler:71] - Start websocket server (_message_handler). TID=40866805.
+[2025-07-21 13:17:52.961][INFO][MainThread][server.app.websocket_routes:_sender:103] - Start websocket server (_sender). TID=40866805.
+[2025-07-21 13:17:52.961][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     Application startup complete.
+
+[2025-07-21 13:17:59.607][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 51913) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:17:59.608][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:17:59.608][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:17:59.608][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:18:01.309][INFO][MainThread][logging:flush:1144] - /Users/lianghuiyang/Desktop/Project Space/Collaborative_AI_chatbot_firebase-1/.venv/lib/python3.12/site-packages/google/cloud/firestore_v1/base_collection.py:303: UserWarning: Detected filter using positional arguments. Prefer using the 'filter' keyword argument instead.
+  return query.where(field_path, op_string, value)
+[32mINFO[0m:     ('127.0.0.1', 51925) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:18:01.312][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:18:05.200][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:18:09.363][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:08.461Z"}
+[2025-07-21 13:18:09.374][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:16.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:16.461Z"}
+[2025-07-21 13:18:16.468][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:24.462][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:24.462Z"}
+[2025-07-21 13:18:24.475][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:32.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:32.462Z"}
+[2025-07-21 13:18:32.472][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:40.462][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:40.461Z"}
+[2025-07-21 13:18:40.466][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:48.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:48.462Z"}
+[2025-07-21 13:18:48.465][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:18:56.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:18:56.462Z"}
+[2025-07-21 13:18:56.468][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:04.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:04.462Z"}
+[2025-07-21 13:19:04.471][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:12.463][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:12.462Z"}
+[2025-07-21 13:19:12.469][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:20.462][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:20.461Z"}
+[2025-07-21 13:19:20.468][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:20.894][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:19:20.894][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:19:20.908][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:19:22.208][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 52163) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:19:22.209][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:19:22.209][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:19:22.209][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:19:24.274][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 52185) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:19:24.275][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:19:28.616][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:19:32.294][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:31.605Z"}
+[2025-07-21 13:19:32.304][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:39.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:39.606Z"}
+[2025-07-21 13:19:39.613][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:47.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:47.605Z"}
+[2025-07-21 13:19:47.612][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:19:55.606][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:19:55.605Z"}
+[2025-07-21 13:19:55.609][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:03.606][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:03.605Z"}
+[2025-07-21 13:20:03.608][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:11.606][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:11.605Z"}
+[2025-07-21 13:20:11.610][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:19.606][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:19.606Z"}
+[2025-07-21 13:20:19.617][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:27.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:27.606Z"}
+[2025-07-21 13:20:27.616][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:35.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:35.606Z"}
+[2025-07-21 13:20:35.616][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:43.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:43.606Z"}
+[2025-07-21 13:20:43.609][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:51.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:51.606Z"}
+[2025-07-21 13:20:51.616][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:20:59.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:20:59.606Z"}
+[2025-07-21 13:20:59.617][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:07.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:07.606Z"}
+[2025-07-21 13:21:07.615][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:15.610][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:15.606Z"}
+[2025-07-21 13:21:15.619][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:23.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:23.606Z"}
+[2025-07-21 13:21:23.615][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:31.606][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:31.606Z"}
+[2025-07-21 13:21:31.615][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:39.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:39.606Z"}
+[2025-07-21 13:21:39.613][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:47.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:47.606Z"}
+[2025-07-21 13:21:47.615][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:21:55.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:21:55.606Z"}
+[2025-07-21 13:21:55.609][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:03.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:03.606Z"}
+[2025-07-21 13:22:03.615][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:11.608][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:11.607Z"}
+[2025-07-21 13:22:11.610][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:19.607][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:19.606Z"}
+[2025-07-21 13:22:19.613][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:22.476][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:22:22.477][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:22:22.480][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:22:24.851][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 52930) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:22:24.853][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:22:24.853][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:22:24.854][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:22:30.589][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 52938) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:22:30.590][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:22:30.591][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:22:34.919][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:32.858Z"}
+[2025-07-21 13:22:34.930][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:40.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:40.858Z"}
+[2025-07-21 13:22:40.870][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:48.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:48.858Z"}
+[2025-07-21 13:22:48.863][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:22:56.861][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:22:56.859Z"}
+[2025-07-21 13:22:56.872][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:04.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:04.858Z"}
+[2025-07-21 13:23:04.866][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:12.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:12.858Z"}
+[2025-07-21 13:23:12.867][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:20.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:20.859Z"}
+[2025-07-21 13:23:20.869][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:28.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:28.859Z"}
+[2025-07-21 13:23:28.871][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:36.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:36.858Z"}
+[2025-07-21 13:23:36.864][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:44.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:44.858Z"}
+[2025-07-21 13:23:44.862][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:23:52.861][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:23:52.859Z"}
+[2025-07-21 13:23:52.869][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:00.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:00.859Z"}
+[2025-07-21 13:24:00.870][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:08.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:08.858Z"}
+[2025-07-21 13:24:08.869][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:16.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:16.858Z"}
+[2025-07-21 13:24:16.864][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:24.859][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:24.859Z"}
+[2025-07-21 13:24:24.869][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:32.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:32.859Z"}
+[2025-07-21 13:24:32.868][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:40.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:40.859Z"}
+[2025-07-21 13:24:40.864][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:48.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:48.859Z"}
+[2025-07-21 13:24:48.870][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:24:56.860][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:24:56.860Z"}
+[2025-07-21 13:24:56.862][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:01.315][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:25:01.315][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:25:01.320][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:25:03.494][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53307) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:25:03.495][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:25:03.495][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:25:03.496][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:25:08.597][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53312) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:25:08.599][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:25:08.600][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:25:13.409][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:11.501Z"}
+[2025-07-21 13:25:13.418][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:19.503][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:19.502Z"}
+[2025-07-21 13:25:19.515][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:27.502][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:27.501Z"}
+[2025-07-21 13:25:27.511][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:33.525][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:25:33.525][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:25:33.526][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:25:35.301][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53589) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:25:35.302][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:25:35.302][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:25:35.303][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:25:36.279][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53596) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:25:36.279][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:25:42.873][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:25:50.370][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:43.307Z"}
+[2025-07-21 13:25:50.380][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:51.308][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:51.307Z"}
+[2025-07-21 13:25:51.312][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:25:59.308][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:25:59.307Z"}
+[2025-07-21 13:25:59.311][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:07.307][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:07.306Z"}
+[2025-07-21 13:26:07.314][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:15.308][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:15.307Z"}
+[2025-07-21 13:26:15.318][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:23.308][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:23.307Z"}
+[2025-07-21 13:26:23.321][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:31.307][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:31.307Z"}
+[2025-07-21 13:26:31.310][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:39.309][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:39.308Z"}
+[2025-07-21 13:26:39.314][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:47.309][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:47.307Z"}
+[2025-07-21 13:26:47.317][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:55.308][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:26:55.307Z"}
+[2025-07-21 13:26:55.314][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:26:56.288][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:26:56.289][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:26:56.294][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:27:00.151][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53926) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:27:00.151][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:27:00.152][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:27:00.152][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:27:02.300][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 53928) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:27:02.301][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:27:06.732][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:27:11.238][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:09.250Z"}
+[2025-07-21 13:27:11.248][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:17.252][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:17.251Z"}
+[2025-07-21 13:27:17.264][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:25.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:25.252Z"}
+[2025-07-21 13:27:25.260][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:33.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:33.252Z"}
+[2025-07-21 13:27:33.265][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:41.252][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:41.251Z"}
+[2025-07-21 13:27:41.263][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:49.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:49.252Z"}
+[2025-07-21 13:27:49.260][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:27:57.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:27:57.252Z"}
+[2025-07-21 13:27:57.261][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:05.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:05.252Z"}
+[2025-07-21 13:28:05.257][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:13.254][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:13.253Z"}
+[2025-07-21 13:28:13.258][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:21.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:21.252Z"}
+[2025-07-21 13:28:21.256][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:29.252][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:29.251Z"}
+[2025-07-21 13:28:29.261][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:37.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:37.252Z"}
+[2025-07-21 13:28:37.263][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:45.252][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:45.252Z"}
+[2025-07-21 13:28:45.259][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:28:53.252][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:28:53.251Z"}
+[2025-07-21 13:28:53.264][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:01.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:01.253Z"}
+[2025-07-21 13:29:01.256][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:09.254][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:09.253Z"}
+[2025-07-21 13:29:09.261][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:17.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:17.252Z"}
+[2025-07-21 13:29:17.258][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:25.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:25.252Z"}
+[2025-07-21 13:29:25.257][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:33.253][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:33.252Z"}
+[2025-07-21 13:29:33.262][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:41.254][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:41.253Z"}
+[2025-07-21 13:29:41.262][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:49.254][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:29:49.253Z"}
+[2025-07-21 13:29:49.257][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:29:57.077][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:29:57.079][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:29:57.080][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:29:58.920][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 54287) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:29:58.921][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:29:58.922][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:29:58.923][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:30:00.428][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 54291) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:30:00.429][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:30:04.306][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:30:09.178][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:06.930Z"}
+[2025-07-21 13:30:09.188][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:14.930][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:14.929Z"}
+[2025-07-21 13:30:14.936][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:22.930][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:22.930Z"}
+[2025-07-21 13:30:22.940][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:30.930][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:30.929Z"}
+[2025-07-21 13:30:30.938][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:38.930][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:38.929Z"}
+[2025-07-21 13:30:38.935][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:46.931][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:46.930Z"}
+[2025-07-21 13:30:46.934][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:30:54.930][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:30:54.929Z"}
+[2025-07-21 13:30:54.941][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:02.631][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:31:02.632][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:31:02.633][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:31:04.462][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 54680) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:31:04.464][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:31:04.464][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:31:04.465][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:31:08.543][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 54686) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:31:08.544][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:31:08.545][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:31:14.003][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:12.470Z"}
+[2025-07-21 13:31:14.014][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:20.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:20.469Z"}
+[2025-07-21 13:31:20.478][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:28.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:28.469Z"}
+[2025-07-21 13:31:28.472][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:36.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:36.470Z"}
+[2025-07-21 13:31:36.478][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:44.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:44.470Z"}
+[2025-07-21 13:31:44.475][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:31:52.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:31:52.470Z"}
+[2025-07-21 13:31:52.480][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:00.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:00.469Z"}
+[2025-07-21 13:32:00.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:08.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:08.469Z"}
+[2025-07-21 13:32:08.480][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:16.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:16.469Z"}
+[2025-07-21 13:32:16.474][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:24.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:24.469Z"}
+[2025-07-21 13:32:24.475][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:32.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:32.470Z"}
+[2025-07-21 13:32:32.485][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:40.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:40.469Z"}
+[2025-07-21 13:32:40.473][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:48.472][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:48.470Z"}
+[2025-07-21 13:32:48.486][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:32:56.470][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:32:56.470Z"}
+[2025-07-21 13:32:56.477][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:04.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:04.470Z"}
+[2025-07-21 13:33:04.475][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:07.334][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:33:07.335][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:33:07.339][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:33:08.489][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 55145) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:33:08.489][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:33:08.489][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:33:08.490][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:33:13.559][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 55167) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:33:13.560][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:33:13.562][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:33:16.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:16.964Z"}
+[2025-07-21 13:33:16.978][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:24.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:24.964Z"}
+[2025-07-21 13:33:24.974][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:32.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:32.964Z"}
+[2025-07-21 13:33:32.972][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:40.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:40.964Z"}
+[2025-07-21 13:33:40.967][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:48.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:48.964Z"}
+[2025-07-21 13:33:48.966][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:33:56.964][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:33:56.964Z"}
+[2025-07-21 13:33:56.972][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:05.349][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:05.348Z"}
+[2025-07-21 13:34:05.361][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:12.964][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:12.964Z"}
+[2025-07-21 13:34:12.974][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:20.964][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:20.963Z"}
+[2025-07-21 13:34:20.966][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:28.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:28.963Z"}
+[2025-07-21 13:34:28.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:36.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:36.964Z"}
+[2025-07-21 13:34:36.980][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:44.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:44.964Z"}
+[2025-07-21 13:34:44.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:34:52.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:34:52.964Z"}
+[2025-07-21 13:34:52.974][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:00.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:00.964Z"}
+[2025-07-21 13:35:00.972][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:08.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:08.964Z"}
+[2025-07-21 13:35:08.974][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:16.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:16.964Z"}
+[2025-07-21 13:35:16.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:24.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:24.965Z"}
+[2025-07-21 13:35:24.976][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:32.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:32.964Z"}
+[2025-07-21 13:35:32.976][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:40.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:40.965Z"}
+[2025-07-21 13:35:40.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:48.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:48.965Z"}
+[2025-07-21 13:35:48.969][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:35:56.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:35:56.965Z"}
+[2025-07-21 13:35:56.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:04.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:04.965Z"}
+[2025-07-21 13:36:04.975][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:12.965][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:12.964Z"}
+[2025-07-21 13:36:12.974][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:20.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:20.965Z"}
+[2025-07-21 13:36:20.971][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:28.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:28.965Z"}
+[2025-07-21 13:36:28.978][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:36.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:36.965Z"}
+[2025-07-21 13:36:36.972][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:44.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:44.965Z"}
+[2025-07-21 13:36:44.971][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:36:52.967][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:36:52.966Z"}
+[2025-07-21 13:36:52.979][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:00.967][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:00.965Z"}
+[2025-07-21 13:37:00.980][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:08.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:08.965Z"}
+[2025-07-21 13:37:08.978][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:16.967][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:16.966Z"}
+[2025-07-21 13:37:16.970][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:24.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:24.965Z"}
+[2025-07-21 13:37:24.973][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:32.967][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:32.966Z"}
+[2025-07-21 13:37:32.970][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:40.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:40.964Z"}
+[2025-07-21 13:37:40.976][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:48.966][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:48.965Z"}
+[2025-07-21 13:37:48.977][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:56.991][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:37:56.966Z"}
+[2025-07-21 13:37:57.083][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:37:57.443][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:37:57.444][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 0
+[2025-07-21 13:37:57.446][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:38:00.491][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56295) - "WebSocket /ws/user/HGa3L2y3eSf7KXYQs793vLWnQRu2" [accepted]
+
+[2025-07-21 13:38:00.492][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2连接建立，开始心跳监控
+[2025-07-21 13:38:00.492][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:38:00.494][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:38:00.495][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56296) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:38:00.542][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:38:00.543][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:38:00.543][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:38:01.605][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:38:01.605][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:38:01.606][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56305) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:38:01.606][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:38:05.865][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:38:06.488][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56333) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:38:06.489][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:38:09.763][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:38:09.763][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:08.546Z"}
+[2025-07-21 13:38:13.256][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:14.084][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56429) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:38:14.085][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:38:14.086][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:38:14.086][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:38:18.880][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 56435) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:38:18.881][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:38:18.881][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:16.546Z"}
+[2025-07-21 13:38:18.885][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:38:22.409][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:22.413][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:22.093Z"}
+[2025-07-21 13:38:22.423][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:38:24.550][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:24.545Z"}
+[2025-07-21 13:38:24.554][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:30.092][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:30.092Z"}
+[2025-07-21 13:38:30.099][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:38:32.547][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:32.546Z"}
+[2025-07-21 13:38:32.558][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:38.092][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:38.091Z"}
+[2025-07-21 13:38:38.105][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:38:40.548][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:40.547Z"}
+[2025-07-21 13:38:40.559][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:46.092][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:46.091Z"}
+[2025-07-21 13:38:46.100][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:38:48.549][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:48.547Z"}
+[2025-07-21 13:38:48.561][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:38:54.092][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:54.091Z"}
+[2025-07-21 13:38:54.102][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:38:56.547][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:38:56.546Z"}
+[2025-07-21 13:38:56.549][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:02.091][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:02.091Z"}
+[2025-07-21 13:39:02.095][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:04.547][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:04.546Z"}
+[2025-07-21 13:39:04.560][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:10.093][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:10.092Z"}
+[2025-07-21 13:39:10.101][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:12.551][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:12.550Z"}
+[2025-07-21 13:39:12.562][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:18.101][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:18.099Z"}
+[2025-07-21 13:39:18.113][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:20.558][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:20.557Z"}
+[2025-07-21 13:39:20.562][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:26.106][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:26.105Z"}
+[2025-07-21 13:39:26.116][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:28.561][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:28.560Z"}
+[2025-07-21 13:39:28.564][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:34.107][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:34.107Z"}
+[2025-07-21 13:39:34.117][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:36.563][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:36.562Z"}
+[2025-07-21 13:39:36.574][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:42.110][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:42.109Z"}
+[2025-07-21 13:39:42.116][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:44.565][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:44.564Z"}
+[2025-07-21 13:39:44.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:50.111][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:50.109Z"}
+[2025-07-21 13:39:50.113][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:39:52.566][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:52.565Z"}
+[2025-07-21 13:39:52.571][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:39:58.111][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:39:58.110Z"}
+[2025-07-21 13:39:58.116][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:00.566][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:00.565Z"}
+[2025-07-21 13:40:00.571][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:06.111][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:06.110Z"}
+[2025-07-21 13:40:06.124][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:08.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:08.566Z"}
+[2025-07-21 13:40:08.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:14.112][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:14.111Z"}
+[2025-07-21 13:40:14.122][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:16.567][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:16.566Z"}
+[2025-07-21 13:40:16.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:22.112][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:22.111Z"}
+[2025-07-21 13:40:22.116][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:24.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:24.566Z"}
+[2025-07-21 13:40:24.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:30.112][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:30.111Z"}
+[2025-07-21 13:40:30.125][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:32.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:32.567Z"}
+[2025-07-21 13:40:32.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:38.112][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:38.111Z"}
+[2025-07-21 13:40:38.124][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:40.567][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:40.566Z"}
+[2025-07-21 13:40:40.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:46.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:46.112Z"}
+[2025-07-21 13:40:46.121][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:48.567][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:48.566Z"}
+[2025-07-21 13:40:48.574][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:40:54.112][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:54.111Z"}
+[2025-07-21 13:40:54.121][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:40:56.567][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:40:56.566Z"}
+[2025-07-21 13:40:56.574][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:02.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:02.112Z"}
+[2025-07-21 13:41:02.125][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:04.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:04.567Z"}
+[2025-07-21 13:41:04.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:10.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:10.112Z"}
+[2025-07-21 13:41:10.118][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:12.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:12.567Z"}
+[2025-07-21 13:41:12.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:18.175][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:18.112Z"}
+[2025-07-21 13:41:18.242][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:20.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:20.567Z"}
+[2025-07-21 13:41:20.572][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:26.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:26.112Z"}
+[2025-07-21 13:41:26.120][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:28.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:28.567Z"}
+[2025-07-21 13:41:28.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:34.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:34.112Z"}
+[2025-07-21 13:41:34.125][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:36.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:36.567Z"}
+[2025-07-21 13:41:36.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:42.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:42.112Z"}
+[2025-07-21 13:41:42.123][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:44.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:44.567Z"}
+[2025-07-21 13:41:44.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:50.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:50.112Z"}
+[2025-07-21 13:41:50.117][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:41:52.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:52.567Z"}
+[2025-07-21 13:41:52.569][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:41:58.116][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:41:58.116Z"}
+[2025-07-21 13:41:58.118][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:00.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:00.568Z"}
+[2025-07-21 13:42:00.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:06.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:06.112Z"}
+[2025-07-21 13:42:06.121][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:08.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:08.567Z"}
+[2025-07-21 13:42:08.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:14.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:14.113Z"}
+[2025-07-21 13:42:14.122][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:16.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:16.568Z"}
+[2025-07-21 13:42:16.574][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:22.128][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:22.128Z"}
+[2025-07-21 13:42:22.136][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:24.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:24.568Z"}
+[2025-07-21 13:42:24.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:30.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:30.113Z"}
+[2025-07-21 13:42:30.119][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:32.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:32.568Z"}
+[2025-07-21 13:42:32.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:38.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:38.113Z"}
+[2025-07-21 13:42:38.122][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:40.567][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:40.567Z"}
+[2025-07-21 13:42:40.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:46.113][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:46.112Z"}
+[2025-07-21 13:42:46.117][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:48.568][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:48.568Z"}
+[2025-07-21 13:42:48.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:42:54.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:54.113Z"}
+[2025-07-21 13:42:54.127][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:42:56.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:42:56.568Z"}
+[2025-07-21 13:42:56.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:02.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:02.113Z"}
+[2025-07-21 13:43:02.119][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:04.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:04.569Z"}
+[2025-07-21 13:43:04.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:10.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:10.113Z"}
+[2025-07-21 13:43:10.126][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:12.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:12.568Z"}
+[2025-07-21 13:43:12.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:18.114][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:18.113Z"}
+[2025-07-21 13:43:18.117][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:20.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:20.568Z"}
+[2025-07-21 13:43:20.572][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:26.115][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:26.114Z"}
+[2025-07-21 13:43:26.118][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:28.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:28.569Z"}
+[2025-07-21 13:43:28.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:34.162][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:34.113Z"}
+[2025-07-21 13:43:34.173][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:35.230][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:43:35.231][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:43:35.234][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:43:36.995][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:36.569Z"}
+[2025-07-21 13:43:37.006][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:37.727][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 58185) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:43:37.728][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:43:37.728][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:43:37.730][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:43:40.149][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 58191) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:43:40.150][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:43:40.154][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:43:44.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:44.569Z"}
+[2025-07-21 13:43:44.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:45.736][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:45.735Z"}
+[2025-07-21 13:43:45.747][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:43:52.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:52.569Z"}
+[2025-07-21 13:43:52.573][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:43:53.737][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:43:53.736Z"}
+[2025-07-21 13:43:53.740][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:00.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:00.569Z"}
+[2025-07-21 13:44:00.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:01.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:01.737Z"}
+[2025-07-21 13:44:01.746][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:08.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:08.569Z"}
+[2025-07-21 13:44:08.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:09.737][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:09.736Z"}
+[2025-07-21 13:44:09.741][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:16.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:16.569Z"}
+[2025-07-21 13:44:16.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:17.737][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:17.736Z"}
+[2025-07-21 13:44:17.740][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:24.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:24.569Z"}
+[2025-07-21 13:44:24.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:25.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:25.737Z"}
+[2025-07-21 13:44:25.743][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:32.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:32.569Z"}
+[2025-07-21 13:44:32.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:33.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:33.737Z"}
+[2025-07-21 13:44:33.749][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:40.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:40.569Z"}
+[2025-07-21 13:44:40.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:41.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:41.737Z"}
+[2025-07-21 13:44:41.749][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:48.569][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:48.568Z"}
+[2025-07-21 13:44:48.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:49.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:49.737Z"}
+[2025-07-21 13:44:49.750][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:44:56.570][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:56.569Z"}
+[2025-07-21 13:44:56.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:44:57.739][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:44:57.737Z"}
+[2025-07-21 13:44:57.746][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:04.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:04.570Z"}
+[2025-07-21 13:45:04.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:05.738][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:05.738Z"}
+[2025-07-21 13:45:05.741][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:12.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:12.569Z"}
+[2025-07-21 13:45:12.576][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:13.740][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:13.738Z"}
+[2025-07-21 13:45:13.743][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:20.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:20.571Z"}
+[2025-07-21 13:45:20.588][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:20.630][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:45:20.631][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:45:20.640][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:45:22.014][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 59013) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:45:22.014][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:45:22.014][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:45:22.016][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:45:26.310][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 59021) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:45:26.311][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:45:26.312][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:45:29.722][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:28.570Z"}
+[2025-07-21 13:45:29.734][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:30.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:30.649Z"}
+[2025-07-21 13:45:30.658][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:36.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:36.571Z"}
+[2025-07-21 13:45:36.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:38.649][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:38.648Z"}
+[2025-07-21 13:45:38.655][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:44.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:44.570Z"}
+[2025-07-21 13:45:44.583][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:46.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:46.649Z"}
+[2025-07-21 13:45:46.660][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:45:52.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:52.570Z"}
+[2025-07-21 13:45:52.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:45:54.649][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:45:54.648Z"}
+[2025-07-21 13:45:54.660][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:00.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:00.570Z"}
+[2025-07-21 13:46:00.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:02.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:02.650Z"}
+[2025-07-21 13:46:02.657][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:08.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:08.571Z"}
+[2025-07-21 13:46:08.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:10.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:10.650Z"}
+[2025-07-21 13:46:10.656][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:16.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:16.570Z"}
+[2025-07-21 13:46:16.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:18.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:18.649Z"}
+[2025-07-21 13:46:18.661][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:24.571][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:24.570Z"}
+[2025-07-21 13:46:24.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:26.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:26.649Z"}
+[2025-07-21 13:46:26.659][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:32.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:32.571Z"}
+[2025-07-21 13:46:32.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:34.651][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:34.650Z"}
+[2025-07-21 13:46:34.658][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:40.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:40.570Z"}
+[2025-07-21 13:46:40.584][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:42.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:42.650Z"}
+[2025-07-21 13:46:42.653][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:48.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:48.571Z"}
+[2025-07-21 13:46:48.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:50.651][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:50.650Z"}
+[2025-07-21 13:46:50.655][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:46:56.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:56.571Z"}
+[2025-07-21 13:46:56.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:46:58.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:46:58.650Z"}
+[2025-07-21 13:46:58.660][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:04.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:04.571Z"}
+[2025-07-21 13:47:04.584][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:06.654][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:06.653Z"}
+[2025-07-21 13:47:06.658][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:12.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:12.571Z"}
+[2025-07-21 13:47:12.586][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:14.650][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:14.649Z"}
+[2025-07-21 13:47:14.658][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:16.324][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:47:16.324][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:47:16.325][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:47:17.864][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 59788) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:47:17.864][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:47:17.864][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:47:17.865][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:47:21.388][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 59793) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:47:21.391][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:47:21.392][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:20.572Z"}
+[2025-07-21 13:47:21.395][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:47:23.328][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:26.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:26.470Z"}
+[2025-07-21 13:47:26.474][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:28.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:28.571Z"}
+[2025-07-21 13:47:28.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:34.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:34.471Z"}
+[2025-07-21 13:47:34.477][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:36.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:36.571Z"}
+[2025-07-21 13:47:36.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:42.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:42.471Z"}
+[2025-07-21 13:47:42.481][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:44.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:44.572Z"}
+[2025-07-21 13:47:44.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:50.472][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:50.471Z"}
+[2025-07-21 13:47:50.474][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:47:52.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:52.572Z"}
+[2025-07-21 13:47:52.583][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:47:58.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:47:58.470Z"}
+[2025-07-21 13:47:58.481][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:00.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:00.572Z"}
+[2025-07-21 13:48:00.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:06.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:06.470Z"}
+[2025-07-21 13:48:06.477][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:08.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:08.572Z"}
+[2025-07-21 13:48:08.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:14.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:14.471Z"}
+[2025-07-21 13:48:14.482][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:16.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:16.572Z"}
+[2025-07-21 13:48:16.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:22.472][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:22.471Z"}
+[2025-07-21 13:48:22.473][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:24.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:24.573Z"}
+[2025-07-21 13:48:24.575][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:30.471][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:30.470Z"}
+[2025-07-21 13:48:30.482][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:32.572][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:32.572Z"}
+[2025-07-21 13:48:32.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:38.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:38.472Z"}
+[2025-07-21 13:48:38.475][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:40.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:40.573Z"}
+[2025-07-21 13:48:40.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:46.472][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:46.471Z"}
+[2025-07-21 13:48:46.484][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:48.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:48.573Z"}
+[2025-07-21 13:48:48.586][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:48:54.472][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:54.471Z"}
+[2025-07-21 13:48:54.484][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:48:56.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:48:56.573Z"}
+[2025-07-21 13:48:56.603][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:02.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:02.472Z"}
+[2025-07-21 13:49:02.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:04.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:04.572Z"}
+[2025-07-21 13:49:04.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:10.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:10.471Z"}
+[2025-07-21 13:49:10.485][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:12.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:12.573Z"}
+[2025-07-21 13:49:12.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:18.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:18.472Z"}
+[2025-07-21 13:49:18.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:20.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:20.572Z"}
+[2025-07-21 13:49:20.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:26.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:26.472Z"}
+[2025-07-21 13:49:26.482][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:28.573][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:28.572Z"}
+[2025-07-21 13:49:28.584][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:34.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:34.472Z"}
+[2025-07-21 13:49:34.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:36.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:36.573Z"}
+[2025-07-21 13:49:36.577][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:42.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:42.472Z"}
+[2025-07-21 13:49:42.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:44.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:44.573Z"}
+[2025-07-21 13:49:44.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:50.477][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:50.472Z"}
+[2025-07-21 13:49:50.483][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:49:52.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:52.573Z"}
+[2025-07-21 13:49:52.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:49:58.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:49:58.473Z"}
+[2025-07-21 13:49:58.480][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:00.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:00.573Z"}
+[2025-07-21 13:50:00.585][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:06.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:06.472Z"}
+[2025-07-21 13:50:06.478][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:08.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:08.574Z"}
+[2025-07-21 13:50:08.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:15.267][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:15.256Z"}
+[2025-07-21 13:50:15.272][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:16.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:16.573Z"}
+[2025-07-21 13:50:16.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:22.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:22.472Z"}
+[2025-07-21 13:50:22.480][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:24.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:24.573Z"}
+[2025-07-21 13:50:24.583][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:30.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:30.473Z"}
+[2025-07-21 13:50:30.481][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:32.574][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:32.574Z"}
+[2025-07-21 13:50:32.578][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:38.487][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:38.473Z"}
+[2025-07-21 13:50:38.498][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:40.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:40.574Z"}
+[2025-07-21 13:50:40.586][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:46.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:46.473Z"}
+[2025-07-21 13:50:46.477][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:48.575][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:48.574Z"}
+[2025-07-21 13:50:48.583][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:50:54.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:54.473Z"}
+[2025-07-21 13:50:54.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:50:56.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:50:56.574Z"}
+[2025-07-21 13:50:56.587][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:02.475][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:02.473Z"}
+[2025-07-21 13:51:02.477][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:04.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:04.574Z"}
+[2025-07-21 13:51:04.588][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:10.474][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:10.473Z"}
+[2025-07-21 13:51:10.485][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:12.575][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:12.574Z"}
+[2025-07-21 13:51:12.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:18.473][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:18.472Z"}
+[2025-07-21 13:51:18.479][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:18.614][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:51:18.614][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:51:18.615][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:51:20.848][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:20.574Z"}
+[2025-07-21 13:51:20.858][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:22.008][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 61683) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:51:22.009][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:51:22.009][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:51:22.012][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:51:25.541][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 61705) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:51:25.542][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:51:25.543][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:51:28.578][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:28.574Z"}
+[2025-07-21 13:51:28.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:30.018][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:30.017Z"}
+[2025-07-21 13:51:30.030][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:36.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:36.575Z"}
+[2025-07-21 13:51:36.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:38.019][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:38.018Z"}
+[2025-07-21 13:51:38.027][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:44.575][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:44.574Z"}
+[2025-07-21 13:51:44.586][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:46.018][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:46.017Z"}
+[2025-07-21 13:51:46.030][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:52.577][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:52.575Z"}
+[2025-07-21 13:51:52.590][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:51:54.019][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:51:54.018Z"}
+[2025-07-21 13:51:54.029][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:51:57.864][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:51:57.864][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:51:57.925][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:52:01.048][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 61976) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:52:01.050][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:52:01.051][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:52:01.052][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:52:01.053][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:00.574Z"}
+[2025-07-21 13:52:01.063][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:01.789][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 61983) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:52:01.790][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:52:04.671][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:52:08.579][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:08.574Z"}
+[2025-07-21 13:52:08.582][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:09.058][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:09.057Z"}
+[2025-07-21 13:52:09.065][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:16.579][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:16.575Z"}
+[2025-07-21 13:52:16.591][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:17.058][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:17.057Z"}
+[2025-07-21 13:52:17.066][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:24.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:24.575Z"}
+[2025-07-21 13:52:24.580][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:25.058][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:25.057Z"}
+[2025-07-21 13:52:25.060][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:32.579][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:32.576Z"}
+[2025-07-21 13:52:32.592][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:33.058][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:33.056Z"}
+[2025-07-21 13:52:33.066][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:37.229][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:67] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接断开
+[2025-07-21 13:52:37.229][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:68] - 📊 [WebSocket] 当前用户连接数: 1
+[2025-07-21 13:52:37.231][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:52:38.515][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 62254) - "WebSocket /ws/user/GJp4Y7cLhDh9RCM6c7ua4mgSbWz2" [accepted]
+
+[2025-07-21 13:52:38.517][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:45] - 🔌 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2连接建立，开始心跳监控
+[2025-07-21 13:52:38.517][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:46] - 📊 [WebSocket] 当前用户连接数: 2
+[2025-07-21 13:52:38.518][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection open
+
+[2025-07-21 13:52:42.316][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     ('127.0.0.1', 62260) - "WebSocket /ws/fcdf6669-745a-44e0-88b9-5c361e78d31e" 403
+
+[2025-07-21 13:52:42.317][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection rejected (403 Forbidden)
+
+[2025-07-21 13:52:42.318][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:40.576Z"}
+[2025-07-21 13:52:42.320][INFO][MainThread][logging:flush:1144] - [32mINFO[0m:     connection closed
+
+[2025-07-21 13:52:43.654][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:46.524][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:46.523Z"}
+[2025-07-21 13:52:46.532][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:48.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:48.575Z"}
+[2025-07-21 13:52:48.579][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:52:54.524][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:54.523Z"}
+[2025-07-21 13:52:54.532][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:52:56.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:52:56.575Z"}
+[2025-07-21 13:52:56.581][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:53:02.523][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:02.523Z"}
+[2025-07-21 13:53:02.527][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:53:04.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:04.575Z"}
+[2025-07-21 13:53:04.591][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:53:10.523][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:10.522Z"}
+[2025-07-21 13:53:10.532][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)
+[2025-07-21 13:53:12.576][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户HGa3L2y3eSf7KXYQs793vLWnQRu2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:12.575Z"}
+[2025-07-21 13:53:12.584][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户HGa3L2y3eSf7KXYQs793vLWnQRu2心跳响应 (8秒间隔)
+[2025-07-21 13:53:18.525][INFO][MainThread][server.app.websocket_routes:user_websocket_endpoint:51] - 📩 [WebSocket] 收到用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2数据: {"type":"heartbeat","timestamp":"2025-07-21T05:53:18.523Z"}
+[2025-07-21 13:53:18.535][INFO][MainThread][server.app.websocket_routes:_message_handler:95] - 💓 [WebSocket] 用户GJp4Y7cLhDh9RCM6c7ua4mgSbWz2心跳响应 (8秒间隔)

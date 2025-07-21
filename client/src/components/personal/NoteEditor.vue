@@ -1,6 +1,6 @@
 <template>
   <div class="note-editor">
-    <div class="note-title-wrapper">
+    <div v-if="showTitle" class="note-title-wrapper">
       <div class="note-title">协作笔记</div>
       <el-button
         style="display: none"
@@ -77,6 +77,10 @@ const props = defineProps({
   readOnly: {
     type: Boolean,
     default: false,
+  },
+  showTitle: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -217,6 +221,9 @@ onMounted(async () => {
   console.log("📦 Quill container loaded:", editorContainer.value);
 
   if (editorContainer.value) {
+    // 注册 QuillCursors 模块
+    Quill.register("modules/cursors", QuillCursors);
+
     // 定义工具栏配置
     const toolbarOptions = [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -478,6 +485,10 @@ onBeforeUnmount(() => {
   line-height: 1.7;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #e1e5e9;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
 }
 
 .note-title-wrapper {
@@ -493,26 +504,37 @@ onBeforeUnmount(() => {
 }
 
 .quill-editor {
-  height: 400px;
+  flex: 1 1 0%;
+  min-height: 0;
   border: 1px solid #e1e5e9;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .quill-editor .ql-toolbar {
   border-bottom: 1px solid #e1e5e9;
   background-color: #f8f9fa;
+  flex-shrink: 0;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .quill-editor .ql-container {
   font-size: 14px;
   line-height: 1.6;
+  flex: 1;
+  overflow: hidden;
 }
 
 .quill-editor .ql-editor {
   min-height: 350px;
   padding: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .quill-editor .ql-editor p {
@@ -561,6 +583,7 @@ onBeforeUnmount(() => {
   border-top: 1px solid #e1e5e9;
   font-size: 12px;
   color: #6c757d;
+  flex-shrink: 0;
 }
 
 .word-count {
@@ -742,5 +765,10 @@ onBeforeUnmount(() => {
   border-left: 3px solid #1a202c;
   padding-left: 8px;
   margin-left: -8px;
+}
+/* Slightly increase height of summary note editor */
+:deep(.summary-editor .quill-editor .ql-editor) {
+  min-height: 360px;
+  margin-bottom: 0;
 }
 </style>
