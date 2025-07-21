@@ -25,7 +25,7 @@ def parse_iso_time(iso_str):
     except Exception:
         return None
 
-def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list, current_user: dict) -> dict:
+def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list) -> dict:
     """
     获取当前 chunk 内所有用户的行为数据，准备送入 GPT 处理。
     返回结构包含每位用户的行为/标签数据。
@@ -169,8 +169,7 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             "unique_note_contents": note_contents
         },
         "speech_counts": speech_counts,
-        "speech_durations": dict(speech_durations),
-        "current_user": current_user
+        "speech_durations": dict(speech_durations)
     }
 
     # 查询5: anomaly_analysis_results历史
@@ -182,7 +181,6 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
         
         results = db.collection("anomaly_analysis_results") \
             .where(filter=FieldFilter("group_id", "==", group_id)) \
-            .where(filter=FieldFilter("current_user.user_id", "==", current_user["user_id"])) \
             .where(filter=FieldFilter("created_at", ">=", history_start_time_str)) \
             .where(filter=FieldFilter("created_at", "<=", start_time)) \
             .order_by("created_at", direction="DESCENDING") \

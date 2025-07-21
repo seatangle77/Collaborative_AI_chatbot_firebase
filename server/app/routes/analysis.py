@@ -3,8 +3,7 @@ from typing import Dict, Any, List
 from fastapi import BackgroundTasks
 
 from server.app.anomaly_analyze import analyze_anomaly_status, Member, CurrentUser
-from server.app.anomaly_polling_scheduler import polling_start_anomaly, polling_stop_anomaly, \
-    polling_set_anomaly_interval, feedback_setting, polling_get_status, polling_trigger_now
+from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze
 from server.app.database import db
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_personal_share_message
@@ -182,18 +181,12 @@ async def get_anomaly_results_by_user(
 
 @router.post("/analysis/anomaly_polling/start")
 def start_anomaly_polling(req: GroupPollingRequest):
-    return polling_start_anomaly(req.group_id)
+    return start_analyze(req.group_id)
 
 
 @router.post("/analysis/anomaly_polling/stop")
 def stop_anomaly_polling(req: GroupPollingRequest):
-    return polling_stop_anomaly(req.group_id)
-
-
-@router.post("/analysis/anomaly_polling/set_interval")
-def set_anomaly_polling_interval(req: MemberPollingRequest):
-    return polling_set_anomaly_interval(req.group_id, req.user_id, req.interval_minutes,req.anomaly_analysis_results_id)
-
+    return stop_analyze(req.group_id)
 
 @router.post("/analysis/anomaly_polling/feedback_click")
 def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks):
@@ -225,14 +218,3 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
 
     return {"message": "反馈已记录"}
 
-
-@router.get("/analysis/anomaly_polling/status")
-def get_polling_status():
-    """获取轮询任务状态"""
-    return polling_get_status()
-
-
-@router.post("/analysis/anomaly_polling/trigger_now")
-def trigger_polling_now(req: GroupPollingRequest):
-    """立即触发轮询任务（用于测试）"""
-    return polling_trigger_now(req.group_id)

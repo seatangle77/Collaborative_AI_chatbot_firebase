@@ -438,3 +438,145 @@ async def analyze_anomaly_status(group_id: str, round_index: int, start_time: st
         "analysis_id": analysis_id,
         "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
     }
+
+async def analyze_anomaly_status_new(group_id: str, round_index: int, start_time: str, end_time: str,
+    members: List[Member]):
+    total_start_time = time.time()
+    logger.info(f"🚀 [异常分析] 开始分析group_id={group_id}...")
+
+    members = [{"user_id": m.id, "name": m.name} for m in members]
+
+    # 阶段1: 数据预处理
+    stage1_start = time.time()
+    raw_data = extract_chunk_data_anomaly(
+        group_id=group_id,
+        round_index=round_index,
+        start_time=start_time,
+        end_time=end_time,
+        member_list=members
+    )
+    stage1_duration = time.time() - stage1_start
+    logger.info(f"📊 [异常分析] 阶段1-数据预处理完成，耗时{stage1_duration:.2f}秒")
+
+    # 阶段2: AI分析
+    stage2_start = time.time()
+    result = analyze_all_anomalies(raw_data)
+    stage2_duration = time.time() - stage2_start
+    logger.info(f"🤖 [异常分析] 阶段2-AI分析完成，耗时{stage2_duration:.2f}秒")
+
+    # 阶段3: 结果解析
+    stage3_start = time.time()
+    # 解析AI返回的JSON结果
+
+    summary = None
+    glasses_summary = None
+    detail = None
+    user_data_summary = None
+    more_info = None
+    score = None
+    should_push = False
+    try:
+        if isinstance(result.get("raw_response"), str):
+            raw = result["raw_response"]
+            # 用正则提取出 {...} 部分
+            match = re.search(r"{[\s\S]*}", raw)
+            if match:
+                json_str = match.group(0)
+                parsed_result = json.loads(json_str)
+                summary = parsed_result.get("summary")
+                glasses_summary = parsed_result.get("glasses_summary", "你当前状态需要关注")
+                detail = parsed_result.get("detail")
+                user_data_summary = parsed_result.get("user_data_summary")
+                more_info = parsed_result.get("more_info")
+                score = parsed_result.get("score")
+
+                # 根据score的状态评分和内容相似度评分判断是否推送
+                if score and isinstance(score, dict):
+                    state_score = score.get("state_score")
+                    content_similarity_score = score.get("content_similarity_score")
+                    should_push = False
+                    if state_score is not None and content_similarity_score is not None:
+                        should_push = (state_score < 25 or state_score > 75) and (content_similarity_score < 50)
+                        logger.info(
+                            f"📊 [异常分析] 状态评分：{state_score}，内容相似度评分：{content_similarity_score}，推送阈值：状态评分<25或>75，内容相似度评分<50，是否推送：{should_push}")
+                    else:
+                        should_push = True  # 如果没有评分信息，默认推送
+                        logger.info(f"⚠️ [异常分析] 未找到完整评分信息，默认推送")
+                else:
+                    should_push = False  # 如果没有score信息，默认不推送
+                    logger.info(f"⚠️ [异常分析] 未找到评分信息，默认不推送")
+            else:
+                glasses_summary = "你当前状态需要关注"
+                should_push = True
+        else:
+            glasses_summary = "你当前状态需要关注"
+            should_push = True
+    except Exception as e:
+        logger.info("解析AI响应失败：", e)
+        glasses_summary = "你当前状态需要关注"
+        should_push = True
+    stage3_duration = time.time() - stage3_start
+    logger.info(f"📝 [异常分析] 阶段3-结果解析完成，耗时{stage3_duration:.2f}秒")
+
+    # 阶段4: 文件存储
+    stage4_start = time.time()
+    # 保存分析结果为文件
+
+    os.makedirs("analysis_outputs", exist_ok=True)
+    file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+    with open(file_name, "w", encoding="utf-8") as f:
+        json.dump(result, f, ensure_ascii=False, indent=2)
+    stage4_duration = time.time() - stage4_start
+    logger.info(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
+
+    # 阶段5: 数据库存储
+    stage5_start = time.time()
+    # 新建 anomaly_analysis_files 表并插入内容
+    file_id = str(uuid.uuid4())
+    db.collection("anomaly_raw_json_input").document(file_id).set({
+        "id": file_id,
+        "group_id": group_id,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "raw_json": result  # 完整分析内容
+    })
+
+    # 新建anomaly_analysis_results表并插入数据
+    analysis_id = str(uuid.uuid4())
+    db.collection("anomaly_analysis_results").document(analysis_id).set({
+        "id": analysis_id,
+        "group_id": group_id,
+        "start_time": start_time,
+        "end_time": end_time,
+        "raw_response": result.get("raw_response"),
+        "summary": summary,
+        "glasses_summary": glasses_summary,
+        "detail": detail,
+        "user_data_summary": user_data_summary,
+        "more_info": more_info,
+        "score": score,
+        "should_push": should_push,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    })
+    stage5_duration = time.time() - stage5_start
+    logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
+
+
+    total_duration = time.time() - total_start_time
+    logger.info(f"✅ [异常分析] group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
+
+    # 返回给前端更多信息
+    return {
+        "raw_response": result.get("raw_response"),
+        "summary": summary,
+        "glasses_summary": glasses_summary,
+        "detail": detail,
+        "user_data_summary": user_data_summary,
+        "more_info": more_info,
+        "score": score,
+        "should_push": should_push,
+        "group_id": group_id,
+        "start_time": start_time,
+        "end_time": end_time,
+        "analysis_id": analysis_id,
+        "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
+    }
