@@ -93,25 +93,23 @@
       />
       <div class="section-row">
         <div class="note-section" style="display: flex; flex-direction: row; width: 99%; height: 100vh; min-height: 0; align-items: stretch;">
-          <!-- 左侧成员编辑器区域 -->
-          <div class="member-editors-column" style="flex: 8; display: flex; flex-direction: column; height: 100%; min-height: 0; max-width: 80vw;">
-            <Splitpanes direction="horizontal" style="height: 100%;">
-              <Pane v-for="member in members" :key="member.user_id">
-                <div class="editor-header">
-                  <span class="editor-title">{{ member.name }} 的工作区</span>
-                  <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
-                  <span v-else class="readonly-badge">只读</span>
-                </div>
-                <NoteEditor
-                  :note-id="`note-${group?.id}-${member.user_id}`"
-                  :user-id="userId"
-                  :members="members"
-                  :editor-started="editorStarted && userId === member.user_id"
-                  :read-only="userId !== member.user_id"
-                  :show-title="false"
-                />
-              </Pane>
-            </Splitpanes>
+          <!-- 多成员编辑器区域：每个人都能看到所有成员的NoteEditor，只能编辑自己的，其他只读 -->
+          <div class="multi-note-editors" style="flex: 8; display: flex; flex-direction: row; gap: 20px; height: 100%; min-height: 0; max-width: 80vw;">
+            <div v-for="member in members" :key="member.user_id" class="member-editor-flex" style="flex: 1 1 0%; min-width: 0; display: flex; flex-direction: column;">
+              <div class="editor-header">
+                <span class="editor-title">{{ member.name }} 的工作区</span>
+                <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
+                <span v-else class="readonly-badge">只读</span>
+              </div>
+              <NoteEditor
+                :note-id="`note-${group?.id}-${member.user_id}`"
+                :user-id="member.user_id"
+                :members="members"
+                :editor-started="editorStarted && userId === member.user_id"
+                :read-only="userId !== member.user_id"
+                :show-title="false"
+              />
+            </div>
           </div>
           <!-- 右侧历史异常反馈区域和两个空白占位区域 -->
           <div class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">

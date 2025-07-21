@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import QuillCursors from "quill-cursors";
 import * as Y from "yjs";
 import { QuillBinding } from "y-quill";
 import Quill from "quill";
@@ -218,12 +217,10 @@ let isApplyingColor = false;
 
 onMounted(async () => {
   await nextTick(); // 确保 DOM 完全挂载
+  console.log("[NoteEditor挂载] noteId:", props.noteId, "userId:", props.userId, "members:", props.members);
   console.log("📦 Quill container loaded:", editorContainer.value);
 
   if (editorContainer.value) {
-    // 注册 QuillCursors 模块
-    Quill.register("modules/cursors", QuillCursors);
-
     // 定义工具栏配置
     const toolbarOptions = [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -251,7 +248,6 @@ onMounted(async () => {
           maxStack: 500,
           userOnly: true,
         },
-        cursors: true,
       },
       placeholder: "开始编写你的协作笔记...",
       readOnly: props.readOnly, // 根据 props 控制只读
@@ -368,7 +364,7 @@ onMounted(async () => {
       const summary = generateEditSummary(combinedDelta);
       const affectedText = getAffectedTextFromDelta(combinedDelta, quill);
 
-      addDoc(historyRef, {
+      console.log("将要写入 note_edit_history：", {
         userId: props.userId,
         delta: combinedDelta.ops.map((op) => ({ ...op })),
         charCount: combinedDelta.length(),
@@ -378,26 +374,37 @@ onMounted(async () => {
         updatedAt: new Date().toISOString(),
         summary,
         affectedText,
-      })
-        .then(() => {
-          console.log("📝 [Auto] Edit log saved (fallback or normal)");
-          // 更新保存状态
-          isSaving.value = false;
-          isSaved.value = true;
-          saveStatusText.value = "已保存";
+      });
+      // addDoc(historyRef, {
+      //   userId: props.userId,
+      //   delta: combinedDelta.ops.map((op) => ({ ...op })),
+      //   charCount: combinedDelta.length(),
+      //   isDelete: combinedDelta.ops?.some((op) => op.delete),
+      //   hasHeader: combinedDelta.ops?.some((op) => op.attributes?.header),
+      //   hasList: combinedDelta.ops?.some((op) => op.attributes?.list),
+      //   updatedAt: new Date().toISOString(),
+      //   summary,
+      //   affectedText,
+      // })
+      //   .then(() => {
+      //     console.log("📝 [Auto] Edit log saved (fallback or normal)");
+      //     // 更新保存状态
+      //     isSaving.value = false;
+      //     isSaved.value = true;
+      //     saveStatusText.value = "已保存";
 
-          // 3秒后重置状态
-          setTimeout(() => {
-            isSaved.value = false;
-          }, 3000);
-        })
-        .catch((error) => {
-          console.error("❌ Failed to save edit log", error);
-          console.log("❗ combinedDelta:", combinedDelta);
-          // 保存失败状态
-          isSaving.value = false;
-          saveStatusText.value = "保存失败";
-        });
+      //     // 3秒后重置状态
+      //     setTimeout(() => {
+      //       isSaved.value = false;
+      //     }, 3000);
+      //   })
+      //   .catch((error) => {
+      //     console.error("❌ Failed to save edit log", error);
+      //     console.log("❗ combinedDelta:", combinedDelta);
+      //     // 保存失败状态
+      //     isSaving.value = false;
+      //     saveStatusText.value = "保存失败";
+      //   });
     } catch (err) {
       console.error("❌ Interval execution failed:", err);
     }
@@ -424,25 +431,26 @@ onMounted(async () => {
         return;
       }
       // 📤 Attempting to save content to note_contents
-      console.log("📤 Attempting to save content to note_contents:", {
+      console.log("将要写入 note_contents：", {
+        noteId: props.noteId,
+        userId: props.userId,
         content: delta.ops.map((op) => ({ ...op })),
         html,
-        userId: props.userId,
-        noteId: props.noteId,
-      });
-      addDoc(firestoreCollection(firestore, "note_contents"), {
-        noteId: props.noteId,
-        userId: props.userId,
-        content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
-        html, // 可粘贴富文本格式
         updatedAt: new Date().toISOString(),
-      })
-        .then(() => {
-          console.log("💾 Note content saved to note_contents");
-        })
-        .catch((err) => {
-          console.error("❌ Failed to save note content", err);
-        });
+      });
+      // addDoc(firestoreCollection(firestore, "note_contents"), {
+      //   noteId: props.noteId,
+      //   userId: props.userId,
+      //   content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
+      //   html, // 可粘贴富文本格式
+      //   updatedAt: new Date().toISOString(),
+      // })
+      //   .then(() => {
+      //     console.log("💾 Note content saved to note_contents");
+      //   })
+      //   .catch((err) => {
+      //     console.error("❌ Failed to save note content", err);
+      //   });
       lastContentSavedAt = now;
     }
   });
