@@ -94,27 +94,24 @@
       <div class="section-row">
         <div class="note-section" style="display: flex; flex-direction: row; width: 99%; height: 100vh; min-height: 0; align-items: stretch;">
           <!-- 左侧成员编辑器区域 -->
-          <div class="member-editors-column" style="flex: 8; display: flex; flex-direction: column; gap: 5px; height: 100%; min-height: 0; max-width: 80vw;">
-            <div
-              v-for="member in members"
-              :key="member.user_id"
-              class="tab-editor-container member-editor-flex"
-              style="flex: 1; display: flex; flex-direction: column; min-height: 0;"
-            >
-              <div class="editor-header">
-                <span class="editor-title">{{ member.name }} 的工作区</span>
-                <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
-                <span v-else class="readonly-badge">只读</span>
-              </div>
-              <NoteEditor
-                :note-id="`note-${group?.id}-${member.user_id}`"
-                :user-id="userId"
-                :members="members"
-                :editor-started="editorStarted && userId === member.user_id"
-                :read-only="userId !== member.user_id"
-                :show-title="false"
-              />
-            </div>
+          <div class="member-editors-column" style="flex: 8; display: flex; flex-direction: column; height: 100%; min-height: 0; max-width: 80vw;">
+            <Splitpanes direction="horizontal" style="height: 100%;">
+              <Pane v-for="member in members" :key="member.user_id">
+                <div class="editor-header">
+                  <span class="editor-title">{{ member.name }} 的工作区</span>
+                  <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
+                  <span v-else class="readonly-badge">只读</span>
+                </div>
+                <NoteEditor
+                  :note-id="`note-${group?.id}-${member.user_id}`"
+                  :user-id="userId"
+                  :members="members"
+                  :editor-started="editorStarted && userId === member.user_id"
+                  :read-only="userId !== member.user_id"
+                  :show-title="false"
+                />
+              </Pane>
+            </Splitpanes>
           </div>
           <!-- 右侧历史异常反馈区域和两个空白占位区域 -->
           <div class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">
@@ -242,6 +239,8 @@ import {
   ArrowLeft,
 } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
+import { Splitpanes, Pane } from 'splitpanes';
+import 'splitpanes/dist/splitpanes.css';
 
 const components = {
   ElButton,
@@ -566,7 +565,7 @@ async function handleAnomalyCheck() {
     const currentUserByUid = users.value.find(
       (u) => u.uid === selectedUserId.value
     );
-    console.log("🔍 使用 user_id 字段查找:", currentUserById);
+    console.log("�� 使用 user_id 字段查找:", currentUserById);
     console.log("🔍 使用 uid 字段查找:", currentUserByUid);
 
     if (currentUserById) {
@@ -839,6 +838,8 @@ watch(agendaList, (newList) => {
     contentCollapsed.value = ["info"];
   }
 });
+
+// 移除resizable-editor相关逻辑
 </script>
 
 <style scoped>
@@ -1559,5 +1560,19 @@ watch(agendaList, (newList) => {
 }
 .tab-editor-container {
   min-height: 0;
+}
+/* splitpanes 样式微调（可选） */
+:deep(.splitpanes__pane) {
+  display: flex;
+  flex-direction: column;
+  min-height: 80px;
+}
+/* splitpanes 分割条样式美化 */
+:deep(.splitpanes__splitter) {
+  background: #e0e0e0;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #fff;
+  min-height: 6px;
+  cursor: row-resize;
 }
 </style>
