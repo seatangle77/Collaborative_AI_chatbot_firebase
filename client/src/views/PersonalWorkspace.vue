@@ -115,17 +115,26 @@
       <div class="section-row">
         <div class="note-history-layout">
           <section class="note-section">
-            <NoteEditor
-              v-if="group?.note_id && showNoteEditor"
-              :key="activeTab"
-              :user-id="userId"
-              :discussion-id="discussionId"
-              :note-id="group.note_id"
-              :session="session"
-              :bot="bot"
-              :members="members"
-              :editor-started="editorStarted"
-            />
+            <div class="multi-note-editors">
+              <div 
+                v-for="member in members" 
+                :key="member.user_id" 
+                class="editor-container"
+              >
+                <div class="editor-header">
+                  <span class="editor-title">{{ member.name }} 的工作区</span>
+                  <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
+                  <span v-else class="readonly-badge">只读</span>
+                </div>
+                <NoteEditor
+                  :note-id="`note-${group?.id}-${member.user_id}`"
+                  :user-id="userId"
+                  :members="members"
+                  :editor-started="editorStarted && userId === member.user_id"
+                  :read-only="userId !== member.user_id"
+                />
+              </div>
+            </div>
           </section>
           <AnomalyHistoryPanel
             :user-id="userId"
@@ -775,9 +784,11 @@ watch(agendaList, (newList) => {
   display: flex;
   gap: 20px;
   align-items: flex-start;
-  margin: 0 auto;
+  /* margin: 0 auto;  删除居中 */
   padding: 0 20px;
   background:#fff;
+  width: 100vw; /* 新增，铺满页面宽度 */
+  box-sizing: border-box;
 }
 
 .left-panel {
@@ -1040,5 +1051,61 @@ width: 75vw;
   word-break: break-all;
   white-space: pre-line;
   max-width: 95%;
+}
+
+.multi-note-editors {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.editor-container {
+  flex: 1;
+  min-width: 300px;
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: #f0f2f5;
+  border-bottom: 1px solid #e4e7ed;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #303133;
+}
+
+.editor-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.current-user-badge {
+  background-color: #409eff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.readonly-badge {
+  background-color: #e6a23c;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-left: 10px;
 }
 </style>

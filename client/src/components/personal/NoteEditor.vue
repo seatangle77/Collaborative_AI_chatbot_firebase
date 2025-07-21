@@ -11,21 +11,6 @@
         >开始写入数据</el-button
       >
     </div>
-    <div class="collaborators">
-      <span
-        v-for="(user, index) in collaborators"
-        :key="index"
-        class="collaborator"
-      >
-        <span
-          class="collaborator-avatar"
-          :style="{ backgroundColor: user.color || '#1a365d' }"
-          :title="user.name"
-        >
-          {{ user.name ? user.name[0] : "?" }}
-        </span>
-      </span>
-    </div>
 
     <div ref="editorContainer" class="quill-editor"></div>
     <div class="editor-footer">
@@ -39,9 +24,6 @@
 
 <script setup>
 import QuillCursors from "quill-cursors";
-import ColorClass from "quill/formats/color";
-Quill.register("modules/cursors", QuillCursors);
-Quill.register(ColorClass, true);
 import * as Y from "yjs";
 import { QuillBinding } from "y-quill";
 import Quill from "quill";
@@ -89,6 +71,10 @@ const props = defineProps({
     default: () => [],
   },
   editorStarted: {
+    type: Boolean,
+    default: false,
+  },
+  readOnly: {
     type: Boolean,
     default: false,
   },
@@ -205,15 +191,6 @@ const provider = new WebsocketProvider(
   ydoc
 );
 const ytext = ydoc.getText("quill");
-const collaborators = reactive([]);
-
-function updateCollaborators() {
-  collaborators.length = 0;
-  const states = Array.from(provider.awareness.getStates().values());
-  for (const state of states) {
-    if (state.user) collaborators.push(state.user);
-  }
-}
 
 watch(
   () => props.userId,
@@ -270,7 +247,7 @@ onMounted(async () => {
         cursors: true,
       },
       placeholder: "开始编写你的协作笔记...",
-      readOnly: false,
+      readOnly: props.readOnly, // 根据 props 控制只读
     });
     // 监听 selection-change 事件，更新本地 awareness 的 cursor 字段
     quill.on("selection-change", (range, oldRange, source) => {
@@ -281,6 +258,9 @@ onMounted(async () => {
     console.warn("❗ editorContainer is null, cannot initialize Quill");
     return;
   }
+
+  // 初始化时同步一次字数
+  wordCount.value = quill.getText().trim().length;
 
   console.log("✅ Quill initialized", quill);
 
@@ -347,7 +327,7 @@ onMounted(async () => {
 
     // 更新字数统计
     const text = quill.getText();
-    wordCount.value = text.length;
+    wordCount.value = text.trim().length;
     // 更新保存状态
     isSaving.value = true;
     isSaved.value = false;
@@ -416,30 +396,16 @@ onMounted(async () => {
     }
   }, 10000);
 
-  provider.awareness.on("change", updateCollaborators);
-  updateCollaborators();
-
-  // 协作光标显示
-  const cursors = quill.getModule("cursors");
   provider.awareness.on("change", () => {
-    cursors.clearCursors();
-    provider.awareness.getStates().forEach((state, clientId) => {
-      if (clientId === provider.awareness.clientID) return;
-      const user = state.user;
-      const cursor = state.cursor;
-      if (user && cursor) {
-        cursors.setCursor(clientId, {
-          ...cursor,
-          color: user.color,
-          name: user.name,
-        });
-      }
-    });
+    // 不再需要更新 collaborators，因为 collaborators 变量已删除
   });
 
   // 不再依赖 noteRef 读取旧数据，统一使用 note_contents 表存储内容
 
   ytext.observe(() => {
+    // 只要内容有变化就统计字数（包括只读模式下的协作同步）
+    if (!quill) return;
+    wordCount.value = quill.getText().trim().length;
     if (!props.editorStarted) return;
     const now = Date.now();
     if (now - lastContentSavedAt >= 60000) {
@@ -483,7 +449,9 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
-  provider.awareness.off("change", updateCollaborators);
+  provider.awareness.off("change", () => {
+    // 不再需要更新 collaborators，因为 collaborators 变量已删除
+  });
   clearInterval(deltaFlushInterval);
   try {
     provider.disconnect();
@@ -668,24 +636,6 @@ onBeforeUnmount(() => {
   .quill-editor .ql-toolbar .ql-formats {
     margin-bottom: 4px;
   }
-}
-
-.collaborators {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.collaborator-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
 }
 
 /* 用户编辑颜色样式 */
