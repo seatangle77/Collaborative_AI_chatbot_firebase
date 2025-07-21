@@ -478,7 +478,6 @@ onBeforeUnmount(() => {
 }
 
 .note-editor {
-  padding: 20px;
   background-color: #fdfdfd;
   border-radius: 8px;
   font-size: 15px;
@@ -520,6 +519,9 @@ onBeforeUnmount(() => {
   flex-shrink: 0;
   overflow-x: auto;
   white-space: nowrap;
+}
+.ql-toolbar.ql-snow{
+  padding: 3px;
 }
 
 .quill-editor .ql-container {
@@ -578,7 +580,7 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 3px 16px;
   background-color: #f8f9fa;
   border-top: 1px solid #e1e5e9;
   font-size: 12px;
@@ -770,5 +772,13 @@ onBeforeUnmount(() => {
 :deep(.summary-editor .quill-editor .ql-editor) {
   min-height: 360px;
   margin-bottom: 0;
+}
+:deep(.ql-toolbar.ql-snow) {
+  padding: 3px !important;
+}
+:deep(.ql-picker-options) {
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 9999;
 }
 </style>

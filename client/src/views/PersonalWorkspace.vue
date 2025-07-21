@@ -6,6 +6,7 @@
       :user="user"
       :group="group"
       :members="members"
+
       :session="session"
       :bot="bot"
       :route-name="route.params.name"
@@ -83,41 +84,7 @@
           </div>
         </div>
 
-        <div class="right-panel">
-          <div class="members-status-card">
-            <div class="members-status-list">
-              <div
-                v-for="member in memberStatusList"
-                :key="member.user_id"
-                class="member-status-item"
-              >
-                <div class="member-avatar">
-                  <span
-                    class="collaborator-avatar"
-                    :style="{ backgroundColor: getAvatarColor(member) }"
-                    :title="member.name"
-                  >
-                    {{ member.name?.charAt(0) || "U" }}
-                  </span>
-                </div>
-                <div class="member-info">
-                  <div class="member-name">{{ member.name }}</div>
-                  <div class="member-status">
-                    <div
-                      v-if="member.status === 'abnormal'"
-                      class="abnormal-detail"
-                    >
-                      异常：{{ member.detail_type }}（{{
-                        member.detail_status
-                      }}）
-                    </div>
-                    <el-tag v-else type="success" size="small">正常</el-tag>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
       <div
         v-if="meetingStarted"
@@ -125,96 +92,72 @@
         class="meeting-container"
       />
       <div class="section-row">
-        <div class="note-section">
-          <div class="note-tabs-layout">
-            <!-- 用户笔记 Tab 区域 -->
-            <div class="user-notes-tab-container">
-              <el-tabs
-                v-model="activeUserTab"
-                type="card"
-                class="user-notes-tabs"
-                tab-position="top"
-              >
-                <el-tab-pane
-                  v-for="member in members"
-                  :key="member.user_id"
-                  :label="member.name"
-                  :name="member.user_id"
-                >
-                  <div class="tab-editor-container">
-                    <div class="editor-header">
-                      <span class="editor-title"
-                        >{{ member.name }} 的工作区</span
-                      >
-                      <span
-                        v-if="userId === member.user_id"
-                        class="current-user-badge"
-                        >（你）</span
-                      >
-                      <span v-else class="readonly-badge">只读</span>
-                    </div>
-                    <NoteEditor
-                      :note-id="`note-${group?.id}-${member.user_id}`"
-                      :user-id="userId"
-                      :members="members"
-                      :editor-started="
-                        editorStarted && userId === member.user_id
-                      "
-                      :read-only="userId !== member.user_id"
-                      :show-title="false"
-                    />
-                  </div>
-                </el-tab-pane>
-              </el-tabs>
-            </div>
-
-            <!-- 汇总笔记卡片 -->
+        <div class="note-section" style="display: flex; flex-direction: row; width: 99%; height: 100vh; min-height: 0; align-items: stretch;">
+          <!-- 左侧成员编辑器区域 -->
+          <div class="member-editors-column" style="flex: 8; display: flex; flex-direction: column; gap: 5px; height: 100%; min-height: 0; max-width: 80vw;">
             <div
-              class="summary-note-container"
-              :class="{ expanded: isSummaryExpanded }"
+              v-for="member in members"
+              :key="member.user_id"
+              class="tab-editor-container member-editor-flex"
+              style="flex: 1; display: flex; flex-direction: column; min-height: 0;"
             >
-              <div class="editor-container">
-                <div class="editor-header">
-                  <span class="editor-title"
-                    >汇总协作笔记（所有成员可编辑）</span
-                  >
-                  <span class="current-user-badge">可编辑</span>
-                  <el-button
-                    type="primary"
-                    text
-                    size="default"
-                    class="expand-toggle-btn"
-                    @click="toggleSummaryExpand"
-                  >
-                    <el-icon size="18">
-                      <ArrowLeft v-if="!isSummaryExpanded" />
-                      <ArrowRight v-else />
-                    </el-icon>
-                  </el-button>
-                </div>
-                <NoteEditor
-                  :note-id="`summary-note-${group?.id}`"
-                  :user-id="userId"
-                  :members="members"
-                  :editor-started="editorStarted"
-                  :read-only="false"
-                  :show-title="false"
-                />
+              <div class="editor-header">
+                <span class="editor-title">{{ member.name }} 的工作区</span>
+                <span v-if="userId === member.user_id" class="current-user-badge">（你）</span>
+                <span v-else class="readonly-badge">只读</span>
               </div>
+              <NoteEditor
+                :note-id="`note-${group?.id}-${member.user_id}`"
+                :user-id="userId"
+                :members="members"
+                :editor-started="editorStarted && userId === member.user_id"
+                :read-only="userId !== member.user_id"
+                :show-title="false"
+              />
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- 历史异常反馈面板独立一行 -->
-      <div class="section-row">
-        <div class="history-section">
-          <AnomalyHistoryPanel
-            :user-id="userId"
-            :group-id="group?.id"
-            @view-detail="handleViewDetail"
-            class="history-panel"
-          />
+          <!-- 右侧历史异常反馈区域和两个空白占位区域 -->
+          <div class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">
+            <div class="members-status-card">
+              <div class="members-status-list">
+                <div
+                  v-for="member in memberStatusList"
+                  :key="member.user_id"
+                  class="member-status-item"
+                >
+                  <div class="member-avatar">
+                    <span
+                      class="collaborator-avatar"
+                      :style="{ backgroundColor: getAvatarColor(member) }"
+                      :title="member.name"
+                    >
+                      {{ member.name?.charAt(0) || "U" }}
+                    </span>
+                  </div>
+                  <div class="member-info">
+                    <div class="member-name">{{ member.name }}</div>
+                    <div class="member-status">
+                      <div
+                        v-if="member.status === 'abnormal'"
+                        class="abnormal-detail"
+                      >
+                        异常：{{ member.detail_type }}（{{
+                          member.detail_status
+                        }}）
+                      </div>
+                      <el-tag v-else type="success" size="small">正常</el-tag>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <AnomalyHistoryPanel
+              :user-id="userId"
+              :group-id="group?.id"
+              @view-detail="handleViewDetail"
+              class="history-panel"
+            />
+          </div>
         </div>
       </div>
       <el-drawer
@@ -912,16 +855,14 @@ watch(agendaList, (newList) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   box-sizing: border-box;
 }
 
 .main-content-layout {
   display: flex;
-  gap: 20px;
   align-items: flex-start;
   /* margin: 0 auto;  删除居中 */
-  padding: 0 20px;
   background: #fff;
   width: 100vw; /* 新增，铺满页面宽度 */
   box-sizing: border-box;
@@ -942,7 +883,6 @@ watch(agendaList, (newList) => {
   background: #ffffff;
   padding: 16px;
   position: sticky;
-  top: 20px;
 }
 
 .members-status-header {
@@ -1011,7 +951,6 @@ watch(agendaList, (newList) => {
 
 .note-section {
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .history-section {
@@ -1323,12 +1262,13 @@ watch(agendaList, (newList) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
   background-color: #f0f2f5;
   border-bottom: 1px solid #e4e7ed;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.6rem;
+  font-weight: 300;
   color: #303133;
+  min-height: 32px;
+  height: 32px;
 }
 
 .editor-header .editor-title {
@@ -1348,7 +1288,7 @@ watch(agendaList, (newList) => {
 .current-user-badge {
   background-color: #409eff;
   color: white;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 500;
@@ -1358,9 +1298,9 @@ watch(agendaList, (newList) => {
 .readonly-badge {
   background-color: #e6a23c;
   color: white;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   margin-left: 10px;
 }
@@ -1506,10 +1446,10 @@ watch(agendaList, (newList) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
+  padding: 0px 15px;
   background-color: #f0f2f5;
   border-bottom: 1px solid #e4e7ed;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #303133;
 }
@@ -1531,7 +1471,7 @@ watch(agendaList, (newList) => {
 .current-user-badge {
   background-color: #409eff;
   color: white;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 500;
@@ -1541,9 +1481,9 @@ watch(agendaList, (newList) => {
 .readonly-badge {
   background-color: #e6a23c;
   color: white;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   margin-left: 10px;
 }
@@ -1591,5 +1531,33 @@ watch(agendaList, (newList) => {
 /* Slightly taller quill editor inside the summary note container */
 .summary-note-container :deep(.quill-editor) {
   min-height: 210px;
+}
+.history-panel-side {
+  flex: 0 0 15%;
+  min-width: 180px;
+  max-width: 260px;
+  background: #fff;
+  border-radius: 10px;
+  margin-left: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.history-panel-side, .history-panel-side * {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.member-editor-flex {
+  flex: 1 1 0%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+.tab-editor-container {
+  min-height: 0;
 }
 </style>

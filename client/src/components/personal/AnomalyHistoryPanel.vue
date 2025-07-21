@@ -9,9 +9,10 @@
         :data="anomalyHistory"
         style="width: 100%"
         v-loading="historyLoading"
-        height="450"
+        height="500"
+        @row-click="emitViewDetail"
       >
-        <el-table-column prop="created_at" label="时间" width="120">
+        <el-table-column prop="created_at" label="时间" width="80">
           <template #default="scope">
             {{ formatDate(scope.row.created_at) }}
           </template>
@@ -21,16 +22,11 @@
             <span v-html="scope.row.summary"></span>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="80">
-          <template #default="scope">
-            <el-button size="small" @click="emitViewDetail(scope.row)">查看</el-button>
-          </template>
-        </el-table-column>
       </el-table>
       <el-pagination
-        style="margin-top: 12px; text-align: right"
+        size="small"
         background
-        layout="prev, pager, next, jumper, ->, total"
+        layout="prev, pager, next"
         :current-page="historyPage"
         :page-size="historyPageSize"
         :total="historyTotal"
@@ -88,7 +84,13 @@ function onHistoryPageSizeChange(size) {
 function formatDate(str) {
   if (!str) return '';
   const d = new Date(str);
-  return d.toLocaleString();
+  // 格式：MM/DD HH:mm:ss
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  const hour = String(d.getHours()).padStart(2, '0');
+  const minute = String(d.getMinutes()).padStart(2, '0');
+  const second = String(d.getSeconds()).padStart(2, '0');
+  return `${month}/${day} ${hour}:${minute}:${second}`;
 }
 
 function emitViewDetail(row) {
@@ -162,5 +164,34 @@ watch([() => props.userId, () => props.groupId], () => {
 .history-content {
   height: calc(100vh - 400px);
   min-height: 400px;
+}
+:deep(.el-table) {
+  table-layout: fixed !important;
+  width: 100% !important;
+  font-size: 13px;
+}
+:deep(.el-table th),
+:deep(.el-table td) {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 120px;
+}
+:deep(.el-pagination),
+:deep(.el-button) {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:deep(.el-pagination.is-background) {
+  min-width: 0;
+  width: auto;
+  margin: 12px 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+}
+:deep(.el-table__body tr) {
+  cursor: pointer;
 }
 </style> 
