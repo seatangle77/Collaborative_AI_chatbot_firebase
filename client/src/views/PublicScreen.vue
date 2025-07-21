@@ -126,7 +126,7 @@ import { VideoCamera } from "@element-plus/icons-vue";
 import StartMeetingPanel from "@/components/public/StartMeetingPanel.vue";
 import { useRoute } from "vue-router";
 import apiService from '../services/apiService';
-import { sendControlMessage } from "@/services/websocketService";
+import { sendGroupMessage, connectGroupSocket } from "@/services/groupWebSocketManager";
 
 const components = { ElButton, ElCollapse, ElCollapseItem, VideoCamera };
 const aiBots = ref([]);
@@ -201,7 +201,8 @@ async function startMeeting() {
       try {
         await apiService.startAnomalyPolling(selectedGroupId.value);
         // 新增：广播任务已开启
-        sendControlMessage(selectedGroupId.value, { type: "task_started" });
+        connectGroupSocket(selectedGroupId.value);
+        sendGroupMessage(selectedGroupId.value, { type: "task_started" });
       } catch (e) {
         // 可选：处理异常
       }

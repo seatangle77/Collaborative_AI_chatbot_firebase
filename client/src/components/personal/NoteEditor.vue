@@ -50,7 +50,7 @@ import {
 import { collection as firestoreCollection } from "firebase/firestore"; // 避免命名冲突
 import { firestore } from "@/firebase"; // 请确保你的 firebase 配置文件路径正确
 import { debounce } from "lodash-es";
-import { connectionStatus } from "@/services/websocketManager";
+import { getGroupSocketStatus } from "@/services/groupWebSocketManager";
 import { watch as vueWatch } from "vue";
 
 import Delta from "quill-delta";
@@ -81,6 +81,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  currentUserId: {
+    type: String,
+    required: true,
+  },
 });
 
 import { computed } from "vue";
@@ -102,11 +106,32 @@ function getRandomColor() {
 }
 
 function generateEditSummary(delta) {
-  if (delta.ops.some((op) => op.insert)) return "插入文字";
-  if (delta.ops.some((op) => op.delete)) return "删除文字";
-  if (delta.ops.some((op) => op.attributes?.header)) return "设置为标题样式";
-  if (delta.ops.some((op) => op.attributes?.list)) return "设置为列表格式";
-  return "样式修改";
+  const actions = [];
+  if (delta.ops.some(op => op.insert && typeof op.insert === 'string')) actions.push("插入文字");
+  if (delta.ops.some(op => op.insert && typeof op.insert !== 'string')) actions.push("插入对象（如图片/视频）");
+  if (delta.ops.some(op => op.delete)) actions.push("删除内容");
+  if (delta.ops.some(op => op.attributes?.bold)) actions.push("加粗");
+  if (delta.ops.some(op => op.attributes?.italic)) actions.push("斜体");
+  if (delta.ops.some(op => op.attributes?.underline)) actions.push("下划线");
+  if (delta.ops.some(op => op.attributes?.strike)) actions.push("删除线");
+  if (delta.ops.some(op => op.attributes?.color)) actions.push("更改文字颜色");
+  if (delta.ops.some(op => op.attributes?.background)) actions.push("更改背景色");
+  if (delta.ops.some(op => op.attributes?.link)) actions.push("插入/编辑链接");
+  if (delta.ops.some(op => op.attributes?.image)) actions.push("插入图片");
+  if (delta.ops.some(op => op.attributes?.video)) actions.push("插入视频");
+  if (delta.ops.some(op => op.attributes?.code)) actions.push("插入代码");
+  if (delta.ops.some(op => op.attributes?.blockquote)) actions.push("插入引用");
+  if (delta.ops.some(op => op.attributes?.header)) actions.push("设置为标题");
+  if (delta.ops.some(op => op.attributes?.list)) actions.push("设置为列表");
+  if (delta.ops.some(op => op.attributes?.align)) actions.push("更改对齐方式");
+  if (delta.ops.some(op => op.attributes?.indent)) actions.push("更改缩进");
+  if (delta.ops.some(op => op.attributes?.font)) actions.push("更改字体");
+  if (delta.ops.some(op => op.attributes?.size)) actions.push("更改字号");
+  // ...可继续扩展
+  if (actions.length > 0) {
+    return actions.join("、");
+  }
+  return "未知操作";
 }
 
 function getAffectedTextFromDelta(delta, quillInstance) {
@@ -122,11 +147,6 @@ function getAffectedTextFromDelta(delta, quillInstance) {
           const [line, offset] = quillInstance.getLine(index);
           segment = line?.domNode?.innerText || "(空段)";
         }
-        console.log("📌 正在处理 retain + attributes 类型：", {
-          index,
-          retain: op.retain,
-          segment,
-        });
         results.push({
           text: segment.trim(),
           formats: op.attributes,
@@ -218,7 +238,6 @@ let isApplyingColor = false;
 onMounted(async () => {
   await nextTick(); // 确保 DOM 完全挂载
   console.log("[NoteEditor挂载] noteId:", props.noteId, "userId:", props.userId, "members:", props.members);
-  console.log("📦 Quill container loaded:", editorContainer.value);
 
   if (editorContainer.value) {
     // 定义工具栏配置
@@ -303,28 +322,8 @@ onMounted(async () => {
   let lastContentSavedAt = Date.now();
 
   quill.on("text-change", (delta, oldDelta, source) => {
-    if (!props.editorStarted || source !== "user") return;
+    if (!true || source !== "user") return;
     if (isApplyingColor) return;
-
-    const userColor = provider.awareness.getLocalState()?.user?.color;
-    const opsWithColor = delta.ops.map((op) => {
-      if (op.insert && typeof op.insert === "string") {
-        return {
-          insert: op.insert,
-          attributes: {
-            ...(op.attributes || {}),
-            color: userColor,
-          },
-        };
-      }
-      return op;
-    });
-
-    if (opsWithColor.some((op) => op.attributes?.color)) {
-      isApplyingColor = true;
-      quill.updateContents({ ops: opsWithColor }, "user");
-      isApplyingColor = false;
-    }
 
     pendingDeltas.push(delta);
 
@@ -346,12 +345,23 @@ onMounted(async () => {
   // 每 5 秒合并一次 delta，记录编辑行为
   deltaFlushInterval = setInterval(() => {
     try {
-      if (!props.editorStarted) return;
+      console.log('[NoteEditor] 当前userId:', props.userId, 'currentUserId:', props.currentUserId);
+      // 只记录当前登录用户的编辑历史
+      if (props.userId !== props.currentUserId) return;
       const currentDelta = quill.getContents();
       const deltaChanged =
         JSON.stringify(currentDelta.ops) !== JSON.stringify(lastSavedDelta.ops);
 
       if (pendingDeltas.length === 0 && !deltaChanged) return;
+
+      // 遍历pendingDeltas，为每个delta生成摘要
+      if (pendingDeltas.length > 0) {
+        const summaries = pendingDeltas.map(d => ({
+          summary: generateEditSummary(d),
+          delta: d
+        }));
+        console.log('10秒内所有操作摘要：', summaries);
+      }
 
       const combinedDelta =
         pendingDeltas.length > 0
@@ -420,7 +430,8 @@ onMounted(async () => {
     // 只要内容有变化就统计字数（包括只读模式下的协作同步）
     if (!quill) return;
     wordCount.value = quill.getText().trim().length;
-    if (!props.editorStarted) return;
+    // 只记录当前登录用户的内容
+    if (props.userId !== props.currentUserId) return;
     const now = Date.now();
     if (now - lastContentSavedAt >= 60000) {
       // 采用 quill.root.innerHTML 作为富文本存储
@@ -456,7 +467,7 @@ onMounted(async () => {
   });
 
   // 监听 WebSocket 连接成功，自动触发"开始写入数据"
-  vueWatch(connectionStatus, (newStatus) => {
+  vueWatch(getGroupSocketStatus, (newStatus) => {
     if (newStatus === "connected" && !props.editorStarted) {
       console.log("🟢 WebSocket 连接成功，自动触发写入数据");
     }

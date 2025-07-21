@@ -108,6 +108,7 @@
                 :editor-started="editorStarted && userId === member.user_id"
                 :read-only="userId !== member.user_id"
                 :show-title="false"
+                :current-user-id="userId"
               />
             </div>
           </div>
@@ -203,10 +204,10 @@ import UserProfileBar from "@/components/personal/UserProfileBar.vue";
 import AnomalyHistoryPanel from "@/components/personal/AnomalyHistoryPanel.vue";
 import api from "../services/apiService";
 import {
-  connectGroupWebSocket,
+  connectGroupSocket,
   onGroupMessage,
-  closeGroupWebSocket,
-} from "@/services/groupWebSocket";
+  closeGroupSocket,
+} from "@/services/groupWebSocketManager";
 import {
   connectUserWebSocket,
   onUserMessage,
@@ -396,18 +397,8 @@ onMounted(async () => {
     }
   });
 
-  // 连接群组ws
-  watch(
-    group,
-    (newGroup) => {
-      if (newGroup && newGroup.id) {
-        connectGroupWebSocket(newGroup.id);
-      }
-    },
-    { immediate: true }
-  );
-  // 监听群组ws消息
-  onGroupMessage("agenda_stage_update", (data) => {
+  onUserMessage("agenda_stage_update", (data) => {
+    // 直接更新当前 group 的议程UI
     editorStarted.value = true;
     const stage = data.stage;
     currentStage.value = stage;
@@ -422,11 +413,48 @@ onMounted(async () => {
       });
     }
   });
+
+  // 连接群组ws
+  watch(
+    group,
+    (newGroup) => {
+      if (newGroup && newGroup.id) {
+        connectGroupSocket(newGroup.id);
+      }
+    },
+    { immediate: true }
+  );
+  // 监听群组ws消息
+  watch(
+    group,
+    (newGroup) => {
+      if (newGroup && newGroup.id) {
+        onGroupMessage(newGroup.id, "agenda_stage_update", (data) => {
+          editorStarted.value = true;
+          const stage = data.stage;
+          currentStage.value = stage;
+          if (session.value?.id) {
+            api.getAgendas(session.value.id).then((agendas) => {
+              if (agendas && agendas.length === 1) {
+                agendaList.value = agendas;
+                showAgendaPanel.value = stage === 1;
+              } else {
+                showAgendaPanel.value = false;
+              }
+            });
+          }
+        });
+      }
+    },
+    { immediate: true }
+  );
 });
 
 onBeforeUnmount(() => {
   document.removeEventListener("visibilitychange", handleVisibilityChange);
-  closeGroupWebSocket();
+  if (group.value && group.value.id) {
+    closeGroupSocket(group.value.id);
+  }
   closeUserWebSocket();
   Object.values(abnormalMap.value).forEach(
     (v) => v && v.timer && clearTimeout(v.timer)
