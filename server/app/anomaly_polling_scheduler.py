@@ -4,11 +4,10 @@ import time
 import traceback
 from datetime import datetime, timezone
 
-from server.app.anomaly_analyze import analyze_anomaly_status_new
+from server.app.anomaly_analyze import analyze_anomaly_status_new, Member
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
-from server.app.routes.analysis import Member
 from server.app.websocket_routes import push_anomaly_analysis_result
 
 
@@ -31,38 +30,41 @@ _analyze_result_history = []
 
 def get_group_members_simple(group_id: str):
     global _users_info
+    try:
+        start_time = time.time()
+        logger.info(f"🔍 [成员查询] 开始查询group_id={group_id}的成员信息...")
 
-    start_time = time.time()
-    logger.info(f"🔍 [成员查询] 开始查询group_id={group_id}的成员信息...")
 
+        # 查询组成员关系
+        query1_start = time.time()
+        members_ref = db.collection("group_memberships").where("group_id", "==", group_id).stream()
+        members = [doc.to_dict() for doc in members_ref]
+        query1_duration = time.time() - query1_start
+        logger.info(f"📋 [成员查询] 查询组成员关系完成，耗时{query1_duration:.2f}秒，找到{len(members)}个成员关系")
 
-    # 查询组成员关系
-    query1_start = time.time()
-    members_ref = db.collection("group_memberships").where("group_id", "==", group_id).stream()
-    members = [doc.to_dict() for doc in members_ref]
-    query1_duration = time.time() - query1_start
-    logger.info(f"📋 [成员查询] 查询组成员关系完成，耗时{query1_duration:.2f}秒，找到{len(members)}个成员关系")
+        user_ids = [m["user_id"] for m in members]
+        users_info = []
 
-    user_ids = [m["user_id"] for m in members]
-    users_info = []
+        # 查询用户详细信息
+        query2_start = time.time()
+        for uid in user_ids:
+            user_doc = db.collection("users_info").document(uid).get()
+            if user_doc.exists:
+                user_data = user_doc.to_dict()
+                user_data["user_id"] = uid
+                users_info.append(user_data)
+        query2_duration = time.time() - query2_start
+        logger.info(f"👥 [成员查询] 查询用户详细信息完成，耗时{query2_duration:.2f}秒，获取到{len(users_info)}个用户信息")
 
-    # 查询用户详细信息
-    query2_start = time.time()
-    for uid in user_ids:
-        user_doc = db.collection("users_info").document(uid).get()
-        if user_doc.exists:
-            user_data = user_doc.to_dict()
-            user_data["user_id"] = uid
-            users_info.append(user_data)
-    query2_duration = time.time() - query2_start
-    logger.info(f"👥 [成员查询] 查询用户详细信息完成，耗时{query2_duration:.2f}秒，获取到{len(users_info)}个用户信息")
+        total_duration = time.time() - start_time
+        logger.info(f"✅ [成员查询] group_id={group_id}成员查询完成，总耗时{total_duration:.2f}秒")
 
-    total_duration = time.time() - start_time
-    logger.info(f"✅ [成员查询] group_id={group_id}成员查询完成，总耗时{total_duration:.2f}秒")
+        _users_info = users_info
+        return users_info
+    except Exception as e:
+        logger.error(f"❌ [成员查询] group_id={group_id} 查询异常: {traceback.format_exc()}")
 
-    _users_info = users_info
-    return users_info
-
+    return None
 
 def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analysis_results_id: str = None,
     detail_type: str = None, detail_status: str = None, share_to_user_ids: list = None):
@@ -133,11 +135,11 @@ def analyze(group_id, start_time, end_time):
             if len(_analyze_result_history) > 10:
                 _analyze_result_history = _analyze_result_history[-10:]
         except Exception as e:
-            logger.error(f"❌ [AI异常分析] 阶段2-AI分析异常: {e}")
+            logger.error(f"❌ [AI异常分析] 阶段2-AI分析异常: {traceback.format_exc()}")
         stage2_duration = time.time() - stage2_start
         logger.info(f"🤖 [AI异常分析] 阶段2-AI分析完成，耗时{stage2_duration:.2f}秒。结果：", str(result)[:100])
     except Exception as e:
-        logger.info(f"❌ [AI异常分析] group_id={group_id} 导入或调用分析接口异常: {e}")
+        logger.error(f"❌ [AI异常分析] group_id={group_id} 导入或调用分析接口异常: {traceback.format_exc()}")
 
     total_duration = time.time() - total_start_time
     logger.info(f"✅ [AI异常分析] group_id={group_id} 分析完成，总耗时{total_duration:.2f}秒")
@@ -154,6 +156,7 @@ def stop_analyze(group_id: str):
     _group_id = group_id
 
 def analyze_handler():
+    logger.info("🔄 [AI异常分析轮询] 启动分析轮询线程...")
     global _group_id, _stop_analyze
 
     # 120秒的分析间隔
@@ -263,6 +266,7 @@ def notify(user):
 
 
 def notify_handler():
+    logger.info("🔔 [AI异常通知轮询] 启动通知轮询线程...")
     global _group_id,_stop_analyze,_default_interval_seconds,_user_notify_interval_seconds,_user_notify_last_time,_users_info
 
     while True:
@@ -299,11 +303,19 @@ def notify_handler():
 
 def run_analyze():
     global _analyze_thread, _notify_thread
-    _analyze_thread = threading.Thread(target=analyze_handler, name='_analyze_thread', daemon=True)
-    _analyze_thread.start()
+    try:
+        _analyze_thread = threading.Thread(target=analyze_handler, name='_analyze_thread', daemon=True)
+        _analyze_thread.start()
 
-    # 5s后启动通知线程，错开时间
-    time.sleep(5)
+        # 5s后启动通知线程，错开时间
+        time.sleep(5)
 
-    _notify_thread = threading.Thread(target=notify_handler, name='_notify_thread', daemon=True)
-    _notify_thread.start()
+        _notify_thread = threading.Thread(target=notify_handler, name='_notify_thread', daemon=True)
+        _notify_thread.start()
+
+    except (Exception,):
+        logger.error('Error in notify_handler loop: %s' % traceback.format_exc())
+
+if __name__ == "__main__":
+    # run_analyze()
+    print(get_group_members_simple("0c90c6de-33e3-4431-b5fe-d06378111ef0"))

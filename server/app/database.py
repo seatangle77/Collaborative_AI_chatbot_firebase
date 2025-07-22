@@ -18,6 +18,15 @@ if ENV == "production":
     firebase_key_dict = json.loads(firebase_key_str)
 else:
     cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
+    # 获取当前文件的绝对路径
+    current_file_path = os.path.abspath(__file__)
+    # 获取当前文件所在的目录
+    current_dir = os.path.dirname(current_file_path)
+    # 获取当前目录的上一级目录
+    parent_dir = os.path.dirname(current_dir)
+    cred_path = os.path.join(parent_dir, cred_path)
+
     if cred_path and os.path.exists(cred_path):
         cred = credentials.Certificate(cred_path)
     else:

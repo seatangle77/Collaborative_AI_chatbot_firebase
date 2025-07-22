@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from server.app.logger.logger_loader import logger
+from server.app.anomaly_polling_scheduler import run_analyze
 from server.app.routes import router  # 导入所有的 API 路由
 from server.app.websocket_routes import websocket_router
 
@@ -72,6 +72,7 @@ async def root():
     return {"message": "Welcome to Collaborative AI Chatbot API with WebSocket!"}
 
 if __name__ == "__main__":
+    run_analyze()
     uvicorn.run("server.app.main:app", host="0.0.0.0", port=8000, reload=True)
 
 # Note: To adapt the WebSocket connection protocol for different environments,
