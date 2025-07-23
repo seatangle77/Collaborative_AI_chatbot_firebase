@@ -391,16 +391,16 @@ onMounted(async () => {
         affectedText,
       });
       apiService.saveNoteEditHistory({
-        note_id: props.noteId,
-        user_id: props.userId,
+        noteId: props.noteId,
+        userId: props.userId,
         delta: combinedDelta.ops.map((op) => ({ ...op })),
-        char_count: combinedDelta.length(),
-        is_delete: combinedDelta.ops?.some((op) => op.delete),
-        has_header: combinedDelta.ops?.some((op) => op.attributes?.header),
-        has_list: combinedDelta.ops?.some((op) => op.attributes?.list),
-        updated_at: new Date().toISOString(),
+        charCount: combinedDelta.length(),
+        isDelete: combinedDelta.ops?.some((op) => op.delete),
+        hasHeader: combinedDelta.ops?.some((op) => op.attributes?.header),
+        hasList: combinedDelta.ops?.some((op) => op.attributes?.list),
+        updatedAt: new Date().toISOString(),
         summary,
-        affected_text: affectedText,
+        affectedText: affectedText,
       })
         .then(() => {
           isSaving.value = false;
@@ -451,11 +451,11 @@ onMounted(async () => {
         updatedAt: new Date().toISOString(),
       });
       apiService.saveNoteContent({
-        note_id: props.noteId,
-        user_id: props.userId,
+        noteId: props.noteId,
+        userId: props.userId,
         content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
         html, // 可粘贴富文本格式
-        updated_at: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       })
         .then(() => {
           lastContentSavedAt = now;

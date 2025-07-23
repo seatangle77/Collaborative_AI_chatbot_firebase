@@ -1,8 +1,8 @@
 import traceback
 
 import Levenshtein
-from fastapi import APIRouter, HTTPException, Body
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException, Body, Request
+from pydantic import BaseModel, Field
 from typing import Any, Dict
 
 from server.app.logger.logger_loader import logger
@@ -63,23 +63,23 @@ _note_contents_store: Dict[str, Any] = {}
 _note_edit_history_store: Dict[str, list] = {}
 
 class NoteContentRequest(BaseModel):
-    note_id: str
-    user_id: str
+    note_id: str = Field(..., alias="noteId")
+    user_id: str = Field(..., alias="userId")
     content: Any  # delta
     html: str
-    updated_at: str
+    updated_at: str = Field(..., alias="updatedAt")
 
 class NoteEditHistoryRequest(BaseModel):
-    note_id: str
-    user_id: str
+    note_id: str = Field(..., alias="noteId")
+    user_id: str = Field(..., alias="userId")
     delta: Any
-    char_count: int
-    is_delete: bool = False
-    has_header: bool = False
-    has_list: bool = False
-    updated_at: str
+    char_count: int = Field(..., alias="charCount")
+    is_delete: bool = Field(False, alias="isDelete")
+    has_header: bool = Field(False, alias="hasHeader")
+    has_list: bool = Field(False, alias="hasList")
+    updated_at: str = Field(..., alias="updatedAt")
     summary: str = ""
-    affected_text: str = ""
+    affected_text: str = Field("", alias="affectedText")
 
 @router.post("/api/editor/push_content")
 async def editor_push_content(req:EditorContentRequest):
@@ -99,27 +99,28 @@ async def editor_push_content(req:EditorContentRequest):
         raise HTTPException(status_code=500, detail=f"editor_push_content 失败: {traceback.format_exc()}")
 
 @router.post("/api/note/content")
-async def save_note_content(req: NoteContentRequest):
+async def save_note_content(req: Request):
     """
-    保存笔记内容（写入 Firestore note_contents 集合）
+    保存笔记内容（直接存前端传来的字段）
     """
     try:
-        doc_ref = db.collection("note_contents").document(req.note_id)
-        doc_ref.set(req.dict())
-        logger.info(f"[save_note_content] note_id={req.note_id}, user_id={req.user_id}, updated_at={req.updated_at}")
+        data = await req.json()
+        db.collection("note_contents").add(data)
+        logger.info(f"[save_note_content] {data}")
         return {"success": True}
     except Exception as e:
         logger.error(f"save_note_content 失败: {traceback.format_exc()}")
         raise HTTPException(status_code=500, detail=f"save_note_content 失败: {traceback.format_exc()}")
 
 @router.post("/api/note/edit-history")
-async def save_note_edit_history(req: NoteEditHistoryRequest):
+async def save_note_edit_history(req: Request):
     """
-    保存编辑历史（写入 Firestore note_edit_history 集合）
+    保存编辑历史（直接存前端传来的字段）
     """
     try:
-        db.collection("note_edit_history").add(req.dict())
-        logger.info(f"[save_note_edit_history] note_id={req.note_id}, user_id={req.user_id}, summary={req.summary}")
+        data = await req.json()
+        db.collection("note_edit_history").add(data)
+        logger.info(f"[save_note_edit_history] {data}")
         return {"success": True}
     except Exception as e:
         logger.error(f"save_note_edit_history 失败: {traceback.format_exc()}")
