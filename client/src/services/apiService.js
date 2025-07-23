@@ -126,4 +126,16 @@ export default {
   },
 
   feedbackClick,
+
+  // 保存协作笔记内容
+  saveNoteContent(data) {
+    // data: { note_id, user_id, content, html, updated_at }
+    return axios.post(`${BASE_URL}/api/note/content`, data).then(res => res.data);
+  },
+
+  // 保存协作笔记编辑历史
+  saveNoteEditHistory(data) {
+    // data: { note_id, user_id, delta, char_count, is_delete, has_header, has_list, updated_at, summary, affected_text }
+    return axios.post(`${BASE_URL}/api/note/edit-history`, data).then(res => res.data);
+  },
 };

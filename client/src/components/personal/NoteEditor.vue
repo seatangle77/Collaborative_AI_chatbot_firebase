@@ -55,6 +55,7 @@ import { debounce } from "lodash-es";
 import { watch as vueWatch } from "vue";
 
 import Delta from "quill-delta";
+import apiService from "@/services/apiService";
 
 const props = defineProps({
   noteId: {
@@ -389,36 +390,31 @@ onMounted(async () => {
         summary,
         affectedText,
       });
-      // addDoc(historyRef, {
-      //   userId: props.userId,
-      //   delta: combinedDelta.ops.map((op) => ({ ...op })),
-      //   charCount: combinedDelta.length(),
-      //   isDelete: combinedDelta.ops?.some((op) => op.delete),
-      //   hasHeader: combinedDelta.ops?.some((op) => op.attributes?.header),
-      //   hasList: combinedDelta.ops?.some((op) => op.attributes?.list),
-      //   updatedAt: new Date().toISOString(),
-      //   summary,
-      //   affectedText,
-      // })
-      //   .then(() => {
-      //     console.log("📝 [Auto] Edit log saved (fallback or normal)");
-      //     // 更新保存状态
-      //     isSaving.value = false;
-      //     isSaved.value = true;
-      //     saveStatusText.value = "已保存";
-
-      //     // 3秒后重置状态
-      //     setTimeout(() => {
-      //       isSaved.value = false;
-      //     }, 3000);
-      //   })
-      //   .catch((error) => {
-      //     console.error("❌ Failed to save edit log", error);
-      //     console.log("❗ combinedDelta:", combinedDelta);
-      //     // 保存失败状态
-      //     isSaving.value = false;
-      //     saveStatusText.value = "保存失败";
-      //   });
+      apiService.saveNoteEditHistory({
+        note_id: props.noteId,
+        user_id: props.userId,
+        delta: combinedDelta.ops.map((op) => ({ ...op })),
+        char_count: combinedDelta.length(),
+        is_delete: combinedDelta.ops?.some((op) => op.delete),
+        has_header: combinedDelta.ops?.some((op) => op.attributes?.header),
+        has_list: combinedDelta.ops?.some((op) => op.attributes?.list),
+        updated_at: new Date().toISOString(),
+        summary,
+        affected_text: affectedText,
+      })
+        .then(() => {
+          isSaving.value = false;
+          isSaved.value = true;
+          saveStatusText.value = "已保存";
+          setTimeout(() => {
+            isSaved.value = false;
+          }, 3000);
+        })
+        .catch((error) => {
+          isSaving.value = false;
+          saveStatusText.value = "保存失败";
+          console.error("❌ Failed to save edit log", error);
+        });
     } catch (err) {
       console.error("❌ Interval execution failed:", err);
     }
@@ -450,24 +446,23 @@ onMounted(async () => {
       console.log("将要写入 note_contents：", {
         noteId: props.noteId,
         userId: props.userId,
-        content: delta.ops.map((op) => ({ ...op })),
-        html,
+        content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
+        html, // 可粘贴富文本格式
         updatedAt: new Date().toISOString(),
       });
-      // addDoc(firestoreCollection(firestore, "note_contents"), {
-      //   noteId: props.noteId,
-      //   userId: props.userId,
-      //   content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
-      //   html, // 可粘贴富文本格式
-      //   updatedAt: new Date().toISOString(),
-      // })
-      //   .then(() => {
-      //     console.log("💾 Note content saved to note_contents");
-      //   })
-      //   .catch((err) => {
-      //     console.error("❌ Failed to save note content", err);
-      //   });
-      lastContentSavedAt = now;
+      apiService.saveNoteContent({
+        note_id: props.noteId,
+        user_id: props.userId,
+        content: delta.ops.map((op) => ({ ...op })), // 保留 Delta 格式以备分析
+        html, // 可粘贴富文本格式
+        updated_at: new Date().toISOString(),
+      })
+        .then(() => {
+          lastContentSavedAt = now;
+        })
+        .catch((err) => {
+          console.error("❌ Failed to save note content", err);
+        });
     }
   });
 

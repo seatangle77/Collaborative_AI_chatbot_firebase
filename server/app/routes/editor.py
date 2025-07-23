@@ -1,10 +1,12 @@
 import traceback
 
 import Levenshtein
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from pydantic import BaseModel
+from typing import Any, Dict
 
 from server.app.logger.logger_loader import logger
+from server.app.database import db
 
 router = APIRouter()
 
@@ -56,6 +58,29 @@ def describe_editops(s1, s2):
 
 _user_editor_last_content = {}
 
+# 内存模拟存储
+_note_contents_store: Dict[str, Any] = {}
+_note_edit_history_store: Dict[str, list] = {}
+
+class NoteContentRequest(BaseModel):
+    note_id: str
+    user_id: str
+    content: Any  # delta
+    html: str
+    updated_at: str
+
+class NoteEditHistoryRequest(BaseModel):
+    note_id: str
+    user_id: str
+    delta: Any
+    char_count: int
+    is_delete: bool = False
+    has_header: bool = False
+    has_list: bool = False
+    updated_at: str
+    summary: str = ""
+    affected_text: str = ""
+
 @router.post("/api/editor/push_content")
 async def editor_push_content(req:EditorContentRequest):
     """
@@ -72,3 +97,30 @@ async def editor_push_content(req:EditorContentRequest):
         return {}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"editor_push_content 失败: {traceback.format_exc()}")
+
+@router.post("/api/note/content")
+async def save_note_content(req: NoteContentRequest):
+    """
+    保存笔记内容（写入 Firestore note_contents 集合）
+    """
+    try:
+        doc_ref = db.collection("note_contents").document(req.note_id)
+        doc_ref.set(req.dict())
+        logger.info(f"[save_note_content] note_id={req.note_id}, user_id={req.user_id}, updated_at={req.updated_at}")
+        return {"success": True}
+    except Exception as e:
+        logger.error(f"save_note_content 失败: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"save_note_content 失败: {traceback.format_exc()}")
+
+@router.post("/api/note/edit-history")
+async def save_note_edit_history(req: NoteEditHistoryRequest):
+    """
+    保存编辑历史（写入 Firestore note_edit_history 集合）
+    """
+    try:
+        db.collection("note_edit_history").add(req.dict())
+        logger.info(f"[save_note_edit_history] note_id={req.note_id}, user_id={req.user_id}, summary={req.summary}")
+        return {"success": True}
+    except Exception as e:
+        logger.error(f"save_note_edit_history 失败: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"save_note_edit_history 失败: {traceback.format_exc()}")

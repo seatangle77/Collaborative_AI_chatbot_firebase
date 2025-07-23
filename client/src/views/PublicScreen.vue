@@ -286,7 +286,6 @@ function formatTime(seconds) {
 
 watch(agendaList, (newList) => {
   // 新议程数据时，启动所有计时器
-  console.log('watch agendaList:', newList);
   if (Array.isArray(newList)) {
     newList.forEach((agenda) => {
       console.log('agenda id:', agenda.id, 'allocated_time_minutes:', agenda.allocated_time_minutes);
