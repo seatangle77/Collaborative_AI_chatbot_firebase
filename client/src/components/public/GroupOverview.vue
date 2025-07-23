@@ -130,7 +130,7 @@ const handleModelChange = async (newModel) => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   background-color: #fff;
   border-radius: 12px;
   box-sizing: border-box;

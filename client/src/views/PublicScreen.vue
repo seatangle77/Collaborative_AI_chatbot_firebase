@@ -82,7 +82,7 @@
                   }"></div>
                   </div>
                   <transition name="fade">
-                    <div v-if="agendaTimers[agenda.id]?.timeLeft <= 300 && !agendaTimers[agenda.id]?.finished" class="timer-warning">
+                    <div v-if="!agendaTimers[agenda.id]?.finished" class="timer-warning">
                       剩余时间：{{ formatTime(agendaTimers[agenda.id]?.timeLeft) }}
                     </div>
                   </transition>
@@ -490,14 +490,13 @@ onMounted(async () => {
 .agenda-panel.flex-row {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: auto;
   align-items: flex-start;
   justify-content: center;
 }
 .agenda-flex-row {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   width: 98%;
   align-items: stretch;
   justify-content: center;
@@ -594,5 +593,17 @@ onMounted(async () => {
   0% { transform: scale(0.7); opacity: 0; }
   80% { transform: scale(1.1); opacity: 1; }
   100% { transform: scale(1); }
+}
+
+.output-req-row ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.98em;
+  line-height: 1.4;
+}
+
+.output-req-row ul li {
+  margin-bottom: 2px;
+  padding: 0;
 }
 </style>

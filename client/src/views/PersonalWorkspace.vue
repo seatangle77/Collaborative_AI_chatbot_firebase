@@ -105,7 +105,7 @@
                 :note-id="`note-${group?.id}-${member.user_id}`"
                 :user-id="member.user_id"
                 :members="members"
-                :editor-started="editorStarted && userId === member.user_id"
+                :editor-started="!!memberEditorStartedMap[member.user_id]"
                 :read-only="userId !== member.user_id"
                 :show-title="false"
                 :current-user-id="userId"
@@ -262,6 +262,9 @@ const memberList = ref([]);
 const userId = computed(() => selectedUserId.value);
 
 const abnormalMap = ref({}); // { user_id: { detail_type, detail_status, timer } }
+// 移除 triggerNoteSaveUserId 相关逻辑
+// const triggerNoteSaveUserId = ref(null);
+const memberEditorStartedMap = ref({});
 
 // 颜色分配与协作笔记一致
 const avatarColors = [
@@ -403,6 +406,8 @@ onMounted(async () => {
         }
       });
     }
+    // 只激活当前用户的 NoteEditor
+    memberEditorStartedMap.value[userId.value] = true;
   });
 
   // 移除 group WebSocket 相关 watch 监听和调用
@@ -1021,10 +1026,10 @@ watch(showRichNotification, (val) => {
 .agenda-flex-row {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  width: 98%;
+  width: auto;
   align-items: stretch;
   justify-content: center;
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
 }
 .agenda-left,
 .agenda-right {
@@ -1037,6 +1042,10 @@ watch(showRichNotification, (val) => {
   flex-direction: column;
   justify-content: flex-start;
   padding: 10px;
+}
+.agenda-left,
+.agenda-right {
+  font-size: 0.92rem;
 }
 .output-req-row {
   display: flex;
@@ -1052,21 +1061,21 @@ watch(showRichNotification, (val) => {
   border-radius: 6px;
   padding: 12px 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-  font-size: 1rem;
+  font-size: 0.9rem;
   flex: 1 1 0;
   min-width: 0;
 }
 .agenda-task-prompt {
-  font-size: 1.13rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #222;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   text-align: left;
   letter-spacing: 0.5px;
   line-height: 1.7;
 }
 .agenda-desc {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #222;
   width: 100%;
   text-align: left;
@@ -1615,5 +1624,28 @@ watch(showRichNotification, (val) => {
 @keyframes float-in {
   from { opacity: 0; transform: translateY(30px);}
   to { opacity: 1; transform: translateY(0);}
+}
+.output-req-title {
+  font-weight: 700;
+  color: #3478f6;
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+.example-title {
+  color: #e67e22;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+.output-req-row ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.98em;
+  line-height: 1.4;
+}
+
+.output-req-row ul li {
+  margin-bottom: 2px;
+  padding: 0;
 }
 </style>

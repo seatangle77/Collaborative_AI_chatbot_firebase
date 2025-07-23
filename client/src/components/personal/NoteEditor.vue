@@ -228,6 +228,8 @@ watch(
   { immediate: true }
 );
 
+// 移除 triggerSaveUserId 相关 watch 逻辑
+
 const contentRef = doc(firestore, "note_contents", props.noteId);
 const historyRef = firestoreCollection(firestore, "note_edit_history");
 let hasInsertedInitialContent = false;
@@ -345,6 +347,7 @@ onMounted(async () => {
 
   // 每 5 秒合并一次 delta，记录编辑行为
   deltaFlushInterval = setInterval(() => {
+    if (!props.editorStarted) return;
     try {
       console.log('[NoteEditor] 当前userId:', props.userId, 'currentUserId:', props.currentUserId);
       // 只记录当前登录用户的编辑历史
@@ -429,6 +432,7 @@ onMounted(async () => {
 
   ytext.observe(() => {
     // 只要内容有变化就统计字数（包括只读模式下的协作同步）
+    if (!props.editorStarted) return;
     if (!quill) return;
     wordCount.value = quill.getText().trim().length;
     // 只记录当前登录用户的内容
@@ -488,6 +492,7 @@ onBeforeUnmount(() => {
     console.warn("⚠️ Cleanup error:", e);
   }
 });
+
 </script>
 
 <style scoped>

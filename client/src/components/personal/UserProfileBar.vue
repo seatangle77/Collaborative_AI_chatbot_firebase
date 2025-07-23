@@ -135,7 +135,7 @@ const displayMemberName = (m) => {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   font-size: 14px;
   background-color: #ffffff;
   border-radius: 12px;
