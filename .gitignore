@@ -7,3 +7,12 @@ audio_runtime/asr_record.py
 
 client/package.json
 client/package-lock.json
+
+server/app/__pycache__
+server/app/logger/__pycache__
+server/app/routes/__pycache__
+server/log
+
+audio_runtime/__pycache__
+
+.vscode

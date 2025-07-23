@@ -69,9 +69,9 @@
           <div v-if="anomalyData.user_data_summary">
             <div
               ref="barChartRef"
-              style="width: 100%; height: 300px; margin-bottom: 24px"
+              style="width: 100%; aspect-ratio: 1.6 / 1; max-width: 400px; min-width: 200px; margin: 0 auto 16px auto;"
             ></div>
-            <div ref="radarChartRef" style="width: 100%; height: 300px"></div>
+            <div ref="radarChartRef" style="width: 100%; aspect-ratio: 1.6 / 1; max-width: 400px; min-width: 200px; margin: 0 auto;"></div>
           </div>
           <div v-if="!anomalyData.more_info && anomalyData.user_data_summary" class="info-block">
             <span class="info-label">提示：</span>
@@ -409,8 +409,8 @@ const historyComparisonTable = computed(() => {
 
 <style scoped>
 .abnormal-feedback {
-  padding: 16px;
-  background-color: #f5f7fa;
+  padding: 8px;
+  background-color: #fffbe6;
   border-radius: 8px;
   font-size: 14px;
   color: #333;
@@ -421,31 +421,43 @@ const historyComparisonTable = computed(() => {
   color: #2c3e50;
 }
 .main-section {
-  padding: 16px 0;
+  padding: 0;
+}
+.summary-block,
+.detail-block,
+.button-row {
+  padding: 8px 0;
 }
 .summary-block {
   background: #f0f6ff;
   border-radius: 6px;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  font-size: 15px;
+  padding: 8px 12px;
+  font-size: 13px;
   font-weight: 500;
   color: #1a237e;
   display: flex;
   align-items: center;
   min-height: 32px;
 }
+.more-info {
+  margin-top: 8px;
+  padding: 8px 0;
+}
+.info-block {
+  margin-bottom: 6px;
+  padding-bottom: 2px;
+}
 .summary-label {
   color: #3478f6;
   min-width: 80px;
   display: inline-block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
   vertical-align: middle;
 }
 .summary-content {
   color: #222;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
   vertical-align: middle;
 }
@@ -453,11 +465,11 @@ const historyComparisonTable = computed(() => {
   background: #fff;
   border-radius: 6px;
   padding: 12px 16px 8px 16px;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
   box-shadow: 0 1px 3px rgba(52, 120, 246, 0.06);
 }
 .detail-row {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
 }
@@ -466,14 +478,14 @@ const historyComparisonTable = computed(() => {
   color: #888;
   font-weight: 500;
   display: inline-block;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
   vertical-align: middle;
 }
 .detail-value {
   color: #222;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
   vertical-align: middle;
   display: block;
@@ -489,7 +501,7 @@ const historyComparisonTable = computed(() => {
 .evidence-row .evidence {
   background: #fffbe6;
   border-radius: 4px;
-  padding: 2px 6px;
+  padding: 5px 5px;
   color: #b26a00;
 }
 .suggestion-row .suggestion {
@@ -573,5 +585,30 @@ const historyComparisonTable = computed(() => {
   background: #f0f6ff !important;
   color: #222 !important;
   font-weight: 600;
+}
+:deep(.el-card__header) {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a237e;
+  border-bottom: 1px solid #e4e7ed;
+  padding: 10px 15px;
+}
+:deep(.el-card__body) {
+  padding: 10px 15px;
+  background: #fafbfc;
+  border-radius: 0 0 8px 8px;
+  margin-top: 2px;
+}
+:deep(.evidence-row .evidence ul) {
+  margin: 4px 0 4px 16px !important;
+  padding-left: 16px !important;
+  list-style-type: disc !important;
+  font-size: 13px !important;
+}
+:deep(.evidence-row .evidence li) {
+  margin-bottom: 2px !important;
+  line-height: 1.5 !important;
+  color: #444 !important;
+  padding-left: 2px !important;
 }
 </style>

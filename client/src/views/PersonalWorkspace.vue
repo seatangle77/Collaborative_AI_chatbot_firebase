@@ -156,20 +156,14 @@
           </div>
         </div>
       </div>
-      <el-drawer
-        v-model="drawerVisible"
-        :title="drawerSource === 'history' ? '历史异常反馈' : '实时异常反馈'"
-        size="50%"
-        :with-header="true"
-        :close-on-click-modal="false"
-        :destroy-on-close="true"
-      >
+      <div v-if="showRichNotification" class="rich-notification">
         <AbnormalFeedback
           v-if="drawerData"
           :anomaly-data="drawerData"
           :members="members"
         />
-      </el-drawer>
+        <span class="close-btn" @click="showRichNotification = false">×</span>
+      </div>
       <div class="analysis-panel">
         <!-- <el-date-picker
           v-model="startTime"
@@ -865,7 +859,20 @@ watch(agendaList, (newList) => {
   }
 });
 
+function unlockBody() {
+  document.body.style.overflow = '';
+}
+
 // 移除resizable-editor相关逻辑
+const showRichNotification = ref(false);
+
+// 替换原有 drawerVisible 控制逻辑：
+watch(drawerVisible, (val) => {
+  showRichNotification.value = val;
+});
+watch(showRichNotification, (val) => {
+  if (!val) drawerVisible.value = false;
+});
 </script>
 
 <style scoped>
@@ -1600,5 +1607,44 @@ watch(agendaList, (newList) => {
   border-bottom: 1px solid #fff;
   min-height: 6px;
   cursor: row-resize;
+}
+:deep(.el-drawer__header) {
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+  padding-top: 15px;
+}
+:deep(.el-drawer__body) {
+  padding: 0;
+  min-height: 200px;
+  margin-top: 5px;
+}
+.rich-notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  max-height: 100vh;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  border-radius: 8px 0 0 8px;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 0 0 8px 0;
+  animation: float-in .2s;
+}
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 20px;
+  cursor: pointer;
+}
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 </style>

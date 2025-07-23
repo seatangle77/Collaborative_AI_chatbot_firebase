@@ -318,4 +318,6 @@ def run_analyze():
 
 if __name__ == "__main__":
     # run_analyze()
+    #analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", last_analyze_time, current_time)
+
     print(get_group_members_simple("0c90c6de-33e3-4431-b5fe-d06378111ef0"))

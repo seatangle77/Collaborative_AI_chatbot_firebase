@@ -34,12 +34,15 @@
         @size-change="onHistoryPageSizeChange"
       />
     </div>
+    <!-- 右下角悬浮卡片/小窗 -->
+    <!-- 已移除浮窗相关代码 -->
   </div>
 </template>
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
 import api from "@/services/apiService";
+import { ElNotification } from 'element-plus';
 
 const props = defineProps({
   userId: String,
@@ -93,26 +96,9 @@ function formatDate(str) {
   return `${month}/${day} ${hour}:${minute}:${second}`;
 }
 
+// 直接点击表格行时触发抽屉显示
 function emitViewDetail(row) {
-  let parsed = null;
-  if (row && row.raw_response) {
-    let jsonStr = row.raw_response.trim();
-    if (jsonStr.startsWith('```json')) {
-      jsonStr = jsonStr.replace(/^```json|```$/g, '').trim();
-    }
-    try {
-      parsed = JSON.parse(jsonStr);
-    } catch (e) {
-      console.error('❌ 解析历史异常 raw_response 失败:', e, jsonStr);
-    }
-  }
-  const detailWithId = {
-    ...parsed,
-    id: row.id,
-    created_at: row.created_at,
-    summary: row.summary
-  };
-  emit("view-detail", detailWithId);
+  emit("view-detail", row);
 }
 
 onMounted(() => {
@@ -194,4 +180,5 @@ watch([() => props.userId, () => props.groupId], () => {
 :deep(.el-table__body tr) {
   cursor: pointer;
 }
+/* 已移除 .float-card 相关样式 */
 </style> 
