@@ -50,7 +50,8 @@ import {
 import { collection as firestoreCollection } from "firebase/firestore"; // 避免命名冲突
 import { firestore } from "@/firebase"; // 请确保你的 firebase 配置文件路径正确
 import { debounce } from "lodash-es";
-import { getGroupSocketStatus } from "@/services/groupWebSocketManager";
+// 移除 getGroupSocketStatus 相关导入
+// import { getGroupSocketStatus } from "@/services/groupWebSocketManager";
 import { watch as vueWatch } from "vue";
 
 import Delta from "quill-delta";
@@ -466,12 +467,12 @@ onMounted(async () => {
     }
   });
 
-  // 监听 WebSocket 连接成功，自动触发"开始写入数据"
-  vueWatch(getGroupSocketStatus, (newStatus) => {
-    if (newStatus === "connected" && !props.editorStarted) {
-      console.log("🟢 WebSocket 连接成功，自动触发写入数据");
-    }
-  });
+  // 移除监听 group WebSocket 状态的逻辑
+  // vueWatch(getGroupSocketStatus, (newStatus) => {
+  //   if (newStatus === "connected" && !props.editorStarted) {
+  //     console.log("🟢 WebSocket 连接成功，自动触发写入数据");
+  //   }
+  // });
 });
 
 onBeforeUnmount(() => {

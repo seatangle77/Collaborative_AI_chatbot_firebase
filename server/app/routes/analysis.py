@@ -180,8 +180,11 @@ async def get_anomaly_results_by_user(
 
 
 @router.post("/analysis/anomaly_polling/start")
-def start_anomaly_polling(req: GroupPollingRequest):
-    return start_analyze(req.group_id)
+async def start_anomaly_polling(req: GroupPollingRequest):
+    result = start_analyze(req.group_id)
+    from server.app.websocket_routes import push_agenda_stage
+    await push_agenda_stage(req.group_id, 1)
+    return result
 
 
 @router.post("/analysis/anomaly_polling/stop")

@@ -126,7 +126,8 @@ import { VideoCamera } from "@element-plus/icons-vue";
 import StartMeetingPanel from "@/components/public/StartMeetingPanel.vue";
 import { useRoute } from "vue-router";
 import apiService from '../services/apiService';
-import { sendGroupMessage, connectGroupSocket } from "@/services/groupWebSocketManager";
+// 移除 groupWebSocketManager 相关导入
+// import { connectGroupSocket, sendGroupMessage } from "@/services/groupWebSocketManager";
 
 const components = { ElButton, ElCollapse, ElCollapseItem, VideoCamera };
 const aiBots = ref([]);
@@ -200,9 +201,8 @@ async function startMeeting() {
       anomalyPollingStopped.value = false;
       try {
         await apiService.startAnomalyPolling(selectedGroupId.value);
-        // 新增：广播任务已开启
-        connectGroupSocket(selectedGroupId.value);
-        sendGroupMessage(selectedGroupId.value, { type: "task_started" });
+        // 移除 groupWebSocketManager 相关导入
+        // 移除 connectGroupSocket(selectedGroupId.value) 和 sendGroupMessage(selectedGroupId.value, ...) 的调用
       } catch (e) {
         // 可选：处理异常
       }
@@ -297,28 +297,7 @@ watch(agendaList, (newList) => {
   }
 });
 
-// 新增 group ws 监听日志
-let groupWs = null;
-watch(selectedGroupId, (newGroupId) => {
-  if (groupWs) {
-    groupWs.close();
-    groupWs = null;
-  }
-  if (newGroupId) {
-    groupWs = new WebSocket(`${import.meta.env.VITE_WS_BASE || 'ws://localhost:8000'}/ws/${newGroupId}`);
-    groupWs.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        console.log('[groupWs] 收到消息:', data);
-        if (data.type === "agenda_stage_update") {
-          // 这里可以同步 UI
-        }
-      } catch (err) {
-        console.error("❌ group ws 消息解析失败:", err, event.data);
-      }
-    };
-  }
-}, { immediate: true });
+// 移除 group ws 监听日志
 
 onMounted(async () => {
   // 打印路由参数 name
