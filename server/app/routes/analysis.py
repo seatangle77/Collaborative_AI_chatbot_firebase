@@ -55,7 +55,7 @@ class FeedbackClickRequest(BaseModel):
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
 async def get_anomaly_status(req: IntervalSummaryRequest):
-    return analyze_anomaly_status(req.group_id, req.round_index, req.start_time, req.end_time,req.members, req.current_user)
+    return analyze_anomaly_status(req.group_id, req.round_index, req.start_time, req.end_time,req.members)
 
 @router.get("/analysis/round_summary_combined")
 async def round_summary_combined(

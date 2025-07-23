@@ -4,7 +4,7 @@ import time
 import traceback
 from datetime import datetime, timezone
 
-from server.app.anomaly_analyze import analyze_anomaly_status_new, Member
+from server.app.anomaly_analyze import analyze_anomaly_status, Member
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
@@ -127,7 +127,10 @@ def analyze(group_id, start_time, end_time):
         stage2_start = time.time()
         result = None
         try:
-            result = asyncio.run(analyze_anomaly_status_new(group_id,1,start_time_str,end_time_str,member_objs))
+            result = asyncio.run(analyze_anomaly_status(group_id,1,start_time_str,end_time_str,member_objs))
+            if not result:
+                # 无分析结果
+                return None
 
             # 缓存分析结果
             _analyze_result_history.append((end_time, result))
@@ -318,6 +321,8 @@ def run_analyze():
 
 if __name__ == "__main__":
     # run_analyze()
-    #analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", last_analyze_time, current_time)
+    # print(get_group_members_simple("0c90c6de-33e3-4431-b5fe-d06378111ef0"))
 
-    print(get_group_members_simple("0c90c6de-33e3-4431-b5fe-d06378111ef0"))
+    start_time = datetime.strptime("2025-07-09 02:45:00", "%Y-%m-%d %H:%M:%S")
+    end_time = datetime.strptime("2025-07-09 02:47:00", "%Y-%m-%d %H:%M:%S")
+    analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", start_time, end_time)
