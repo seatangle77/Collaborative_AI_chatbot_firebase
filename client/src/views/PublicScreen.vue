@@ -280,6 +280,10 @@ function startAgendaTimer(agenda) {
       agendaTimers.value[agenda.id].finished = true;
       clearInterval(agendaTimers.value[agenda.id].interval);
       agendaTimers.value[agenda.id].interval = null;
+      // 新增：自动触发停止所有功能
+      if (!anomalyPollingStopped.value) {
+        stopAnomalyPolling();
+      }
     }
   }, 1000);
 }
