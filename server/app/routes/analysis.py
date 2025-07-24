@@ -198,7 +198,7 @@ async def stop_anomaly_polling(req: GroupPollingRequest):
 
 @router.post("/analysis/anomaly_polling/feedback_click")
 def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks):
-    feedback_setting(req.group_id, req.user_id, req.interval_minutes, req.anomaly_analysis_results_id,req.detail_type, req.detail_status, req.share_to_user_ids)
+    feedback_setting(req.group_id, req.user_id, req.click_type, req.anomaly_analysis_results_id, req.detail_type, req.detail_status, req.share_to_user_ids)
     
     # Share时通过WebSocket推送
     if req.click_type == "Share" and req.share_to_user_ids:

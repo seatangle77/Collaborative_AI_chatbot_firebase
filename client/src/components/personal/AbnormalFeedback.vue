@@ -45,20 +45,24 @@
           </div>
         </div>
         <div class="button-row">
-          <el-button type="primary" @click="onMore" size="default">
-            More
+          <el-button type="primary" @click="onMore" size="default" v-if="!showMore">
+            More Info
+          </el-button>
+          <el-button type="primary" @click="onCollapse" size="default" v-else>
+            Hide
           </el-button>
           <el-button
             type="primary"
             @click="onLess"
             size="default"
             style="margin-left: 8px"
+            :disabled="props.anomalyData?.anomaly_analysis_results_id && lessClickedMap[props.anomalyData.anomaly_analysis_results_id]"
           >
             Less
           </el-button>
           <el-button
             type="success"
-            @click="shareFeedback"
+            @click="openShareDialog"
             size="default"
             style="margin-left: 8px"
           >
@@ -137,6 +141,22 @@
       title="异常反馈数据缺失或格式错误"
       description="请检查后端返回内容格式是否正确。"
     />
+    <!-- 分享选择弹窗 -->
+    <el-dialog v-model="shareDialogVisible" title="选择要分享的组员" width="400px" @close="resetShareDialog">
+      <el-checkbox-group v-model="selectedShareUserIds">
+        <el-checkbox
+          v-for="member in shareableMembers"
+          :key="member.user_id"
+          :label="member.user_id"
+        >
+          {{ member.name || member.user_id }}
+        </el-checkbox>
+      </el-checkbox-group>
+      <template #footer>
+        <el-button @click="shareDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="confirmShare">Share</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -159,6 +179,9 @@ const barChartRef = ref(null);
 const radarChartRef = ref(null);
 let barChart = null;
 let radarChart = null;
+
+// 新增：记录哪些异常已点击过Less
+const lessClickedMap = ref({});
 
 const shouldShow = computed(() => {
   // 检查基本数据是否存在
@@ -306,7 +329,31 @@ onMounted(async () => {
   }
 });
 
-async function callFeedbackClick(clickType) {
+// 分享弹窗相关
+const shareDialogVisible = ref(false);
+const selectedShareUserIds = ref([]);
+const shareableMembers = computed(() => {
+  const anomaly = props.anomalyData || {};
+  return props.members.filter(m => m.user_id !== anomaly.user_id);
+});
+function openShareDialog() {
+  // 默认都不勾选
+  selectedShareUserIds.value = [];
+  shareDialogVisible.value = true;
+}
+function resetShareDialog() {
+  selectedShareUserIds.value = [];
+}
+async function confirmShare() {
+  if (!selectedShareUserIds.value.length) {
+    ElMessage.warning('请选择要分享的组员');
+    return;
+  }
+  shareDialogVisible.value = false;
+  await callFeedbackClick('Share', selectedShareUserIds.value);
+}
+
+async function callFeedbackClick(clickType, customShareUserIds) {
   const anomaly = props.anomalyData || {};
   
   // 校验必填字段
@@ -323,14 +370,17 @@ async function callFeedbackClick(clickType) {
     return;
   }
 
-  // 如果是Share，自动获取所有其他组员的ID
+  // 如果是Share，自动获取所有其他组员的ID（现在改为用customShareUserIds）
   let shareToUserIds = [];
   if (clickType === 'Share') {
-    const currentUserId = anomaly.user_id;
-    shareToUserIds = props.members
-      .filter(member => member.user_id !== currentUserId)
-      .map(member => member.user_id);
-    
+    if (Array.isArray(customShareUserIds)) {
+      shareToUserIds = customShareUserIds;
+    } else {
+      const currentUserId = anomaly.user_id;
+      shareToUserIds = props.members
+        .filter(member => member.user_id !== currentUserId)
+        .map(member => member.user_id);
+    }
     if (shareToUserIds.length === 0) {
       ElMessage.warning('没有其他组员可以分享');
       return;
@@ -351,6 +401,10 @@ async function callFeedbackClick(clickType) {
     await api.feedbackClick(payload);
     if (clickType === 'Less') {
       ElMessage.info('已降低后续异常提示频率');
+      // 记录该异常已点击过Less
+      if (anomaly.anomaly_analysis_results_id) {
+        lessClickedMap.value[anomaly.anomaly_analysis_results_id] = true;
+      }
     } else if (clickType === 'Share') {
       ElMessage.success(`已成功分享给 ${shareToUserIds.length} 个组员`);
     }
@@ -363,12 +417,23 @@ function onMore() {
   showMore.value = true;
   callFeedbackClick('More');
 }
+function onCollapse() {
+  showMore.value = false;
+}
 function onLess() {
   showMore.value = false;
+  // 只允许点击一次
+  const anomaly = props.anomalyData || {};
+  if (anomaly.anomaly_analysis_results_id && lessClickedMap.value[anomaly.anomaly_analysis_results_id]) {
+    ElMessage.warning('该异常已反馈过Less，不能重复操作');
+    return;
+  }
   callFeedbackClick('Less');
 }
 function shareFeedback() {
-  callFeedbackClick('Share');
+  // 旧的直接分享逻辑已废弃
+  // callFeedbackClick('Share');
+  openShareDialog();
 }
 
 // markdown 转 html 工具
