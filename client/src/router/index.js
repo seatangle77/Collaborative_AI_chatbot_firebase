@@ -19,7 +19,12 @@ const routes = [
     path: "/admin",
     name: "AdminPage",
     component: () => import("../views/AdminPage.vue"),
-  }
+  },
+  {
+    path: "/admin-judge",
+    name: "AdminJudgePage",
+    component: () => import("../views/AdminJudgePage.vue"),
+  },
 ];
 
 const router = createRouter({
