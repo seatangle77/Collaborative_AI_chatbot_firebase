@@ -421,8 +421,8 @@ def build_anomaly_history_input(chunk_data: dict) -> dict:
 if __name__ == '__main__':
     ...
 
-    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
-    output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge.json"
+    input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
+    output_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         pageBehaviorLogs = json.load(f)
     compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])

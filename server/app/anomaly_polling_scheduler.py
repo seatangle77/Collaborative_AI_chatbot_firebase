@@ -1,10 +1,12 @@
 import asyncio
+import queue
 import threading
 import time
 import traceback
 from datetime import datetime, timezone
 
-from server.app.anomaly_analyze import analyze_anomaly_status, Member
+from server.app.anomaly_analyze import ai_analyze_anomaly_status, Member, local_analyze_anomaly_status
+from server.app.anomaly_preprocessor import extract_chunk_data_anomaly
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
@@ -23,10 +25,12 @@ _user_notify_last_time = {}
 # 执行分析任务的线程
 _notify_thread = None
 _analyze_thread = None
+_ai_analyze_thread = None
 _stop_analyze = True
 
-_analyze_result_history = []
-
+_ai_analyze_q = queue.Queue(1000)
+_ai_analyze_result_history = []
+_local_analyze_result_history = []
 
 def get_group_members_simple(group_id: str):
     global _users_info
@@ -100,54 +104,6 @@ def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analy
     return {"message": "反馈已记录"}
 
 
-def analyze(group_id, start_time, end_time):
-    global _analyze_result_history
-
-    if group_id is None:
-        logger.error("❌ [AI异常分析] group_id未设置，无法执行分析。")
-        return None
-
-    total_start_time = time.time()
-    try:
-
-        logger.info(f"🚀 [AI异常分析] group_id={group_id} 开始分析...")
-
-        # 阶段1: 获取成员信息
-        members = get_group_members_simple(group_id)
-        logger.info(f"📊 [AI异常分析] 阶段1-获取成员信息完成，耗时{(time.time() - total_start_time):.2f}秒")
-
-        member_objs = [Member(id=m.get("user_id"), name=m.get("name", "未知成员")) for m in members]
-
-        end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%S")
-        start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%S")
-        logger.info(f"🕐 [AI异常分析] 分析时间窗口: {start_time_str} ~ {end_time_str}")
-
-
-        # 阶段2: 调用分析接口
-        stage2_start = time.time()
-        result = None
-        try:
-            result = asyncio.run(analyze_anomaly_status(group_id,1,start_time_str,end_time_str,member_objs))
-            if not result:
-                # 无分析结果
-                return None
-
-            # 缓存分析结果
-            _analyze_result_history.append((end_time, result))
-            # 只保留最近10次执行记录
-            if len(_analyze_result_history) > 10:
-                _analyze_result_history = _analyze_result_history[-10:]
-        except Exception as e:
-            logger.error(f"❌ [AI异常分析] 阶段2-AI分析异常: {traceback.format_exc()}")
-        stage2_duration = time.time() - stage2_start
-        logger.info(f"🤖 [AI异常分析] 阶段2-AI分析完成，耗时{stage2_duration:.2f}秒。结果：", str(result)[:100])
-    except Exception as e:
-        logger.error(f"❌ [AI异常分析] group_id={group_id} 导入或调用分析接口异常: {traceback.format_exc()}")
-
-    total_duration = time.time() - total_start_time
-    logger.info(f"✅ [AI异常分析] group_id={group_id} 分析完成，总耗时{total_duration:.2f}秒")
-
-
 def start_analyze(group_id: str):
     global _group_id,_stop_analyze
     _stop_analyze = False
@@ -158,9 +114,13 @@ def stop_analyze(group_id: str):
     _stop_analyze = True
     _group_id = group_id
 
+def get_analyze_result():
+    global _local_analyze_result_history,_ai_analyze_result_history
+    return {"local":_local_analyze_result_history,"ai":_ai_analyze_result_history}
+
 def analyze_handler():
-    logger.info("🔄 [AI异常分析轮询] 启动分析轮询线程...")
-    global _group_id, _stop_analyze
+    logger.info("🔄 [异常分析轮询] 启动分析轮询线程...")
+    global _group_id, _stop_analyze, _local_analyze_result_history, _ai_analyze_q
 
     # 120秒的分析间隔
     interval_seconds = 120
@@ -173,7 +133,7 @@ def analyze_handler():
 
             if _group_id is None:
                 time.sleep(1)
-                logger.error("❌ [AI异常分析轮询] group_id未设置，无法执行分析。")
+                logger.error("❌ [异常分析轮询] group_id未设置，无法执行分析。")
                 continue
 
 
@@ -189,8 +149,42 @@ def analyze_handler():
 
             current_time = datetime.now(timezone.utc)
 
-            # 这里是分析逻辑
-            analyze(_group_id, last_analyze_time, current_time)
+            # 阶段1: 获取成员信息
+            start_time_1 = time.time()
+            members = get_group_members_simple(_group_id)
+            member_objs = [Member(id=m.get("user_id"), name=m.get("name", "未知成员")) for m in members]
+            logger.info(f"📊 [异常分析] 阶段1-获取成员信息完成，耗时{(time.time() - start_time_1):.2f}秒")
+
+
+            # 阶段2: 数据预处理
+            start_time_2 = time.time()
+            end_time_str = current_time.strftime("%Y-%m-%dT%H:%M:%S")
+            start_time_str = last_analyze_time.strftime("%Y-%m-%dT%H:%M:%S")
+            raw_data, increment = extract_chunk_data_anomaly(
+                group_id=_group_id,
+                round_index=1,
+                start_time=start_time_str,
+                end_time=end_time_str,
+                member_list=members
+            )
+            logger.info(f"📊 [异常分析] 阶段2-数据预处理完成，耗时{time.time() - start_time_2:.2f}秒")
+            if increment <= 0:
+                logger.warning("[异常分析] 用户活动数据增量为0，不做分析")
+                return None
+
+            # 阶段3： 本地数据分析
+            result = local_analyze_anomaly_status(raw_data)
+
+            # 阶段4： 缓存本地分析结果
+            if result:
+                _local_analyze_result_history.append((end_time_str, result))
+                # 只保留最近20次执行记录
+                if len(_local_analyze_result_history) > 20:
+                    _local_analyze_result_history = _local_analyze_result_history[-20:]
+
+
+            # 阶段5： 写入队列，异步处理AI分析
+            _ai_analyze_q.put((_group_id, start_time_str, end_time_str, raw_data))
 
             # 取本次分析的开始时间-即取数截止时间，作为下一次分析的起始时间
             last_analyze_time = current_time
@@ -198,10 +192,46 @@ def analyze_handler():
             logger.error('Error in analyze_handler loop: %s' % traceback.format_exc())
 
 
-def notify(user):
-    global _analyze_result_history
+def ai_analyze_handler():
+    logger.info("🔄 [AI异常分析] 启动分析轮询线程...")
+    global  _stop_analyze, _ai_analyze_q, _ai_analyze_result_history
 
-    if len(_analyze_result_history) < 1:
+    while True:
+        try:
+            time.sleep(1)
+            if _stop_analyze:
+                continue
+
+            while not _ai_analyze_q.empty():
+                group_id, start_time_str, end_time_str, raw_data = _ai_analyze_q.get()
+
+                # 调用AI分析接口
+                stage_start = time.time()
+                result = None
+                try:
+                    result = asyncio.run(
+                        ai_analyze_anomaly_status(group_id, start_time_str, end_time_str, raw_data))
+                    if not result:
+                        # 无分析结果
+                        return None
+
+                    # 缓存分析结果
+                    _ai_analyze_result_history.append((end_time_str, result))
+                    # 只保留最近20次执行记录
+                    if len(_ai_analyze_result_history) > 20:
+                        _ai_analyze_result_history = _ai_analyze_result_history[-20:]
+                except Exception as e:
+                    logger.error(f"❌ [AI异常分析] AI分析异常: {traceback.format_exc()}")
+                stage2_duration = time.time() - stage_start
+                logger.info(f"🤖 [AI异常分析] AI分析完成，耗时{stage2_duration:.2f}秒。结果：", str(result)[:100])
+
+        except Exception:
+            logger.error('Error in ai_analyze_handler loop: %s' % traceback.format_exc())
+
+def notify(user):
+    global _ai_analyze_result_history
+
+    if len(_ai_analyze_result_history) < 1:
         return
 
     user_id = user.get("user_id"),
@@ -210,7 +240,7 @@ def notify(user):
 
     total_start_time = time.time()
     try:
-        last_analyze_result = _analyze_result_history[-1][1]
+        last_analyze_result = _ai_analyze_result_history[-1][1]
 
         should_push = False
         glasses_summary = last_analyze_result.get("glasses_summary", "你当前状态需要关注")
@@ -305,10 +335,13 @@ def notify_handler():
             logger.error('Error in notify_handler loop: %s' % traceback.format_exc())
 
 def run_analyze():
-    global _analyze_thread, _notify_thread
+    global _analyze_thread, _ai_analyze_thread, _notify_thread
     try:
         _analyze_thread = threading.Thread(target=analyze_handler, name='_analyze_thread', daemon=True)
         _analyze_thread.start()
+
+        _ai_analyze_thread = threading.Thread(target=ai_analyze_handler, name='_ai_analyze_thread', daemon=True)
+        _ai_analyze_thread.start()
 
         # 5s后启动通知线程，错开时间
         time.sleep(5)
@@ -320,9 +353,10 @@ def run_analyze():
         logger.error('Error in notify_handler loop: %s' % traceback.format_exc())
 
 if __name__ == "__main__":
+    ...
     # run_analyze()
     # print(get_group_members_simple("0c90c6de-33e3-4431-b5fe-d06378111ef0"))
 
-    start_time = datetime.strptime("2025-07-09 02:45:00", "%Y-%m-%d %H:%M:%S")
-    end_time = datetime.strptime("2025-07-09 02:47:00", "%Y-%m-%d %H:%M:%S")
-    analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", start_time, end_time)
+    # start_time = datetime.strptime("2025-07-09 02:45:00", "%Y-%m-%d %H:%M:%S")
+    # end_time = datetime.strptime("2025-07-09 02:47:00", "%Y-%m-%d %H:%M:%S")
+    # analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", start_time, end_time)
