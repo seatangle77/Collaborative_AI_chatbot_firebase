@@ -178,6 +178,16 @@ async def push_agenda_stage(group_id: str, stage: int):
     _send_q.put((None, payload))
     logger.info(f"📤 [WebSocket] 已向组{group_id}推送议程阶段: {stage}")
 
+async def push_stop_task(group_id: str):
+    """向当前小组所有客户端广播停止任务指令"""
+    payload = json.dumps({
+        "type": "stop_task",
+        "group_id": group_id,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    })
+    _send_q.put((None, payload))
+    logger.info(f"📤 [WebSocket] 已向组{group_id}广播停止任务指令")
+
 
 async def push_personal_share_message(user_id: str, from_user: str, detail_type: str, detail_status: str,
                                       group_id: str):
@@ -205,3 +215,5 @@ async def push_anomaly_analysis_result(user_id: str, analysis_result: dict):
         "data": analysis_result
     })
     _send_q.put((user_id, payload))
+
+

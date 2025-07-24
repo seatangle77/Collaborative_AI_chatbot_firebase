@@ -410,6 +410,15 @@ onMounted(async () => {
     memberEditorStartedMap.value[userId.value] = true;
   });
 
+  // 新增：监听 stop_task 消息
+  onUserMessage("stop_task", (payload) => {
+    if (payload && payload.group_id && group.value && payload.group_id === group.value.id) {
+      editorStarted.value = false;
+      memberEditorStartedMap.value[userId.value] = false;
+      ElMessage.warning("主持人已终止本轮任务，编辑器已关闭");
+    }
+  });
+
   // 移除 group WebSocket 相关 watch 监听和调用
   // 1. connectGroupSocket(newGroup.id)
   // 2. onGroupMessage(newGroup.id, ...)
@@ -429,26 +438,7 @@ onBeforeUnmount(() => {
   );
 });
 
-function joinMeeting() {
-  if (!window.JitsiMeetExternalAPI) {
-    console.warn("JitsiMeetExternalAPI 未加载，稍后重试...");
-    return;
-  }
-  if (meetingStarted.value) return;
-  meetingStarted.value = true;
-  nextTick(() => {
-    const domain = "meet.jit.si";
-    const roomName = `GroupMeeting_${group.value?.id || "default"}`;
-    const options = {
-      roomName,
-      width: "100%",
-      height: 500,
-      parentNode: document.querySelector("#jitsi-container"),
-    };
-    const api = new window.JitsiMeetExternalAPI(domain, options);
-    jitsiApi.value = api;
-  });
-}
+
 
 function sendUserInfoToExtension(newUserId, context) {
   if (!window || !window.postMessage) return;
@@ -518,29 +508,7 @@ function formatToLocalISO(datetime) {
   return `${year}-${month}-${day}T${hour}:${minute}:${second}`;
 }
 
-async function handleIntervalSummary() {
-  const groupId = group.value?.id;
-  const roundIndex = currentStage.value || 1;
-  const payload = {
-    groupId,
-    roundIndex,
-    startTime: formatToLocalISO(startTime.value),
-    endTime: formatToLocalISO(endTime.value),
-    members: memberList.value.slice(),
-  };
-  try {
-    const result = await api.getIntervalSummary(
-      payload.groupId,
-      payload.roundIndex,
-      payload.startTime,
-      payload.endTime,
-      payload.members
-    );
-    console.log("✅ Interval Summary Result:", result);
-  } catch (err) {
-    console.error("❌ Interval Summary Error:", err);
-  }
-}
+
 
 async function handleAnomalyCheck() {
   console.log("🔍 handleAnomalyCheck 开始执行");
@@ -640,28 +608,7 @@ watch(anomalyData, (val) => {
   }
 });
 
-function viewHistoryDetail(row) {
-  let parsed = null;
-  if (row && row.raw_response) {
-    let jsonStr = row.raw_response.trim();
-    if (jsonStr.startsWith("```json")) {
-      jsonStr = jsonStr.replace(/^```json|```$/g, "").trim();
-    }
-    try {
-      parsed = JSON.parse(jsonStr);
-    } catch (e) {
-      console.error("❌ 解析历史异常 raw_response 失败:", e, jsonStr);
-    }
-  }
-  historyDetail.value = parsed;
-  drawerVisible.value = true;
-}
 
-function formatDate(str) {
-  if (!str) return "";
-  const d = new Date(str);
-  return d.toLocaleString();
-}
 
 function saveUserToChromeStorage(userId, userName) {
   if (!window.chrome || !window.chrome.storage) {
@@ -782,20 +729,7 @@ function loadHistoryData(
     });
 }
 
-// 3. 分页事件
-function onHistoryPageChange(page) {
-  historyPage.value = page;
-  loadHistoryData(page, historyPageSize.value);
-}
-function onHistoryPageSizeChange(size) {
-  historyPageSize.value = size;
-  historyPage.value = 1;
-  loadHistoryData(1, size);
-}
 
-function toggleSummaryExpand() {
-  isSummaryExpanded.value = !isSummaryExpanded.value;
-}
 
 function handleViewDetail(detail) {
   // 解析历史记录的raw_response获取完整数据
@@ -833,9 +767,7 @@ watch(agendaList, (newList) => {
   }
 });
 
-function unlockBody() {
-  document.body.style.overflow = '';
-}
+
 
 // 移除resizable-editor相关逻辑
 const showRichNotification = ref(false);

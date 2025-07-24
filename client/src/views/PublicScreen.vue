@@ -93,13 +93,13 @@
                   </transition>
                   <el-button
                     type="danger"
-                    size="small"
-                    style="margin-top: 10px;"
+                    size="large"
+                    style="margin-top: 15px; padding: 12px 24px; font-size: 16px; font-weight: 600;"
                     :loading="anomalyPollingLoading"
                     :disabled="anomalyPollingStopped"
                     @click="stopAnomalyPolling"
                   >
-                    Stop Anomaly Polling
+                    🛑 停止所有功能
                   </el-button>
                 </div>
               </div>
@@ -217,10 +217,16 @@ async function startMeeting() {
 async function stopAnomalyPolling() {
   anomalyPollingLoading.value = true;
   try {
+    // 停止异常分析轮询
     await apiService.stopAnomalyPolling(selectedGroupId.value);
     anomalyPollingStopped.value = true;
+    
+    // 停止所有议程计时器
+    stopAllAgendaTimers();
+    
+    console.log('已停止异常分析轮询和所有计时器');
   } catch (e) {
-    // 可选：处理异常
+    console.error('停止操作失败:', e);
   }
   anomalyPollingLoading.value = false;
 }
@@ -282,6 +288,17 @@ function formatTime(seconds) {
   const m = Math.floor(seconds / 60).toString().padStart(2, '0');
   const s = (seconds % 60).toString().padStart(2, '0');
   return `${m}:${s}`;
+}
+
+function stopAllAgendaTimers() {
+  Object.keys(agendaTimers.value).forEach(agendaId => {
+    const timer = agendaTimers.value[agendaId];
+    if (timer.interval) {
+      clearInterval(timer.interval);
+      timer.interval = null;
+    }
+  });
+  console.log('所有议程计时器已停止');
 }
 
 watch(agendaList, (newList) => {

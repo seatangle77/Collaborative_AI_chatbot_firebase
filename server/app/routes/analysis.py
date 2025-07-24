@@ -23,6 +23,8 @@ from fastapi import APIRouter, Query
 from pydantic import BaseModel
 #
 from server.app.jpush_api import jpush_personal_share_message
+import asyncio
+from server.app.websocket_routes import push_stop_task, push_agenda_stage
 
 router = APIRouter()
 
@@ -181,15 +183,18 @@ async def get_anomaly_results_by_user(
 
 @router.post("/analysis/anomaly_polling/start")
 async def start_anomaly_polling(req: GroupPollingRequest):
-    result = start_analyze(req.group_id)
-    from server.app.websocket_routes import push_agenda_stage
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, start_analyze, req.group_id)
     await push_agenda_stage(req.group_id, 1)
     return result
 
 
 @router.post("/analysis/anomaly_polling/stop")
-def stop_anomaly_polling(req: GroupPollingRequest):
-    return stop_analyze(req.group_id)
+async def stop_anomaly_polling(req: GroupPollingRequest):
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, stop_analyze, req.group_id)
+    await push_stop_task(req.group_id)
+    return result
 
 @router.post("/analysis/anomaly_polling/feedback_click")
 def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks):
