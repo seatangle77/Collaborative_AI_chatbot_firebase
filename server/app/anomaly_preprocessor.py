@@ -1,3 +1,5 @@
+import copy
+from collections import defaultdict
 from typing import Tuple
 
 from server.app.database import db
@@ -29,6 +31,132 @@ def parse_iso_time(iso_str):
         return dt
     except Exception:
         return None
+
+def merge_tab_behavior_logs(actions):
+    """
+    连续同类型操作合并，记录开始时间、结束时间、操作次数、首尾位置等。
+    mousemove: 合并连续，保留首尾位置和时间。
+    scroll: 合并连续，保留首尾时间、最大/最小maxDepth。
+    click: 合并连续，保留首尾位置和时间、次数。
+    其他类型保持原样。
+    """
+    if not actions:
+        return []
+    merged = []
+    i = 0
+    n = len(actions)
+    while i < n:
+        curr = actions[i]
+        curr_type = curr.get('type')
+        curr_tabid = curr.get('tabId')
+        start_time = curr.get('timestamp')
+        end_time = curr.get('timestamp')
+        count = 1
+        positions = []
+        maxDepths = []
+        if curr_type == 'mousemove' and 'position' in curr:
+            positions.append(curr['position'])
+        if curr_type == 'scroll' and 'maxDepth' in curr:
+            maxDepths.append(curr['maxDepth'])
+        if curr_type == 'click' and 'position' in curr:
+            positions.append(curr['position'])
+
+        # 向后查找连续的同类型操作
+        j = i + 1
+        while j < n and actions[j].get('type') == curr_type and actions[j].get('tabId') == curr_tabid:
+            end_time = actions[j].get('timestamp')
+            count += 1
+            if curr_type == 'mousemove' and 'position' in actions[j]:
+                positions.append(actions[j]['position'])
+            if curr_type == 'scroll' and 'maxDepth' in actions[j]:
+                maxDepths.append(actions[j]['maxDepth'])
+            if curr_type == 'click' and 'position' in actions[j]:
+                positions.append(actions[j]['position'])
+            j += 1
+
+        merged_item = {
+            'type': curr_type,
+            'startTime': start_time,
+            'endTime': end_time,
+            'action_count': count
+        }
+        if curr_type == 'mousemove' and positions:
+            merged_item['startPosition'] = positions[0]
+            merged_item['endPosition'] = positions[-1]
+        if curr_type == 'scroll' and maxDepths:
+            merged_item['minDepth'] = min(maxDepths)
+            merged_item['maxDepth'] = max(maxDepths)
+        if curr_type == 'click' and positions:
+            merged_item['position'] = positions[0]
+        merged.append(merged_item)
+        i = j
+    return merged
+
+def compress_page_behavior_logs(pageBehaviorLogs):
+    """
+    对 pageBehaviorLogs 进行压缩
+    """
+    # 1. 按 user 合并日志
+    user_logs = defaultdict(list)
+    users = {}
+    for log in pageBehaviorLogs:
+        user = log.get('behaviorData', {}).get('user', {})
+        user_name = user.get('userName')
+        if user_name:
+            user_logs[user_name].append(log)
+            users[user_name]=user
+
+    # 2. 按 windowStart 排序，合并连续的时间窗口的操作
+    compressed = {}
+    for user_name, logs in user_logs.items():
+        logs.sort(key=lambda x: parse_iso_time(x.get('windowStart')) or datetime.min)
+        merged_windows = {}
+        for log in logs:
+            if 'windowStart' not in merged_windows:
+                merged_windows['windowStart'] = log.get('windowStart')
+            merged_windows['windowEnd'] = log.get('windowEnd')
+            if 'tabHistory' not in merged_windows:
+                merged_windows['tabHistory'] = []
+
+            # 合并 tabHistory 合并去重
+            tab_hist_map = {t['tabId']: t for t in merged_windows['tabHistory']}
+            tabHistory = log.get('behaviorData', {}).get('tabHistory', [])
+            for t in tabHistory:
+                if t['tabId'] not in tab_hist_map:
+                    tab_hist_map[t['tabId']] = t
+                    del tab_hist_map[t['tabId']]['active']
+
+            # 合并 tabBehaviorLogs 到具体 tab
+            tabBehaviorLogs = log.get('behaviorData', {}).get('tabBehaviorLogs', [])
+            for action in tabBehaviorLogs:
+                tabid = action["tabId"]
+                if tabid not in tab_hist_map:
+                    # 如果 tabId 不在 tabHistory 中，跳过
+                    continue
+                else:
+                    if 'tabBehaviorLogs' not in tab_hist_map[tabid]:
+                        tab_hist_map[tabid]['tabBehaviorLogs'] = []
+                    tab_hist_map[tabid]['tabBehaviorLogs'].append(copy.deepcopy(action))
+
+            merged_windows['tabHistory'] = list(tab_hist_map.values())
+
+
+        # 只保留有活动的tab，将连续的活动进行合并
+        active_tabHistory = []
+        for t in merged_windows['tabHistory']:
+            # 过滤掉没有 tabBehaviorLogs 的 tabHistory
+            if 'tabBehaviorLogs' in t and t['tabBehaviorLogs']:
+                # 对每个 tabHistory 的 tabBehaviorLogs 进行合并
+                t['tabBehaviorLogs'] = merge_tab_behavior_logs(t['tabBehaviorLogs'])
+                active_tabHistory.append(t)
+        merged_windows['tabHistory'] = active_tabHistory
+
+        compressed[user_name] = {
+            'user': users[user_name],
+            'windowRanges': {'windowStart':merged_windows['windowStart'],'windowEnd':merged_windows['windowEnd']},
+            'tabHistory': merged_windows['tabHistory']
+        }
+    return compressed
 
 def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str, group_id: str, member_list: list) -> Tuple[dict,int]:
     """
@@ -144,8 +272,10 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
             unique_logs.append(log)
     
     pageBehaviorLogs = unique_logs
+    # 压缩 pageBehaviorLogs
+    pageBehaviorLogs = compress_page_behavior_logs(pageBehaviorLogs)
     query3_duration = time.time() - query3_start
-    logger.info(f"🖥️ [数据预处理] 查询3-pageBehaviorLogs完成，耗时{query3_duration:.2f}秒，找到{len(pageBehaviorLogs)}条记录")
+    logger.info(f"🖥️ [数据预处理] 查询3-pageBehaviorLogs完成，耗时{query3_duration:.2f}秒，找到{len(unique_logs)}条记录")
 
     ########################################
     # 查询4: note_contents
@@ -287,16 +417,16 @@ def build_anomaly_history_input(chunk_data: dict) -> dict:
     }
 
 
+
 if __name__ == '__main__':
-    import sys
-    import os
-    # 添加当前目录到Python路径
-    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    ...
 
-    group_id = "fcdf6669-745a-44e0-88b9-5c361e78d31e"
-    start_time = "2025-07-06T05:29:28"
-    end_time = "2025-07-06T05:37:28"
-    start_time_dt = parse_iso_time(start_time)
-    end_time_dt = parse_iso_time(end_time)
-    member_list = [{"user_id": "HGa3L2y3eSf7KXYQs793vLWnQRu2"}, {"user_id": "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2"}]
-
+    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
+    output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge.json"
+    with open(input_file, 'r', encoding='utf-8') as f:
+        pageBehaviorLogs = json.load(f)
+    compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])
+    pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"] = compressed
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(pageBehaviorLogs, f, ensure_ascii=False, indent=2)
+    print(f"压缩完成，结果已保存到 {output_file}")

@@ -36,6 +36,73 @@ load_dotenv()
 # ✅ 设置环境变量供 SDK 使用
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
+def analyze_chunk_stats(chunk_data):
+    """
+    统计：
+    1. speech_transcripts：按user统计总说话时长、占time_range百分比。
+    2. pageBehaviorLogs：按user统计浏览网页数、总action次数、鼠标操作总时长及占time_range百分比。
+    返回：{user_id: {...}}
+    """
+    from datetime import datetime
+    def parse_time(t):
+        if not t:
+            return None
+        try:
+            return datetime.fromisoformat(t.replace('Z', '+00:00'))
+        except Exception:
+            return None
+
+    time_start = parse_time(chunk_data['time_range']['start'])
+    time_end = parse_time(chunk_data['time_range']['end'])
+    total_seconds = (time_end - time_start).total_seconds() if time_start and time_end else 1
+
+    # speech_transcripts统计
+    speech_map = {}
+    for item in chunk_data.get('raw_tables', {}).get('speech_transcripts', []):
+        uid = item.get('user_id')
+        dur = item.get('duration', 0)
+        if uid:
+            speech_map.setdefault(uid, 0)
+            speech_map[uid] += dur
+    # pageBehaviorLogs统计
+    page_logs = chunk_data.get('raw_tables', {}).get('pageBehaviorLogs', {})
+    page_stats = {}
+    for uname, pdata in page_logs.items():
+        user = pdata.get('user', {})
+        uid = user.get('user_id')
+        tabHistory = pdata.get('tabHistory', [])
+        page_count = len(tabHistory)
+        action_count = 0
+        mousemove_duration = 0.0
+        for tab in tabHistory:
+            for log in tab.get('tabBehaviorLogs', []):
+                action_count += log.get('action_count', 0)
+                if log.get('type') in ['mousemove', 'scroll']:
+                    st = parse_time(log.get('startTime'))
+                    et = parse_time(log.get('endTime'))
+                    if st and et:
+                        mousemove_duration += (et - st).total_seconds()
+        mousemove_percent = round(mousemove_duration / total_seconds * 100, 2) if total_seconds else 0
+        page_stats[uid] = {
+            'page_count': page_count,
+            'mouse_action_count': action_count,
+            'mouse_duration': f"{round(mousemove_duration, 2)}s",
+            'mouse_percent': f"{mousemove_percent}%"
+        }
+    # 合并结果
+    result = {}
+    for user in chunk_data.get('users', []):
+        uid = user['user_id']
+        speech_duration = round(speech_map.get(uid, 0), 2)
+        speech_percent = round(speech_duration / total_seconds * 100, 2) if total_seconds else 0
+        page_info = page_stats.get(uid, {'page_count':0,'action_count':0,'mouse_duration':0,'mouse_percent':0})
+        result[user['name']] = {
+            'speech_duration': f"{speech_duration}s",
+            'speech_percent': f"{speech_percent}%",
+            **page_info
+        }
+    return result
+
 def analyze_all_anomalies(chunk_data: dict) -> dict:
     total_start_time = time.time()
     logger.info(f"🚀 [AI分析] 开始调用Gemini AI进行异常分析...")
@@ -254,6 +321,7 @@ async def analyze_anomaly_status(group_id: str, round_index: int, start_time: st
     if increment <= 0:
         logger.warning("[异常分析] 用户活动数据增量为0，不做AI分析")
         return None
+
 
     # 阶段2: AI分析
     stage2_start = time.time()

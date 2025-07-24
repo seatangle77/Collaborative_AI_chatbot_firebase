@@ -1,0 +1,1962 @@
+{
+  "Zzz": {
+    "user": {
+      "session_id": "118d1c1e-7015-4166-b516-d7b5223c8d86",
+      "user_id": "trJPOi15Y1YqxjhlmylKtYin0L92",
+      "group_id": "0c90c6de-33e3-4431-b5fe-d06378111ef0",
+      "userName": "Zzz"
+    },
+    "windowRanges": {
+      "windowStart": "2025-07-09T02:44:50.000Z",
+      "windowEnd": "2025-07-09T02:47:00.000Z"
+    },
+    "tabHistory": [
+      {
+        "title": "Collaborative Platform",
+        "timestamp": "2025-07-09T02:44:56.850Z",
+        "tabId": 1621752443,
+        "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Zzz",
+        "tabBehaviorLogs": [
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:21.363Z",
+            "endTime": "2025-07-09T02:45:21.363Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 6,
+              "x": 261
+            },
+            "endPosition": {
+              "y": 6,
+              "x": 261
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:22.097Z",
+            "endTime": "2025-07-09T02:45:22.097Z",
+            "action_count": 1,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:22.385Z",
+            "endTime": "2025-07-09T02:45:22.385Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 506,
+              "x": 294
+            },
+            "endPosition": {
+              "y": 506,
+              "x": 294
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:22.610Z",
+            "endTime": "2025-07-09T02:45:23.109Z",
+            "action_count": 2,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:23.274Z",
+            "endTime": "2025-07-09T02:45:23.274Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 511,
+              "x": 294
+            },
+            "endPosition": {
+              "y": 511,
+              "x": 294
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:23.781Z",
+            "endTime": "2025-07-09T02:45:23.781Z",
+            "action_count": 1,
+            "position": {
+              "y": 576,
+              "x": 240
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:24.236Z",
+            "endTime": "2025-07-09T02:45:24.743Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 576,
+              "x": 240
+            },
+            "endPosition": {
+              "y": 580,
+              "x": 225
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:25.141Z",
+            "endTime": "2025-07-09T02:45:25.141Z",
+            "action_count": 1,
+            "position": {
+              "y": 579,
+              "x": 212
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:25.264Z",
+            "endTime": "2025-07-09T02:45:27.891Z",
+            "action_count": 6,
+            "startPosition": {
+              "y": 579,
+              "x": 213
+            },
+            "endPosition": {
+              "y": 576,
+              "x": 196
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:28.950Z",
+            "endTime": "2025-07-09T02:45:28.950Z",
+            "action_count": 1,
+            "position": {
+              "y": 575,
+              "x": 96
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:29.956Z",
+            "endTime": "2025-07-09T02:45:29.956Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 576,
+              "x": 99
+            },
+            "endPosition": {
+              "y": 576,
+              "x": 99
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:30.458Z",
+            "endTime": "2025-07-09T02:45:30.458Z",
+            "action_count": 1,
+            "position": {
+              "y": 604,
+              "x": 145
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:30.677Z",
+            "endTime": "2025-07-09T02:45:43.626Z",
+            "action_count": 4,
+            "startPosition": {
+              "y": 604,
+              "x": 145
+            },
+            "endPosition": {
+              "y": 376,
+              "x": 352
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:43.959Z",
+            "endTime": "2025-07-09T02:45:43.959Z",
+            "action_count": 1,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:44.168Z",
+            "endTime": "2025-07-09T02:45:44.168Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 564,
+              "x": 343
+            },
+            "endPosition": {
+              "y": 564,
+              "x": 343
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:44.475Z",
+            "endTime": "2025-07-09T02:45:44.475Z",
+            "action_count": 1,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:45.059Z",
+            "endTime": "2025-07-09T02:45:48.576Z",
+            "action_count": 5,
+            "startPosition": {
+              "y": 563,
+              "x": 344
+            },
+            "endPosition": {
+              "y": 612,
+              "x": 785
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:49.223Z",
+            "endTime": "2025-07-09T02:45:49.223Z",
+            "action_count": 1,
+            "position": {
+              "y": 619,
+              "x": 805
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:49.491Z",
+            "endTime": "2025-07-09T02:45:49.992Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 619,
+              "x": 805
+            },
+            "endPosition": {
+              "y": 610,
+              "x": 810
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:50.271Z",
+            "endTime": "2025-07-09T02:45:50.271Z",
+            "action_count": 1,
+            "position": {
+              "y": 608,
+              "x": 818
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:50.550Z",
+            "endTime": "2025-07-09T02:45:51.060Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 609,
+              "x": 818
+            },
+            "endPosition": {
+              "y": 645,
+              "x": 801
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:51.577Z",
+            "endTime": "2025-07-09T02:45:51.577Z",
+            "action_count": 1,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:52.095Z",
+            "endTime": "2025-07-09T02:45:59.276Z",
+            "action_count": 5,
+            "startPosition": {
+              "y": 644,
+              "x": 800
+            },
+            "endPosition": {
+              "y": 643,
+              "x": 856
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:59.763Z",
+            "endTime": "2025-07-09T02:45:59.763Z",
+            "action_count": 1,
+            "position": {
+              "y": 636,
+              "x": 846
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:59.890Z",
+            "endTime": "2025-07-09T02:45:59.890Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 636,
+              "x": 841
+            },
+            "endPosition": {
+              "y": 636,
+              "x": 841
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:00.641Z",
+            "endTime": "2025-07-09T02:46:00.641Z",
+            "action_count": 1,
+            "position": {
+              "y": 607,
+              "x": 772
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:04.511Z",
+            "endTime": "2025-07-09T02:46:10.976Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 606,
+              "x": 772
+            },
+            "endPosition": {
+              "y": 10,
+              "x": 396
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:11.623Z",
+            "endTime": "2025-07-09T02:46:11.623Z",
+            "action_count": 1,
+            "position": {
+              "y": 343,
+              "x": 570
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:12.136Z",
+            "endTime": "2025-07-09T02:46:15.393Z",
+            "action_count": 7,
+            "startPosition": {
+              "y": 429,
+              "x": 618
+            },
+            "endPosition": {
+              "y": 613,
+              "x": 836
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:15.672Z",
+            "endTime": "2025-07-09T02:46:15.672Z",
+            "action_count": 1,
+            "position": {
+              "y": 615,
+              "x": 836
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:26.276Z",
+            "endTime": "2025-07-09T02:46:26.276Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 624,
+              "x": 836
+            },
+            "endPosition": {
+              "y": 624,
+              "x": 836
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:27.292Z",
+            "endTime": "2025-07-09T02:46:27.907Z",
+            "action_count": 2,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:29.840Z",
+            "endTime": "2025-07-09T02:46:29.840Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 654,
+              "x": 532
+            },
+            "endPosition": {
+              "y": 654,
+              "x": 532
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:30.226Z",
+            "endTime": "2025-07-09T02:46:30.226Z",
+            "action_count": 1,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:30.810Z",
+            "endTime": "2025-07-09T02:46:30.810Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 366,
+              "x": 614
+            },
+            "endPosition": {
+              "y": 366,
+              "x": 614
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:32.193Z",
+            "endTime": "2025-07-09T02:46:36.526Z",
+            "action_count": 9,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:37.210Z",
+            "endTime": "2025-07-09T02:46:37.210Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 461,
+              "x": 535
+            },
+            "endPosition": {
+              "y": 461,
+              "x": 535
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:37.992Z",
+            "endTime": "2025-07-09T02:46:39.726Z",
+            "action_count": 4,
+            "minDepth": 0.9982517482517482,
+            "maxDepth": 0.9982517482517482
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:40.128Z",
+            "endTime": "2025-07-09T02:46:45.971Z",
+            "action_count": 9,
+            "startPosition": {
+              "y": 421,
+              "x": 501
+            },
+            "endPosition": {
+              "y": 676,
+              "x": 214
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:46.195Z",
+            "endTime": "2025-07-09T02:46:46.195Z",
+            "action_count": 1,
+            "position": {
+              "y": 675,
+              "x": 214
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:47.331Z",
+            "endTime": "2025-07-09T02:46:49.743Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 675,
+              "x": 214
+            },
+            "endPosition": {
+              "y": 662,
+              "x": 231
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:50.193Z",
+            "endTime": "2025-07-09T02:46:50.193Z",
+            "action_count": 1,
+            "position": {
+              "y": 649,
+              "x": 253
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:50.445Z",
+            "endTime": "2025-07-09T02:46:50.445Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 649,
+              "x": 253
+            },
+            "endPosition": {
+              "y": 649,
+              "x": 253
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:50.924Z",
+            "endTime": "2025-07-09T02:46:50.924Z",
+            "action_count": 1,
+            "position": {
+              "y": 686,
+              "x": 246
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:51.155Z",
+            "endTime": "2025-07-09T02:46:51.155Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 686,
+              "x": 246
+            },
+            "endPosition": {
+              "y": 686,
+              "x": 246
+            }
+          }
+        ]
+      },
+      {
+        "title": "“搭子文化”爆火，这届年轻人为何爱找搭子？ | 人人都是产品经理",
+        "timestamp": "2025-07-09T02:44:56.850Z",
+        "tabId": 1621752456,
+        "url": "https://www.woshipm.com/share/5893373.html",
+        "tabBehaviorLogs": [
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:46.976Z",
+            "endTime": "2025-07-09T02:44:54.576Z",
+            "action_count": 10,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:55.260Z",
+            "endTime": "2025-07-09T02:44:55.260Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 446,
+              "x": 656
+            },
+            "endPosition": {
+              "y": 446,
+              "x": 656
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:56.015Z",
+            "endTime": "2025-07-09T02:44:56.773Z",
+            "action_count": 2,
+            "position": {
+              "y": 284,
+              "x": 520
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:56.942Z",
+            "endTime": "2025-07-09T02:44:56.942Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 285,
+              "x": 520
+            },
+            "endPosition": {
+              "y": 285,
+              "x": 520
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:57.441Z",
+            "endTime": "2025-07-09T02:44:57.441Z",
+            "action_count": 1,
+            "position": {
+              "y": 323,
+              "x": 606
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:57.508Z",
+            "endTime": "2025-07-09T02:44:59.605Z",
+            "action_count": 4,
+            "startPosition": {
+              "y": 323,
+              "x": 606
+            },
+            "endPosition": {
+              "y": 323,
+              "x": 544
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:59.890Z",
+            "endTime": "2025-07-09T02:44:59.890Z",
+            "action_count": 1,
+            "position": {
+              "y": 323,
+              "x": 546
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:00.161Z",
+            "endTime": "2025-07-09T02:45:00.676Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 324,
+              "x": 546
+            },
+            "endPosition": {
+              "y": 356,
+              "x": 534
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:01.377Z",
+            "endTime": "2025-07-09T02:45:01.377Z",
+            "action_count": 1,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:01.777Z",
+            "endTime": "2025-07-09T02:45:01.777Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 396,
+              "x": 524
+            },
+            "endPosition": {
+              "y": 396,
+              "x": 524
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:02.391Z",
+            "endTime": "2025-07-09T02:45:02.391Z",
+            "action_count": 1,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:03.113Z",
+            "endTime": "2025-07-09T02:45:03.113Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 471,
+              "x": 497
+            },
+            "endPosition": {
+              "y": 471,
+              "x": 497
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:03.642Z",
+            "endTime": "2025-07-09T02:45:06.510Z",
+            "action_count": 4,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:07.376Z",
+            "endTime": "2025-07-09T02:45:08.393Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 386,
+              "x": 478
+            },
+            "endPosition": {
+              "y": 397,
+              "x": 369
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:09.075Z",
+            "endTime": "2025-07-09T02:45:09.075Z",
+            "action_count": 1,
+            "position": {
+              "y": 397,
+              "x": 356
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:09.189Z",
+            "endTime": "2025-07-09T02:45:10.907Z",
+            "action_count": 4,
+            "startPosition": {
+              "y": 396,
+              "x": 356
+            },
+            "endPosition": {
+              "y": 460,
+              "x": 219
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:11.776Z",
+            "endTime": "2025-07-09T02:45:16.761Z",
+            "action_count": 6,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:17.086Z",
+            "endTime": "2025-07-09T02:45:17.593Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 480,
+              "x": 232
+            },
+            "endPosition": {
+              "y": 431,
+              "x": 211
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:18.442Z",
+            "endTime": "2025-07-09T02:45:18.442Z",
+            "action_count": 1,
+            "position": {
+              "y": 400,
+              "x": 141
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:19.352Z",
+            "endTime": "2025-07-09T02:45:32.989Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 391,
+              "x": 143
+            },
+            "endPosition": {
+              "y": 6,
+              "x": 689
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:33.793Z",
+            "endTime": "2025-07-09T02:45:33.793Z",
+            "action_count": 1,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:34.122Z",
+            "endTime": "2025-07-09T02:45:34.122Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 396,
+              "x": 537
+            },
+            "endPosition": {
+              "y": 396,
+              "x": 537
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:34.678Z",
+            "endTime": "2025-07-09T02:45:39.843Z",
+            "action_count": 6,
+            "minDepth": 0.7090740931045113,
+            "maxDepth": 0.7090740931045113
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:40.416Z",
+            "endTime": "2025-07-09T02:45:40.416Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 500,
+              "x": 520
+            },
+            "endPosition": {
+              "y": 500,
+              "x": 520
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Jaine": {
+    "user": {
+      "session_id": "118d1c1e-7015-4166-b516-d7b5223c8d86",
+      "user_id": "XSjxzerRPzLkenNmNi3NEsZevto1",
+      "group_id": "0c90c6de-33e3-4431-b5fe-d06378111ef0",
+      "userName": "Jaine"
+    },
+    "windowRanges": {
+      "windowStart": "2025-07-09T02:44:50.000Z",
+      "windowEnd": "2025-07-09T02:47:00.000Z"
+    },
+    "tabHistory": [
+      {
+        "title": "Collaborative Platform",
+        "timestamp": "2025-07-09T02:44:57.384Z",
+        "tabId": 1832909045,
+        "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Jaine",
+        "tabBehaviorLogs": [
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:25.134Z",
+            "endTime": "2025-07-09T02:45:25.134Z",
+            "action_count": 1,
+            "minDepth": 1.0113636363636365,
+            "maxDepth": 1.0113636363636365
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:25.252Z",
+            "endTime": "2025-07-09T02:45:29.053Z",
+            "action_count": 5,
+            "startPosition": {
+              "y": 36,
+              "x": 244
+            },
+            "endPosition": {
+              "y": 508,
+              "x": 843
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:29.447Z",
+            "endTime": "2025-07-09T02:45:29.447Z",
+            "action_count": 1,
+            "position": {
+              "y": 497,
+              "x": 843
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:29.711Z",
+            "endTime": "2025-07-09T02:45:40.804Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 499,
+              "x": 843
+            },
+            "endPosition": {
+              "y": 555,
+              "x": 715
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:41.384Z",
+            "endTime": "2025-07-09T02:45:41.384Z",
+            "action_count": 1,
+            "position": {
+              "y": 519,
+              "x": 604
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:46.367Z",
+            "endTime": "2025-07-09T02:46:00.317Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 517,
+              "x": 608
+            },
+            "endPosition": {
+              "y": 525,
+              "x": 432
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:00.698Z",
+            "endTime": "2025-07-09T02:46:00.698Z",
+            "action_count": 1,
+            "position": {
+              "y": 524,
+              "x": 408
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:01.301Z",
+            "endTime": "2025-07-09T02:46:01.301Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 524,
+              "x": 403
+            },
+            "endPosition": {
+              "y": 524,
+              "x": 403
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:01.783Z",
+            "endTime": "2025-07-09T02:46:01.783Z",
+            "action_count": 1,
+            "position": {
+              "y": 521,
+              "x": 380
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:05.021Z",
+            "endTime": "2025-07-09T02:46:25.918Z",
+            "action_count": 7,
+            "startPosition": {
+              "y": 521,
+              "x": 380
+            },
+            "endPosition": {
+              "y": 517,
+              "x": 410
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:28.019Z",
+            "endTime": "2025-07-09T02:46:28.019Z",
+            "action_count": 1,
+            "minDepth": 1.0113636363636365,
+            "maxDepth": 1.0113636363636365
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:28.462Z",
+            "endTime": "2025-07-09T02:46:28.462Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 550,
+              "x": 332
+            },
+            "endPosition": {
+              "y": 550,
+              "x": 332
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:28.835Z",
+            "endTime": "2025-07-09T02:46:28.835Z",
+            "action_count": 1,
+            "minDepth": 1.0113636363636365,
+            "maxDepth": 1.0113636363636365
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:29.168Z",
+            "endTime": "2025-07-09T02:46:43.419Z",
+            "action_count": 10,
+            "startPosition": {
+              "y": 343,
+              "x": 260
+            },
+            "endPosition": {
+              "y": 544,
+              "x": 34
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:43.606Z",
+            "endTime": "2025-07-09T02:46:43.606Z",
+            "action_count": 1,
+            "position": {
+              "y": 544,
+              "x": 27
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:44.335Z",
+            "endTime": "2025-07-09T02:46:46.919Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 452,
+              "x": 476
+            },
+            "endPosition": {
+              "y": 563,
+              "x": 136
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:47.039Z",
+            "endTime": "2025-07-09T02:46:47.039Z",
+            "action_count": 1,
+            "position": {
+              "y": 563,
+              "x": 136
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:48.317Z",
+            "endTime": "2025-07-09T02:46:57.235Z",
+            "action_count": 9,
+            "startPosition": {
+              "y": 555,
+              "x": 441
+            },
+            "endPosition": {
+              "y": 566,
+              "x": 84
+            }
+          }
+        ]
+      },
+      {
+        "title": "“搭子文化”爆火，这届年轻人为何爱找搭子？ | 人人都是产品经理",
+        "timestamp": "2025-07-09T02:44:57.384Z",
+        "tabId": 1832909096,
+        "url": "https://www.woshipm.com/share/5893373.html",
+        "tabBehaviorLogs": [
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:50.292Z",
+            "endTime": "2025-07-09T02:44:50.292Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 523,
+              "x": 512
+            },
+            "endPosition": {
+              "y": 523,
+              "x": 512
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:50.321Z",
+            "endTime": "2025-07-09T02:44:53.935Z",
+            "action_count": 7,
+            "minDepth": 0.2482958066515183,
+            "maxDepth": 0.37308096740273394
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:54.523Z",
+            "endTime": "2025-07-09T02:44:54.523Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 509,
+              "x": 511
+            },
+            "endPosition": {
+              "y": 509,
+              "x": 511
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:54.889Z",
+            "endTime": "2025-07-09T02:44:55.452Z",
+            "action_count": 2,
+            "minDepth": 0.37318611987381706,
+            "maxDepth": 0.4184280730556126
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:58.844Z",
+            "endTime": "2025-07-09T02:44:59.957Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 585,
+              "x": 455
+            },
+            "endPosition": {
+              "y": 376,
+              "x": 477
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:00.705Z",
+            "endTime": "2025-07-09T02:45:07.288Z",
+            "action_count": 6,
+            "minDepth": 0.41883849784526983,
+            "maxDepth": 0.5680173661360347
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:08.038Z",
+            "endTime": "2025-07-09T02:45:08.038Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 381,
+              "x": 488
+            },
+            "endPosition": {
+              "y": 381,
+              "x": 488
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:08.087Z",
+            "endTime": "2025-07-09T02:45:16.154Z",
+            "action_count": 16,
+            "minDepth": 0.5680173661360347,
+            "maxDepth": 0.7355799048997312
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:16.901Z",
+            "endTime": "2025-07-09T02:45:16.901Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 354,
+              "x": 491
+            },
+            "endPosition": {
+              "y": 354,
+              "x": 491
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:16.935Z",
+            "endTime": "2025-07-09T02:45:16.935Z",
+            "action_count": 1,
+            "minDepth": 0.7355799048997312,
+            "maxDepth": 0.7355799048997312
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:21.881Z",
+            "endTime": "2025-07-09T02:45:23.837Z",
+            "action_count": 4,
+            "startPosition": {
+              "y": 347,
+              "x": 491
+            },
+            "endPosition": {
+              "y": 88,
+              "x": 297
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "Qing": {
+    "user": {
+      "session_id": "118d1c1e-7015-4166-b516-d7b5223c8d86",
+      "user_id": "YYh2hh7jVhN0CGHbg2UShAnqwdK2",
+      "group_id": "0c90c6de-33e3-4431-b5fe-d06378111ef0",
+      "userName": "Qing"
+    },
+    "windowRanges": {
+      "windowStart": "2025-07-09T02:44:50.000Z",
+      "windowEnd": "2025-07-09T02:47:00.000Z"
+    },
+    "tabHistory": [
+      {
+        "title": "Collaborative Platform",
+        "timestamp": "2025-07-09T02:44:53.788Z",
+        "tabId": 1169406737,
+        "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Qing",
+        "tabBehaviorLogs": [
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:16.437Z",
+            "endTime": "2025-07-09T02:45:17.602Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 16,
+              "x": 360
+            },
+            "endPosition": {
+              "y": 552,
+              "x": 347
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:17.838Z",
+            "endTime": "2025-07-09T02:45:17.838Z",
+            "action_count": 1,
+            "position": {
+              "y": 542,
+              "x": 363
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:21.548Z",
+            "endTime": "2025-07-09T02:45:34.532Z",
+            "action_count": 10,
+            "startPosition": {
+              "y": 541,
+              "x": 363
+            },
+            "endPosition": {
+              "y": 495,
+              "x": 457
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:34.563Z",
+            "endTime": "2025-07-09T02:45:34.563Z",
+            "action_count": 1,
+            "position": {
+              "y": 495,
+              "x": 457
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:35.472Z",
+            "endTime": "2025-07-09T02:45:35.472Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 495,
+              "x": 456
+            },
+            "endPosition": {
+              "y": 495,
+              "x": 456
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:36.552Z",
+            "endTime": "2025-07-09T02:45:36.552Z",
+            "action_count": 1,
+            "position": {
+              "y": 490,
+              "x": 511
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:36.839Z",
+            "endTime": "2025-07-09T02:45:39.454Z",
+            "action_count": 4,
+            "startPosition": {
+              "y": 490,
+              "x": 511
+            },
+            "endPosition": {
+              "y": 498,
+              "x": 175
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:39.998Z",
+            "endTime": "2025-07-09T02:45:39.998Z",
+            "action_count": 1,
+            "position": {
+              "y": 500,
+              "x": 176
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:40.073Z",
+            "endTime": "2025-07-09T02:45:41.081Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 500,
+              "x": 176
+            },
+            "endPosition": {
+              "y": 514,
+              "x": 661
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:42.050Z",
+            "endTime": "2025-07-09T02:45:42.050Z",
+            "action_count": 1,
+            "position": {
+              "y": 522,
+              "x": 838
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:42.324Z",
+            "endTime": "2025-07-09T02:45:45.074Z",
+            "action_count": 5,
+            "startPosition": {
+              "y": 522,
+              "x": 836
+            },
+            "endPosition": {
+              "y": 290,
+              "x": 439
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:47.630Z",
+            "endTime": "2025-07-09T02:45:47.630Z",
+            "action_count": 1,
+            "minDepth": 0.15476190476190477,
+            "maxDepth": 0.15476190476190477
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:47.973Z",
+            "endTime": "2025-07-09T02:45:50.716Z",
+            "action_count": 5,
+            "startPosition": {
+              "y": 345,
+              "x": 435
+            },
+            "endPosition": {
+              "y": 492,
+              "x": 817
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:51.078Z",
+            "endTime": "2025-07-09T02:45:51.078Z",
+            "action_count": 1,
+            "position": {
+              "y": 496,
+              "x": 835
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:51.362Z",
+            "endTime": "2025-07-09T02:45:51.362Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 496,
+              "x": 835
+            },
+            "endPosition": {
+              "y": 496,
+              "x": 835
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:51.623Z",
+            "endTime": "2025-07-09T02:45:51.623Z",
+            "action_count": 1,
+            "position": {
+              "y": 513,
+              "x": 843
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:51.867Z",
+            "endTime": "2025-07-09T02:46:11.603Z",
+            "action_count": 16,
+            "startPosition": {
+              "y": 137,
+              "x": 835
+            },
+            "endPosition": {
+              "y": 517,
+              "x": 807
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:12.702Z",
+            "endTime": "2025-07-09T02:46:12.702Z",
+            "action_count": 1,
+            "minDepth": 0.15476190476190477,
+            "maxDepth": 0.15476190476190477
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:22.329Z",
+            "endTime": "2025-07-09T02:46:23.394Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 500,
+              "x": 809
+            },
+            "endPosition": {
+              "y": 391,
+              "x": 379
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:24.058Z",
+            "endTime": "2025-07-09T02:46:24.058Z",
+            "action_count": 1,
+            "position": {
+              "y": 359,
+              "x": 447
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:24.403Z",
+            "endTime": "2025-07-09T02:46:34.643Z",
+            "action_count": 3,
+            "startPosition": {
+              "y": 388,
+              "x": 297
+            },
+            "endPosition": {
+              "y": 373,
+              "x": 392
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:46:35.074Z",
+            "endTime": "2025-07-09T02:46:35.074Z",
+            "action_count": 1,
+            "position": {
+              "y": 432,
+              "x": 425
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:35.163Z",
+            "endTime": "2025-07-09T02:46:41.052Z",
+            "action_count": 6,
+            "startPosition": {
+              "y": 432,
+              "x": 425
+            },
+            "endPosition": {
+              "y": 0,
+              "x": 317
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:44.001Z",
+            "endTime": "2025-07-09T02:46:44.001Z",
+            "action_count": 1,
+            "minDepth": 0.15476190476190477,
+            "maxDepth": 0.15476190476190477
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:46:44.020Z",
+            "endTime": "2025-07-09T02:46:44.020Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 49,
+              "x": 843
+            },
+            "endPosition": {
+              "y": 49,
+              "x": 843
+            }
+          }
+        ]
+      },
+      {
+        "title": "寻找中国 Z 世代最受欢迎的社交方式：“Zizi” | Manamina 的数据营销杂志 --- 中国のZ世代に最も流行している社交方法「搭子」を探す | ［マナミナ］まなべるみんなのデータマーケティング・マガジン",
+        "timestamp": "2025-07-09T02:44:53.788Z",
+        "tabId": 1169406749,
+        "url": "https://manamina.valuesccg.com/articles/2764",
+        "tabBehaviorLogs": [
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:28.741Z",
+            "endTime": "2025-07-09T02:45:28.741Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 5,
+              "x": 400
+            },
+            "endPosition": {
+              "y": 5,
+              "x": 400
+            }
+          }
+        ]
+      },
+      {
+        "title": "“搭子文化”爆火，这届年轻人为何爱找搭子？ | 人人都是产品经理",
+        "timestamp": "2025-07-09T02:44:53.788Z",
+        "tabId": 1169406752,
+        "url": "https://www.woshipm.com/share/5893373.html",
+        "tabBehaviorLogs": [
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:44.822Z",
+            "endTime": "2025-07-09T02:44:46.060Z",
+            "action_count": 3,
+            "minDepth": 0.10267994660642776,
+            "maxDepth": 0.11951945784988192
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:46.888Z",
+            "endTime": "2025-07-09T02:44:47.391Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 165,
+              "x": 470
+            },
+            "endPosition": {
+              "y": 369,
+              "x": 345
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:47.848Z",
+            "endTime": "2025-07-09T02:44:47.848Z",
+            "action_count": 1,
+            "minDepth": 0.12783653352500257,
+            "maxDepth": 0.12783653352500257
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:48.378Z",
+            "endTime": "2025-07-09T02:44:48.378Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 471,
+              "x": 335
+            },
+            "endPosition": {
+              "y": 471,
+              "x": 335
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:48.968Z",
+            "endTime": "2025-07-09T02:44:48.968Z",
+            "action_count": 1,
+            "position": {
+              "y": 367,
+              "x": 313
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:49.596Z",
+            "endTime": "2025-07-09T02:44:49.596Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 368,
+              "x": 313
+            },
+            "endPosition": {
+              "y": 368,
+              "x": 313
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:49.937Z",
+            "endTime": "2025-07-09T02:44:49.937Z",
+            "action_count": 1,
+            "position": {
+              "y": 403,
+              "x": 301
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:44:50.576Z",
+            "endTime": "2025-07-09T02:44:51.582Z",
+            "action_count": 3,
+            "minDepth": 0.14734572338022384,
+            "maxDepth": 0.23677995687442244
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:52.230Z",
+            "endTime": "2025-07-09T02:44:52.230Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 402,
+              "x": 301
+            },
+            "endPosition": {
+              "y": 402,
+              "x": 301
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:52.820Z",
+            "endTime": "2025-07-09T02:44:52.820Z",
+            "action_count": 1,
+            "position": {
+              "y": 256,
+              "x": 255
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:53.767Z",
+            "endTime": "2025-07-09T02:44:53.767Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 256,
+              "x": 255
+            },
+            "endPosition": {
+              "y": 256,
+              "x": 255
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:54.403Z",
+            "endTime": "2025-07-09T02:44:54.916Z",
+            "action_count": 2,
+            "position": {
+              "y": 336,
+              "x": 261
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:44:55.368Z",
+            "endTime": "2025-07-09T02:44:55.368Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 336,
+              "x": 261
+            },
+            "endPosition": {
+              "y": 336,
+              "x": 261
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:44:55.766Z",
+            "endTime": "2025-07-09T02:44:56.285Z",
+            "action_count": 2,
+            "position": {
+              "y": 371,
+              "x": 272
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:00.050Z",
+            "endTime": "2025-07-09T02:45:00.553Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 373,
+              "x": 271
+            },
+            "endPosition": {
+              "y": 412,
+              "x": 279
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:00.746Z",
+            "endTime": "2025-07-09T02:45:01.272Z",
+            "action_count": 2,
+            "position": {
+              "y": 414,
+              "x": 279
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:01.498Z",
+            "endTime": "2025-07-09T02:45:01.498Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 415,
+              "x": 279
+            },
+            "endPosition": {
+              "y": 415,
+              "x": 279
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:02.182Z",
+            "endTime": "2025-07-09T02:45:02.182Z",
+            "action_count": 1,
+            "position": {
+              "y": 459,
+              "x": 295
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:03.324Z",
+            "endTime": "2025-07-09T02:45:04.220Z",
+            "action_count": 2,
+            "minDepth": 0.23677995687442244,
+            "maxDepth": 0.23677995687442244
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:04.732Z",
+            "endTime": "2025-07-09T02:45:04.732Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 458,
+              "x": 294
+            },
+            "endPosition": {
+              "y": 458,
+              "x": 294
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:05.348Z",
+            "endTime": "2025-07-09T02:45:05.348Z",
+            "action_count": 1,
+            "position": {
+              "y": 362,
+              "x": 276
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:05.894Z",
+            "endTime": "2025-07-09T02:45:05.894Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 363,
+              "x": 276
+            },
+            "endPosition": {
+              "y": 363,
+              "x": 276
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:06.253Z",
+            "endTime": "2025-07-09T02:45:06.253Z",
+            "action_count": 1,
+            "position": {
+              "y": 399,
+              "x": 287
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:06.830Z",
+            "endTime": "2025-07-09T02:45:06.830Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 399,
+              "x": 287
+            },
+            "endPosition": {
+              "y": 399,
+              "x": 287
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:07.210Z",
+            "endTime": "2025-07-09T02:45:09.216Z",
+            "action_count": 3,
+            "minDepth": 0.23677995687442244,
+            "maxDepth": 0.2456104322825752
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:10.150Z",
+            "endTime": "2025-07-09T02:45:10.150Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 401,
+              "x": 335
+            },
+            "endPosition": {
+              "y": 401,
+              "x": 335
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:10.566Z",
+            "endTime": "2025-07-09T02:45:10.566Z",
+            "action_count": 1,
+            "minDepth": 0.2555703871033987,
+            "maxDepth": 0.2555703871033987
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:11.090Z",
+            "endTime": "2025-07-09T02:45:11.090Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 246,
+              "x": 486
+            },
+            "endPosition": {
+              "y": 246,
+              "x": 486
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:11.383Z",
+            "endTime": "2025-07-09T02:45:11.383Z",
+            "action_count": 1,
+            "position": {
+              "y": 225,
+              "x": 432
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:11.906Z",
+            "endTime": "2025-07-09T02:45:11.906Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 225,
+              "x": 433
+            },
+            "endPosition": {
+              "y": 225,
+              "x": 433
+            }
+          },
+          {
+            "type": "click",
+            "startTime": "2025-07-09T02:45:12.408Z",
+            "endTime": "2025-07-09T02:45:12.408Z",
+            "action_count": 1,
+            "position": {
+              "y": 203,
+              "x": 476
+            }
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:13.020Z",
+            "endTime": "2025-07-09T02:45:13.020Z",
+            "action_count": 1,
+            "startPosition": {
+              "y": 203,
+              "x": 477
+            },
+            "endPosition": {
+              "y": 203,
+              "x": 477
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:13.770Z",
+            "endTime": "2025-07-09T02:45:13.770Z",
+            "action_count": 1,
+            "minDepth": 0.2555703871033987,
+            "maxDepth": 0.2555703871033987
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:14.397Z",
+            "endTime": "2025-07-09T02:45:23.996Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 205,
+              "x": 503
+            },
+            "endPosition": {
+              "y": 12,
+              "x": 650
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:45:24.465Z",
+            "endTime": "2025-07-09T02:45:24.465Z",
+            "action_count": 1,
+            "minDepth": 0.2555703871033987,
+            "maxDepth": 0.2555703871033987
+          },
+          {
+            "type": "mousemove",
+            "startTime": "2025-07-09T02:45:25.109Z",
+            "endTime": "2025-07-09T02:45:53.590Z",
+            "action_count": 2,
+            "startPosition": {
+              "y": 160,
+              "x": 578
+            },
+            "endPosition": {
+              "y": 0,
+              "x": 490
+            }
+          },
+          {
+            "type": "scroll",
+            "startTime": "2025-07-09T02:46:44.854Z",
+            "endTime": "2025-07-09T02:46:44.854Z",
+            "action_count": 1,
+            "minDepth": 0.11951945784988192,
+            "maxDepth": 0.11951945784988192
+          }
+        ]
+      }
+    ]
+  }
+}
