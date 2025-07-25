@@ -175,9 +175,12 @@ def analyze_handler():
             # 阶段3： 本地数据分析
             result = local_analyze_anomaly_status(raw_data)
 
+            # 合并本地分析结果到raw_data
+            raw_data['local_analysis_result'] = result
+
             # 阶段4： 缓存本地分析结果
             if result:
-                _local_analyze_result_history.append((end_time_str, result))
+                _local_analyze_result_history.append({end_time_str: result})
                 # 只保留最近20次执行记录
                 if len(_local_analyze_result_history) > 20:
                     _local_analyze_result_history = _local_analyze_result_history[-20:]
@@ -213,10 +216,10 @@ def ai_analyze_handler():
                         ai_analyze_anomaly_status(group_id, start_time_str, end_time_str, raw_data))
                     if not result:
                         # 无分析结果
-                        return None
+                        continue 
 
                     # 缓存分析结果
-                    _ai_analyze_result_history.append((end_time_str, result))
+                    _ai_analyze_result_history.append({end_time_str: result})
                     # 只保留最近20次执行记录
                     if len(_ai_analyze_result_history) > 20:
                         _ai_analyze_result_history = _ai_analyze_result_history[-20:]
@@ -240,7 +243,7 @@ def notify(user):
 
     total_start_time = time.time()
     try:
-        last_analyze_result = _ai_analyze_result_history[-1][1]
+        last_analyze_result = list(_ai_analyze_result_history[-1].values())[0]
 
         should_push = False
         glasses_summary = last_analyze_result.get("glasses_summary", "你当前状态需要关注")

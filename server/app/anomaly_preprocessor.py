@@ -367,46 +367,6 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     return chunk_data, increment
 
 
-def build_cognitive_anomaly_input(chunk_data: dict) -> dict:
-    """
-    构建用于认知分析任务的 GPT 输入结构。
-    """
-    return {
-        "group_id": chunk_data["group_id"],
-        "time_range": chunk_data["time_range"],
-        "users": chunk_data["users"],
-        "speech_transcripts": chunk_data["raw_tables"]["speech_transcripts"],
-        "unique_note_contents": chunk_data["raw_tables"]["unique_note_contents"]
-    }
-
-
-def build_behavior_anomaly_input(chunk_data: dict) -> dict:
-    """
-    构建用于行为分析任务的 GPT 输入结构。
-    """
-    return {
-        "group_id": chunk_data["group_id"],
-        "time_range": chunk_data["time_range"],
-        "users": chunk_data["users"],
-        "note_edit_history": chunk_data["raw_tables"]["note_edit_history"],
-        "pageBehaviorLogs": chunk_data["raw_tables"]["pageBehaviorLogs"],
-        "speech_counts": chunk_data.get("speech_counts", {})
-    }
-
-
-def build_attention_anomaly_input(chunk_data: dict) -> dict:
-    """
-    构建用于注意力分析任务的 GPT 输入结构。
-    """
-    return {
-        "group_id": chunk_data["group_id"],
-        "time_range": chunk_data["time_range"],
-        "users": chunk_data["users"],
-        "note_edit_history": chunk_data["raw_tables"]["note_edit_history"],
-        "pageBehaviorLogs": chunk_data["raw_tables"]["pageBehaviorLogs"],
-        "speech_transcripts": chunk_data["raw_tables"]["speech_transcripts"],
-    }
-
 def build_anomaly_history_input(chunk_data: dict) -> dict:
     """
     构建用于异常历史分析的输入结构。
@@ -421,8 +381,8 @@ def build_anomaly_history_input(chunk_data: dict) -> dict:
 if __name__ == '__main__':
     ...
 
-    input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
-    output_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge.json"
+    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
+    output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         pageBehaviorLogs = json.load(f)
     compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])

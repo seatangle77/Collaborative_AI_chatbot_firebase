@@ -10,9 +10,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 
 from server.app.anomaly_preprocessor import (
-    build_cognitive_anomaly_input,
-    build_behavior_anomaly_input,
-    build_attention_anomaly_input, build_anomaly_history_input
+    build_anomaly_history_input
 )
 from server.app.database import db
 from server.app.logger.logger_loader import logger
@@ -42,9 +40,6 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
 
     # 阶段1: 构建输入数据
     stage1_start = time.time()
-    cognitive_input = build_cognitive_anomaly_input(chunk_data)
-    behavior_input = build_behavior_anomaly_input(chunk_data)
-    attention_input = build_attention_anomaly_input(chunk_data)
     anomaly_history_input = None
     anomaly_history_json = None
     try:
@@ -55,9 +50,6 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
         anomaly_history_json = "null"
 
     current_user_json = json.dumps(chunk_data.get('current_user', {}), ensure_ascii=False, indent=2)
-    cognitive_json = json.dumps(cognitive_input, ensure_ascii=False, indent=2)
-    behavior_json = json.dumps(behavior_input, ensure_ascii=False, indent=2)
-    attention_json = json.dumps(attention_input, ensure_ascii=False, indent=2)
     speech_counts_json = json.dumps(chunk_data.get('speech_counts', {}), ensure_ascii=False, indent=2)
     speech_durations_json = json.dumps(chunk_data.get('speech_durations', {}), ensure_ascii=False, indent=2)
     stage1_duration = time.time() - stage1_start
@@ -66,151 +58,61 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
     # 阶段2: 构建提示词
     stage2_start = time.time()
     prompt_text = f"""
-你是一个多维度小组协作分析专家，专门分析**当前用户**在小组讨论中的异常、正常或突出表现，并对比其他组员，并对你自己的分析内容进行自我打分。
+你是一个多维度小组协作分析专家。系统已经为一个小组中的三位成员提供了完整的行为评分结果，包括发言、编辑、浏览等级和总得分（不需要你重新判断）。你的任务是：
 
-【当前小组任务说明】
-当前小组正在进行一个开放式探究任务，主题从以下四个议题中选取：
-- Labubu 机器人：潮玩爆火背后的「情绪智能」？
-- 周末特种兵：年轻人「极限式放松」的真实诉求？
-- 宠物心声翻译器：人与宠物关系的「AI进化」？
-- 寻找「完美搭子」：轻量社交的算法匹配可能吗？
+🔹 基于 total_level 判断该成员的参与状态；
+🔹 输出温和鼓励的眼镜提示语（glasses_summary）；
+🔹 给出该成员的状态类型、行为结构描述、建议与证据；
+🔹 提供更详细的多角度分析，包括历史对比、小组对比与协作建议；
+🔹 补充该小组在各个总参与等级（low/normal/high/dominant）中的成员人数统计（group_distribution 字段）。
 
-任务要求成员根据所选议题，主动搜集相关资料（如论坛、社交媒体、用户评论、新闻报道、学术研究等），进行小组讨论，并在协作编辑工具中共同汇总一份包含关键发现、构想建议及证据支持的完整总结文档。小组需要先分析现象背后的心理与社会动因，再提出初步的工具或产品构想，注重真实依据与可行性。
+🎯 所有提示必须语气正向、亲和，不得批评；
+🎯 glasses_summary 应适配眼镜小屏幕，使用一句简洁中文，可含颜文字；
+🎯 输出字段结构必须完全符合下方格式；
 
-当前用户信息如下（用于分析时请重点关注）：
-current_user: {current_user_json}
+【参与等级与提示规则】
+- total_level = "No Participation" → 明确提示激活；
+- total_level = "Low Participation" → 鼓励表达与操作；
+- total_level = "Normal Participation" → 无需提示；
+- total_level = "High Participation" → 温和提示协作平衡；
+- total_level = "Dominant" → 委婉提示留出他人空间。
 
-历史数据（请用于history_comparison分析）：
-anomaly_history: {anomaly_history_json}
-
-状态类型（包含异常、正常与积极表现，供参考）：
-
-- 行为缺失：依赖行为、认知、注意力；典型表现为几乎无发言、编辑、浏览
-- 认知停滞：依赖认知；典型表现为重复内容、无新观点
-- 任务偏离：依赖认知、注意力；典型表现为内容跑题、访问无关页面
-- 互动缺失：依赖认知、行为；典型表现为缺少回应、无互动
-- 注意力分散：依赖注意力、行为；典型表现为频繁切换、浏览无关内容
-- 正常参与：依赖三类数据均衡；典型表现为稳定参与，符合要求
-- 行为积极：依赖行为；典型表现为发言编辑多、信息搜集活跃
-- 认知引领：依赖认知；典型表现为创新观点、引发思考
-- 任务聚焦：依赖认知、注意力；典型表现为高度聚焦任务目标
-- 互动促进：依赖认知、行为；典型表现为高频回应、促进协作
-- 注意力专注：依赖注意力、行为；典型表现为长时间专注、稳定浏览
-
-【页面相关性判断说明】
-- 目标页面：与所选议题相关的新闻、学术文章、社交评论、论坛讨论、调研报告、专业博客，用于资料收集、观点支持和任务推进。
-- 无关页面：娱乐、购物、游戏、私聊、与任务完全无关的内容（如追剧、网购、体育八卦等）。
-
-type: 状态类型（包含异常、正常与积极表现），必须从以上类型中选择
-
-认知数据：{cognitive_json}
-行为数据：{behavior_json}
-注意力数据：{attention_json}
-发言统计数据：{speech_counts_json}
-发言时长数据：{speech_durations_json}
-
-请结合以上数据，自动选择最合适的状态类型（可能为异常、正常或积极表现），并生成以下信息（这些字段为必填，必须返回）：
-
-- type: 状态类型（包含异常、正常与积极表现），必须从上面类型中选择
-- status: 当前状态描述，必须根据实际数据动态生成
-- evidence: 必须根据数据提取的具体证据
-- suggestion: 必须提供针对性的、可执行的建议
-
-此外，为了支持「More」按钮，请额外生成扩展信息，包括：
-- detailed_reasoning: 状态出现的详细成因分析（无论是异常还是积极表现）
-- history_comparison: 与用户历史状态或上次状态的对比（必须结合anomaly_history数据进行分析）
-- group_comparison: 当前用户与小组其他成员的对比情况（如参与度、任务聚焦、活跃度、发言次数和发言时长）
-- collaboration_strategies: 可能的协作策略，鼓励与具体成员协作
-
-【重要：内容格式要求】
-请严格按照以下JSON格式输出，并在具体内容中使用markdown样式格式，让内容更易读：
+【输出结构】
+请为每位成员输出以下 JSON 结构（共 3 组）：
 
 {{
-  "summary": "一句话总结本轮状态",
-
-  "glasses_summary": "你当前[根据数据生成的状态描述]，建议[根据数据生成的行动建议]",
-
-  "detail": {{
-    "type": "状态类型（包含异常、正常与积极表现）",
-    "status": "根据数据生成的状态描述",
-    "evidence": "证据1\n- 证据2\n- 证据3",
-    "suggestion": "针对性建议"
-  }},
-
-  "more_info": {{
-    "detailed_reasoning": "状态出现的详细成因分析（无论是异常还是积极表现）...\n\n**影响因素：**\n- 因素1\n- 因素2",
-    "history_comparison": "| 指标 | 上次 | 本次 | 变化 |\n|------|------|------|------|\n| 参与度 | 85% | 60% | ↓25% |\n| 发言次数 | 12 | 7 | ↓5 |",
-    "group_comparison": "**当前用户 vs 其他成员：**\n- **发言活跃度：** 低于平均水平30%\n- **任务聚焦度：** 中等水平\n- **协作参与度：** 需要提升",
-    "collaboration_strategies": "**推荐协作对象：**\n- **Alice：** 注意力集中，可帮助聚焦\n- **Bob：** 经验丰富，可提供指导\n\n**具体策略：**\n1. 主动向Alice请教当前话题\n2. 与Bob结对完成复杂任务"
-  }},
-
-  "user_data_summary": {{
-    "speaking_count": 7,
-    "speaking_duration": 45.2,
-    "reply_count": 1,
-    "edit_count": 3,
-    "page_view_count": 8,
-    "page_switch_frequency": 4,
-    "group_avg_comparison": {{
-      "speaking_diff": 0,
-      "speaking_duration_diff": 5.2,
-      "reply_diff": -3,
-      "edit_diff": -1,
-      "page_focus_diff": -2
+  "成员名": {{
+    "summary": "一句话总结当前状态",
+    "glasses_summary": "你当前[状态]，建议[温和提示]",
+    "detail": {{
+      "type": "参与状态类型，如 Low Participation",
+      "status": "简洁描述该成员的当前行为结构",
+      "evidence": "- 发言等级：{speech_level}\\n- 编辑等级：{note_edit_level}\\n- 浏览等级：{browser_level}",
+      "suggestion": "行为层面的改善建议，如主动表达、协同参与等"
     }},
-    "group_speech_distribution": {{
-      "current_user_speeches": 5,
-      "current_user_duration": 45.2,
-      "other_members": {{
-        "GJp4Y7cLhDh9RCM6c7ua4mgSbWz2": {{
-          "count": 5,
-          "duration": 52.4
-        }},
-        "HGa3L2y3eSf7KXYQs793vLWnQRu2": {{
-          "count": 3,
-          "duration": 28.6
-        }}
-      }},
-      "group_total": 13,
-      "group_total_duration": 126.2
+    "more_info": {{
+      "detailed_reason": "你为何判断该成员为该状态的详细解释",
+      "history_comparison": "与该成员过往轮次的比较分析",
+      "group_comparison": "与当前组内其他成员的对比说明",
+      "collaboration_suggestion": "结合协同角度的具体建议，例如带动他人/让出表达空间等"
+    }},
+    "group_distribution": {{
+      "no": X,
+      "low": X,
+      "normal": X,
+      "high": X,
+      "dominant": X
     }}
   }},
-
-  "score": {{
-    "state_score": 70,
-    "content_similarity_score": 40,
-    "score_reason": "请结合下方评分维度与说明进行自我评价，并输出评分原因",
-    "should_notify": true
-  }}
-
+  ...
 }}
 
-【眼镜版本要求】
-- glasses_summary：必须是一句话，以"你"开头，简洁明了
-- 适合在眼镜小屏幕上显示
-- 包含状态类型和简单建议
-- 必须根据当前用户的实际数据动态生成，不要使用固定示例
-- 示例格式："你当前[具体状态]，建议[具体行动]"
-- 根据speech_count、edit_count、page_switch_frequency等数据生成个性化提醒
+📌 注意事项：
+- 所有字段必须填写完整，避免输出模板占位符；
+- 若成员无需提醒，`glasses_summary` 仍需输出空字符串，但 `should_notify` 字段应为 false；
+- group_distribution 统计的是该小组中不同 total_level 的人数（你将收到或推理）；
 
-【内容样式指南】
-- 使用 **粗体** 突出重要信息
-- 使用 *斜体* 强调关键概念
-- 使用列表（- 或 1.）组织信息
-- 使用表格对比数据
-- 使用分隔线（---）区分不同部分
-- 使用换行和缩进提高可读性
-
-评分维度与说明（你对自己上述分析内容的自我打分）：
-
-💡 状态评分：根据当前状态评估，异常<40，正常40–75，积极表现>75，用于判断是否需要提示或鼓励
-💡 内容相似度评分：根据与历史 anomaly_history 的内容相似度（若无历史，则默认0），相似度高（>80%）得80分，低（<20%）得20分。
-
-⚠️ 注意：仅输出这两个分数，并根据以下阈值决定是否提示：
-- 当状态评分 < 25 或 > 75 时，建议提示
-- 当内容相似度评分 < 50 时，也建议提示
-
-请严格按照上述 JSON 格式一次性完整输出，所有必填字段必须生成，便于后续解析。
+你现在将收到 3 位成员的数据，请输出上述结构。
 """
     stage2_duration = time.time() - stage2_start
     logger.info(f"📝 [AI分析] 阶段2-构建提示词完成，耗时{stage2_duration:.2f}秒")
@@ -358,6 +260,30 @@ async def ai_analyze_anomaly_status(group_id: str, start_time: str, end_time: st
         "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
     }
 
+def calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_score_dict, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    total_score = {}
+    total_level = {}
+    for uid in user_ids:
+        speech = speech_score_dict.get(uid, 0)
+        edit = edit_score_dict.get(uid, 0)
+        browser = browser_score_dict.get(uid, 0)
+        score = speech * 0.7 + edit * 0.15 + browser * 0.15
+        total_score[uid] = round(score, 3)
+        # 等级判定
+        if score == 0:
+            level = "No Participation"
+        elif 0 < score <= 0.3:
+            level = "Low Participation"
+        elif 0.3 < score < 0.7:
+            level = "Normal Participation"
+        elif 0.7 <= score < 0.9:
+            level = "High Participation"
+        else:  # 0.9 <= score <= 1
+            level = "Dominant"
+        total_level[uid] = level
+    return total_score, total_level
+
 def local_analyze_anomaly_status(chunk_data):
     """
     统计：
@@ -411,24 +337,159 @@ def local_analyze_anomaly_status(chunk_data):
             'mouse_duration': f"{round(mousemove_duration, 2)}s",
             'mouse_percent': f"{mousemove_percent}%"
         }
+    # note_edit_history 统计
+    note_edit_logs = chunk_data.get('raw_tables', {}).get('note_edit_history', [])
+    note_edit_count = {}
+    note_edit_char_count = {}
+    for item in note_edit_logs:
+        uid = item.get('userId')
+        char_count = item.get('charCount', 0)
+        if uid:
+            note_edit_count.setdefault(uid, 0)
+            note_edit_char_count.setdefault(uid, 0)
+            note_edit_count[uid] += 1
+            note_edit_char_count[uid] += char_count
+
+    # 统计发言等级和分数
+    speech_level_dict, speech_score_dict = classify_speech_level(speech_map, chunk_data)
+    # 统计编辑等级和分数
+    edit_level_dict, edit_score_dict = classify_note_edit_level(note_edit_count, note_edit_char_count, chunk_data)
+    # 统计浏览器行为等级和分数
+    browser_level_dict, browser_score_dict = classify_browser_behavior_level(page_stats, chunk_data)
+
+    # 计算总分和总等级
+    total_score_dict, total_level_dict = calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_score_dict, chunk_data)
+
     # 合并结果
     result = {}
     for user in chunk_data.get('users', []):
         uid = user['user_id']
+        uname = user.get('name', '')
         speech_duration = round(speech_map.get(uid, 0), 2)
         speech_percent = round(speech_duration / total_seconds * 100, 2) if total_seconds else 0
-        page_info = page_stats.get(uid, {'page_count':0,'action_count':0,'mouse_duration':0,'mouse_percent':0})
-        result[user['name']] = {
+        page_info = page_stats.get(uid, {'page_count':0,'mouse_action_count':0,'mouse_duration':'0s','mouse_percent':'0%'})
+        result[uid] = {
+            'name': uname,
             'speech_duration': f"{speech_duration}s",
             'speech_percent': f"{speech_percent}%",
-            **page_info
+            'page_count': page_info.get('page_count', 0),
+            'mouse_action_count': page_info.get('mouse_action_count', 0),
+            'mouse_duration': page_info.get('mouse_duration', '0s'),
+            'mouse_percent': page_info.get('mouse_percent', '0%'),
+            'note_edit_count': note_edit_count.get(uid, 0),
+            'note_edit_char_count': note_edit_char_count.get(uid, 0),
+            'speech_level': speech_level_dict.get(uid, "No Speech"),
+            'speech_level_score': speech_score_dict.get(uid, 0),
+            'note_edit_level': edit_level_dict.get(uid, "No Edit"),
+            'note_edit_score': edit_score_dict.get(uid, 0),
+            'browser_level': browser_level_dict.get(uid, "No Browsing"),
+            'browser_score': browser_score_dict.get(uid, 0),
+            'total_score': total_score_dict.get(uid, 0),
+            'total_level': total_level_dict.get(uid, "No Participation")
         }
     return result
+
+def classify_speech_level(speech_map, chunk_data):
+    import numpy as np
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    speech_durations = [speech_map.get(uid, 0) for uid in user_ids]
+    total_speech = sum(speech_durations)
+    mean_speech = np.mean(speech_durations)
+    std_speech = np.std(speech_durations)
+    speech_percents = [d / total_speech if total_speech else 0 for d in speech_durations]
+    # 基尼系数
+    def gini(array):
+        array = np.array(array)
+        if np.amin(array) < 0:
+            array -= np.amin(array)
+        array += 1e-9
+        array = np.sort(array)
+        index = np.arange(1, array.shape[0] + 1)
+        n = array.shape[0]
+        return ((np.sum((2 * index - n - 1) * array)) / (n * np.sum(array)))
+    gini_coeff = gini(speech_durations) if total_speech > 0 else 0
+    # 分类
+    speech_level = {}
+    speech_score = {}
+    for idx, uid in enumerate(user_ids):
+        duration = speech_durations[idx]
+        percent = speech_percents[idx]
+        if duration == 0:
+            speech_level[uid] = "No Speech"
+            speech_score[uid] = 0
+        elif (duration < mean_speech - std_speech) or \
+             (percent <= sorted(speech_percents)[int(len(speech_percents)*0.25)] and gini_coeff >= 0.5):
+            speech_level[uid] = "Low Speech"
+            speech_score[uid] = 0.3
+        elif (duration > mean_speech + std_speech) or \
+             (percent > 0.5 and gini_coeff >= 0.5):
+            speech_level[uid] = "High Speech"
+            speech_score[uid] = 1
+        else:
+            speech_level[uid] = "Normal Speech"
+            speech_score[uid] = 0.7
+    return speech_level, speech_score
+
+def classify_note_edit_level(note_edit_count, note_edit_char_count, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    edit_level = {}
+    edit_score = {}
+    for uid in user_ids:
+        count = note_edit_count.get(uid, 0)
+        chars = note_edit_char_count.get(uid, 0)
+        if count == 0:
+            edit_level[uid] = "No Edit"
+            edit_score[uid] = 0
+        elif count <= 2 and chars < 100:
+            edit_level[uid] = "Few Edits"
+            edit_score[uid] = 0.3
+        elif 3 <= count <= 5 and 100 <= chars < 300:
+            edit_level[uid] = "Normal Edit"
+            edit_score[uid] = 0.7
+        elif count > 5 or chars >= 300:
+            edit_level[uid] = "Frequent Edit"
+            edit_score[uid] = 1
+        else:
+            edit_level[uid] = "No Edit"
+            edit_score[uid] = 0
+    return edit_level, edit_score
+
+def classify_browser_behavior_level(page_stats, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    browser_level = {}
+    browser_score = {}
+    for uid in user_ids:
+        stats = page_stats.get(uid, {})
+        try:
+            duration = float(str(stats.get('mouse_duration', '0')).replace('s', ''))
+        except Exception:
+            duration = 0
+        action_count = stats.get('mouse_action_count', 0)
+        try:
+            percent = float(str(stats.get('mouse_percent', '0')).replace('%', ''))
+        except Exception:
+            percent = 0
+        if (duration < 5 and action_count == 0):
+            browser_level[uid] = "No Browsing"
+            browser_score[uid] = 0
+        elif (duration < 15 and (action_count <= 3 or percent < 30)):
+            browser_level[uid] = "Few Browsing"
+            browser_score[uid] = 0.3
+        elif (15 <= duration < 30 and 3 <= action_count <= 6 and 30 <= percent < 70):
+            browser_level[uid] = "Normal Browsing"
+            browser_score[uid] = 0.7
+        elif (duration >= 30 and action_count > 6) or (percent >= 70):
+            browser_level[uid] = "Frequent Browsing"
+            browser_score[uid] = 1
+        else:
+            browser_level[uid] = "No Browsing"
+            browser_score[uid] = 0
+    return browser_level, browser_score
 
 if __name__ == '__main__':
     ...
 
-    input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge.json"
+    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         logs = json.load(f)
     print(json.dumps(local_analyze_anomaly_status(logs), ensure_ascii=False, indent=2))

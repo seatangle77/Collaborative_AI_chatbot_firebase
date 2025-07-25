@@ -12,3 +12,4 @@ jinja2
 jpush
 apscheduler
 loguru
+numpy
