@@ -18,3 +18,7 @@ server/app/routes/__pycache__
 audio_runtime/__pycache__
 
 .vscode
+
+package.json
+package-lock.json
+node_modules

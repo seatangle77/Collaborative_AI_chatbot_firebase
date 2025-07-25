@@ -17,8 +17,8 @@ const routes = [
   },
   {
     path: "/admin",
-    name: "AdminPage",
-    component: () => import("../views/AdminPage.vue"),
+    name: "AdminFirebasePage",
+    component: () => import("../views/AdminFirebasePage.vue"),
   },
   {
     path: "/admin-judge",
