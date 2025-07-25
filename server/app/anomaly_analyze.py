@@ -6,6 +6,7 @@ import uuid
 from datetime import timezone, datetime
 
 import google.generativeai as genai
+import numpy as np
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
@@ -291,7 +292,6 @@ def local_analyze_anomaly_status(chunk_data):
     2. pageBehaviorLogs：按user统计浏览网页数、总action次数、鼠标操作总时长及占time_range百分比。
     返回：{user_id: {...}}
     """
-    from datetime import datetime
     def parse_time(t):
         if not t:
             return None
@@ -312,6 +312,8 @@ def local_analyze_anomaly_status(chunk_data):
         if uid:
             speech_map.setdefault(uid, 0)
             speech_map[uid] += dur
+    total_speech = sum(speech_map.values())
+
     # pageBehaviorLogs统计
     page_logs = chunk_data.get('raw_tables', {}).get('pageBehaviorLogs', {})
     page_stats = {}
@@ -339,21 +341,29 @@ def local_analyze_anomaly_status(chunk_data):
         }
     # note_edit_history 统计
     note_edit_logs = chunk_data.get('raw_tables', {}).get('note_edit_history', [])
-    note_edit_count = {}
-    note_edit_char_count = {}
+    note_edit_stats = {}
+    total_edit_char_count = 0
     for item in note_edit_logs:
         uid = item.get('userId')
-        char_count = item.get('charCount', 0)
-        if uid:
-            note_edit_count.setdefault(uid, 0)
-            note_edit_char_count.setdefault(uid, 0)
-            note_edit_count[uid] += 1
-            note_edit_char_count[uid] += char_count
+        if uid not in note_edit_stats:
+            note_edit_stats[uid] = {
+                'note_edit_count': 0,
+                'note_edit_char_count': 0,
+            }
+        note_edit_stats[uid]['note_edit_count'] += 1
+        for edit in item.get('delta', []):
+            if "insert" in edit:
+                note_edit_stats[uid]['note_edit_char_count'] += len(edit.get('insert', ""))
+                total_edit_char_count += len(edit.get('insert', ""))
+            elif "delete" in edit:
+                note_edit_stats[uid]['note_edit_char_count'] += edit.get('delete', 0)
+                total_edit_char_count += edit.get('delete', 0)
+
 
     # 统计发言等级和分数
-    speech_level_dict, speech_score_dict = classify_speech_level(speech_map, chunk_data)
+    speech_level_dict, speech_score_dict = classify_speech_level(speech_map, total_speech, total_seconds, chunk_data)
     # 统计编辑等级和分数
-    edit_level_dict, edit_score_dict = classify_note_edit_level(note_edit_count, note_edit_char_count, chunk_data)
+    edit_level_dict, edit_score_dict = classify_note_edit_level(note_edit_stats, total_edit_char_count, chunk_data)
     # 统计浏览器行为等级和分数
     browser_level_dict, browser_score_dict = classify_browser_behavior_level(page_stats, chunk_data)
 
@@ -376,8 +386,8 @@ def local_analyze_anomaly_status(chunk_data):
             'mouse_action_count': page_info.get('mouse_action_count', 0),
             'mouse_duration': page_info.get('mouse_duration', '0s'),
             'mouse_percent': page_info.get('mouse_percent', '0%'),
-            'note_edit_count': note_edit_count.get(uid, 0),
-            'note_edit_char_count': note_edit_char_count.get(uid, 0),
+            'note_edit_count': note_edit_stats.get(uid, {}).get('note_edit_count', 0),
+            'note_edit_char_count': note_edit_stats.get(uid, {}).get('note_edit_char_count', 0),
             'speech_level': speech_level_dict.get(uid, "No Speech"),
             'speech_level_score': speech_score_dict.get(uid, 0),
             'note_edit_level': edit_level_dict.get(uid, "No Edit"),
@@ -389,25 +399,11 @@ def local_analyze_anomaly_status(chunk_data):
         }
     return result
 
-def classify_speech_level(speech_map, chunk_data):
-    import numpy as np
+def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
     user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
     speech_durations = [speech_map.get(uid, 0) for uid in user_ids]
-    total_speech = sum(speech_durations)
-    mean_speech = np.mean(speech_durations)
-    std_speech = np.std(speech_durations)
     speech_percents = [d / total_speech if total_speech else 0 for d in speech_durations]
-    # 基尼系数
-    def gini(array):
-        array = np.array(array)
-        if np.amin(array) < 0:
-            array -= np.amin(array)
-        array += 1e-9
-        array = np.sort(array)
-        index = np.arange(1, array.shape[0] + 1)
-        n = array.shape[0]
-        return ((np.sum((2 * index - n - 1) * array)) / (n * np.sum(array)))
-    gini_coeff = gini(speech_durations) if total_speech > 0 else 0
+
     # 分类
     speech_level = {}
     speech_score = {}
@@ -417,36 +413,41 @@ def classify_speech_level(speech_map, chunk_data):
         if duration == 0:
             speech_level[uid] = "No Speech"
             speech_score[uid] = 0
-        elif (duration < mean_speech - std_speech) or \
-             (percent <= sorted(speech_percents)[int(len(speech_percents)*0.25)] and gini_coeff >= 0.5):
+        elif (total_speech < total_seconds / 3.0):
+            # 所有人发言时长不到总时长3分之一
             speech_level[uid] = "Low Speech"
             speech_score[uid] = 0.3
-        elif (duration > mean_speech + std_speech) or \
-             (percent > 0.5 and gini_coeff >= 0.5):
-            speech_level[uid] = "High Speech"
-            speech_score[uid] = 1
         else:
-            speech_level[uid] = "Normal Speech"
-            speech_score[uid] = 0.7
+            if percent < 0.3:
+                speech_level[uid] = "Low Speech"
+                speech_score[uid] = 0.3
+            elif percent >= 0.7:
+                speech_level[uid] = "High Speech"
+                speech_score[uid] = 1
+            else:
+                speech_level[uid] = "Normal Speech"
+                speech_score[uid] = 0.7
     return speech_level, speech_score
 
-def classify_note_edit_level(note_edit_count, note_edit_char_count, chunk_data):
+def classify_note_edit_level(note_edit_stats, total_edit_char_count, chunk_data):
     user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
     edit_level = {}
     edit_score = {}
+
     for uid in user_ids:
-        count = note_edit_count.get(uid, 0)
-        chars = note_edit_char_count.get(uid, 0)
+        count = note_edit_stats.get(uid, {}).get('note_edit_count', 0)
+        chars = note_edit_stats.get(uid, {}).get('note_edit_char_count', 0)
+        percent = chars / total_edit_char_count if total_edit_char_count else 0
         if count == 0:
             edit_level[uid] = "No Edit"
             edit_score[uid] = 0
-        elif count <= 2 and chars < 100:
+        elif percent < 0.3:
             edit_level[uid] = "Few Edits"
             edit_score[uid] = 0.3
-        elif 3 <= count <= 5 and 100 <= chars < 300:
+        elif 0.3 <= percent < 0.7:
             edit_level[uid] = "Normal Edit"
             edit_score[uid] = 0.7
-        elif count > 5 or chars >= 300:
+        elif percent >= 0.7:
             edit_level[uid] = "Frequent Edit"
             edit_score[uid] = 1
         else:
@@ -460,25 +461,21 @@ def classify_browser_behavior_level(page_stats, chunk_data):
     browser_score = {}
     for uid in user_ids:
         stats = page_stats.get(uid, {})
-        try:
-            duration = float(str(stats.get('mouse_duration', '0')).replace('s', ''))
-        except Exception:
-            duration = 0
         action_count = stats.get('mouse_action_count', 0)
         try:
             percent = float(str(stats.get('mouse_percent', '0')).replace('%', ''))
         except Exception:
             percent = 0
-        if (duration < 5 and action_count == 0):
+        if action_count == 0:
             browser_level[uid] = "No Browsing"
             browser_score[uid] = 0
-        elif (duration < 15 and (action_count <= 3 or percent < 30)):
+        elif percent < 30:
             browser_level[uid] = "Few Browsing"
             browser_score[uid] = 0.3
-        elif (15 <= duration < 30 and 3 <= action_count <= 6 and 30 <= percent < 70):
+        elif 30 <= percent < 70:
             browser_level[uid] = "Normal Browsing"
             browser_score[uid] = 0.7
-        elif (duration >= 30 and action_count > 6) or (percent >= 70):
+        elif percent >= 70:
             browser_level[uid] = "Frequent Browsing"
             browser_score[uid] = 1
         else:
@@ -489,7 +486,7 @@ def classify_browser_behavior_level(page_stats, chunk_data):
 if __name__ == '__main__':
     ...
 
-    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
+    input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
     with open(input_file, 'r', encoding='utf-8') as f:
         logs = json.load(f)
     print(json.dumps(local_analyze_anomaly_status(logs), ensure_ascii=False, indent=2))
