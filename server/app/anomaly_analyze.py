@@ -418,10 +418,11 @@ def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
             speech_level[uid] = "Low Speech"
             speech_score[uid] = 0.3
         else:
-            if percent < 0.3:
+            # 所有人发言市场超过总时长3分之一，按每个人的发言相对比例计算
+            if percent < 0.15:
                 speech_level[uid] = "Low Speech"
                 speech_score[uid] = 0.3
-            elif percent >= 0.7:
+            elif percent >= 0.6:
                 speech_level[uid] = "High Speech"
                 speech_score[uid] = 1
             else:
