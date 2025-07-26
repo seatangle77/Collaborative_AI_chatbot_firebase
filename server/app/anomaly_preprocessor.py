@@ -395,65 +395,40 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
 
 if __name__ == '__main__':
     ...
-    # # 原始文件压缩测试
-    # # input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
-    # # output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
-    # # with open(input_file, 'r', encoding='utf-8') as f:
-    # #     pageBehaviorLogs = json.load(f)
-    # # compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])
-    # # pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"] = compressed
-    # # with open(output_file, 'w', encoding='utf-8') as f:
-    # #     json.dump(pageBehaviorLogs, f, ensure_ascii=False, indent=2)
-    # # print(f"压缩完成，结果已保存到 {output_file}")
-    #
-    #
-    # # 查询数据
-    # # group_id = "0c90c6de-33e3-4431-b5fe-d06378111ef0"
-    # # start_time_str = "2025-07-09T02:45:00"
-    # # end_time_str = "2025-07-09T02:47:00"
-    # group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
-    # start_time_str = "2025-07-10T07:02:27"
-    # end_time_str = "2025-07-10T07:04:27"
-    # members = get_group_members_simple(group_id)
-    # raw_data, increment = extract_chunk_data_anomaly(
-    #     group_id=group_id,
-    #     round_index=1,
-    #     start_time=start_time_str,
-    #     end_time=end_time_str,
-    #     member_list=members
-    # )
-    # print(json.dumps(raw_data, ensure_ascii=False, indent=2))
-    # # # 保存调试文件
-    # # from uuid import uuid4
-    # # os.makedirs("debug_anomaly_outputs", exist_ok=True)
-    # # debug_file_path = f"debug_anomaly_outputs/chunk_data_{uuid4().hex}.json"
-    # # with open(debug_file_path, "w", encoding="utf-8") as f:
-    # #     json.dump(raw_data, f, ensure_ascii=False, indent=2)
-    try:
-        # 注意：由于数据库中实际没有存储 current_user 字段，这里暂时查询所有记录
-        results = db.collection("anomaly_analysis_group_results") \
-            .where(filter=FieldFilter("group_id", "==", "cc8f1d29-7a49-4975-95dc-7ac94aefc04b")) \
-            .order_by("created_at", direction="DESCENDING") \
-            .stream()
+    # 原始文件压缩测试
+    # input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
+    # output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
+    # with open(input_file, 'r', encoding='utf-8') as f:
+    #     pageBehaviorLogs = json.load(f)
+    # compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])
+    # pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"] = compressed
+    # with open(output_file, 'w', encoding='utf-8') as f:
+    #     json.dump(pageBehaviorLogs, f, ensure_ascii=False, indent=2)
+    # print(f"压缩完成，结果已保存到 {output_file}")
 
-        # 获取总数
-        ai_result_list = [doc.to_dict() for doc in results]
-        total = len(ai_result_list)
 
-        # 计算偏移量
-        page = 1
-        page_size = 10
-        user_id="50SHBajxtge2rmatUM7OU7MPeu32"
-        offset = (page - 1) * page_size
+    # 查询数据
+    # group_id = "0c90c6de-33e3-4431-b5fe-d06378111ef0"
+    # start_time_str = "2025-07-09T02:45:00"
+    # end_time_str = "2025-07-09T02:47:00"
+    group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+    start_time_str = "2025-07-10T07:02:27"
+    end_time_str = "2025-07-10T07:04:27"
+    members = get_group_members_simple(group_id)
+    raw_data, increment = extract_chunk_data_anomaly(
+        group_id=group_id,
+        round_index=1,
+        start_time=start_time_str,
+        end_time=end_time_str,
+        member_list=members
+    )
+    print(json.dumps(raw_data, ensure_ascii=False, indent=2))
+    # # 保存调试文件
+    # from uuid import uuid4
+    # os.makedirs("debug_anomaly_outputs", exist_ok=True)
+    # debug_file_path = f"debug_anomaly_outputs/chunk_data_{uuid4().hex}.json"
+    # with open(debug_file_path, "w", encoding="utf-8") as f:
+    #     json.dump(raw_data, f, ensure_ascii=False, indent=2)
 
-        # 获取分页数据
-        paginated_docs = ai_result_list[offset:offset + page_size]
-        return_list = []
-        for doc in paginated_docs:
-            raw_response = doc.get("raw_response", {})
-            if isinstance(raw_response, dict):
-                return_list.append(raw_response.get(user_id, {}))
-    except Exception as e:
-        logger.error(f"❌ [本地异常分析] 分析失败: {traceback.format_exc()}")
 
 
