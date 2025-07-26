@@ -147,6 +147,38 @@
                 </div>
               </div>
             </div>
+            <!-- Peer Prompt 互动提示板块 -->
+            <div class="peer-prompt-card">
+              <div class="peer-prompt-header">成员间互动</div>
+              <el-button type="primary" size="default" @click="peerPromptDialogVisible = true">发起互动提示</el-button>
+              <el-dialog v-model="peerPromptDialogVisible" title="发起互动提示" width="350px" :close-on-click-modal="false">
+                <el-form :model="peerPromptForm" label-width="70px">
+                  <el-form-item label="目标成员">
+                    <el-select v-model="peerPromptForm.targetUserId" placeholder="请选择成员">
+                      <el-option
+                        v-for="member in otherMembers"
+                        :key="member.user_id"
+                        :label="member.name"
+                        :value="member.user_id"
+                      />
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="提示内容">
+                    <PeerPromptInput
+                      v-model="peerPromptForm.content"
+                      :suggestions="peerPromptPresets"
+                      placeholder="请输入你想对组员说的话，或选择预设内容..."
+                      :maxlength="100"
+                      @select="handlePresetSelect"
+                    />
+                  </el-form-item>
+                </el-form>
+                <template #footer>
+                  <el-button @click="peerPromptDialogVisible = false">取消</el-button>
+                  <el-button type="primary" @click="handleSendPeerPrompt">发送</el-button>
+                </template>
+              </el-dialog>
+            </div>
             <AnomalyHistoryPanel
               :user-id="userId"
               :group-id="group?.id"
@@ -196,6 +228,7 @@ import AbnormalFeedback from "@/components/personal/AbnormalFeedback.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import UserProfileBar from "@/components/personal/UserProfileBar.vue";
 import AnomalyHistoryPanel from "@/components/personal/AnomalyHistoryPanel.vue";
+import PeerPromptInput from "@/components/personal/PeerPromptInput.vue";
 import api from "../services/apiService";
 // 移除 groupWebSocketManager 相关导入
 // import { connectGroupSocket, onGroupMessage, closeGroupSocket } from "@/services/groupWebSocketManager";
@@ -216,6 +249,7 @@ import {
   ElMessage,
   ElTabs,
   ElTabPane,
+  ElNotification,
 } from "element-plus";
 import "element-plus/es/components/button/style/css";
 import "element-plus/es/components/date-picker/style/css";
@@ -231,6 +265,9 @@ import {
 import { useRoute } from "vue-router";
 import { Splitpanes, Pane } from 'splitpanes';
 import 'splitpanes/dist/splitpanes.css';
+import { ElDialog, ElForm, ElFormItem, ElSelect, ElOption, ElInput } from 'element-plus';
+import { ElAutocomplete } from 'element-plus';
+import peerPromptPresets from '@/config/peer_prompt_presets.json';
 
 const components = {
   ElButton,
@@ -245,6 +282,13 @@ const components = {
   ElTabPane,
   ArrowRight,
   ArrowLeft,
+  ElDialog,
+  ElForm,
+  ElFormItem,
+  ElSelect,
+  ElOption,
+  ElInput,
+  ElAutocomplete,
 };
 const anomalyData = ref(null);
 const showNoteEditor = ref(true);
@@ -381,6 +425,28 @@ onMounted(async () => {
     loadHistoryData();
   });
 
+  onUserMessage("peer_prompt_received", (payload) => {
+    if (!payload || !payload.data) {
+      console.warn("⚠️ Peer Prompt数据格式不正确");
+      return;
+    }
+    
+    const promptData = payload.data;
+    
+    // 显示通知
+    ElNotification({
+      title: '组员提醒',
+      message: promptData.content,
+      type: 'warning',
+      duration: 5000,
+      position: 'top-right',
+      customClass: 'peer-prompt-notification'
+    });
+    
+    // 可以在这里添加其他处理逻辑，比如显示提示弹窗等
+    console.log("收到Peer Prompt:", promptData);
+  });
+
   onUserMessage("personal_task_started", (payload) => {
     editorStarted.value = true;
     showAgendaPanel.value = true;
@@ -511,7 +577,7 @@ function formatToLocalISO(datetime) {
 
 
 async function handleAnomalyCheck() {
-  console.log("🔍 handleAnomalyCheck 开始执行");
+  console.log("�� handleAnomalyCheck 开始执行");
   console.log("📊 当前 selectedUserId.value:", selectedUserId.value);
   console.log("📊 当前 users.value 长度:", users.value.length);
   console.log("📊 users.value 前几个用户:", users.value.slice(0, 3));
@@ -779,6 +845,46 @@ watch(drawerVisible, (val) => {
 watch(showRichNotification, (val) => {
   if (!val) drawerVisible.value = false;
 });
+
+// Peer Prompt 互动提示相关逻辑
+const peerPromptDialogVisible = ref(false);
+const peerPromptForm = ref({
+  targetUserId: '',
+  content: '',
+});
+
+function handleSendPeerPrompt() {
+  if (!peerPromptForm.value.targetUserId || !peerPromptForm.value.content.trim()) {
+    ElMessage.warning('请选择目标成员并填写提示内容');
+    return;
+  }
+  // 调用后端API发送Peer Prompt
+  const payload = {
+    from_user_id: userId.value,
+    to_user_id: peerPromptForm.value.targetUserId,
+    group_id: group.value?.id,
+    content: peerPromptForm.value.content.trim()
+  };
+
+  api.sendPeerPrompt(payload)
+    .then(response => {
+      if (response.success) {
+        ElMessage.success('互动提示已发送！');
+        peerPromptDialogVisible.value = false;
+        peerPromptForm.value = { targetUserId: '', content: '' };
+      } else {
+        ElMessage.error('发送失败，请重试');
+      }
+    })
+    .catch(error => {
+      console.error('发送Peer Prompt失败:', error);
+      ElMessage.error('发送失败，请重试');
+    });
+}
+
+function handlePresetSelect(suggestion) {
+  console.log('选择了预设内容:', suggestion);
+}
 </script>
 
 <style scoped>
@@ -821,7 +927,7 @@ watch(showRichNotification, (val) => {
 
 .members-status-card {
   background: #ffffff;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
   position: sticky;
 }
 
@@ -968,7 +1074,7 @@ watch(showRichNotification, (val) => {
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  width: auto;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
@@ -1579,5 +1685,74 @@ watch(showRichNotification, (val) => {
 .output-req-row ul li {
   margin-bottom: 2px;
   padding: 0;
+}
+.peer-prompt-card {
+  background: #f6f8fa;
+  border-radius: 8px;
+  padding: 14px 16px 10px 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.peer-prompt-header {
+  font-weight: 600;
+  color: #3478f6;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+.preset-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 2px;
+}
+.suggestion-item {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 16px;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.char-counter {
+  font-size: 13px;
+  color: #909399;
+  text-align: right;
+  margin-top: 6px;
+}
+
+/* Peer Prompt Notification 自定义样式 */
+:deep(.peer-prompt-notification) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3) !important;
+}
+
+:deep(.peer-prompt-notification .el-notification__title) {
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+:deep(.peer-prompt-notification .el-notification__content) {
+  color: white !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  margin-top: 8px !important;
+}
+
+:deep(.peer-prompt-notification .el-notification__icon) {
+  color: white !important;
+}
+
+:deep(.peer-prompt-notification .el-notification__closeBtn) {
+  color: white !important;
+}
+
+:deep(.peer-prompt-notification .el-notification__closeBtn:hover) {
+  color: #f0f0f0 !important;
 }
 </style>

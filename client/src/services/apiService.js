@@ -188,8 +188,17 @@ export default {
     }).then(res => res.data);
   },
   getNoteContentsByUser(userId, page = 1, pageSize = 20) {
-    return axios.get(`${BASE_URL}/api/group_data/note_contents/user/${userId}`, {
-      params: { page, page_size: pageSize }
-    }).then(res => res.data);
+    return axios.get(`${BASE_URL}/api/notes/contents/user/${userId}?page=${page}&page_size=${pageSize}`).then(res => res.data);
   },
+
+  // Peer Prompt 相关API
+  sendPeerPrompt(data) {
+    return axios.post(`${BASE_URL}/api/users/peer-prompt/send`, data).then(res => res.data);
+  },
+
+  getReceivedPeerPrompts(userId, groupId, page = 1, pageSize = 10) {
+    return axios.get(`${BASE_URL}/api/users/peer-prompt/received?user_id=${userId}&group_id=${groupId}&page=${page}&page_size=${pageSize}`).then(res => res.data);
+  },
+
+  feedbackClick,
 };

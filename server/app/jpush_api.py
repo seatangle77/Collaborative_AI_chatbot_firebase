@@ -5,6 +5,7 @@ from jpush import common, JPush
 import time
 
 from server.app.database import db
+from server.app.peer_prompt import get_user_device_token, get_user_name
 from server.app.logger.logger_loader import logger
 
 # 优先加载 .env.local（如果有），再加载 .env
@@ -79,50 +80,40 @@ async def jpush_personal_share_message(user_id: str, from_user: str, detail_type
     try:
 
         # 获取用户的device_token
-        user_doc = db.collection("users_info").document(user_id).get()
-        if user_doc.exists:
-            user_data = user_doc.to_dict()
-            device_token = user_data.get("device_token")
+        device_token = get_user_device_token(user_id)
 
-            if device_token:
-                # 获取发送者姓名
-                from_user_doc = db.collection("users_info").document(from_user).get()
-                from_user_name = "未知用户"
-                if from_user_doc.exists:
-                    from_user_data = from_user_doc.to_dict()
-                    from_user_name = from_user_data.get("name", "未知用户")
+        if device_token:
+            # 获取发送者姓名
+            from_user_name = get_user_name(from_user)
 
-                # 构建推送内容
-                alert = f"{from_user_name}分享了异常信息：{detail_type}"
-                extras = {
-                    "type": "share",
-                    "from_user": from_user,
-                    "from_user_name": from_user_name,
-                    "detail_type": detail_type,
-                    "detail_status": detail_status,
-                    "group_id": group_id,
-                    "title": "组员异常分享",
-                    "body": alert
-                }
+            # 构建推送内容
+            alert = f"组员提醒：分享了异常信息：{detail_type}"
+            extras = {
+                "type": "share",
+                "from_user": from_user,
+                "from_user_name": from_user_name,
+                "detail_type": detail_type,
+                "detail_status": detail_status,
+                "group_id": group_id,
+                "title": "组员提醒",
+                "body": alert
+            }
 
-                # 发送极光推送
-                result = send_jpush_notification(
-                    alert=alert,
-                    registration_id=device_token,
-                    extras=extras
-                )
+            # 发送极光推送
+            result = send_jpush_notification(
+                alert=alert,
+                registration_id=device_token,
+                extras=extras
+            )
 
-                if result:
-                    jpush_success = True
-                    logger.info(
-                        f"📱 [Share推送] 极光推送成功，用户: {from_user_name} → {user_data.get('name', '未知用户')}")
-                else:
-                    logger.info(f"❌ [Share推送] 极光推送失败")
+            if result:
+                jpush_success = True
+                logger.info(
+                    f"📱 [Share推送] 极光推送成功，用户: {from_user_name} → {user_data.get('name', '未知用户')}")
             else:
-                logger.info(f"⚠️ [Share推送] 用户{user_id}没有device_token")
+                logger.info(f"❌ [Share推送] 极光推送失败")
         else:
-            logger.info(f"⚠️ [Share推送] 用户{user_id}信息不存在")
-
+            logger.info(f"⚠️ [Share推送] 用户{user_id}没有device_token")
     except Exception as e:
         logger.info(f"❌ [Share推送] 极光推送异常: {e}")
 
@@ -134,3 +125,108 @@ async def jpush_personal_share_message(user_id: str, from_user: str, detail_type
     else:
         logger.info(f"❌ [Share推送] 用户{user_id}推送失败，耗时{duration:.2f}秒")
         logger.info(f"   - 极光推送: ❌")
+
+def send_jpush_peer_prompt(to_user_id: str, from_user_name: str, content: str, prompt_data: dict):
+    """
+    发送Peer Prompt极光推送
+    :param to_user_id: 接收者用户ID
+    :param from_user_name: 发送者姓名
+    :param content: 提示内容
+    :param prompt_data: 提示数据
+    :return: 推送结果
+    """
+    start_time = time.time()
+    logger.info(f"📤 [Peer Prompt推送] 开始向用户{to_user_id}推送Peer Prompt...")
+
+    try:
+        # 获取用户的device_token
+        device_token = get_user_device_token(to_user_id)
+
+        if not device_token:
+            logger.info(f"⚠️ [Peer Prompt推送] 用户{to_user_id}没有device_token")
+            return False
+
+        # 构建推送内容
+        alert = f"组员提醒：{content}"
+        extras = {
+            "type": "peer_prompt",
+            "prompt_id": prompt_data.get("id"),
+            "from_user_id": prompt_data.get("from_user_id"),
+            "from_user_name": from_user_name,
+            "group_id": prompt_data.get("group_id"),
+            "content": content,
+            "title": "组员提醒",
+            "body": alert
+        }
+
+        # 发送极光推送
+        result = send_jpush_notification(
+            alert=alert,
+            registration_id=device_token,
+            extras=extras
+        )
+
+        if result:
+            user_name = get_user_name(to_user_id)
+            logger.info(f"📱 [Peer Prompt推送] 极光推送成功，用户: {from_user_name} → {user_name}")
+            return True
+        else:
+            logger.info(f"❌ [Peer Prompt推送] 极光推送失败")
+            return False
+
+    except Exception as e:
+        duration = time.time() - start_time
+        logger.error(f"❌ [Peer Prompt推送] 推送异常，耗时{duration:.2f}秒: {e}")
+        return False
+
+def format_jpush_peer_prompt_message(title: str, content: str, extras: dict):
+    """
+    格式化Peer Prompt极光推送消息
+    :param title: 推送标题
+    :param content: 推送内容
+    :param extras: 附加数据
+    :return: 推送消息对象
+    """
+    try:
+        push = _jpush.create_push()
+        push.platform = jpush.all_
+        
+        # 设置推送内容
+        push.notification = jpush.notification(
+            alert=content,
+            android={
+                "title": title,
+                "content": content,
+                "extras": extras,
+                "priority": 2,  # 高优先级
+                "style": 1,     # 大文本样式
+                "alert_type": 1 # 提示音
+            },
+            ios={
+                "alert": {
+                    "title": title,
+                    "body": content
+                },
+                "extras": extras,
+                "sound": "default",
+                "badge": "+1"
+            }
+        )
+        
+        # 设置消息内容
+        push.message = jpush.message(
+            msg_content=content,
+            extras=extras
+        )
+        
+        # 设置选项
+        push.options = {
+            "time_to_live": 86400,  # 24小时过期
+            "apns_production": True  # 生产环境
+        }
+        
+        return push
+        
+    except Exception as e:
+        logger.error(f"❌ [Peer Prompt推送] 格式化消息失败: {e}")
+        return None

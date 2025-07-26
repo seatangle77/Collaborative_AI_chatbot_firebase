@@ -1,0 +1,433 @@
+{
+  "time_range": {
+    "start": "2025-07-10T07:05:00",
+    "end": "2025-07-10T07:06:00"
+  },
+  "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+  "users": [
+    {
+      "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+      "name": "juno",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+      "name": "Tark",
+      "speech_count": 3,
+      "speech_duration": 103.54
+    },
+    {
+      "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+      "name": "Meteora",
+      "speech_count": 0,
+      "speech_duration": 0
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [
+      {
+        "text": "以这种形式去玩而去减少，比如说我们可能会有一些地位上的不平等啊，或者说我们的三观有些不一致，这些其实是促使我们没法做朋友，但是我们可以就某一个爱好去进行呃去做一个呃社交活动吧，然后形成一个大的文化。这是我觉得呃第一个原因，第二个原因就是我觉得。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 25.58,
+        "start": "2025-07-10T07:05:22.999090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:05:48.579090",
+        "transcript_id": "6a079cfb-f651-41fd-8f1e-ad89e1a38a3a",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "呃，这个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.22,
+        "start": "2025-07-10T07:05:48.599090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:05:50.819090",
+        "transcript_id": "ff7c796f-8c41-4d73-86f6-a3281e84cd58",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "就是。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.78,
+        "start": "2025-07-10T07:05:52.379090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:05:54.159090",
+        "transcript_id": "009aba50-2eff-4eda-98ca-6d9f7946c284",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "年轻人之间，他的那个呃，通过找搭子的这样一个途径吧，可以去呃构建就是只只关注我们的共同兴趣目标，找到这项的伙伙，这个同学或者伙伴而。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 17.5,
+        "start": "2025-07-10T07:05:54.239090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:06:11.739090",
+        "transcript_id": "742003be-c532-46ae-92b5-c4bfc3e661b2",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我认为的一个比较重要的原因就是说，呃本质上其实人是有社交的需求的，但是呢，社交的就是两个人。比如说从来再不成功，这个单子的确认不是就是在朋友之下，在同事啊，或者同学可能普通这种陌生人之上，为什么会有这样一种情况呢？我我是觉得可能是因为当两个人在进行情感的这个交流的过程中呢，如果说他是呃像朋友这种，他可能比较苛刻，需要各个方向都比较契合。但我觉得这个是现实生活中可能比较难的，可能我们两个人只是在有某一种爱好，但其实在有些三观上是不合适的这种情况下呢，其实是大部分文化的一个有一个兴息的原因，就是他们可以说我们摒弃那些呃不一样的地方。我们少起这关于那些地方的争执，而我们只关注我们喜欢的这个兴趣的方面，比如说我们就喜欢去徒步，OK, 那我们就就就。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 60.46,
+        "start": "2025-07-10T07:04:22.539090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:05:22.999090",
+        "transcript_id": "bb93bc3c-576f-499f-9ef1-7ae5f575bd2a",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      }
+    ],
+    "note_edit_history": [],
+    "pageBehaviorLogs": {
+      "juno": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "juno"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:04:50.000Z",
+          "windowEnd": "2025-07-10T07:06:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:04:52.205Z",
+            "tabId": 1924860374,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/juno",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:37.640Z",
+                "endTime": "2025-07-10T07:05:37.640Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 502,
+                  "x": 876
+                },
+                "endPosition": {
+                  "y": 502,
+                  "x": 876
+                }
+              }
+            ]
+          },
+          {
+            "title": "“搭子社交”：青年社交模式的新表征",
+            "timestamp": "2025-07-10T07:04:52.205Z",
+            "tabId": 1924860458,
+            "url": "https://paper.people.com.cn/rmlt/html/2024-05/01/content_26070980.htm",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:42.635Z",
+                "endTime": "2025-07-10T07:05:42.635Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 17,
+                  "x": 1032
+                },
+                "endPosition": {
+                  "y": 17,
+                  "x": 1032
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:43.078Z",
+                "endTime": "2025-07-10T07:05:43.078Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:43.132Z",
+                "endTime": "2025-07-10T07:05:43.132Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 412,
+                  "x": 972
+                },
+                "endPosition": {
+                  "y": 412,
+                  "x": 972
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:43.594Z",
+                "endTime": "2025-07-10T07:05:43.594Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:43.843Z",
+                "endTime": "2025-07-10T07:05:44.688Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 401,
+                  "x": 972
+                },
+                "endPosition": {
+                  "y": 5,
+                  "x": 896
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:44.956Z",
+                "endTime": "2025-07-10T07:05:44.956Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:45.661Z",
+                "endTime": "2025-07-10T07:05:45.661Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 246,
+                  "x": 877
+                },
+                "endPosition": {
+                  "y": 246,
+                  "x": 877
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:45.798Z",
+                "endTime": "2025-07-10T07:05:47.025Z",
+                "action_count": 2,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:47.074Z",
+                "endTime": "2025-07-10T07:05:47.074Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 251,
+                  "x": 882
+                },
+                "endPosition": {
+                  "y": 251,
+                  "x": 882
+                }
+              }
+            ]
+          },
+          {
+            "title": "“搭子文化”爆火，这届年轻人为何爱找搭子？ | 人人都是产品经理",
+            "timestamp": "2025-07-10T07:04:52.205Z",
+            "tabId": 1924860481,
+            "url": "https://www.woshipm.com/share/5893373.html",
+            "tabBehaviorLogs": [
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:38.710Z",
+                "endTime": "2025-07-10T07:05:38.710Z",
+                "action_count": 1,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:39.510Z",
+                "endTime": "2025-07-10T07:05:40.700Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 2,
+                  "x": 1066
+                },
+                "endPosition": {
+                  "y": 328,
+                  "x": 951
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:40.886Z",
+                "endTime": "2025-07-10T07:05:40.886Z",
+                "action_count": 1,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:41.202Z",
+                "endTime": "2025-07-10T07:05:41.202Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 316,
+                  "x": 948
+                },
+                "endPosition": {
+                  "y": 316,
+                  "x": 948
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:41.396Z",
+                "endTime": "2025-07-10T07:05:41.396Z",
+                "action_count": 1,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:41.852Z",
+                "endTime": "2025-07-10T07:05:41.852Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 303,
+                  "x": 962
+                },
+                "endPosition": {
+                  "y": 303,
+                  "x": 962
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Meteora": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Meteora"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:04:50.000Z",
+          "windowEnd": "2025-07-10T07:06:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:04:52.388Z",
+            "tabId": 2142278855,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Meteora",
+            "tabBehaviorLogs": [
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:05:23.193Z",
+                "endTime": "2025-07-10T07:05:23.709Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:05:24.493Z",
+                "endTime": "2025-07-10T07:05:25.009Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 404,
+                  "x": 785
+                },
+                "endPosition": {
+                  "y": 328,
+                  "x": 623
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Tark": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Tark"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:04:50.000Z",
+          "windowEnd": "2025-07-10T07:06:00.000Z"
+        },
+        "tabHistory": []
+      }
+    },
+    "unique_note_contents": []
+  },
+  "speech_counts": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 3,
+    "unknown": 2
+  },
+  "speech_durations": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 103.53999999999999,
+    "unknown": 4.0
+  },
+  "anomaly_history": [
+    {
+      "detail": null,
+      "glasses_summary": "你当前状态需要关注",
+      "summary": null,
+      "user_data_summary": null,
+      "start_time": "2025-07-10T07:01:35",
+      "end_time": "2025-07-10T07:03:35"
+    },
+    {
+      "detail": {
+        "evidence": "在本轮2分钟的讨论中，juno未进行任何发言 (speech_count: 0, speech_duration: 0)。\n- 其他成员Tark和Meteora也进行了发言，但juno未进行回应。\n- juno在协作平台上进行了编辑操作（删除了部分文字），但未分享信息或提出问题引发讨论。",
+        "type": "互动缺失",
+        "status": "juno在本轮小组讨论中表现为互动缺失，缺乏发言和主动引导，未与其他组员进行有效互动。",
+        "suggestion": "juno应立即主动发言，分享自己阅读的资料中的关键信息或提出问题，引导其他组员参与讨论，并积极回应其他成员的发言，促进小组的协作。 可以尝试从Meteora的发言或已有的编辑内容出发，提出相关问题或观点。例如，可以针对Meteora关于'搭子文化'背后情感需求的观点进行回应和补充。"
+      },
+      "glasses_summary": "你当前参与度极低，未发言，建议立即发言并分享资料，促进小组讨论。",
+      "summary": "juno在本轮讨论中参与度极低，未进行任何发言，需要立即采取措施提升参与度。",
+      "user_data_summary": {
+        "page_view_count": 0,
+        "edit_count": 1,
+        "group_avg_comparison": {
+          "edit_diff": 0,
+          "speaking_diff": -3.5,
+          "reply_diff": 0,
+          "speaking_duration_diff": -18.63,
+          "page_focus_diff": 0
+        },
+        "group_speech_distribution": {
+          "other_members": {
+            "50SHBajxtge2rmatUM7OU7MPeu32": {
+              "duration": 37.26,
+              "count": 7
+            },
+            "MehACGvYsfVaGnq5utXQupmAIji2": {
+              "duration": 0,
+              "count": 0
+            }
+          },
+          "group_total_duration": 37.26,
+          "current_user_speeches": 0,
+          "group_total": 7,
+          "current_user_duration": 0
+        },
+        "speaking_count": 0,
+        "reply_count": 0,
+        "page_switch_frequency": 0,
+        "speaking_duration": 0
+      },
+      "start_time": "2025-07-10T07:01:35",
+      "end_time": "2025-07-10T07:03:35"
+    }
+  ]
+}

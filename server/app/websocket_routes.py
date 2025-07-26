@@ -216,4 +216,27 @@ async def push_anomaly_analysis_result(user_id: str, analysis_result: dict):
     })
     _send_q.put((user_id, payload))
 
+async def push_peer_prompt_received(user_id: str, prompt_data: dict):
+    """
+    向指定用户推送Peer Prompt接收消息
+    :param user_id: 接收者用户ID
+    :param prompt_data: 提示数据，包含id, from_user_id, from_user_name, content, group_id等
+    """
+    logger.info(f"📤 [Peer Prompt推送] 开始向用户{user_id}推送Peer Prompt...")
+    
+    payload = json.dumps({
+        "type": "peer_prompt_received",
+        "data": {
+            "prompt_id": prompt_data.get("id"),
+            "from_user_id": prompt_data.get("from_user_id"),
+            "from_user_name": prompt_data.get("from_user_name"),
+            "content": prompt_data.get("content"),
+            "group_id": prompt_data.get("group_id"),
+            "created_at": prompt_data.get("created_at")
+        }
+    })
+    
+    _send_q.put((user_id, payload))
+    logger.info(f"📤 [Peer Prompt推送] WebSocket推送成功: {prompt_data.get('from_user_name')} → {user_id}")
+
 
