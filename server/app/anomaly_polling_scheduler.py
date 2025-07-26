@@ -11,7 +11,6 @@ from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_anomaly_analysis_result
 
-# _group_id = None
 _group_id = None
 _users_info = None
 # 120秒的间隔
@@ -21,11 +20,13 @@ _user_notify_interval_seconds = {}
 # 用户最后一次通知时间
 _user_notify_last_time = {}
 
+# 是否停止分析
+_stop_analyze = True
+
 # 执行分析任务的线程
 _notify_thread = None
 _analyze_thread = None
 _ai_analyze_thread = None
-_stop_analyze = True
 
 _ai_analyze_q = queue.Queue(1000)
 _ai_analyze_result_history = []
@@ -41,6 +42,16 @@ _analyze_start_time = datetime.now(timezone.utc)
 def get_analyze_start_time() -> datetime:
     return _analyze_start_time + (datetime.now(timezone.utc) - _boot_time)
 
+def clear_cache():
+    global _group_id, _users_info, _user_notify_interval_seconds, _user_notify_last_time,_ai_analyze_q, _ai_analyze_result_histor, _local_analyze_result_history
+    _group_id = None
+    _users_info = None
+    _user_notify_interval_seconds = {}
+    _user_notify_last_time = {}
+
+    _ai_analyze_q = queue.Queue(1000)
+    _ai_analyze_result_history = []
+    _local_analyze_result_history = []
 
 def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analysis_results_id: str = None,
     detail_type: str = None, detail_status: str = None, share_to_user_ids: list = None):
@@ -77,14 +88,17 @@ def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analy
 
 
 def start_analyze(group_id: str):
+    clear_cache()
+
     global _group_id,_stop_analyze
     _stop_analyze = False
     _group_id = group_id
 
 def stop_analyze(group_id: str):
-    global _group_id,_stop_analyze
+    global _stop_analyze
     _stop_analyze = True
-    _group_id = group_id
+
+    clear_cache()
 
 def get_analyze_result():
     global _local_analyze_result_history,_ai_analyze_result_history
