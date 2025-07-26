@@ -2,8 +2,10 @@ import json
 import os
 import re
 import time
+import traceback
 import uuid
 from datetime import timezone, datetime
+from typing import Any
 
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -32,33 +34,17 @@ load_dotenv()
 # ✅ 设置环境变量供 SDK 使用
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
+def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, dict]:
     total_start_time = time.time()
     logger.info(f"🚀 [AI分析] 开始调用Gemini AI进行异常分析...")
 
     model = genai.GenerativeModel("gemini-1.5-flash")
 
-    # 阶段1: 构建输入数据
-    stage1_start = time.time()
-    anomaly_history_input = None
-    anomaly_history_json = None
-    try:
-        anomaly_history_input = build_anomaly_history_input(chunk_data)
-        anomaly_history_json = json.dumps(anomaly_history_input, ensure_ascii=False, indent=2)
-    except Exception as e:
-        logger.error("未能获取anomaly_history_input：", e)
-        anomaly_history_json = "null"
-
-    speech_counts_json = json.dumps(chunk_data.get('speech_counts', {}), ensure_ascii=False, indent=2)
-    speech_durations_json = json.dumps(chunk_data.get('speech_durations', {}), ensure_ascii=False, indent=2)
-    stage1_duration = time.time() - stage1_start
-    logger.info(f"📋 [AI分析] 阶段1-构建输入数据完成，耗时{stage1_duration:.2f}秒")
-
-    # 阶段2: 构建提示词
-    stage2_start = time.time()
     prompt_text = f"""
-你是一个多维度小组协作分析专家。系统已经为一个小组中的三位成员提供了完整的行为评分结果，包括发言、编辑、浏览等级和总得分（不需要你重新判断）。你的任务是：
+【用户行为数据】='''{chunk_data_with_local_analyze}'''
 
+【任务描述】='''
+你是一个多维度小组协作分析专家。系统已经为一个小组中的三位成员提供了完整的行为评分结果，包括发言、编辑、浏览等级和总得分（不需要你重新判断）。你的任务是：
 🔹 基于 total_level 判断该成员的参与状态；
 🔹 输出温和鼓励的眼镜提示语（glasses_summary）；
 🔹 给出该成员的状态类型、行为结构描述、建议与证据；
@@ -68,15 +54,17 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
 🎯 所有提示必须语气正向、亲和，不得批评；
 🎯 glasses_summary 应适配眼镜小屏幕，使用一句简洁中文，可含颜文字；
 🎯 输出字段结构必须完全符合下方格式；
+'''
 
-【参与等级与提示规则】
+【参与等级与提示规则】='''
 - total_level = "No Participation" → 明确提示激活；
 - total_level = "Low Participation" → 鼓励表达与操作；
 - total_level = "Normal Participation" → 无需提示；
 - total_level = "High Participation" → 温和提示协作平衡；
 - total_level = "Dominant" → 委婉提示留出他人空间。
+'''
 
-【输出结构】
+【输出结构】='''
 请为每位成员输出以下 JSON 结构（共 3 组）：
 
 {{
@@ -86,7 +74,7 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
     "detail": {{
       "type": "参与状态类型，如 Low Participation",
       "status": "简洁描述该成员的当前行为结构",
-      "evidence": "- 发言等级：{speech_level}\\n- 编辑等级：{note_edit_level}\\n- 浏览等级：{browser_level}",
+      "evidence": "- 发言等级：\\n- 编辑等级：\\n- 浏览等级：",
       "suggestion": "行为层面的改善建议，如主动表达、协同参与等"
     }},
     "more_info": {{
@@ -105,159 +93,114 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
   }},
   ...
 }}
+'''
 
-📌 注意事项：
+【注意事项】='''
 - 所有字段必须填写完整，避免输出模板占位符；
 - 若成员无需提醒，`glasses_summary` 仍需输出空字符串，但 `should_notify` 字段应为 false；
 - group_distribution 统计的是该小组中不同 total_level 的人数（你将收到或推理）；
+'''
 
-你现在将收到 3 位成员的数据，请输出上述结构。
+你现在收到 3 位成员的数据，请输出上述结构。
 """
-    stage2_duration = time.time() - stage2_start
-    logger.info(f"📝 [AI分析] 阶段2-构建提示词完成，耗时{stage2_duration:.2f}秒")
 
-    # 阶段3: 调用AI模型
-    stage3_start = time.time()
     logger.info("🚀 [AI分析] 开始调用 [Anomaly AI 综合分析] ...")
     response = model.generate_content(
         contents=[{"role": "user", "parts": [{"text": prompt_text}]}],
         generation_config=genai.types.GenerationConfig(temperature=0.7)
     )
-    stage3_duration = time.time() - stage3_start
-    logger.info(f"✅ [AI分析] 阶段3-AI调用完成，耗时{stage3_duration:.2f}秒")
     logger.info(f"✅ [AI分析] [Anomaly AI] 返回结果：", response.text)
 
     total_duration = time.time() - total_start_time
     logger.info(f"✅ [AI分析] Gemini AI异常分析完成，总耗时{total_duration:.2f}秒")
 
-    return {"raw_response": response.text}
+    return prompt_text, {"raw_response": response.text}
 
-async def ai_analyze_anomaly_status(group_id: str, start_time: str, end_time: str, chunk_data: dict):
+async def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
     total_start_time = time.time()
     logger.info(f"🚀 [异常分析] 开始分析group_id={group_id}...")
 
+    start_time = chunk_data['time_range']['start']
+    end_time = chunk_data['time_range']['end']
+
     # 阶段2: AI分析
-    stage2_start = time.time()
-    result = ai_analyze_all_anomalies(chunk_data)
-    stage2_duration = time.time() - stage2_start
-    logger.info(f"🤖 [异常分析] 阶段2-AI分析完成，耗时{stage2_duration:.2f}秒")
+    prompt, ai_analyze_result = ai_analyze_all_anomalies(chunk_data)
 
     # 阶段3: 结果解析
-    stage3_start = time.time()
-    # 解析AI返回的JSON结果
-
-    summary = None
-    glasses_summary = None
-    detail = None
-    user_data_summary = None
-    more_info = None
-    score = None
-    should_push = False
     try:
-        if isinstance(result.get("raw_response"), str):
-            raw = result["raw_response"]
-            # 用正则提取出 {...} 部分
-            match = re.search(r"{[\s\S]*}", raw)
-            if match:
-                json_str = match.group(0)
-                parsed_result = json.loads(json_str)
-                summary = parsed_result.get("summary")
-                glasses_summary = parsed_result.get("glasses_summary", "你当前状态需要关注")
-                detail = parsed_result.get("detail")
-                user_data_summary = parsed_result.get("user_data_summary")
-                more_info = parsed_result.get("more_info")
-                score = parsed_result.get("score")
+        if isinstance(ai_analyze_result.get("raw_response"), str):
+            markdown_json = ai_analyze_result["raw_response"]
+            # 去除Markdown标记
+            json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
+            ai_analyze_result_json = json.loads(json_str)
 
-                # 根据score的状态评分和内容相似度评分判断是否推送
-                if score and isinstance(score, dict):
-                    state_score = score.get("state_score")
-                    content_similarity_score = score.get("content_similarity_score")
-                    should_push = False
-                    if state_score is not None and content_similarity_score is not None:
-                        should_push = (state_score < 25 or state_score > 75) and (content_similarity_score < 50)
-                        logger.info(
-                            f"📊 [异常分析] 状态评分：{state_score}，内容相似度评分：{content_similarity_score}，推送阈值：状态评分<25或>75，内容相似度评分<50，是否推送：{should_push}")
-                    else:
-                        should_push = True  # 如果没有评分信息，默认推送
-                        logger.info(f"⚠️ [异常分析] 未找到完整评分信息，默认推送")
-                else:
-                    should_push = False  # 如果没有score信息，默认不推送
-                    logger.info(f"⚠️ [异常分析] 未找到评分信息，默认不推送")
-            else:
-                glasses_summary = "你当前状态需要关注"
-                should_push = True
-        else:
-            glasses_summary = "你当前状态需要关注"
-            should_push = True
+            # 阶段4: 文件存储
+            stage4_start = time.time()
+            os.makedirs("analysis_outputs", exist_ok=True)
+            file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+            with open(file_name, "w", encoding="utf-8") as f:
+                json.dump(ai_analyze_result_json, f, ensure_ascii=False, indent=2)
+            stage4_duration = time.time() - stage4_start
+            logger.info(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
+
+            # 阶段5: 数据库存储
+            stage5_start = time.time()
+            # 新建 anomaly_analysis_files 表并插入内容
+            file_id = str(uuid.uuid4())
+            db.collection("anomaly_raw_json_in_out").document(file_id).set({
+                "id": file_id,
+                "group_id": group_id,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "input": prompt,
+                "output": ai_analyze_result_json
+            })
+
+            # 新建anomaly_analysis_group_results表并插入数据
+            analysis_id = str(uuid.uuid4())
+            db.collection("anomaly_analysis_group_results").document(analysis_id).set({
+                "id": analysis_id,
+                "group_id": group_id,
+                "start_time": start_time,
+                "end_time": end_time,
+                "raw_response": ai_analyze_result_json,
+                "created_at": datetime.now(timezone.utc).isoformat()
+            })
+            stage5_duration = time.time() - stage5_start
+            logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
+
+            total_duration = time.time() - total_start_time
+            logger.info(f"✅ [异常分析] group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
+
+            # 返回给前端更多信息
+            return ai_analyze_result_json
     except Exception as e:
-        logger.info("解析AI响应失败：", e)
-        glasses_summary = "你当前状态需要关注"
-        should_push = True
-    stage3_duration = time.time() - stage3_start
-    logger.info(f"📝 [异常分析] 阶段3-结果解析完成，耗时{stage3_duration:.2f}秒")
+        logger.error('解析AI响应失败： %s' % traceback.format_exc())
 
+    # 异常情况保存
     # 阶段4: 文件存储
-    stage4_start = time.time()
-    # 保存分析结果为文件
-
+    logger.warning(f"💾 [异常分析] 结果异常，保存现场")
     os.makedirs("analysis_outputs", exist_ok=True)
-    file_name = f"analysis_outputs/anomaly_{uuid.uuid4()}_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+    file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
     with open(file_name, "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
-    stage4_duration = time.time() - stage4_start
-    logger.info(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
+        json.dump(ai_analyze_result, f, ensure_ascii=False, indent=2)
 
     # 阶段5: 数据库存储
     stage5_start = time.time()
-    # 新建 anomaly_analysis_files 表并插入内容
     file_id = str(uuid.uuid4())
-    db.collection("anomaly_raw_json_input").document(file_id).set({
+    db.collection("anomaly_raw_json_in_out").document(file_id).set({
         "id": file_id,
         "group_id": group_id,
         "created_at": datetime.now(timezone.utc).isoformat(),
-        "raw_json": result  # 完整分析内容
-    })
-
-    # 新建anomaly_analysis_results表并插入数据
-    analysis_id = str(uuid.uuid4())
-    db.collection("anomaly_analysis_results").document(analysis_id).set({
-        "id": analysis_id,
-        "group_id": group_id,
-        "start_time": start_time,
-        "end_time": end_time,
-        "raw_response": result.get("raw_response"),
-        "summary": summary,
-        "glasses_summary": glasses_summary,
-        "detail": detail,
-        "user_data_summary": user_data_summary,
-        "more_info": more_info,
-        "score": score,
-        "should_push": should_push,
-        "created_at": datetime.now(timezone.utc).isoformat()
+        "input": prompt,
+        "output": ai_analyze_result
     })
     stage5_duration = time.time() - stage5_start
-    logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
-
+    logger.info(f"🗄️ [异常分析] 结果异常，保存现场。数据库存储完成，耗时{stage5_duration:.2f}秒")
 
     total_duration = time.time() - total_start_time
-    logger.info(f"✅ [异常分析] group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
+    logger.info(f"✅ [异常分析] 结果异常，保存现场。group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
 
-    # 返回给前端更多信息
-    return {
-        "raw_response": result.get("raw_response"),
-        "summary": summary,
-        "glasses_summary": glasses_summary,
-        "detail": detail,
-        "user_data_summary": user_data_summary,
-        "more_info": more_info,
-        "score": score,
-        "should_push": should_push,
-        "group_id": group_id,
-        "start_time": start_time,
-        "end_time": end_time,
-        "analysis_id": analysis_id,
-        "anomaly_analysis_results_id": analysis_id  # 添加兼容字段
-    }
+    return {}
 
 def calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_score_dict, chunk_data):
     user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
@@ -283,16 +226,16 @@ def calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_
         total_level[uid] = level
     return total_score, total_level
 
-def local_analyze_anomaly_status(chunk_data):
+def local_analyze_anomaly_status(chunk_data) -> tuple[dict, dict]:
     """
     统计：
     1. speech_transcripts：按user统计总说话时长、占time_range百分比。
     2. pageBehaviorLogs：按user统计浏览网页数、总action次数、鼠标操作总时长及占time_range百分比。
     返回：{user_id: {...}}
     """
-    time_start = parse_iso_time(chunk_data['time_range']['start'])
-    time_end = parse_iso_time(chunk_data['time_range']['end'])
-    total_seconds = (time_end - time_start).total_seconds() if time_start and time_end else 1
+    time_start_dt = parse_iso_time(chunk_data['time_range']['start'])
+    time_end_dt = parse_iso_time(chunk_data['time_range']['end'])
+    total_seconds = (time_end_dt - time_start_dt).total_seconds() if time_start_dt and time_end_dt else 1
 
 
     # speech_transcripts统计
@@ -302,10 +245,10 @@ def local_analyze_anomaly_status(chunk_data):
         uid = item.get('user_id')
         start = parse_iso_time(item.get('start'))
         end = parse_iso_time(item.get('end'))
-        if start < time_start:
-            start = time_start
-        if end > time_end:
-            end = time_end
+        if start < time_start_dt:
+            start = time_start_dt
+        if end > time_end_dt:
+            end = time_end_dt
         if uid:
             speech_map.setdefault(uid, 0)
             speech_map[uid] += (end - start).total_seconds()
@@ -368,14 +311,14 @@ def local_analyze_anomaly_status(chunk_data):
     total_score_dict, total_level_dict = calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_score_dict, chunk_data)
 
     # 合并结果
-    result = {}
+    local_analyze_result = {}
     for user in chunk_data.get('users', []):
         uid = user['user_id']
         uname = user.get('name', '')
         speech_duration = round(speech_map.get(uid, 0), 2)
         speech_percent = round(speech_duration / total_seconds * 100, 2) if total_seconds else 0
         page_info = page_stats.get(uid, {'page_count':0,'mouse_action_count':0,'mouse_duration':'0s','mouse_percent':'0%'})
-        result[uid] = {
+        local_analyze_result[uid] = {
             'name': uname,
             'speech_duration': f"{speech_duration}s",
             'speech_percent': f"{speech_percent}%",
@@ -394,7 +337,15 @@ def local_analyze_anomaly_status(chunk_data):
             'total_score': total_score_dict.get(uid, 0),
             'total_level': total_level_dict.get(uid, "No Participation")
         }
-    return result
+
+    # 保存调试文件
+    # 合并本地分析结果到 chunk_data
+    chunk_data['local_analysis_result'] = local_analyze_result
+    os.makedirs("analysis_outputs", exist_ok=True)
+    debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+    with open(debug_file_path, "w", encoding="utf-8") as f:
+        json.dump(chunk_data, f, ensure_ascii=False, indent=2)
+    return chunk_data, local_analyze_result
 
 def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
     user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
@@ -504,4 +455,10 @@ if __name__ == '__main__':
         end_time=end_time_str,
         member_list=members
     )
-    print(json.dumps(local_analyze_anomaly_status(raw_data), ensure_ascii=False, indent=2))
+    chunk_data_with_local_result, local_analyze_result = local_analyze_anomaly_status(raw_data)
+    prompt, ai_analyze_result = ai_analyze_all_anomalies(chunk_data_with_local_result)
+    if isinstance(ai_analyze_result.get("raw_response"), str):
+        markdown_json = ai_analyze_result["raw_response"]
+        # 去除Markdown标记
+        json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
+        print(json.dumps(json.loads(json_str), ensure_ascii=False, indent=2))

@@ -387,16 +387,6 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
         logger.error(f"❌ [数据预处理] 查询5-anomaly_analysis_results历史失败，耗时{query5_duration:.2f}秒：{e}")
         chunk_data["anomaly_history"] = None
 
-    # 保存调试文件
-    debug_start = time.time()
-    from uuid import uuid4
-    os.makedirs("debug_anomaly_outputs", exist_ok=True)
-    debug_file_path = f"debug_anomaly_outputs/chunk_data_{uuid4().hex}.json"
-    with open(debug_file_path, "w", encoding="utf-8") as f:
-        json.dump(chunk_data, f, ensure_ascii=False, indent=2)
-    debug_duration = time.time() - debug_start
-    logger.info(f"💾 [数据预处理] 保存调试文件完成，耗时{debug_duration:.2f}秒")
-
     total_duration = time.time() - total_start_time
     logger.info(f"✅ [数据预处理] group_id={group_id}数据提取完成，总耗时{total_duration:.2f}秒")
 
@@ -431,7 +421,7 @@ if __name__ == '__main__':
     # print(f"压缩完成，结果已保存到 {output_file}")
 
 
-    # 查询数据，生成文件
+    # 查询数据
     # group_id = "0c90c6de-33e3-4431-b5fe-d06378111ef0"
     # start_time_str = "2025-07-09T02:45:00"
     # end_time_str = "2025-07-09T02:47:00"
@@ -446,4 +436,12 @@ if __name__ == '__main__':
         end_time=end_time_str,
         member_list=members
     )
+    print(json.dumps(raw_data, ensure_ascii=False, indent=2))
+    # # 保存调试文件
+    # from uuid import uuid4
+    # os.makedirs("debug_anomaly_outputs", exist_ok=True)
+    # debug_file_path = f"debug_anomaly_outputs/chunk_data_{uuid4().hex}.json"
+    # with open(debug_file_path, "w", encoding="utf-8") as f:
+    #     json.dump(raw_data, f, ensure_ascii=False, indent=2)
+
 

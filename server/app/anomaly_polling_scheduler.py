@@ -147,22 +147,18 @@ def analyze_handler():
                 return None
 
             # 阶段3： 本地数据分析
-            result = local_analyze_anomaly_status(raw_data)
-            print(json.dumps(result, ensure_ascii=False, indent=2))
-
-            # 合并本地分析结果到raw_data
-            raw_data['local_analysis_result'] = result
+            chunk_data_with_local_analyze, local_analyze_result = local_analyze_anomaly_status(raw_data)
 
             # 阶段4： 缓存本地分析结果
-            if result:
-                _local_analyze_result_history.append({end_time_str: result})
+            if local_analyze_result:
+                _local_analyze_result_history.append({end_time_str: local_analyze_result})
                 # 只保留最近20次执行记录
                 if len(_local_analyze_result_history) > 20:
                     _local_analyze_result_history = _local_analyze_result_history[-20:]
 
 
             # # 阶段5： 写入队列，异步处理AI分析
-            # _ai_analyze_q.put((_group_id, start_time_str, end_time_str, raw_data))
+            # _ai_analyze_q.put((_group_id, chunk_data_with_local_analyze))
 
             # 取本次分析的开始时间-即取数截止时间，作为下一次分析的起始时间
             last_analyze_time = current_time
@@ -181,19 +177,20 @@ def ai_analyze_handler():
                 continue
 
             while not _ai_analyze_q.empty():
-                group_id, start_time_str, end_time_str, raw_data = _ai_analyze_q.get()
+                group_id, chunk_data_with_local_analyze = _ai_analyze_q.get()
 
                 # 调用AI分析接口
                 stage_start = time.time()
                 result = None
                 try:
                     result = asyncio.run(
-                        ai_analyze_anomaly_status(group_id, start_time_str, end_time_str, raw_data))
+                        ai_analyze_anomaly_status(group_id, chunk_data_with_local_analyze))
                     if not result:
                         # 无分析结果
                         continue 
 
                     # 缓存分析结果
+                    end_time_str = chunk_data_with_local_analyze['time_range']['end']
                     _ai_analyze_result_history.append({end_time_str: result})
                     # 只保留最近20次执行记录
                     if len(_ai_analyze_result_history) > 20:
