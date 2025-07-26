@@ -88,6 +88,10 @@ export default {
     return axios.post(`${BASE_URL}/analysis/anomalies`, data).then(res => res.data);
   },
 
+  getLocalAnomalyStatus(data) {
+    return axios.post(`${BASE_URL}/analysis/local_anomalies`, data).then(res => res.data);
+  },
+
   getIntervalSummary(groupId, roundIndex, startTime, endTime, memberList) {
     return axios.post(`${BASE_URL}/analysis/interval_summary`, {
       group_id: groupId,

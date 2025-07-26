@@ -363,6 +363,95 @@ python asr_record.py --group groupG --device 2
   ```
   **返回**：异常分析结果、摘要、详细建议等
 
+- `POST /analysis/local_anomalies` - 只执行本地分析，不调用AI分析
+
+### 本地异常分析接口使用示例
+
+**请求路径**: `POST /analysis/local_anomalies`
+
+**请求参数**:
+```json
+{
+  "group_id": "your_group_id",
+  "round_index": 1,
+  "start_time": "2024-01-01T10:00:00",
+  "end_time": "2024-01-01T11:00:00",
+  "members": [
+    { "id": "user1", "name": "张三" },
+    { "id": "user2", "name": "李四" },
+    { "id": "user3", "name": "王五" }
+  ],
+  "current_user": {
+    "user_id": "current_user_id",
+    "name": "当前用户名",
+    "device_token": "device_token_here"
+  }
+}
+```
+
+**返回数据**:
+```json
+{
+  "local_analysis": {
+    "user1": {
+      "name": "张三",
+      "speech_duration": "120.5s",
+      "speech_percent": "20.1%",
+      "page_count": 5,
+      "mouse_action_count": 150,
+      "mouse_duration": "45.2s",
+      "mouse_percent": "7.5%",
+      "note_edit_count": 3,
+      "note_edit_char_count": 250,
+      "speech_level": "High",
+      "note_edit_level": "Normal",
+      "browser_level": "Low",
+      "total_level": "High Participation",
+      "total_score": 75
+    }
+  },
+  "raw_data_summary": {
+    "time_range": { "start": "2024-01-01T10:00:00", "end": "2024-01-01T11:00:00" },
+    "users_count": 3,
+    "speech_transcripts_count": 15,
+    "note_edit_history_count": 8,
+    "pageBehaviorLogs_count": 3
+  },
+  "processing_time": 2.34,
+  "analysis_timestamp": 1704067200.123
+}
+```
+
+**前端调用示例**:
+```javascript
+import apiService from '@/services/apiService';
+
+const data = {
+  group_id: "your_group_id",
+  round_index: 1,
+  start_time: "2024-01-01T10:00:00",
+  end_time: "2024-01-01T11:00:00",
+  members: [
+    { id: "user1", name: "张三" },
+    { id: "user2", name: "李四" },
+    { id: "user3", name: "王五" }
+  ],
+  current_user: {
+    user_id: "current_user_id",
+    name: "当前用户名",
+    device_token: "device_token_here"
+  }
+};
+
+try {
+  const result = await apiService.getLocalAnomalyStatus(data);
+  console.log('本地分析结果:', result.local_analysis);
+  console.log('处理时间:', result.processing_time);
+} catch (error) {
+  console.error('分析失败:', error);
+}
+```
+
 - `GET /analysis/anomaly_results_by_user?user_id=xxx&page=1&page_size=10`  
   分页获取用户历史异常分析结果
 

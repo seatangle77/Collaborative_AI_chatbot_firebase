@@ -49,7 +49,6 @@ def ai_analyze_all_anomalies(chunk_data: dict) -> dict:
         logger.error("未能获取anomaly_history_input：", e)
         anomaly_history_json = "null"
 
-    current_user_json = json.dumps(chunk_data.get('current_user', {}), ensure_ascii=False, indent=2)
     speech_counts_json = json.dumps(chunk_data.get('speech_counts', {}), ensure_ascii=False, indent=2)
     speech_durations_json = json.dumps(chunk_data.get('speech_durations', {}), ensure_ascii=False, indent=2)
     stage1_duration = time.time() - stage1_start

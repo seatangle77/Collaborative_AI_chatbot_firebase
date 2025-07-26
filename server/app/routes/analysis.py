@@ -34,7 +34,6 @@ class IntervalSummaryRequest(BaseModel):
     start_time: str
     end_time: str
     members: List[Member]
-    current_user: CurrentUser  # 前端直接传入当前用户信息
 
 class GroupPollingRequest(BaseModel):
     group_id: str
@@ -58,6 +57,73 @@ class FeedbackClickRequest(BaseModel):
 @router.post("/analysis/anomalies")
 async def get_anomaly_status(req: IntervalSummaryRequest):
     return get_analyze_result()
+
+# 新增：只执行本地分析的接口
+@router.post("/analysis/local_anomalies")
+async def get_local_anomaly_status(req: IntervalSummaryRequest):
+    """
+    只执行本地分析，不调用AI分析，直接返回本地分析结果
+    """
+    try:
+        from server.app.anomaly_preprocessor import extract_chunk_data_anomaly
+        from server.app.anomaly_analyze import local_analyze_anomaly_status
+        from server.app.logger.logger_loader import logger
+        import time
+        
+        start_time = time.time()
+        logger.info(f"🔍 [本地异常分析] 开始分析 group_id={req.group_id}")
+        
+        # 阶段1: 获取成员信息
+        members = []
+        for member in req.members:
+            members.append({
+                "user_id": member.id,
+                "name": member.name
+            })
+        
+        # 阶段2: 数据预处理
+        raw_data, increment = extract_chunk_data_anomaly(
+            round_index=req.round_index,
+            start_time=req.start_time,
+            end_time=req.end_time,
+            group_id=req.group_id,
+            member_list=members
+        )
+        
+        if increment <= 0:
+            logger.warning("[本地异常分析] 用户活动数据增量为0，返回空结果")
+            return {
+                "local_analysis": None,
+                "message": "用户活动数据增量为0，无法进行分析",
+                "processing_time": time.time() - start_time
+            }
+        
+        # 阶段3: 本地数据分析
+        local_result = local_analyze_anomaly_status(raw_data)
+        
+        processing_time = time.time() - start_time
+        logger.info(f"📊 [本地异常分析] 分析完成，耗时{processing_time:.2f}秒")
+        
+        return {
+            "local_analysis": local_result,
+            "raw_data_summary": {
+                "time_range": raw_data.get('time_range'),
+                "users_count": len(raw_data.get('users', [])),
+                "speech_transcripts_count": len(raw_data.get('raw_tables', {}).get('speech_transcripts', [])),
+                "note_edit_history_count": len(raw_data.get('raw_tables', {}).get('note_edit_history', [])),
+                "pageBehaviorLogs_count": len(raw_data.get('raw_tables', {}).get('pageBehaviorLogs', {}))
+            },
+            "processing_time": processing_time,
+            "analysis_timestamp": time.time()
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ [本地异常分析] 分析失败: {str(e)}")
+        return {
+            "error": str(e),
+            "local_analysis": None,
+            "processing_time": time.time() - start_time if 'start_time' in locals() else 0
+        }
 
 @router.get("/analysis/round_summary_combined")
 async def round_summary_combined(
@@ -144,8 +210,9 @@ async def get_anomaly_results_by_user(
 
     try:
         # 先获取所有匹配的文档（不排序）
-        base_query = db.collection("anomaly_analysis_results") \
-            .where("current_user.user_id", "==", user_id)
+        # 注意：由于数据库中实际没有存储 current_user 字段，这里暂时查询所有记录
+        # TODO: 需要根据实际需求修改查询逻辑
+        base_query = db.collection("anomaly_analysis_results")
         
         # 获取总数
         total_docs = list(base_query.stream())

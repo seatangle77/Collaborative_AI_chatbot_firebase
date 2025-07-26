@@ -1,0 +1,1877 @@
+{
+  "time_range": {
+    "start": "2025-07-10T07:10:00",
+    "end": "2025-07-10T07:12:00"
+  },
+  "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+  "users": [
+    {
+      "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+      "name": "juno",
+      "speech_count": 0,
+      "speech_duration": 0
+    },
+    {
+      "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+      "name": "Tark",
+      "speech_count": 10,
+      "speech_duration": 50.4
+    },
+    {
+      "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+      "name": "Meteora",
+      "speech_count": 10,
+      "speech_duration": 29.38
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [
+      {
+        "text": "他要资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.42,
+        "start": "2025-07-10T07:10:02.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:10:03.639090",
+        "transcript_id": "6d200e92-a457-4cc0-a154-5365d69e8ae6",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "对他时对你看它是分别列出，然后并。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.24,
+        "start": "2025-07-10T07:10:05.559090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:10:11.799090",
+        "transcript_id": "3fac4797-c206-4adc-b929-f56322129480",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我发现必须结合对啊，我们是我们是结合资料去进行讨论。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.74,
+        "start": "2025-07-10T07:10:13.579090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:10:20.319090",
+        "transcript_id": "ecf3a40c-0302-4a59-9e23-b1b6ba178fe2",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "总结一下结果就好了，不需要去列出这些资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 4.2,
+        "start": "2025-07-10T07:10:20.399090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:10:24.599090",
+        "transcript_id": "c812b668-77a2-4873-870b-5cda099681af",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "你们决定就好啊。对，知道。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.82,
+        "start": "2025-07-10T07:10:25.599090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:10:28.419090",
+        "transcript_id": "cea9b0f1-acce-4840-b77a-fb191f0df15b",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "看他这里不是有个私密网，发现。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 3.04,
+        "start": "2025-07-10T07:10:32.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:10:35.259090",
+        "transcript_id": "1827394e-4f77-4872-b284-428c30e8efdd",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "错一个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.2,
+        "start": "2025-07-10T07:10:40.259090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:10:41.459090",
+        "transcript_id": "baa932e1-0fcc-4079-b10c-98d3989cde0a",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "啊，这个菜好不下了。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 4.92,
+        "start": "2025-07-10T07:10:42.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:10:47.139090",
+        "transcript_id": "752d1c6c-9112-4a74-961b-7ece428687ab",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "或者你说还是我们对这个心理，呃。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 5.22,
+        "start": "2025-07-10T07:10:47.159090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:10:52.379090",
+        "transcript_id": "c51d6999-77fc-4199-9f6e-f5d20ce5d805",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "就心理中心还有什么想法儿，可以去补充在这些调度上面。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 5.42,
+        "start": "2025-07-10T07:10:52.699090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:10:58.119090",
+        "transcript_id": "234496fa-6271-4cf8-b022-45c35c4c13fa",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "就是。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.54,
+        "start": "2025-07-10T07:11:01.639090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:11:03.179090",
+        "transcript_id": "b74a7ae5-8b4a-48b8-817c-acecb129858e",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "就他不不让我们去做这样一个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 3.62,
+        "start": "2025-07-10T07:11:03.859090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:11:07.479090",
+        "transcript_id": "bea49c7b-0b45-4a83-9552-3e3ddeb8fe0f",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "背后动因的一个分析。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.08,
+        "start": "2025-07-10T07:11:07.899090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:11:09.979090",
+        "transcript_id": "3db4d661-731a-4b1b-ba05-bac8c2ca1a68",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我们刚才分析他可能会有行为的一些特征，就是交朋友的这样一个关系，包括心理上他就是解决。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 8.96,
+        "start": "2025-07-10T07:11:09.979090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:11:18.939090",
+        "transcript_id": "1690b23f-79cd-48d4-b720-11d4a3178257",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "每个人的内心的就是对自己内心的孤独进行了一个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 5.46,
+        "start": "2025-07-10T07:11:18.939090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:11:24.399090",
+        "transcript_id": "119ac914-bf78-4be8-9398-93900ea23398",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "嗯，换一个吧。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.74,
+        "start": "2025-07-10T07:11:24.399090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:11:26.139090",
+        "transcript_id": "1387ea46-17de-449d-972f-5533f514c666",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "还有别的一些。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.7,
+        "start": "2025-07-10T07:11:27.059090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:11:28.759090",
+        "transcript_id": "9906f2a5-8984-4f4e-9e1e-bcfdf7a6598a",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "四个人。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.08,
+        "start": "2025-07-10T07:11:28.839090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:11:29.919090",
+        "transcript_id": "68b24a49-e7e3-4a61-9a5f-4d5733a34fb9",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "复制的没有，我们就进行下一轮儿。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.72,
+        "start": "2025-07-10T07:11:35.039090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:11:37.759090",
+        "transcript_id": "2e900f29-3d18-43e8-9563-b86a8d9302c8",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我们先从下班开始。OK, 好。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 3.52,
+        "start": "2025-07-10T07:11:39.359090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:11:42.879090",
+        "transcript_id": "c5d1bc13-f750-40b7-ba73-d0110bbbf395",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "呃，下下一部分是这个设计，一款对设计工具。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.86,
+        "start": "2025-07-10T07:11:43.259090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:11:50.119090",
+        "transcript_id": "cfe4ce3a-0376-4785-8fee-316ce769e80b",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "不是方向，他没有关键功能。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.1,
+        "start": "2025-07-10T07:11:50.119090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:11:52.219090",
+        "transcript_id": "04d505a9-256c-4197-a3b2-51e743656aeb",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "是一个产品。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.54,
+        "start": "2025-07-10T07:11:54.439090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:11:55.979090",
+        "transcript_id": "9e581157-85e2-43b8-b376-ee425acd683d",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      }
+    ],
+    "note_edit_history": [
+      {
+        "affectedText": "将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，在数量和形式上更加自由。数字化孤独-主动适应社会变化的选择；亲密关系的降级-浅社交关系，维系成本变低\n\n在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。\n\n尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。\n\n趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。\n\n人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足\n\n年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。\n\n行为特征：兴趣为导向，交朋友\n心理特征：对数字化孤独的解决方法",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 625,
+        "delta": [
+          {
+            "delete": 625
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:11:29.378Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，在数量和形式上更加自由。数字化孤独-主动适应社会变化的选择；亲密关系的降级-浅社交关系，维系成本变低\n\n在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。\n\n尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。\n\n趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。\n\n人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足\n\n年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。\n\n行为特征：兴趣为导向，交朋友\n心理特征：对数字化孤独的解决方法",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 625,
+        "delta": [
+          {
+            "delete": 625
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:11:41.374Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，在数量和形式上更加自由。数字化孤独-主动适应社会变化的选择；亲密关系的降级-浅社交关系，维系成本变低\n\n在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。\n\n尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。\n\n趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。\n\n人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足\n\n年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。\n\n行为特征：兴趣为导向，交朋友\n心理特征：对数字化孤独的解决方法",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 625,
+        "delta": [
+          {
+            "delete": 625
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:11:59.585Z",
+        "isDelete": true
+      }
+    ],
+    "pageBehaviorLogs": {
+      "Meteora": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Meteora"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:09:50.000Z",
+          "windowEnd": "2025-07-10T07:12:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:09:52.394Z",
+            "tabId": 2142278855,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Meteora",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:54.198Z",
+                "endTime": "2025-07-10T07:09:58.298Z",
+                "action_count": 6,
+                "startPosition": {
+                  "y": 666,
+                  "x": 199
+                },
+                "endPosition": {
+                  "y": 35,
+                  "x": 1433
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:58.672Z",
+                "endTime": "2025-07-10T07:09:59.182Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:59.416Z",
+                "endTime": "2025-07-10T07:09:59.931Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 395,
+                  "x": 392
+                },
+                "endPosition": {
+                  "y": 169,
+                  "x": 295
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:00.048Z",
+                "endTime": "2025-07-10T07:10:00.548Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:00.782Z",
+                "endTime": "2025-07-10T07:10:06.783Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 162,
+                  "x": 282
+                },
+                "endPosition": {
+                  "y": 224,
+                  "x": 440
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:06.994Z",
+                "endTime": "2025-07-10T07:10:06.994Z",
+                "action_count": 1,
+                "position": {
+                  "y": 223,
+                  "x": 411
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:07.296Z",
+                "endTime": "2025-07-10T07:10:07.296Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 195,
+                  "x": 138
+                },
+                "endPosition": {
+                  "y": 195,
+                  "x": 138
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:08.044Z",
+                "endTime": "2025-07-10T07:10:08.044Z",
+                "action_count": 1,
+                "position": {
+                  "y": 222,
+                  "x": 90
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:08.297Z",
+                "endTime": "2025-07-10T07:10:09.298Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 222,
+                  "x": 91
+                },
+                "endPosition": {
+                  "y": 234,
+                  "x": 101
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:10.012Z",
+                "endTime": "2025-07-10T07:10:10.012Z",
+                "action_count": 1,
+                "position": {
+                  "y": 244,
+                  "x": 110
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:10.297Z",
+                "endTime": "2025-07-10T07:10:10.297Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 250,
+                  "x": 134
+                },
+                "endPosition": {
+                  "y": 250,
+                  "x": 134
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:10.795Z",
+                "endTime": "2025-07-10T07:10:10.795Z",
+                "action_count": 1,
+                "position": {
+                  "y": 250,
+                  "x": 135
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:11.016Z",
+                "endTime": "2025-07-10T07:10:11.666Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 250,
+                  "x": 136
+                },
+                "endPosition": {
+                  "y": 250,
+                  "x": 82
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:11.761Z",
+                "endTime": "2025-07-10T07:10:11.761Z",
+                "action_count": 1,
+                "position": {
+                  "y": 250,
+                  "x": 82
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:12.899Z",
+                "endTime": "2025-07-10T07:10:15.316Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:15.683Z",
+                "endTime": "2025-07-10T07:10:15.683Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 255,
+                  "x": 195
+                },
+                "endPosition": {
+                  "y": 255,
+                  "x": 195
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:16.254Z",
+                "endTime": "2025-07-10T07:10:16.254Z",
+                "action_count": 1,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:16.566Z",
+                "endTime": "2025-07-10T07:10:16.566Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 232,
+                  "x": 324
+                },
+                "endPosition": {
+                  "y": 232,
+                  "x": 324
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:17.005Z",
+                "endTime": "2025-07-10T07:10:17.516Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.866Z",
+                "endTime": "2025-07-10T07:10:23.466Z",
+                "action_count": 7,
+                "startPosition": {
+                  "y": 185,
+                  "x": 274
+                },
+                "endPosition": {
+                  "y": 257,
+                  "x": 156
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:25.512Z",
+                "endTime": "2025-07-10T07:10:25.512Z",
+                "action_count": 1,
+                "position": {
+                  "y": 258,
+                  "x": 157
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:25.949Z",
+                "endTime": "2025-07-10T07:10:25.949Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 258,
+                  "x": 156
+                },
+                "endPosition": {
+                  "y": 258,
+                  "x": 156
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:26.529Z",
+                "endTime": "2025-07-10T07:10:26.529Z",
+                "action_count": 1,
+                "position": {
+                  "y": 256,
+                  "x": 207
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:26.549Z",
+                "endTime": "2025-07-10T07:10:27.683Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 257,
+                  "x": 207
+                },
+                "endPosition": {
+                  "y": 330,
+                  "x": 340
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:28.533Z",
+                "endTime": "2025-07-10T07:10:33.950Z",
+                "action_count": 5,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:34.699Z",
+                "endTime": "2025-07-10T07:10:35.200Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 329,
+                  "x": 340
+                },
+                "endPosition": {
+                  "y": 166,
+                  "x": 356
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:35.512Z",
+                "endTime": "2025-07-10T07:10:35.512Z",
+                "action_count": 1,
+                "position": {
+                  "y": 185,
+                  "x": 363
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:35.783Z",
+                "endTime": "2025-07-10T07:10:36.332Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 185,
+                  "x": 364
+                },
+                "endPosition": {
+                  "y": 189,
+                  "x": 409
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:36.981Z",
+                "endTime": "2025-07-10T07:10:36.981Z",
+                "action_count": 1,
+                "position": {
+                  "y": 170,
+                  "x": 194
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:37.330Z",
+                "endTime": "2025-07-10T07:10:37.330Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 157,
+                  "x": 149
+                },
+                "endPosition": {
+                  "y": 157,
+                  "x": 149
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:37.528Z",
+                "endTime": "2025-07-10T07:10:38.129Z",
+                "action_count": 2,
+                "position": {
+                  "y": 157,
+                  "x": 148
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:38.433Z",
+                "endTime": "2025-07-10T07:10:38.433Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 144,
+                  "x": 182
+                },
+                "endPosition": {
+                  "y": 144,
+                  "x": 182
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:38.662Z",
+                "endTime": "2025-07-10T07:10:38.662Z",
+                "action_count": 1,
+                "position": {
+                  "y": 176,
+                  "x": 236
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:38.885Z",
+                "endTime": "2025-07-10T07:10:39.500Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:40.701Z",
+                "endTime": "2025-07-10T07:10:45.884Z",
+                "action_count": 7,
+                "startPosition": {
+                  "y": 178,
+                  "x": 239
+                },
+                "endPosition": {
+                  "y": 165,
+                  "x": 229
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:46.095Z",
+                "endTime": "2025-07-10T07:10:46.095Z",
+                "action_count": 1,
+                "position": {
+                  "y": 166,
+                  "x": 235
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:46.398Z",
+                "endTime": "2025-07-10T07:10:46.899Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 187,
+                  "x": 222
+                },
+                "endPosition": {
+                  "y": 203,
+                  "x": 133
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:47.180Z",
+                "endTime": "2025-07-10T07:10:47.180Z",
+                "action_count": 1,
+                "position": {
+                  "y": 208,
+                  "x": 125
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:47.408Z",
+                "endTime": "2025-07-10T07:10:49.766Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 205,
+                  "x": 140
+                },
+                "endPosition": {
+                  "y": 202,
+                  "x": 211
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:50.062Z",
+                "endTime": "2025-07-10T07:10:50.062Z",
+                "action_count": 1,
+                "position": {
+                  "y": 202,
+                  "x": 211
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:50.348Z",
+                "endTime": "2025-07-10T07:10:50.933Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 202,
+                  "x": 213
+                },
+                "endPosition": {
+                  "y": 240,
+                  "x": 325
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:51.312Z",
+                "endTime": "2025-07-10T07:10:51.312Z",
+                "action_count": 1,
+                "position": {
+                  "y": 222,
+                  "x": 363
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:51.565Z",
+                "endTime": "2025-07-10T07:10:51.565Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 222,
+                  "x": 363
+                },
+                "endPosition": {
+                  "y": 222,
+                  "x": 363
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:52.050Z",
+                "endTime": "2025-07-10T07:11:00.250Z",
+                "action_count": 7,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:00.450Z",
+                "endTime": "2025-07-10T07:11:00.450Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 385,
+                  "x": 362
+                },
+                "endPosition": {
+                  "y": 385,
+                  "x": 362
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:06.084Z",
+                "endTime": "2025-07-10T07:11:08.200Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:08.584Z",
+                "endTime": "2025-07-10T07:11:08.584Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 392,
+                  "x": 362
+                },
+                "endPosition": {
+                  "y": 392,
+                  "x": 362
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:09.450Z",
+                "endTime": "2025-07-10T07:11:10.467Z",
+                "action_count": 3,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:10.517Z",
+                "endTime": "2025-07-10T07:11:10.517Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 482,
+                  "x": 403
+                },
+                "endPosition": {
+                  "y": 482,
+                  "x": 403
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:11.151Z",
+                "endTime": "2025-07-10T07:11:15.367Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:15.667Z",
+                "endTime": "2025-07-10T07:11:15.667Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 474,
+                  "x": 331
+                },
+                "endPosition": {
+                  "y": 474,
+                  "x": 331
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:17.784Z",
+                "endTime": "2025-07-10T07:11:18.300Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:18.616Z",
+                "endTime": "2025-07-10T07:11:18.616Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 470,
+                  "x": 336
+                },
+                "endPosition": {
+                  "y": 470,
+                  "x": 336
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:19.356Z",
+                "endTime": "2025-07-10T07:11:19.356Z",
+                "action_count": 1,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:20.434Z",
+                "endTime": "2025-07-10T07:11:20.434Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 275,
+                  "x": 409
+                },
+                "endPosition": {
+                  "y": 275,
+                  "x": 409
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:20.818Z",
+                "endTime": "2025-07-10T07:11:23.267Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:23.684Z",
+                "endTime": "2025-07-10T07:11:24.684Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 212,
+                  "x": 335
+                },
+                "endPosition": {
+                  "y": 210,
+                  "x": 418
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:25.017Z",
+                "endTime": "2025-07-10T07:11:26.034Z",
+                "action_count": 3,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:33.617Z",
+                "endTime": "2025-07-10T07:11:39.000Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 214,
+                  "x": 423
+                },
+                "endPosition": {
+                  "y": 262,
+                  "x": 78
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:11:39.763Z",
+                "endTime": "2025-07-10T07:11:39.763Z",
+                "action_count": 1,
+                "position": {
+                  "y": 267,
+                  "x": 292
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:40.004Z",
+                "endTime": "2025-07-10T07:11:40.004Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 267,
+                  "x": 371
+                },
+                "endPosition": {
+                  "y": 267,
+                  "x": 371
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:11:40.847Z",
+                "endTime": "2025-07-10T07:11:40.847Z",
+                "action_count": 1,
+                "position": {
+                  "y": 297,
+                  "x": 449
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:40.849Z",
+                "endTime": "2025-07-10T07:11:51.551Z",
+                "action_count": 7,
+                "startPosition": {
+                  "y": 297,
+                  "x": 449
+                },
+                "endPosition": {
+                  "y": 228,
+                  "x": 651
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:11:51.562Z",
+                "endTime": "2025-07-10T07:11:51.562Z",
+                "action_count": 1,
+                "position": {
+                  "y": 228,
+                  "x": 651
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:52.068Z",
+                "endTime": "2025-07-10T07:11:52.068Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 277,
+                  "x": 730
+                },
+                "endPosition": {
+                  "y": 277,
+                  "x": 730
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:11:52.314Z",
+                "endTime": "2025-07-10T07:11:52.314Z",
+                "action_count": 1,
+                "position": {
+                  "y": 270,
+                  "x": 731
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Tark": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Tark"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:09:50.000Z",
+          "windowEnd": "2025-07-10T07:12:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:09:50.161Z",
+            "tabId": 1958191049,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Tark",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:42.867Z",
+                "endTime": "2025-07-10T07:10:57.506Z",
+                "action_count": 9,
+                "startPosition": {
+                  "y": 743,
+                  "x": 240
+                },
+                "endPosition": {
+                  "y": 739,
+                  "x": 240
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:58.430Z",
+                "endTime": "2025-07-10T07:10:58.430Z",
+                "action_count": 1,
+                "position": {
+                  "y": 737,
+                  "x": 345
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:58.663Z",
+                "endTime": "2025-07-10T07:10:59.296Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 736,
+                  "x": 345
+                },
+                "endPosition": {
+                  "y": 721,
+                  "x": 279
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:59.971Z",
+                "endTime": "2025-07-10T07:10:59.971Z",
+                "action_count": 1,
+                "position": {
+                  "y": 736,
+                  "x": 313
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:23.750Z",
+                "endTime": "2025-07-10T07:11:28.524Z",
+                "action_count": 6,
+                "startPosition": {
+                  "y": 746,
+                  "x": 270
+                },
+                "endPosition": {
+                  "y": 719,
+                  "x": 56
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "juno": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "juno"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:09:50.000Z",
+          "windowEnd": "2025-07-10T07:12:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:09:52.207Z",
+            "tabId": 1924860374,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/juno",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:51.913Z",
+                "endTime": "2025-07-10T07:09:52.416Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 359,
+                  "x": 1057
+                },
+                "endPosition": {
+                  "y": 407,
+                  "x": 1440
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:52.884Z",
+                "endTime": "2025-07-10T07:09:52.884Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:53.233Z",
+                "endTime": "2025-07-10T07:09:53.233Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 422,
+                  "x": 1396
+                },
+                "endPosition": {
+                  "y": 422,
+                  "x": 1396
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:53.389Z",
+                "endTime": "2025-07-10T07:09:53.389Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:53.737Z",
+                "endTime": "2025-07-10T07:09:54.249Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 444,
+                  "x": 1386
+                },
+                "endPosition": {
+                  "y": 621,
+                  "x": 1308
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:55.869Z",
+                "endTime": "2025-07-10T07:09:55.869Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:56.991Z",
+                "endTime": "2025-07-10T07:10:02.094Z",
+                "action_count": 7,
+                "startPosition": {
+                  "y": 111,
+                  "x": 1481
+                },
+                "endPosition": {
+                  "y": 132,
+                  "x": 1479
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:02.511Z",
+                "endTime": "2025-07-10T07:10:02.511Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:02.600Z",
+                "endTime": "2025-07-10T07:10:16.720Z",
+                "action_count": 22,
+                "startPosition": {
+                  "y": 388,
+                  "x": 855
+                },
+                "endPosition": {
+                  "y": 220,
+                  "x": 190
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:17.171Z",
+                "endTime": "2025-07-10T07:10:17.171Z",
+                "action_count": 1,
+                "position": {
+                  "y": 225,
+                  "x": 359
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.250Z",
+                "endTime": "2025-07-10T07:10:17.250Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 225,
+                  "x": 359
+                },
+                "endPosition": {
+                  "y": 225,
+                  "x": 359
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:17.794Z",
+                "endTime": "2025-07-10T07:10:17.794Z",
+                "action_count": 1,
+                "position": {
+                  "y": 357,
+                  "x": 366
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.960Z",
+                "endTime": "2025-07-10T07:10:17.960Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 359,
+                  "x": 368
+                },
+                "endPosition": {
+                  "y": 359,
+                  "x": 368
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:18.711Z",
+                "endTime": "2025-07-10T07:10:18.711Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:19.219Z",
+                "endTime": "2025-07-10T07:10:19.219Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 411,
+                  "x": 377
+                },
+                "endPosition": {
+                  "y": 411,
+                  "x": 377
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:19.422Z",
+                "endTime": "2025-07-10T07:10:19.422Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:19.717Z",
+                "endTime": "2025-07-10T07:10:19.717Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 382,
+                  "x": 323
+                },
+                "endPosition": {
+                  "y": 382,
+                  "x": 323
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:22.510Z",
+                "endTime": "2025-07-10T07:10:22.510Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:23.610Z",
+                "endTime": "2025-07-10T07:10:35.456Z",
+                "action_count": 19,
+                "startPosition": {
+                  "y": 31,
+                  "x": 1487
+                },
+                "endPosition": {
+                  "y": 211,
+                  "x": 77
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:35.808Z",
+                "endTime": "2025-07-10T07:10:35.808Z",
+                "action_count": 1,
+                "position": {
+                  "y": 211,
+                  "x": 64
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:35.968Z",
+                "endTime": "2025-07-10T07:10:35.968Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 219,
+                  "x": 208
+                },
+                "endPosition": {
+                  "y": 219,
+                  "x": 208
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:36.491Z",
+                "endTime": "2025-07-10T07:10:36.491Z",
+                "action_count": 1,
+                "position": {
+                  "y": 239,
+                  "x": 274
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:36.571Z",
+                "endTime": "2025-07-10T07:11:34.865Z",
+                "action_count": 5,
+                "startPosition": {
+                  "y": 239,
+                  "x": 275
+                },
+                "endPosition": {
+                  "y": 189,
+                  "x": 696
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:35.213Z",
+                "endTime": "2025-07-10T07:11:35.728Z",
+                "action_count": 2,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:36.596Z",
+                "endTime": "2025-07-10T07:11:50.849Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 434,
+                  "x": 696
+                },
+                "endPosition": {
+                  "y": 499,
+                  "x": 692
+                }
+              }
+            ]
+          },
+          {
+            "title": "“搭子社交”流行背后：群体性孤独与社交恐惧-虎嗅网",
+            "timestamp": "2025-07-10T07:09:52.207Z",
+            "tabId": 1924860464,
+            "url": "https://m.huxiu.com/article/1969815.html",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:23.982Z",
+                "endTime": "2025-07-10T07:11:16.205Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 21,
+                  "x": 956
+                },
+                "endPosition": {
+                  "y": 3,
+                  "x": 928
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:16.425Z",
+                "endTime": "2025-07-10T07:11:17.335Z",
+                "action_count": 2,
+                "minDepth": 0.17114449658717326,
+                "maxDepth": 0.1925268668229139
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:18.156Z",
+                "endTime": "2025-07-10T07:11:21.737Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 331,
+                  "x": 968
+                },
+                "endPosition": {
+                  "y": 4,
+                  "x": 952
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:21.778Z",
+                "endTime": "2025-07-10T07:11:21.778Z",
+                "action_count": 1,
+                "minDepth": 0.22460042217652482,
+                "maxDepth": 0.22460042217652482
+              }
+            ]
+          },
+          {
+            "title": "“搭子社交”：青年社交模式的新表征",
+            "timestamp": "2025-07-10T07:09:52.207Z",
+            "tabId": 1924860458,
+            "url": "https://paper.people.com.cn/rmlt/html/2024-05/01/content_26070980.htm",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:22.683Z",
+                "endTime": "2025-07-10T07:11:22.683Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 8,
+                  "x": 1014
+                },
+                "endPosition": {
+                  "y": 8,
+                  "x": 1014
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:23.440Z",
+                "endTime": "2025-07-10T07:11:23.440Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:24.959Z",
+                "endTime": "2025-07-10T07:11:24.959Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 339,
+                  "x": 1139
+                },
+                "endPosition": {
+                  "y": 339,
+                  "x": 1139
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:26.163Z",
+                "endTime": "2025-07-10T07:11:26.163Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:26.196Z",
+                "endTime": "2025-07-10T07:11:27.357Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 331,
+                  "x": 1136
+                },
+                "endPosition": {
+                  "y": 318,
+                  "x": 1138
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:27.450Z",
+                "endTime": "2025-07-10T07:11:27.450Z",
+                "action_count": 1,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.23488611673975937
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:27.860Z",
+                "endTime": "2025-07-10T07:11:27.860Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 299,
+                  "x": 1136
+                },
+                "endPosition": {
+                  "y": 299,
+                  "x": 1136
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:27.966Z",
+                "endTime": "2025-07-10T07:11:29.701Z",
+                "action_count": 3,
+                "minDepth": 0.23488611673975937,
+                "maxDepth": 0.3088317557173035
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:30.118Z",
+                "endTime": "2025-07-10T07:11:30.118Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 292,
+                  "x": 1123
+                },
+                "endPosition": {
+                  "y": 292,
+                  "x": 1123
+                }
+              }
+            ]
+          },
+          {
+            "title": "“搭子文化”爆火，这届年轻人为何爱找搭子？ | 人人都是产品经理",
+            "timestamp": "2025-07-10T07:09:52.207Z",
+            "tabId": 1924860481,
+            "url": "https://www.woshipm.com/share/5893373.html",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:38.188Z",
+                "endTime": "2025-07-10T07:11:38.689Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 16,
+                  "x": 1109
+                },
+                "endPosition": {
+                  "y": 249,
+                  "x": 858
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:39.245Z",
+                "endTime": "2025-07-10T07:11:39.245Z",
+                "action_count": 1,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:40.392Z",
+                "endTime": "2025-07-10T07:11:40.392Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 249,
+                  "x": 857
+                },
+                "endPosition": {
+                  "y": 249,
+                  "x": 857
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:40.594Z",
+                "endTime": "2025-07-10T07:11:40.594Z",
+                "action_count": 1,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:41.376Z",
+                "endTime": "2025-07-10T07:11:43.196Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 228,
+                  "x": 845
+                },
+                "endPosition": {
+                  "y": 3,
+                  "x": 268
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:11:43.364Z",
+                "endTime": "2025-07-10T07:11:46.857Z",
+                "action_count": 5,
+                "minDepth": 0.47954290378532805,
+                "maxDepth": 0.47954290378532805
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:11:47.469Z",
+                "endTime": "2025-07-10T07:11:48.131Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 306,
+                  "x": 720
+                },
+                "endPosition": {
+                  "y": 165,
+                  "x": 718
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "unique_note_contents": []
+  },
+  "speech_counts": {
+    "50SHBajxtge2rmatUM7OU7MPeu32": 10,
+    "MehACGvYsfVaGnq5utXQupmAIji2": 10,
+    "unknown": 3
+  },
+  "speech_durations": {
+    "50SHBajxtge2rmatUM7OU7MPeu32": 29.38,
+    "MehACGvYsfVaGnq5utXQupmAIji2": 50.400000000000006,
+    "unknown": 4.36
+  },
+  "anomaly_history": [
+    {
+      "detail": {
+        "evidence": "发言统计数据显示juno发言5次，发言时长41.74秒。\n- 与其他成员Meteora和Tark的发言次数（分别为6次和6次）和发言时长（分别为36.18秒和34.18秒）较为接近。\n- juno的发言内容积极参与了关于'寻找“完美搭子”：轻量社交的算法匹配可能吗？'议题的讨论，并分享了自己的见解，例如'也是跟像你刚刚说的，他是在朋友之下，同事同学之上的一种方式，就是首先要有共同的兴趣爱好，然后再进一步发现有没有可能成为朋友的可能。'，'现在社会大家都有一点封闭的，就是有那种数字化布的。'等，这些观点为小组讨论提供了有益的补充。",
+        "type": "正常参与",
+        "status": "juno在本轮讨论中参与度中等，发言次数和时长与其他成员相当，积极参与讨论并贡献了有价值的观点，整体表现属于正常参与范围。",
+        "suggestion": "建议juno继续保持积极参与讨论的状态，可以尝试在接下来的讨论中，更深入地探讨'寻找“完美搭子”：轻量社交的算法匹配可能吗？'议题中算法匹配的可行性，以及可能面临的挑战，并尝试将自己的资料与其他成员的观点进行结合，形成更完整的结论。可以尝试引导讨论，例如提出一些更具挑战性的问题，或者对其他成员的观点进行更深入的分析和评论。"
+      },
+      "glasses_summary": "你当前参与度中等，发言次数和时长良好，继续保持！",
+      "summary": "juno在本轮讨论中参与度中等，发言次数和时长与其他成员相当，积极参与讨论并贡献了有价值的观点。",
+      "user_data_summary": {
+        "page_view_count": 0,
+        "edit_count": 3,
+        "group_avg_comparison": {
+          "edit_diff": 0,
+          "speaking_diff": 0,
+          "reply_diff": 0,
+          "speaking_duration_diff": 0,
+          "page_focus_diff": 0
+        },
+        "group_speech_distribution": {
+          "other_members": {
+            "50SHBajxtge2rmatUM7OU7MPeu32": {
+              "duration": 36.18,
+              "count": 6
+            },
+            "MehACGvYsfVaGnq5utXQupmAIji2": {
+              "duration": 34.18,
+              "count": 6
+            }
+          },
+          "group_total_duration": 112.1,
+          "current_user_speeches": 5,
+          "group_total": 17,
+          "current_user_duration": 41.74
+        },
+        "speaking_count": 5,
+        "reply_count": 0,
+        "page_switch_frequency": 0,
+        "speaking_duration": 41.74
+      },
+      "start_time": "2025-07-10T07:07:35",
+      "end_time": "2025-07-10T07:09:35"
+    },
+    {
+      "detail": {
+        "evidence": "在本轮讨论中，Meteora的发言次数为6，发言时长为36.18秒。\n- Meteora积极参与了讨论，表达了自己的观点，并就任务总结方式和分析方向提出了建议。\n-  相比前两轮零发言和一轮少量发言的记录，Meteora的参与度显著提高。\n-  相比其他成员Tark和juno，Meteora的发言次数与Tark持平，略高于juno，发言时长与Tark和juno较为接近。",
+        "type": "正常参与",
+        "status": "Meteora在本轮讨论中表现为正常参与，发言次数和时长均有所增加，积极性提升，但与小组平均水平相比仍有差距。",
+        "suggestion": "继续积极参与讨论，尝试更深入地分析讨论主题，例如，结合已有的资料，提出更具体的观点或问题，并尝试与其他成员进行更深入的互动和交流。可以尝试在发言中引用具体的资料或数据来支持你的观点，并主动引导小组讨论方向。"
+      },
+      "glasses_summary": "你当前参与度良好，建议继续积极发言，并尝试更深入地分析讨论主题。",
+      "summary": "Meteora在本轮讨论中参与度良好，发言次数和时长与上一轮相比显著提升，但仍有提升空间。",
+      "user_data_summary": {
+        "page_view_count": 0,
+        "edit_count": 0,
+        "group_avg_comparison": {
+          "edit_diff": 0,
+          "speaking_diff": 0,
+          "reply_diff": 0,
+          "speaking_duration_diff": 0,
+          "page_focus_diff": 0
+        },
+        "group_speech_distribution": {
+          "other_members": {
+            "MehACGvYsfVaGnq5utXQupmAIji2": {
+              "duration": 34.18,
+              "count": 6
+            },
+            "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+              "duration": 41.74,
+              "count": 5
+            }
+          },
+          "group_total_duration": 112.1,
+          "current_user_speeches": 6,
+          "group_total": 17,
+          "current_user_duration": 36.18
+        },
+        "speaking_count": 6,
+        "reply_count": 0,
+        "page_switch_frequency": 0,
+        "speaking_duration": 36.18
+      },
+      "start_time": "2025-07-10T07:07:35",
+      "end_time": "2025-07-10T07:09:35"
+    }
+  ]
+}

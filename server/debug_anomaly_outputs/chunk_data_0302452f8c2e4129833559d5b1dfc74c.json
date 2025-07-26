@@ -1,0 +1,1436 @@
+{
+  "time_range": {
+    "start": "2025-07-10T07:08:00",
+    "end": "2025-07-10T07:10:00"
+  },
+  "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+  "users": [
+    {
+      "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+      "name": "juno",
+      "speech_count": 4,
+      "speech_duration": 24.88
+    },
+    {
+      "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+      "name": "Tark",
+      "speech_count": 5,
+      "speech_duration": 30.36
+    },
+    {
+      "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+      "name": "Meteora",
+      "speech_count": 9,
+      "speech_duration": 34.22
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [
+      {
+        "text": "我也你。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.9,
+        "start": "2025-07-10T07:08:01.459090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:08:03.359090",
+        "transcript_id": "a75d763c-c878-4bdb-b118-3b217c2b922b",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "对，一步步来，我首先我想跟咱们讨论一下，你他说搭子是交头那种方式，是是是，我理解的是这样的吗？",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 11.34,
+        "start": "2025-07-10T07:08:05.359090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:08:16.699090",
+        "transcript_id": "e0008861-f8fc-4195-a7bd-d77b1265b2c5",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "呃，我觉得就是。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.12,
+        "start": "2025-07-10T07:08:17.159090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:08:19.279090",
+        "transcript_id": "a5ce9fcc-0a57-454f-a489-f10cf82a5bd0",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "也是跟像你刚刚说的，他是在朋友之下，同事同学之上的一种方式，就是首先要有共同的兴趣爱好，然后再进一步发现有没有可能成为朋友的可能。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 12.9,
+        "start": "2025-07-10T07:08:19.359090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:08:32.259090",
+        "transcript_id": "89cbae09-d4c3-4808-8c65-764e03a6dd7b",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "呃，就是以兴趣为导向，然后呃，交往的一个方式。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.96,
+        "start": "2025-07-10T07:08:32.259090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:08:39.219090",
+        "transcript_id": "7f24b3cf-bdf2-4979-8ac3-5a09d3fb49e7",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我得就是我们就是我从这下面在单位有个机构，我们从哪些方面去表达这样一个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 9.46,
+        "start": "2025-07-10T07:08:39.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:48.679090",
+        "transcript_id": "a0fae5ac-1690-42c4-a12e-6bd4c926f63a",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "一个对这个问题进行一个回应呢，就是分析他的心理动因，我们从哪些方面去。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.4,
+        "start": "2025-07-10T07:08:48.679090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:55.079090",
+        "transcript_id": "24b12af0-ced0-4065-afde-79f17661af05",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "表说吗？",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.18,
+        "start": "2025-07-10T07:08:55.079090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:08:56.259090",
+        "transcript_id": "bb7270a3-3ea7-483f-a6c9-73583423131b",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "想你和喜欢的。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.94,
+        "start": "2025-07-10T07:08:56.279090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:58.219090",
+        "transcript_id": "ca999f98-bc51-4f63-8269-14f0fb927cb1",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "刚刚那个应该属于行为特征吧，因为以兴趣为导向。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 4.44,
+        "start": "2025-07-10T07:08:58.559090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:02.999090",
+        "transcript_id": "0c111060-469f-4da6-ae66-8ad6c9e9f229",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "那就是说，行为特征如果是就是做法的，那心理特征是偏什么呢？",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 8.48,
+        "start": "2025-07-10T07:09:04.639090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:09:13.119090",
+        "transcript_id": "4a65ba6d-3873-4022-baa7-62c7ff350568",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "检测是因为。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.78,
+        "start": "2025-07-10T07:09:13.859090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:09:16.639090",
+        "transcript_id": "6f0dcd35-db17-4802-a866-6aac02a2e7d1",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "现在社会大家都有一点封闭的，就是有那种数字化布的。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 7.08,
+        "start": "2025-07-10T07:09:16.639090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:09:23.719090",
+        "transcript_id": "275698e7-cd6a-4980-a41a-3c303410e743",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "哦。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.16,
+        "start": "2025-07-10T07:09:23.919090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:09:26.079090",
+        "transcript_id": "292e63e9-e375-49be-8151-370590826b94",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "对对数字化过多的解决解决方案。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 3.22,
+        "start": "2025-07-10T07:09:26.839090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:30.059090",
+        "transcript_id": "a7efc666-b085-4834-aae2-c3c5ebfd0c60",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "然后下一步是。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.0,
+        "start": "2025-07-10T07:09:48.959090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:50.959090",
+        "transcript_id": "2a78cd6a-ad07-415c-a2e0-0c8ceae316b5",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "一条必须结合真实爱的希望。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.66,
+        "start": "2025-07-10T07:09:52.699090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:09:55.359090",
+        "transcript_id": "fb73afe0-ac32-4b79-9bea-f62aad8dc961",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "资深性资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.94,
+        "start": "2025-07-10T07:09:56.419090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:58.359090",
+        "transcript_id": "1c1851ff-c064-4051-8ac6-ca6c9d201d3f",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "呃。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.68,
+        "start": "2025-07-10T07:07:59.599090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:08:01.279090",
+        "transcript_id": "c9c9393d-7d75-403d-938e-b8a369efe5c5",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      }
+    ],
+    "note_edit_history": [
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 595,
+        "delta": [
+          {
+            "retain": 593
+          },
+          {
+            "delete": 2
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:57.352Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "行为特征：",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 599,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "delete": 5
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:17.356Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "兴趣\n心理特征：",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 607,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "delete": 8
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:27.355Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "为导向，交朋友",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 608,
+        "delta": [
+          {
+            "retain": 601
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:37.362Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "对数字化孤独的",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 621,
+        "delta": [
+          {
+            "retain": 614
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:47.359Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "解决方法",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 621
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:57.351Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 594,
+        "delta": [
+          {
+            "retain": 592
+          },
+          {
+            "insert": "\n\n"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:54.087Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "行为特征：\n心理特征",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 604,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "insert": "行为特征：\n心理特征"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:24.093Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "兴趣为导向，",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 611,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "insert": "兴趣为导向，"
+          },
+          {
+            "retain": 5
+          },
+          {
+            "insert": "："
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:34.099Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "交朋友",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 615,
+        "delta": [
+          {
+            "retain": 605
+          },
+          {
+            "insert": "交朋友"
+          },
+          {
+            "retain": 6
+          },
+          {
+            "insert": "对"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:44.087Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "数字化孤独的解决方法",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 615
+          },
+          {
+            "insert": "数字化孤独的解决方法"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:54.085Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 595,
+        "delta": [
+          {
+            "retain": 593
+          },
+          {
+            "delete": 2
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:57.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "行为特征",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 598,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:17.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "：\n心理特征：",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 605,
+        "delta": [
+          {
+            "retain": 598
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:27.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "兴趣为导向，交朋友",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 608,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "delete": 9
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:37.246Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "对数字化孤独的",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 621,
+        "delta": [
+          {
+            "retain": 614
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:47.246Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "解决方法",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 621
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:57.246Z",
+        "isDelete": true
+      }
+    ],
+    "pageBehaviorLogs": {
+      "Meteora": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Meteora"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:07:50.000Z",
+          "windowEnd": "2025-07-10T07:10:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:07:52.391Z",
+            "tabId": 2142278855,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Meteora",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:07:58.763Z",
+                "endTime": "2025-07-10T07:08:03.846Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 170,
+                  "x": 592
+                },
+                "endPosition": {
+                  "y": 328,
+                  "x": 153
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:04.042Z",
+                "endTime": "2025-07-10T07:08:04.042Z",
+                "action_count": 1,
+                "position": {
+                  "y": 328,
+                  "x": 191
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:04.361Z",
+                "endTime": "2025-07-10T07:08:04.361Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 328,
+                  "x": 270
+                },
+                "endPosition": {
+                  "y": 328,
+                  "x": 270
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:04.608Z",
+                "endTime": "2025-07-10T07:08:04.608Z",
+                "action_count": 1,
+                "position": {
+                  "y": 328,
+                  "x": 270
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:05.430Z",
+                "endTime": "2025-07-10T07:08:05.430Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 335,
+                  "x": 324
+                },
+                "endPosition": {
+                  "y": 335,
+                  "x": 324
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:05.642Z",
+                "endTime": "2025-07-10T07:08:05.642Z",
+                "action_count": 1,
+                "position": {
+                  "y": 335,
+                  "x": 368
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:05.944Z",
+                "endTime": "2025-07-10T07:08:05.944Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 334,
+                  "x": 325
+                },
+                "endPosition": {
+                  "y": 334,
+                  "x": 325
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:06.325Z",
+                "endTime": "2025-07-10T07:08:06.325Z",
+                "action_count": 1,
+                "position": {
+                  "y": 331,
+                  "x": 298
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:06.578Z",
+                "endTime": "2025-07-10T07:08:07.580Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 331,
+                  "x": 301
+                },
+                "endPosition": {
+                  "y": 337,
+                  "x": 424
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:07.892Z",
+                "endTime": "2025-07-10T07:08:07.892Z",
+                "action_count": 1,
+                "position": {
+                  "y": 328,
+                  "x": 474
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:08.162Z",
+                "endTime": "2025-07-10T07:08:09.263Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 328,
+                  "x": 470
+                },
+                "endPosition": {
+                  "y": 330,
+                  "x": 295
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:09.509Z",
+                "endTime": "2025-07-10T07:08:09.509Z",
+                "action_count": 1,
+                "position": {
+                  "y": 330,
+                  "x": 353
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:09.897Z",
+                "endTime": "2025-07-10T07:08:09.897Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 330,
+                  "x": 354
+                },
+                "endPosition": {
+                  "y": 330,
+                  "x": 354
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:10.692Z",
+                "endTime": "2025-07-10T07:08:10.692Z",
+                "action_count": 1,
+                "position": {
+                  "y": 387,
+                  "x": 401
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:10.920Z",
+                "endTime": "2025-07-10T07:08:53.731Z",
+                "action_count": 5,
+                "startPosition": {
+                  "y": 387,
+                  "x": 402
+                },
+                "endPosition": {
+                  "y": 536,
+                  "x": 691
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:54.676Z",
+                "endTime": "2025-07-10T07:08:54.676Z",
+                "action_count": 1,
+                "position": {
+                  "y": 577,
+                  "x": 629
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:57.081Z",
+                "endTime": "2025-07-10T07:08:57.081Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 577,
+                  "x": 630
+                },
+                "endPosition": {
+                  "y": 577,
+                  "x": 630
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:57.397Z",
+                "endTime": "2025-07-10T07:09:00.580Z",
+                "action_count": 6,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:01.881Z",
+                "endTime": "2025-07-10T07:09:12.847Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 278,
+                  "x": 574
+                },
+                "endPosition": {
+                  "y": 288,
+                  "x": 514
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:13.327Z",
+                "endTime": "2025-07-10T07:09:13.327Z",
+                "action_count": 1,
+                "position": {
+                  "y": 288,
+                  "x": 506
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:13.481Z",
+                "endTime": "2025-07-10T07:09:13.481Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 292,
+                  "x": 506
+                },
+                "endPosition": {
+                  "y": 292,
+                  "x": 506
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:13.960Z",
+                "endTime": "2025-07-10T07:09:13.960Z",
+                "action_count": 1,
+                "position": {
+                  "y": 400,
+                  "x": 498
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:14.230Z",
+                "endTime": "2025-07-10T07:09:14.230Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 400,
+                  "x": 499
+                },
+                "endPosition": {
+                  "y": 400,
+                  "x": 499
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:14.848Z",
+                "endTime": "2025-07-10T07:09:17.097Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:17.614Z",
+                "endTime": "2025-07-10T07:09:18.265Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 381,
+                  "x": 521
+                },
+                "endPosition": {
+                  "y": 649,
+                  "x": 217
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:18.578Z",
+                "endTime": "2025-07-10T07:09:18.578Z",
+                "action_count": 1,
+                "position": {
+                  "y": 667,
+                  "x": 190
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Tark": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Tark"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:07:50.000Z",
+          "windowEnd": "2025-07-10T07:10:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:07:50.151Z",
+            "tabId": 1958191049,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Tark",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:07.763Z",
+                "endTime": "2025-07-10T07:08:08.764Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 488,
+                  "x": 864
+                },
+                "endPosition": {
+                  "y": 742,
+                  "x": 658
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:09.025Z",
+                "endTime": "2025-07-10T07:08:09.025Z",
+                "action_count": 1,
+                "position": {
+                  "y": 730,
+                  "x": 676
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:09.304Z",
+                "endTime": "2025-07-10T07:08:50.598Z",
+                "action_count": 5,
+                "startPosition": {
+                  "y": 725,
+                  "x": 680
+                },
+                "endPosition": {
+                  "y": 505,
+                  "x": 67
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:51.407Z",
+                "endTime": "2025-07-10T07:08:51.407Z",
+                "action_count": 1,
+                "position": {
+                  "y": 734,
+                  "x": 472
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:51.598Z",
+                "endTime": "2025-07-10T07:08:53.872Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 732,
+                  "x": 642
+                },
+                "endPosition": {
+                  "y": 736,
+                  "x": 534
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:06.669Z",
+                "endTime": "2025-07-10T07:09:06.669Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:08.272Z",
+                "endTime": "2025-07-10T07:09:22.285Z",
+                "action_count": 10,
+                "startPosition": {
+                  "y": 744,
+                  "x": 533
+                },
+                "endPosition": {
+                  "y": 621,
+                  "x": 274
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:22.984Z",
+                "endTime": "2025-07-10T07:09:22.984Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:37.210Z",
+                "endTime": "2025-07-10T07:09:37.718Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 571,
+                  "x": 295
+                },
+                "endPosition": {
+                  "y": 719,
+                  "x": 244
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:38.546Z",
+                "endTime": "2025-07-10T07:09:38.546Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:39.004Z",
+                "endTime": "2025-07-10T07:09:39.004Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 740,
+                  "x": 240
+                },
+                "endPosition": {
+                  "y": 740,
+                  "x": 240
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:39.089Z",
+                "endTime": "2025-07-10T07:09:39.089Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:42.867Z",
+                "endTime": "2025-07-10T07:09:46.983Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 743,
+                  "x": 240
+                },
+                "endPosition": {
+                  "y": 743,
+                  "x": 240
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "juno": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "juno"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:07:50.000Z",
+          "windowEnd": "2025-07-10T07:10:00.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:07:52.214Z",
+            "tabId": 1924860374,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/juno",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:07:50.700Z",
+                "endTime": "2025-07-10T07:07:50.700Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 372,
+                  "x": 1069
+                },
+                "endPosition": {
+                  "y": 372,
+                  "x": 1069
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:07:51.203Z",
+                "endTime": "2025-07-10T07:07:51.203Z",
+                "action_count": 1,
+                "minDepth": 1.0165820436429251,
+                "maxDepth": 1.0165820436429251
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:07:51.485Z",
+                "endTime": "2025-07-10T07:07:51.485Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 437,
+                  "x": 458
+                },
+                "endPosition": {
+                  "y": 437,
+                  "x": 458
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:07:51.935Z",
+                "endTime": "2025-07-10T07:07:53.083Z",
+                "action_count": 3,
+                "minDepth": 1.0165820436429251,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:07:57.064Z",
+                "endTime": "2025-07-10T07:08:01.478Z",
+                "action_count": 5,
+                "startPosition": {
+                  "y": 435,
+                  "x": 460
+                },
+                "endPosition": {
+                  "y": 43,
+                  "x": 1484
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:01.959Z",
+                "endTime": "2025-07-10T07:08:01.959Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:03.919Z",
+                "endTime": "2025-07-10T07:08:03.919Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 405,
+                  "x": 631
+                },
+                "endPosition": {
+                  "y": 405,
+                  "x": 631
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:07.861Z",
+                "endTime": "2025-07-10T07:08:12.024Z",
+                "action_count": 5,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:12.268Z",
+                "endTime": "2025-07-10T07:08:14.092Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 509,
+                  "x": 668
+                },
+                "endPosition": {
+                  "y": 562,
+                  "x": 640
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:14.423Z",
+                "endTime": "2025-07-10T07:08:54.960Z",
+                "action_count": 4,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:55.033Z",
+                "endTime": "2025-07-10T07:08:55.033Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 495,
+                  "x": 631
+                },
+                "endPosition": {
+                  "y": 495,
+                  "x": 631
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:58.462Z",
+                "endTime": "2025-07-10T07:08:58.462Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:59.872Z",
+                "endTime": "2025-07-10T07:09:01.429Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 508,
+                  "x": 612
+                },
+                "endPosition": {
+                  "y": 203,
+                  "x": 457
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:01.758Z",
+                "endTime": "2025-07-10T07:09:01.758Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:02.756Z",
+                "endTime": "2025-07-10T07:09:51.913Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 359,
+                  "x": 812
+                },
+                "endPosition": {
+                  "y": 359,
+                  "x": 1057
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "unique_note_contents": [
+      {
+        "content": [
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)",
+              "bold": true
+            },
+            "insert": "将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)"
+            },
+            "insert": "在数量和形式上更加自由。数字化孤独-"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)",
+              "bold": true
+            },
+            "insert": "主动适应社会变化的选择；亲密关系的降级-"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)"
+            },
+            "insert": "浅社交关系，维系成本变低"
+          },
+          {
+            "insert": "\n\n在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。\n\n"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "#191b1f"
+            },
+            "insert": "尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。"
+          },
+          {
+            "insert": "\n\n趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。\n\n"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "#191b1f"
+            },
+            "insert": "人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足"
+          },
+          {
+            "insert": "\n\n年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。\n\n"
+          }
+        ],
+        "noteId": "6c45dbb2-d57f-4d78-9bf0-19f71b207b55",
+        "html": "<p><strong style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，</strong><span style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">在数量和形式上更加自由。数字化孤独-</span><strong style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">主动适应社会变化的选择；亲密关系的降级-</strong><span style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">浅社交关系，维系成本变低</span></p><p><br></p><p>在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。</p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(25, 27, 31);\">尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。</span></p><p><br></p><p>趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。</p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(25, 27, 31);\">人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足</span></p><p><br></p><p>年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。</p><p><br></p>",
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "updatedAt": "2025-07-10T07:08:52.010Z"
+      }
+    ]
+  },
+  "speech_counts": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 5,
+    "VaTnrRc18Facn5GYEcDyYNPyY7p2": 4,
+    "50SHBajxtge2rmatUM7OU7MPeu32": 9,
+    "unknown": 1
+  },
+  "speech_durations": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 30.36,
+    "VaTnrRc18Facn5GYEcDyYNPyY7p2": 24.880000000000003,
+    "50SHBajxtge2rmatUM7OU7MPeu32": 34.22,
+    "unknown": 1.18
+  },
+  "anomaly_history": [
+    {
+      "detail": {
+        "evidence": "juno发言次数为3次，发言时长为40.76秒，参与了小组讨论。\n-  虽然发言次数和时长在小组中不算最低，但相比Tark的发言次数和时长，仍有提升空间。\n-  juno在讨论中表达了自己的观点，但并未积极回应其他成员的发言，互动性有待提高。",
+        "type": "正常参与",
+        "status": "juno在本轮讨论中参与度中等，发言积极，但与其他成员的互动略显不足。",
+        "suggestion": "建议juno在接下来的讨论中，更加关注其他成员的发言，并积极回应他们的观点，提出建设性意见或问题，促进小组的有效沟通与协作。  可以尝试对Tark的观点进行回应和补充，例如，可以针对Tark关于'搭子文化'高效交友的观点，提出不同的看法或补充说明。"
+      },
+      "glasses_summary": "你当前发言积极，建议多倾听其他成员观点，并积极回应，促进小组协作。",
+      "summary": "juno在本轮讨论中参与度中等，发言积极，但仍需加强与其他成员的互动。",
+      "user_data_summary": {
+        "page_view_count": 0,
+        "edit_count": 0,
+        "group_avg_comparison": {
+          "edit_diff": 0,
+          "speaking_diff": 0,
+          "reply_diff": 0,
+          "speaking_duration_diff": 0,
+          "page_focus_diff": 0
+        },
+        "group_speech_distribution": {
+          "other_members": {
+            "50SHBajxtge2rmatUM7OU7MPeu32": {
+              "duration": 0,
+              "count": 0
+            },
+            "MehACGvYsfVaGnq5utXQupmAIji2": {
+              "duration": 60.82,
+              "count": 4
+            }
+          },
+          "group_total_duration": 101.58,
+          "current_user_speeches": 3,
+          "group_total": 7,
+          "current_user_duration": 40.76
+        },
+        "speaking_count": 3,
+        "reply_count": 0,
+        "page_switch_frequency": 0,
+        "speaking_duration": 40.76
+      },
+      "start_time": "2025-07-10T07:05:35",
+      "end_time": "2025-07-10T07:07:35"
+    },
+    {
+      "detail": {
+        "evidence": "在本轮2分钟的讨论中，Meteora的发言次数为0，发言时长为0秒。\n- Meteora的编辑次数为0。\n- 相比其他成员juno和Tark，Meteora的参与度极低，几乎没有参与讨论。",
+        "type": "行为缺失",
+        "status": "Meteora在本轮小组讨论中表现为行为缺失，几乎没有参与讨论。",
+        "suggestion": "请立即积极参与讨论，分享你的想法和资料，尝试回应其他成员的发言，并主动寻求帮助或提供帮助。可以尝试更深入地参与讨论，例如，针对其他成员提出的观点发表你的看法，或就你感兴趣的方面提出问题。"
+      },
+      "glasses_summary": "你当前参与度极低，建议立即积极发言并与其他成员互动。",
+      "summary": "Meteora在本轮讨论中参与度极低，几乎没有发言和编辑，需要立即关注并积极参与。",
+      "user_data_summary": {
+        "page_view_count": 0,
+        "edit_count": 0,
+        "group_avg_comparison": {
+          "edit_diff": 0,
+          "speaking_diff": 0,
+          "reply_diff": 0,
+          "speaking_duration_diff": 0,
+          "page_focus_diff": 0
+        },
+        "group_speech_distribution": {
+          "other_members": {
+            "MehACGvYsfVaGnq5utXQupmAIji2": {
+              "duration": 60.82,
+              "count": 4
+            },
+            "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+              "duration": 40.76,
+              "count": 3
+            }
+          },
+          "group_total_duration": 101.58,
+          "current_user_speeches": 0,
+          "group_total": 7,
+          "current_user_duration": 0
+        },
+        "speaking_count": 0,
+        "reply_count": 0,
+        "page_switch_frequency": 0,
+        "speaking_duration": 0
+      },
+      "start_time": "2025-07-10T07:05:35",
+      "end_time": "2025-07-10T07:07:35"
+    }
+  ]
+}
