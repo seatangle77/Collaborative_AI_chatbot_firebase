@@ -1,56 +1,122 @@
-from fastapi import APIRouter, HTTPException, Body
+from fastapi import APIRouter, HTTPException, Body, Query
 from server.app.database import db
+from typing import Optional
 
 router = APIRouter()
 
-def get_collection_by_group_id(collection_name: str, group_id: str):
+def get_collection_by_group_id(collection_name: str, group_id: str, page: int = 1, page_size: int = 20):
     try:
-        docs = db.collection(collection_name).where("group_id", "==", group_id).stream()
-        return [doc.to_dict() | {"id": doc.id} for doc in docs]
+        # 获取总数
+        total_docs = list(db.collection(collection_name).where("group_id", "==", group_id).stream())
+        total = len(total_docs)
+        
+        # 分页
+        start = (page - 1) * page_size
+        end = start + page_size
+        paginated_docs = total_docs[start:end]
+        
+        return {
+            "data": [doc.to_dict() | {"id": doc.id} for doc in paginated_docs],
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"查询{collection_name}失败: {str(e)}")
+
+def get_collection_by_user_id(collection_name: str, user_id: str, page: int = 1, page_size: int = 20):
+    try:
+        # 获取总数
+        total_docs = list(db.collection(collection_name).where("userId", "==", user_id).stream())
+        total = len(total_docs)
+        
+        # 分页
+        start = (page - 1) * page_size
+        end = start + page_size
+        paginated_docs = total_docs[start:end]
+        
+        return {
+            "data": [doc.to_dict() | {"id": doc.id} for doc in paginated_docs],
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"查询{collection_name}失败: {str(e)}")
 
 @router.get("/api/group_data/note_edit_history/{group_id}")
-async def get_note_edit_history_by_group(group_id: str):
-    return get_collection_by_group_id("note_edit_history", group_id)
+async def get_note_edit_history_by_group(
+    group_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_group_id("note_edit_history", group_id, page, page_size)
 
 @router.get("/api/group_data/note_edit_history/user/{user_id}")
-async def get_note_edit_history_by_user(user_id: str):
-    try:
-        docs = db.collection("note_edit_history").where("userId", "==", user_id).stream()
-        return [doc.to_dict() | {"id": doc.id} for doc in docs]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"查询note_edit_history失败: {str(e)}")
+async def get_note_edit_history_by_user(
+    user_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_user_id("note_edit_history", user_id, page, page_size)
 
 @router.get("/api/group_data/note_contents/{group_id}")
-async def get_note_contents_by_group(group_id: str):
-    return get_collection_by_group_id("note_contents", group_id)
+async def get_note_contents_by_group(
+    group_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_group_id("note_contents", group_id, page, page_size)
 
 @router.get("/api/group_data/note_contents/user/{user_id}")
-async def get_note_contents_by_user(user_id: str):
-    try:
-        docs = db.collection("note_contents").where("userId", "==", user_id).stream()
-        return [doc.to_dict() | {"id": doc.id} for doc in docs]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"查询note_contents失败: {str(e)}")
+async def get_note_contents_by_user(
+    user_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_user_id("note_contents", user_id, page, page_size)
 
 @router.get("/api/group_data/pageBehaviorLogs/user/{user_id}")
-async def get_page_behavior_logs_by_user(user_id: str):
-    try:
-        docs = db.collection("pageBehaviorLogs").where("userId", "==", user_id).stream()
-        return [doc.to_dict() | {"id": doc.id} for doc in docs]
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"查询pageBehaviorLogs失败: {str(e)}")
+async def get_page_behavior_logs_by_user(
+    user_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_user_id("pageBehaviorLogs", user_id, page, page_size)
 
 @router.get("/api/group_data/speech_transcripts/{group_id}")
-async def get_speech_transcripts_by_group(group_id: str):
-    return get_collection_by_group_id("speech_transcripts", group_id)
+async def get_speech_transcripts_by_group(
+    group_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    return get_collection_by_group_id("speech_transcripts", group_id, page, page_size)
 
 @router.get("/api/group_data/anomaly_analysis_results/{group_id}")
-async def get_anomaly_analysis_results_by_group(group_id: str):
+async def get_anomaly_analysis_results_by_group(
+    group_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
     try:
-        docs = db.collection("anomaly_analysis_results").where("group_id", "==", group_id).order_by("created_at", direction="DESCENDING").stream()
-        return [doc.to_dict() | {"id": doc.id} for doc in docs]
+        # 获取总数
+        total_docs = list(db.collection("anomaly_analysis_results").where("group_id", "==", group_id).order_by("created_at", direction="DESCENDING").stream())
+        total = len(total_docs)
+        
+        # 分页
+        start = (page - 1) * page_size
+        end = start + page_size
+        paginated_docs = total_docs[start:end]
+        
+        return {
+            "data": [doc.to_dict() | {"id": doc.id} for doc in paginated_docs],
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"查询anomaly_analysis_results失败: {str(e)}")
 

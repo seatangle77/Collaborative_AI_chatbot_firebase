@@ -142,12 +142,14 @@
             </el-table-column>
           </el-table>
           <el-pagination
-            v-if="tableData.length > pageSize"
+            v-if="total > pageSize"
             :current-page="page"
             :page-size="pageSize"
-            :total="tableData.length"
-            layout="prev, pager, next"
+            :total="total"
+            :page-sizes="[10, 20, 50, 100]"
+            layout="total, sizes, prev, pager, next"
             @current-change="handlePageChange"
+            @size-change="handleSizeChange"
             style="margin-top: 1rem;"
           />
           <el-dialog v-model="htmlDialogVisible" title="HTML内容预览" width="60%">
@@ -243,6 +245,9 @@ const tableData = ref([]);
 const loading = ref(false);
 const page = ref(1);
 const pageSize = ref(20);
+// 新增分页相关变量
+const total = ref(0);
+const totalPages = ref(0);
 
 const columnsMap = {
   note_edit_history: [
@@ -293,8 +298,7 @@ const columns = computed(() => {
 const showDelete = computed(() => selectedTable.value === "anomaly_analysis_results");
 
 const pagedTableData = computed(() => {
-  const start = (page.value - 1) * pageSize.value;
-  return tableData.value.slice(start, start + pageSize.value);
+  return tableData.value;
 });
 
 function formatToCST(utcStr) {
@@ -327,11 +331,14 @@ watch(members, (val) => {
 async function fetchBehaviorLogs() {
   if (!selectedBehaviorUserId.value) {
     tableData.value = [];
+    total.value = 0;
+    totalPages.value = 0;
     return;
   }
+  page.value = 1; // 重置页码
   loading.value = true;
-  const res = await api.getPageBehaviorLogsByUser(selectedBehaviorUserId.value);
-  tableData.value = (res || []).map(item => ({
+  const res = await api.getPageBehaviorLogsByUser(selectedBehaviorUserId.value, page.value, pageSize.value);
+  tableData.value = (res.data || []).map(item => ({
     ...item,
     userName: item.behaviorData?.user?.userName || "",
     windowStart: formatToCSTForBehavior(item.windowStart),
@@ -341,7 +348,8 @@ async function fetchBehaviorLogs() {
     activeTabTime: formatToCSTForBehavior(item.behaviorData?.activeTab?.timestamp),
     tabHistoryCount: item.behaviorData?.tabHistory?.length || 0,
   }));
-  page.value = 1;
+  total.value = res.total || 0;
+  totalPages.value = res.total_pages || 0;
   loading.value = false;
 }
 
@@ -361,15 +369,19 @@ function formatToCSTForEdit(utcStr) {
 async function fetchEditHistory() {
   if (!selectedEditUserId.value) {
     tableData.value = [];
+    total.value = 0;
+    totalPages.value = 0;
     return;
   }
+  page.value = 1; // 重置页码
   loading.value = true;
-  const res = await api.getNoteEditHistoryByUser(selectedEditUserId.value);
-  tableData.value = (res || []).map(item => ({
+  const res = await api.getNoteEditHistoryByUser(selectedEditUserId.value, page.value, pageSize.value);
+  tableData.value = (res.data || []).map(item => ({
     ...item,
     updatedAt: formatToCSTForEdit(item.updatedAt),
   }));
-  page.value = 1;
+  total.value = res.total || 0;
+  totalPages.value = res.total_pages || 0;
   loading.value = false;
 }
 
@@ -389,18 +401,22 @@ function formatToCSTForContent(utcStr) {
 async function fetchNoteContents() {
   if (!selectedContentUserId.value) {
     tableData.value = [];
+    total.value = 0;
+    totalPages.value = 0;
     return;
   }
+  page.value = 1; // 重置页码
   loading.value = true;
-  const res = await api.getNoteContentsByUser(selectedContentUserId.value);
-  tableData.value = (res || []).map(item => ({
+  const res = await api.getNoteContentsByUser(selectedContentUserId.value, page.value, pageSize.value);
+  tableData.value = (res.data || []).map(item => ({
     ...item,
     userId: item.user_id || item.userId || "",
     updatedAt: formatToCSTForContent(item.updated_at || item.updatedAt),
     noteId: item.note_id || item.noteId || "",
     html: item.html || "",
   }));
-  page.value = 1;
+  total.value = res.total || 0;
+  totalPages.value = res.total_pages || 0;
   loading.value = false;
 }
 
@@ -422,30 +438,39 @@ async function fetchTableData() {
       loading.value = false;
       return;
     case "speech_transcripts":
-      res = await api.getSpeechTranscriptsByGroup(selectedGroupId.value);
-      res = res.map(item => ({
+      res = await api.getSpeechTranscriptsByGroup(selectedGroupId.value, page.value, pageSize.value);
+      tableData.value = (res.data || []).map(item => ({
         ...item,
         start: formatToCSTForSpeech(item.start),
         end: formatToCSTForSpeech(item.end),
         duration: item.duration ? Number(item.duration).toFixed(2) : "",
       }));
+      total.value = res.total || 0;
+      totalPages.value = res.total_pages || 0;
       break;
     case "anomaly_analysis_results":
-      res = await api.getAnomalyAnalysisResultsByGroup(selectedGroupId.value);
-      res = res.map(item => ({
+      res = await api.getAnomalyAnalysisResultsByGroup(selectedGroupId.value, page.value, pageSize.value);
+      tableData.value = (res.data || []).map(item => ({
         ...item,
         created_at: formatToCST(item.created_at),
         result: item.summary || "",
       }));
+      total.value = res.total || 0;
+      totalPages.value = res.total_pages || 0;
       break;
   }
-  tableData.value = res || [];
-  page.value = 1;
   loading.value = false;
 }
 
 function handlePageChange(val) {
   page.value = val;
+  fetchTableData();
+}
+
+function handleSizeChange(val) {
+  pageSize.value = val;
+  page.value = 1; // 当每页条数改变时，重置当前页为1
+  fetchTableData();
 }
 
 async function handleDelete(id) {
@@ -453,7 +478,10 @@ async function handleDelete(id) {
   tableData.value = tableData.value.filter(item => item.id !== id);
 }
 
-watch([selectedGroupId, selectedTable], fetchTableData);
+watch([selectedGroupId, selectedTable], () => {
+  page.value = 1; // 重置页码
+  fetchTableData();
+});
 
 onMounted(async () => {
   groups.value = await api.getGroups();

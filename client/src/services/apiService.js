@@ -140,23 +140,35 @@ export default {
   },
 
   // ===== group_data相关接口 =====
-  getNoteEditHistoryByGroup(groupId) {
-    return axios.get(`${BASE_URL}/api/group_data/note_edit_history/${groupId}`).then(res => res.data);
+  getNoteEditHistoryByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/note_edit_history/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getNoteContentsByGroup(groupId) {
-    return axios.get(`${BASE_URL}/api/group_data/note_contents/${groupId}`).then(res => res.data);
+  getNoteContentsByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/note_contents/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getPageBehaviorLogsByGroup(groupId) {
-    return axios.get(`${BASE_URL}/api/group_data/pageBehaviorLogs/${groupId}`).then(res => res.data);
+  getPageBehaviorLogsByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/pageBehaviorLogs/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getPageBehaviorLogsByUser(userId) {
-    return axios.get(`${BASE_URL}/api/group_data/pageBehaviorLogs/user/${userId}`).then(res => res.data);
+  getPageBehaviorLogsByUser(userId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/pageBehaviorLogs/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getSpeechTranscriptsByGroup(groupId) {
-    return axios.get(`${BASE_URL}/api/group_data/speech_transcripts/${groupId}`).then(res => res.data);
+  getSpeechTranscriptsByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/speech_transcripts/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getAnomalyAnalysisResultsByGroup(groupId) {
-    return axios.get(`${BASE_URL}/api/group_data/anomaly_analysis_results/${groupId}`).then(res => res.data);
+  getAnomalyAnalysisResultsByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/anomaly_analysis_results/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
   // 单条删除anomaly_analysis_results
   deleteAnomalyAnalysisResult(docId) {
@@ -166,10 +178,14 @@ export default {
   batchDeleteAnomalyAnalysisResults(ids) {
     return axios.delete(`${BASE_URL}/api/group_data/anomaly_analysis_results/batch`, { data: { ids } }).then(res => res.data);
   },
-  getNoteEditHistoryByUser(userId) {
-    return axios.get(`${BASE_URL}/api/group_data/note_edit_history/user/${userId}`).then(res => res.data);
+  getNoteEditHistoryByUser(userId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/note_edit_history/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
-  getNoteContentsByUser(userId) {
-    return axios.get(`${BASE_URL}/api/group_data/note_contents/user/${userId}`).then(res => res.data);
+  getNoteContentsByUser(userId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/note_contents/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
 };
