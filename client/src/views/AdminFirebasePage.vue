@@ -58,6 +58,26 @@
               />
             </el-tabs>
           </div>
+          <div v-if="selectedTable === 'feedback_clicks' && members.length" style="margin-bottom: 12px;">
+            <el-tabs v-model="selectedFeedbackUserId" @tab-click="fetchFeedbackClicks">
+              <el-tab-pane
+                v-for="member in members"
+                :key="member.user_id"
+                :label="member.name || member.username || member.nickname || member.user_id"
+                :name="member.user_id"
+              />
+            </el-tabs>
+          </div>
+          <div v-if="selectedTable === 'peer_prompts' && members.length" style="margin-bottom: 12px;">
+            <el-tabs v-model="selectedPeerPromptUserId" @tab-click="fetchPeerPrompts">
+              <el-tab-pane
+                v-for="member in members"
+                :key="member.user_id"
+                :label="member.name || member.username || member.nickname || member.user_id"
+                :name="member.user_id"
+              />
+            </el-tabs>
+          </div>
           <el-table
             :data="pagedTableData"
             style="width: 100%"
@@ -117,6 +137,49 @@
                   </span>
                 </template>
               </el-table-column>
+              <el-table-column prop="id" label="ID" min-width="180px" />
+            </template>
+            
+            <!-- 反馈点击记录列 -->
+            <template v-if="selectedTable === 'feedback_clicks'">
+              <el-table-column prop="click_type" label="点击类型" width="100">
+                <template #default="scope">
+                  <el-tag :type="scope.row.click_type === 'More' ? 'success' : scope.row.click_type === 'Less' ? 'danger' : 'warning'">
+                    {{ scope.row.click_type }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column prop="clicked_at" label="点击时间" width="180" />
+              <el-table-column prop="detail_type" label="详情类型" width="120" />
+              <el-table-column prop="detail_status" label="详情状态" min-width="300">
+                <template #default="scope">
+                  <span class="ellipsis" @click="showHtmlDialog(scope.row.detail_status)">
+                    {{ scope.row.detail_status && scope.row.detail_status.length > 80 ? scope.row.detail_status.slice(0, 80) + '...' : scope.row.detail_status }}
+                  </span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="id" label="ID" min-width="180px" />
+            </template>
+            
+            <!-- 同伴提示记录列 -->
+            <template v-if="selectedTable === 'peer_prompts'">
+              <el-table-column prop="content" label="提示内容" min-width="300">
+                <template #default="scope">
+                  <span class="ellipsis" @click="showHtmlDialog(scope.row.content)">
+                    {{ scope.row.content && scope.row.content.length > 100 ? scope.row.content.slice(0, 100) + '...' : scope.row.content }}
+                  </span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="created_at" label="创建时间" width="180" />
+              <el-table-column prop="to_user_id" label="接收用户ID" width="180" />
+              <el-table-column prop="push_sent" label="推送状态" width="100">
+                <template #default="scope">
+                  <el-tag :type="scope.row.push_sent ? 'success' : 'warning'">
+                    {{ scope.row.push_sent ? '已推送' : '未推送' }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column prop="push_sent_at" label="推送时间" width="180" />
               <el-table-column prop="id" label="ID" min-width="180px" />
             </template>
             
@@ -240,6 +303,8 @@ const tableOptions = [
   { label: "页面行为日志", value: "pageBehaviorLogs" },
   { label: "笔记编辑历史", value: "note_edit_history" },
   { label: "笔记内容", value: "note_contents" },
+  { label: "反馈点击记录", value: "feedback_clicks" },
+  { label: "同伴提示记录", value: "peer_prompts" },
 ];
 const tableData = ref([]);
 const loading = ref(false);
@@ -289,6 +354,21 @@ const columnsMap = {
     { prop: "id", label: "ID", minWidth: "180px" },
     { prop: "created_at", label: "分析时间" },
     { prop: "result", label: "结果" },
+  ],
+  feedback_clicks: [
+    { prop: "click_type", label: "点击类型" },
+    { prop: "clicked_at", label: "点击时间" },
+    { prop: "detail_type", label: "详情类型" },
+    { prop: "detail_status", label: "详情状态" },
+    { prop: "id", label: "ID", minWidth: "180px" },
+  ],
+  peer_prompts: [
+    { prop: "content", label: "提示内容" },
+    { prop: "created_at", label: "创建时间" },
+    { prop: "to_user_id", label: "接收用户ID" },
+    { prop: "push_sent", label: "推送状态" },
+    { prop: "push_sent_at", label: "推送时间" },
+    { prop: "id", label: "ID", minWidth: "180px" },
   ],
 };
 const columns = computed(() => {
@@ -393,6 +473,22 @@ watch(members, (val) => {
   }
 });
 
+const selectedFeedbackUserId = ref("");
+
+watch(members, (val) => {
+  if (val && val.length) {
+    selectedFeedbackUserId.value = val[0].user_id;
+  }
+});
+
+const selectedPeerPromptUserId = ref("");
+
+watch(members, (val) => {
+  if (val && val.length) {
+    selectedPeerPromptUserId.value = val[0].user_id;
+  }
+});
+
 function formatToCSTForContent(utcStr) {
   if (!utcStr) return "";
   return dayjs(utcStr).format("YYYY-MM-DD HH:mm:ss");
@@ -420,6 +516,55 @@ async function fetchNoteContents() {
   loading.value = false;
 }
 
+function formatToCSTForFeedback(utcStr) {
+  if (!utcStr) return "";
+  return dayjs(utcStr).format("YYYY-MM-DD HH:mm:ss");
+}
+
+async function fetchFeedbackClicks() {
+  if (!selectedFeedbackUserId.value) {
+    tableData.value = [];
+    total.value = 0;
+    totalPages.value = 0;
+    return;
+  }
+  page.value = 1; // 重置页码
+  loading.value = true;
+  const res = await api.getFeedbackClicksByUser(selectedFeedbackUserId.value, page.value, pageSize.value);
+  tableData.value = (res.data || []).map(item => ({
+    ...item,
+    clicked_at: formatToCSTForFeedback(item.clicked_at),
+  }));
+  total.value = res.total || 0;
+  totalPages.value = res.total_pages || 0;
+  loading.value = false;
+}
+
+function formatToCSTForPeerPrompt(utcStr) {
+  if (!utcStr) return "";
+  return dayjs(utcStr).format("YYYY-MM-DD HH:mm:ss");
+}
+
+async function fetchPeerPrompts() {
+  if (!selectedPeerPromptUserId.value) {
+    tableData.value = [];
+    total.value = 0;
+    totalPages.value = 0;
+    return;
+  }
+  page.value = 1; // 重置页码
+  loading.value = true;
+  const res = await api.getPeerPromptsByUser(selectedPeerPromptUserId.value, page.value, pageSize.value);
+  tableData.value = (res.data || []).map(item => ({
+    ...item,
+    created_at: formatToCSTForPeerPrompt(item.created_at),
+    push_sent_at: formatToCSTForPeerPrompt(item.push_sent_at),
+  }));
+  total.value = res.total || 0;
+  totalPages.value = res.total_pages || 0;
+  loading.value = false;
+}
+
 async function fetchTableData() {
   if (!selectedGroupId.value) return;
   loading.value = true;
@@ -435,6 +580,14 @@ async function fetchTableData() {
       return;
     case "pageBehaviorLogs":
       await fetchBehaviorLogs();
+      loading.value = false;
+      return;
+    case "feedback_clicks":
+      await fetchFeedbackClicks();
+      loading.value = false;
+      return;
+    case "peer_prompts":
+      await fetchPeerPrompts();
       loading.value = false;
       return;
     case "speech_transcripts":

@@ -114,7 +114,7 @@ export default {
 
   // 获取某用户历史异常分析结果
   async getAnomalyResultsByUser(groupId, userId, page = 1, pageSize = 10) {
-    const res = await fetch(`${BASE_URL}/analysis/anomaly_results_by_user?user_id=${userId}&page=${page}&page_size=${pageSize}`);
+    const res = await fetch(`${BASE_URL}/analysis/anomaly_results_by_user?group_id=${groupId}&user_id=${userId}&page=${page}&page_size=${pageSize}`);
     if (!res.ok) throw new Error('获取历史异常分析失败');
     return await res.json();
   },
@@ -188,7 +188,21 @@ export default {
     }).then(res => res.data);
   },
   getNoteContentsByUser(userId, page = 1, pageSize = 20) {
-    return axios.get(`${BASE_URL}/api/notes/contents/user/${userId}?page=${page}&page_size=${pageSize}`).then(res => res.data);
+    return axios.get(`${BASE_URL}/api/group_data/note_contents/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
+  },
+
+  getFeedbackClicksByUser(userId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/feedback_clicks/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
+  },
+
+  getPeerPromptsByUser(userId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/peer_prompts/user/${userId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
   },
 
   // Peer Prompt 相关API

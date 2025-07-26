@@ -249,3 +249,55 @@ async def batch_delete_anomaly_analysis_results(ids: dict = Body(...)):
     if errors:
         raise HTTPException(status_code=500, detail={"deleted": deleted, "errors": errors})
     return {"success": True, "deleted": deleted} 
+
+@router.get("/api/group_data/feedback_clicks/user/{user_id}")
+async def get_feedback_clicks_by_user(
+    user_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    try:
+        # 获取总数
+        total_docs = list(db.collection("feedback_clicks").where("user_id", "==", user_id).order_by("clicked_at", direction="DESCENDING").stream())
+        total = len(total_docs)
+        
+        # 分页
+        start = (page - 1) * page_size
+        end = start + page_size
+        paginated_docs = total_docs[start:end]
+        
+        return {
+            "data": [doc.to_dict() | {"id": doc.id} for doc in paginated_docs],
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"查询feedback_clicks失败: {str(e)}")
+
+@router.get("/api/group_data/peer_prompts/user/{user_id}")
+async def get_peer_prompts_by_user(
+    user_id: str,
+    page: int = Query(1, ge=1, description="页码，从1开始"),
+    page_size: int = Query(20, ge=1, le=100, description="每页条数，最大100")
+):
+    try:
+        # 获取总数
+        total_docs = list(db.collection("peer_prompts").where("from_user_id", "==", user_id).order_by("created_at", direction="DESCENDING").stream())
+        total = len(total_docs)
+        
+        # 分页
+        start = (page - 1) * page_size
+        end = start + page_size
+        paginated_docs = total_docs[start:end]
+        
+        return {
+            "data": [doc.to_dict() | {"id": doc.id} for doc in paginated_docs],
+            "total": total,
+            "page": page,
+            "page_size": page_size,
+            "total_pages": (total + page_size - 1) // page_size
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"查询peer_prompts失败: {str(e)}") 

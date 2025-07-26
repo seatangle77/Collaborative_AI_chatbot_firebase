@@ -1,12 +1,14 @@
 from firebase_admin import firestore
 from server.app.database import db
+from datetime import datetime, timezone
 
 # Peer Prompt 相关数据库操作
 def insert_peer_prompt(data):
     """插入Peer Prompt记录"""
     doc_ref = db.collection("peer_prompts").document()
     data["id"] = doc_ref.id
-    data["created_at"] = firestore.SERVER_TIMESTAMP
+    # 使用ISO格式的UTC时间字符串
+    data["created_at"] = datetime.now(timezone.utc).isoformat()
     data["push_sent"] = False
     doc_ref.set(data)
     return {"status": "inserted", "id": doc_ref.id}
@@ -41,7 +43,7 @@ def update_peer_prompt_push_status(prompt_id, push_sent=True, error_message=None
     """更新Peer Prompt推送状态"""
     update_data = {
         "push_sent": push_sent,
-        "push_sent_at": firestore.SERVER_TIMESTAMP
+        "push_sent_at": datetime.now(timezone.utc).isoformat()
     }
     if error_message:
         update_data["push_error"] = error_message
