@@ -5,8 +5,7 @@ import time
 import traceback
 from datetime import datetime, timezone
 
-from server.app.anomaly_analyze import ai_analyze_anomaly_status, local_analyze_anomaly_status
-from server.app.anomaly_preprocessor import extract_chunk_data_anomaly, get_group_members_simple
+from server.app.anomaly_analyze import ai_analyze_anomaly_status, local_analyze
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
@@ -122,41 +121,20 @@ def analyze_handler():
 
             current_time = get_analyze_start_time()
 
-            # 阶段1: 获取成员信息
-            start_time_1 = time.time()
-            members = get_group_members_simple(_group_id)
-            logger.info(f"📊 [异常分析] 阶段1-获取成员信息完成，耗时{(time.time() - start_time_1):.2f}秒")
+            # 本地数据分析
+            chunk_data_with_local_analyze, local_analyze_result = local_analyze(_group_id, last_analyze_time, current_time)
 
-
-            # 阶段2: 数据预处理
-            start_time_2 = time.time()
-            end_time_str = current_time.strftime("%Y-%m-%dT%H:%M:%S")
-            start_time_str = last_analyze_time.strftime("%Y-%m-%dT%H:%M:%S")
-            raw_data, increment = extract_chunk_data_anomaly(
-                group_id=_group_id,
-                round_index=1,
-                start_time=start_time_str,
-                end_time=end_time_str,
-                member_list=members
-            )
-            logger.info(f"📊 [异常分析] 阶段2-数据预处理完成，耗时{time.time() - start_time_2:.2f}秒")
-            if increment <= 0:
-                logger.warning("[异常分析] 用户活动数据增量为0，不做分析")
-                return None
-
-            # 阶段3： 本地数据分析
-            chunk_data_with_local_analyze, local_analyze_result = local_analyze_anomaly_status(raw_data)
-
-            # 阶段4： 缓存本地分析结果
+            # 缓存本地分析结果
             if local_analyze_result:
-                _local_analyze_result_history.append({end_time_str: local_analyze_result})
+                _local_analyze_result_history.append({current_time.strftime("%Y-%m-%dT%H:%M:%S"): local_analyze_result})
                 # 只保留最近20次执行记录
                 if len(_local_analyze_result_history) > 20:
                     _local_analyze_result_history = _local_analyze_result_history[-20:]
 
 
-            # # 阶段5： 写入队列，异步处理AI分析
-            # _ai_analyze_q.put((_group_id, chunk_data_with_local_analyze))
+            # 写入队列，异步处理AI分析
+            if chunk_data_with_local_analyze:
+                _ai_analyze_q.put((_group_id, chunk_data_with_local_analyze))
 
             # 取本次分析的开始时间-即取数截止时间，作为下一次分析的起始时间
             last_analyze_time = current_time

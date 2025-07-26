@@ -1,9 +1,14 @@
+import json
+import time
+import traceback
 from typing import Dict, Any, List
 
 from fastapi import BackgroundTasks
+from google.cloud.firestore_v1 import FieldFilter
 
-from server.app.anomaly_analyze import Member, CurrentUser
+from server.app.anomaly_analyze import Member, CurrentUser, local_analyze
 from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze, get_analyze_result
+from server.app.anomaly_preprocessor import parse_iso_time
 from server.app.database import db
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_personal_share_message
@@ -60,176 +65,83 @@ async def get_anomaly_status(req: IntervalSummaryRequest):
 
 # 新增：只执行本地分析的接口
 @router.post("/analysis/local_anomalies")
-async def get_local_anomaly_status(req: IntervalSummaryRequest):
+async def get_realtime_local_anomaly_status(req: IntervalSummaryRequest):
     """
     只执行本地分析，不调用AI分析，直接返回本地分析结果
     """
     try:
-        from server.app.anomaly_preprocessor import extract_chunk_data_anomaly
-        from server.app.anomaly_analyze import local_analyze_anomaly_status
-        from server.app.logger.logger_loader import logger
-        import time
-        
+
         start_time = time.time()
         logger.info(f"🔍 [本地异常分析] 开始分析 group_id={req.group_id}")
         
-        # 阶段1: 获取成员信息
-        members = []
-        for member in req.members:
-            members.append({
-                "user_id": member.id,
-                "name": member.name
-            })
-        
-        # 阶段2: 数据预处理
-        raw_data, increment = extract_chunk_data_anomaly(
-            round_index=req.round_index,
-            start_time=req.start_time,
-            end_time=req.end_time,
-            group_id=req.group_id,
-            member_list=members
-        )
-        
-        if increment <= 0:
-            logger.warning("[本地异常分析] 用户活动数据增量为0，返回空结果")
+        # 本地数据分析
+        chunk_data_with_local_analyze, local_analyze_result = local_analyze(req.group_id, req.start_time, req.end_time, is_save_debug_file=False)
+
+        processing_time = time.time() - start_time
+        logger.info(f"📊 [本地异常分析] 分析完成，耗时{processing_time:.2f}秒")
+
+        # 缓存本地分析结果
+        if local_analyze_result:
+            return {
+                "local_analysis": local_analyze_result,
+                "raw_data_summary": {
+                    "time_range": chunk_data_with_local_analyze.get('time_range'),
+                    "users_count": len(chunk_data_with_local_analyze.get('users', [])),
+                    "speech_transcripts_count": len(chunk_data_with_local_analyze.get('raw_tables', {}).get('speech_transcripts', [])),
+                    "note_edit_history_count": len(chunk_data_with_local_analyze.get('raw_tables', {}).get('note_edit_history', [])),
+                    "pageBehaviorLogs_count": len(chunk_data_with_local_analyze.get('raw_tables', {}).get('pageBehaviorLogs', {}))
+                },
+                "processing_time": processing_time,
+                "analysis_timestamp": time.time()
+            }
+        else:
             return {
                 "local_analysis": None,
                 "message": "用户活动数据增量为0，无法进行分析",
                 "processing_time": time.time() - start_time
             }
         
-        # 阶段3: 本地数据分析
-        local_result = local_analyze_anomaly_status(raw_data)
-        
-        processing_time = time.time() - start_time
-        logger.info(f"📊 [本地异常分析] 分析完成，耗时{processing_time:.2f}秒")
-        
-        return {
-            "local_analysis": local_result,
-            "raw_data_summary": {
-                "time_range": raw_data.get('time_range'),
-                "users_count": len(raw_data.get('users', [])),
-                "speech_transcripts_count": len(raw_data.get('raw_tables', {}).get('speech_transcripts', [])),
-                "note_edit_history_count": len(raw_data.get('raw_tables', {}).get('note_edit_history', [])),
-                "pageBehaviorLogs_count": len(raw_data.get('raw_tables', {}).get('pageBehaviorLogs', {}))
-            },
-            "processing_time": processing_time,
-            "analysis_timestamp": time.time()
-        }
-        
     except Exception as e:
-        logger.error(f"❌ [本地异常分析] 分析失败: {str(e)}")
+        logger.error(f"❌ [本地异常分析] 分析失败: {traceback.format_exc()}")
         return {
             "error": str(e),
             "local_analysis": None,
             "processing_time": time.time() - start_time if 'start_time' in locals() else 0
         }
 
-@router.get("/analysis/round_summary_combined")
-async def round_summary_combined(
-    group_id: str = Query(...),
-    round_index: int = Query(...),
-    start_time: str = Query(...),
-    end_time: str = Query(...)
-):
-    """
-    当前轮结束后手动触发，将所有 interval summary 汇总成完整一轮总结。
-    """
-    cache_key = f"{group_id}:{round_index}"
-    interval_chunks = interval_summary_cache.get(cache_key, [])
-    # 按用户分组，收集所有chunk的summary
-    user_chunks = {}
-    for chunk in interval_chunks:
-        uid = chunk["user_id"]
-        if uid not in user_chunks:
-            user_chunks[uid] = []
-        user_chunks[uid].append(chunk["summary"])
-
-    members = []
-    for user_id, summaries in user_chunks.items():
-        # 可以进一步合并每个summary的level（取众数或平均等）
-        behavioral_levels = [s.get("behavioral_level") for s in summaries]
-        cognitive_levels = [s.get("cognitive_level") for s in summaries]
-        attention_levels = [s.get("shared_attention") for s in summaries]
-
-        def most_common_level(levels):
-            return max(set(levels), key=levels.count) if levels else "未知"
-
-        # 汇总
-        member_summary = {
-            "time_range": {
-                "start": start_time,
-                "end": end_time
-            },
-            "user_id": user_id,
-            "round": round_index,
-            "behavioral_level": most_common_level(behavioral_levels),
-            "cognitive_level": most_common_level(cognitive_levels),
-            "shared_attention": most_common_level(attention_levels),
-            "suggestions": [
-                "请尝试提高认知互动水平",
-                "是否可以进一步聚焦相似页面"
-            ],
-            "anomalies": []
-        }
-        members.append(member_summary)
-
-    # 汇总 group
-    all_behaviors = [m["behavioral_level"] for m in members]
-    all_cognition = [m["cognitive_level"] for m in members]
-    all_attention = [m["shared_attention"] for m in members]
-    def most_common_level(levels):
-        return max(set(levels), key=levels.count) if levels else "未知"
-    group_summary = {
-        "time_range": {
-            "start": start_time,
-            "end": end_time
-        },
-        "user_id": "group",
-        "round": round_index,
-        "behavioral_level": most_common_level(all_behaviors),
-        "cognitive_level": most_common_level(all_cognition),
-        "shared_attention": most_common_level(all_attention),
-        "suggestions": [
-            "请尝试提高认知互动水平",
-            "是否可以进一步聚焦相似页面"
-        ]
-    }
-
-    return {
-        "group_summary": group_summary,
-        "members": members
-    }
 
 @router.get("/analysis/anomaly_results_by_user")
 async def get_anomaly_results_by_user(
+    group_id: str,
     user_id: str = Query(..., description="用户ID"),
     page: int = Query(1, ge=1, description="页码，从1开始"),
     page_size: int = Query(10, ge=1, le=100, description="每页条数，最大100")
 ):
 
     try:
-        # 先获取所有匹配的文档（不排序）
         # 注意：由于数据库中实际没有存储 current_user 字段，这里暂时查询所有记录
-        # TODO: 需要根据实际需求修改查询逻辑
-        base_query = db.collection("anomaly_analysis_results")
-        
+        results = db.collection("anomaly_analysis_group_results") \
+            .where(filter=FieldFilter("group_id", "==", group_id)) \
+            .order_by("created_at", direction="DESCENDING") \
+            .stream()
+
         # 获取总数
-        total_docs = list(base_query.stream())
-        total = len(total_docs)
-        
-        # 在内存中排序和分页
-        sorted_docs = sorted(total_docs, key=lambda doc: doc.get("created_at") or "", reverse=True)
-        
+        ai_result_list = [doc.to_dict() for doc in results]
+        total = len(ai_result_list)
+
         # 计算偏移量
         offset = (page - 1) * page_size
-        
+
         # 获取分页数据
-        paginated_docs = sorted_docs[offset:offset + page_size]
-        data = [doc.to_dict() for doc in paginated_docs]
-        
+        paginated_docs = ai_result_list[offset:offset + page_size]
+        return_list = []
+        for doc in paginated_docs:
+            raw_response = doc.get("raw_response", {})
+            if isinstance(raw_response, dict):
+                return_list.append(raw_response.get(user_id, {}))
+
         return {
-            "results": data,
+            "results": return_list,
             "total": total,
             "page": page,
             "page_size": page_size,

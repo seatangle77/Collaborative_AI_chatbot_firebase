@@ -4,6 +4,7 @@ import time
 import traceback
 import uuid
 from datetime import timezone, datetime
+from typing import Union
 
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -66,7 +67,8 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
 请为每位成员输出以下 JSON 结构（共 3 组）：
 
 {{
-  "成员名": {{
+  "用户ID": {{
+    "user_name": "用户名",
     "summary": "一句话总结当前状态",
     "glasses_summary": "你当前[状态]，建议[温和提示]",
     "detail": {{
@@ -224,6 +226,92 @@ def calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_
         total_level[uid] = level
     return total_score, total_level
 
+
+def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    speech_durations = [speech_map.get(uid, 0) for uid in user_ids]
+    speech_percents = [d / total_speech if total_speech else 0 for d in speech_durations]
+
+    # 分类
+    speech_level = {}
+    speech_score = {}
+    for idx, uid in enumerate(user_ids):
+        duration = speech_durations[idx]
+        percent = speech_percents[idx]
+        if duration == 0:
+            speech_level[uid] = "No Speech"
+            speech_score[uid] = 0
+        elif (total_speech < total_seconds / 3.0):
+            # 所有人发言时长不到总时长3分之一
+            speech_level[uid] = "Low Speech"
+            speech_score[uid] = 0.3
+        else:
+            # 所有人发言市场超过总时长3分之一，按每个人的发言相对比例计算
+            if percent < 0.15:
+                speech_level[uid] = "Low Speech"
+                speech_score[uid] = 0.3
+            elif percent >= 0.6:
+                speech_level[uid] = "High Speech"
+                speech_score[uid] = 1
+            else:
+                speech_level[uid] = "Normal Speech"
+                speech_score[uid] = 0.7
+    return speech_level, speech_score
+
+def classify_note_edit_level(note_edit_stats, total_edit_char_count, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    edit_level = {}
+    edit_score = {}
+
+    for uid in user_ids:
+        count = note_edit_stats.get(uid, {}).get('note_edit_count', 0)
+        chars = note_edit_stats.get(uid, {}).get('note_edit_char_count', 0)
+        percent = chars / total_edit_char_count if total_edit_char_count else 0
+        if count == 0:
+            edit_level[uid] = "No Edit"
+            edit_score[uid] = 0
+        elif percent < 0.3:
+            edit_level[uid] = "Few Edits"
+            edit_score[uid] = 0.3
+        elif 0.3 <= percent < 0.7:
+            edit_level[uid] = "Normal Edit"
+            edit_score[uid] = 0.7
+        elif percent >= 0.7:
+            edit_level[uid] = "Frequent Edit"
+            edit_score[uid] = 1
+        else:
+            edit_level[uid] = "No Edit"
+            edit_score[uid] = 0
+    return edit_level, edit_score
+
+def classify_browser_behavior_level(page_stats, chunk_data):
+    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
+    browser_level = {}
+    browser_score = {}
+    for uid in user_ids:
+        stats = page_stats.get(uid, {})
+        action_count = stats.get('mouse_action_count', 0)
+        try:
+            percent = float(str(stats.get('mouse_percent', '0')).replace('%', ''))
+        except Exception:
+            percent = 0
+        if action_count == 0:
+            browser_level[uid] = "No Browsing"
+            browser_score[uid] = 0
+        elif percent < 30:
+            browser_level[uid] = "Few Browsing"
+            browser_score[uid] = 0.3
+        elif 30 <= percent < 70:
+            browser_level[uid] = "Normal Browsing"
+            browser_score[uid] = 0.7
+        elif percent >= 70:
+            browser_level[uid] = "Frequent Browsing"
+            browser_score[uid] = 1
+        else:
+            browser_level[uid] = "No Browsing"
+            browser_score[uid] = 0
+    return browser_level, browser_score
+
 def local_analyze_anomaly_status(chunk_data, is_save_debug_file:bool = True) -> tuple[dict, dict]:
     """
     统计：
@@ -348,90 +436,39 @@ def local_analyze_anomaly_status(chunk_data, is_save_debug_file:bool = True) -> 
             json.dump(chunk_data, f, ensure_ascii=False, indent=2)
     return chunk_data, local_analyze_result
 
-def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
-    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
-    speech_durations = [speech_map.get(uid, 0) for uid in user_ids]
-    speech_percents = [d / total_speech if total_speech else 0 for d in speech_durations]
+def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[datetime,str], is_save_debug_file:bool = True) -> tuple[dict, dict]:
+    # 阶段1: 获取成员信息
+    start_time_1 = time.time()
+    members = get_group_members_simple(group_id)
+    logger.info(f"📊 [异常分析] 阶段1-获取成员信息完成，耗时{(time.time() - start_time_1):.2f}秒")
 
-    # 分类
-    speech_level = {}
-    speech_score = {}
-    for idx, uid in enumerate(user_ids):
-        duration = speech_durations[idx]
-        percent = speech_percents[idx]
-        if duration == 0:
-            speech_level[uid] = "No Speech"
-            speech_score[uid] = 0
-        elif (total_speech < total_seconds / 3.0):
-            # 所有人发言时长不到总时长3分之一
-            speech_level[uid] = "Low Speech"
-            speech_score[uid] = 0.3
-        else:
-            # 所有人发言市场超过总时长3分之一，按每个人的发言相对比例计算
-            if percent < 0.15:
-                speech_level[uid] = "Low Speech"
-                speech_score[uid] = 0.3
-            elif percent >= 0.6:
-                speech_level[uid] = "High Speech"
-                speech_score[uid] = 1
-            else:
-                speech_level[uid] = "Normal Speech"
-                speech_score[uid] = 0.7
-    return speech_level, speech_score
+    # 阶段2: 数据预处理
+    start_time_2 = time.time()
+    if isinstance(start_time, datetime):
+        start_time_str = start_time.strftime("%Y-%m-%dT%H:%M:%S")
+    else:
+        start_time_str = start_time
+    if isinstance(end_time, datetime):
+        end_time_str = end_time.strftime("%Y-%m-%dT%H:%M:%S")
+    else:
+        end_time_str = end_time
+    raw_data, increment = extract_chunk_data_anomaly(
+        group_id=group_id,
+        round_index=1,
+        start_time=start_time_str,
+        end_time=end_time_str,
+        member_list=members
+    )
+    logger.info(f"📊 [异常分析] 阶段2-数据预处理完成，耗时{time.time() - start_time_2:.2f}秒")
+    if increment <= 0:
+        logger.warning("[异常分析] 用户活动数据增量为0，不做分析")
+        return {}, {}
 
-def classify_note_edit_level(note_edit_stats, total_edit_char_count, chunk_data):
-    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
-    edit_level = {}
-    edit_score = {}
+    # 阶段3： 本地数据分析
+    return local_analyze_anomaly_status(raw_data, is_save_debug_file=is_save_debug_file)
 
-    for uid in user_ids:
-        count = note_edit_stats.get(uid, {}).get('note_edit_count', 0)
-        chars = note_edit_stats.get(uid, {}).get('note_edit_char_count', 0)
-        percent = chars / total_edit_char_count if total_edit_char_count else 0
-        if count == 0:
-            edit_level[uid] = "No Edit"
-            edit_score[uid] = 0
-        elif percent < 0.3:
-            edit_level[uid] = "Few Edits"
-            edit_score[uid] = 0.3
-        elif 0.3 <= percent < 0.7:
-            edit_level[uid] = "Normal Edit"
-            edit_score[uid] = 0.7
-        elif percent >= 0.7:
-            edit_level[uid] = "Frequent Edit"
-            edit_score[uid] = 1
-        else:
-            edit_level[uid] = "No Edit"
-            edit_score[uid] = 0
-    return edit_level, edit_score
 
-def classify_browser_behavior_level(page_stats, chunk_data):
-    user_ids = [user['user_id'] for user in chunk_data.get('users', [])]
-    browser_level = {}
-    browser_score = {}
-    for uid in user_ids:
-        stats = page_stats.get(uid, {})
-        action_count = stats.get('mouse_action_count', 0)
-        try:
-            percent = float(str(stats.get('mouse_percent', '0')).replace('%', ''))
-        except Exception:
-            percent = 0
-        if action_count == 0:
-            browser_level[uid] = "No Browsing"
-            browser_score[uid] = 0
-        elif percent < 30:
-            browser_level[uid] = "Few Browsing"
-            browser_score[uid] = 0.3
-        elif 30 <= percent < 70:
-            browser_level[uid] = "Normal Browsing"
-            browser_score[uid] = 0.7
-        elif percent >= 70:
-            browser_level[uid] = "Frequent Browsing"
-            browser_score[uid] = 1
-        else:
-            browser_level[uid] = "No Browsing"
-            browser_score[uid] = 0
-    return browser_level, browser_score
+
 
 if __name__ == '__main__':
     ...
