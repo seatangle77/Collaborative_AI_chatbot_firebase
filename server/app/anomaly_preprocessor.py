@@ -1,4 +1,5 @@
 import copy
+import traceback
 from collections import defaultdict
 from typing import Tuple
 
@@ -31,6 +32,44 @@ def parse_iso_time(iso_str):
         return dt
     except Exception:
         return None
+
+def get_group_members_simple(group_id: str):
+    global _users_info
+    try:
+        start_time = time.time()
+        logger.info(f"🔍 [成员查询] 开始查询group_id={group_id}的成员信息...")
+
+        # 查询组成员关系
+        query1_start = time.time()
+        members_ref = db.collection("group_memberships").where("group_id", "==", group_id).stream()
+        members = [doc.to_dict() for doc in members_ref]
+        query1_duration = time.time() - query1_start
+        logger.info(f"📋 [成员查询] 查询组成员关系完成，耗时{query1_duration:.2f}秒，找到{len(members)}个成员关系")
+
+        user_ids = [m["user_id"] for m in members]
+        users_info = []
+
+        # 查询用户详细信息
+        query2_start = time.time()
+        for uid in user_ids:
+            user_doc = db.collection("users_info").document(uid).get()
+            if user_doc.exists:
+                user_data = user_doc.to_dict()
+                user_data["user_id"] = uid
+                users_info.append(user_data)
+        query2_duration = time.time() - query2_start
+        logger.info(f"👥 [成员查询] 查询用户详细信息完成，耗时{query2_duration:.2f}秒，获取到{len(users_info)}个用户信息")
+
+        total_duration = time.time() - start_time
+        logger.info(f"✅ [成员查询] group_id={group_id}成员查询完成，总耗时{total_duration:.2f}秒")
+
+        _users_info = users_info
+        return users_info
+    except Exception as e:
+        logger.error(f"❌ [成员查询] group_id={group_id} 查询异常: {traceback.format_exc()}")
+
+    return None
+
 
 def merge_tab_behavior_logs(actions):
     """
@@ -380,13 +419,31 @@ def build_anomaly_history_input(chunk_data: dict) -> dict:
 
 if __name__ == '__main__':
     ...
+    # 原始文件压缩测试
+    # input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
+    # output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
+    # with open(input_file, 'r', encoding='utf-8') as f:
+    #     pageBehaviorLogs = json.load(f)
+    # compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])
+    # pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"] = compressed
+    # with open(output_file, 'w', encoding='utf-8') as f:
+    #     json.dump(pageBehaviorLogs, f, ensure_ascii=False, indent=2)
+    # print(f"压缩完成，结果已保存到 {output_file}")
 
-    input_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb.json"
-    output_file = "debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
-    with open(input_file, 'r', encoding='utf-8') as f:
-        pageBehaviorLogs = json.load(f)
-    compressed = compress_page_behavior_logs(pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"])
-    pageBehaviorLogs["raw_tables"]["pageBehaviorLogs"] = compressed
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(pageBehaviorLogs, f, ensure_ascii=False, indent=2)
-    print(f"压缩完成，结果已保存到 {output_file}")
+
+    # 查询数据，生成文件
+    # group_id = "0c90c6de-33e3-4431-b5fe-d06378111ef0"
+    # start_time_str = "2025-07-09T02:45:00"
+    # end_time_str = "2025-07-09T02:47:00"
+    group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+    start_time_str = "2025-07-10T07:02:27"
+    end_time_str = "2025-07-10T07:04:27"
+    members = get_group_members_simple(group_id)
+    raw_data, increment = extract_chunk_data_anomaly(
+        group_id=group_id,
+        round_index=1,
+        start_time=start_time_str,
+        end_time=end_time_str,
+        member_list=members
+    )
+

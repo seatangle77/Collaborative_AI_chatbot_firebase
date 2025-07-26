@@ -6,12 +6,11 @@ import uuid
 from datetime import timezone, datetime
 
 import google.generativeai as genai
-import numpy as np
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
 from server.app.anomaly_preprocessor import (
-    build_anomaly_history_input
+    build_anomaly_history_input, parse_iso_time
 )
 from server.app.database import db
 from server.app.logger.logger_loader import logger
@@ -292,26 +291,25 @@ def local_analyze_anomaly_status(chunk_data):
     2. pageBehaviorLogs：按user统计浏览网页数、总action次数、鼠标操作总时长及占time_range百分比。
     返回：{user_id: {...}}
     """
-    def parse_time(t):
-        if not t:
-            return None
-        try:
-            return datetime.fromisoformat(t.replace('Z', '+00:00'))
-        except Exception:
-            return None
-
-    time_start = parse_time(chunk_data['time_range']['start'])
-    time_end = parse_time(chunk_data['time_range']['end'])
+    time_start = parse_iso_time(chunk_data['time_range']['start'])
+    time_end = parse_iso_time(chunk_data['time_range']['end'])
     total_seconds = (time_end - time_start).total_seconds() if time_start and time_end else 1
 
+
     # speech_transcripts统计
+    # 语言输出可能跨越统计周期，只计算落在当前语言周期的时长
     speech_map = {}
     for item in chunk_data.get('raw_tables', {}).get('speech_transcripts', []):
         uid = item.get('user_id')
-        dur = item.get('duration', 0)
+        start = parse_iso_time(item.get('start'))
+        end = parse_iso_time(item.get('end'))
+        if start < time_start:
+            start = time_start
+        if end > time_end:
+            end = time_end
         if uid:
             speech_map.setdefault(uid, 0)
-            speech_map[uid] += dur
+            speech_map[uid] += (end - start).total_seconds()
     total_speech = sum(speech_map.values())
 
     # pageBehaviorLogs统计
@@ -328,8 +326,8 @@ def local_analyze_anomaly_status(chunk_data):
             for log in tab.get('tabBehaviorLogs', []):
                 action_count += log.get('action_count', 0)
                 if log.get('type') in ['mousemove', 'scroll']:
-                    st = parse_time(log.get('startTime'))
-                    et = parse_time(log.get('endTime'))
+                    st = parse_iso_time(log.get('startTime'))
+                    et = parse_iso_time(log.get('endTime'))
                     if st and et:
                         mousemove_duration += (et - st).total_seconds()
         mousemove_percent = round(mousemove_duration / total_seconds * 100, 2) if total_seconds else 0
@@ -486,8 +484,25 @@ def classify_browser_behavior_level(page_stats, chunk_data):
 
 if __name__ == '__main__':
     ...
+    # # 分析文件记录
+    # input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
+    # with open(input_file, 'r', encoding='utf-8') as f:
+    #     logs = json.load(f)
+    # print(json.dumps(local_analyze_anomaly_status(logs), ensure_ascii=False, indent=2))
 
-    input_file = "../debug_anomaly_outputs/chunk_data_18b4c9cf636e45e8829738b96f4f53bb_merge1.json"
-    with open(input_file, 'r', encoding='utf-8') as f:
-        logs = json.load(f)
-    print(json.dumps(local_analyze_anomaly_status(logs), ensure_ascii=False, indent=2))
+    # 查询数据，分析结果
+    from server.app.anomaly_preprocessor import (
+         get_group_members_simple, extract_chunk_data_anomaly
+    )
+    group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+    start_time_str = "2025-07-10T07:02:27"
+    end_time_str = "2025-07-10T07:04:27"
+    members = get_group_members_simple(group_id)
+    raw_data, increment = extract_chunk_data_anomaly(
+        group_id=group_id,
+        round_index=1,
+        start_time=start_time_str,
+        end_time=end_time_str,
+        member_list=members
+    )
+    print(json.dumps(local_analyze_anomaly_status(raw_data), ensure_ascii=False, indent=2))

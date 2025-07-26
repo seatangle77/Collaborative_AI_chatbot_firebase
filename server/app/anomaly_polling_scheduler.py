@@ -1,4 +1,5 @@
 import asyncio
+import json
 import queue
 import threading
 import time
@@ -6,13 +7,14 @@ import traceback
 from datetime import datetime, timezone
 
 from server.app.anomaly_analyze import ai_analyze_anomaly_status, Member, local_analyze_anomaly_status
-from server.app.anomaly_preprocessor import extract_chunk_data_anomaly
+from server.app.anomaly_preprocessor import extract_chunk_data_anomaly, get_group_members_simple, parse_iso_time
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_anomaly_analysis_result
 
 
+# _group_id = None
 _group_id = None
 _users_info = None
 # 120秒的间隔
@@ -32,43 +34,16 @@ _ai_analyze_q = queue.Queue(1000)
 _ai_analyze_result_history = []
 _local_analyze_result_history = []
 
-def get_group_members_simple(group_id: str):
-    global _users_info
-    try:
-        start_time = time.time()
-        logger.info(f"🔍 [成员查询] 开始查询group_id={group_id}的成员信息...")
+# 启动时间和开始分析时间，用于分析历史数据，如果_analyze_start_time设置成当前时间则从当前时间开始分析
+_boot_time = datetime.now(timezone.utc)
+_analyze_start_time = datetime.now(timezone.utc)
 
+# _group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+# _stop_analyze = False
+# _analyze_start_time = parse_iso_time("2025-07-10T07:02:27")
+def get_analyze_start_time() -> datetime:
+    return _analyze_start_time + (datetime.now(timezone.utc) - _boot_time)
 
-        # 查询组成员关系
-        query1_start = time.time()
-        members_ref = db.collection("group_memberships").where("group_id", "==", group_id).stream()
-        members = [doc.to_dict() for doc in members_ref]
-        query1_duration = time.time() - query1_start
-        logger.info(f"📋 [成员查询] 查询组成员关系完成，耗时{query1_duration:.2f}秒，找到{len(members)}个成员关系")
-
-        user_ids = [m["user_id"] for m in members]
-        users_info = []
-
-        # 查询用户详细信息
-        query2_start = time.time()
-        for uid in user_ids:
-            user_doc = db.collection("users_info").document(uid).get()
-            if user_doc.exists:
-                user_data = user_doc.to_dict()
-                user_data["user_id"] = uid
-                users_info.append(user_data)
-        query2_duration = time.time() - query2_start
-        logger.info(f"👥 [成员查询] 查询用户详细信息完成，耗时{query2_duration:.2f}秒，获取到{len(users_info)}个用户信息")
-
-        total_duration = time.time() - start_time
-        logger.info(f"✅ [成员查询] group_id={group_id}成员查询完成，总耗时{total_duration:.2f}秒")
-
-        _users_info = users_info
-        return users_info
-    except Exception as e:
-        logger.error(f"❌ [成员查询] group_id={group_id} 查询异常: {traceback.format_exc()}")
-
-    return None
 
 def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analysis_results_id: str = None,
     detail_type: str = None, detail_status: str = None, share_to_user_ids: list = None):
@@ -139,20 +114,19 @@ def analyze_handler():
 
             if last_analyze_time is None:
                 # 如果是第一次执行，等待interval_seconds再开始
-                last_analyze_time = datetime.now(timezone.utc)
+                last_analyze_time = get_analyze_start_time()
                 time.sleep(interval_seconds)
             else:
                 # 检查是否需要等待。interval_seconds执行一次分析，不足时间需要等待
-                elapsed = datetime.now(timezone.utc) - last_analyze_time
+                elapsed = get_analyze_start_time() - last_analyze_time
                 if elapsed.total_seconds() < interval_seconds:
                     time.sleep(interval_seconds - elapsed.total_seconds())
 
-            current_time = datetime.now(timezone.utc)
+            current_time = get_analyze_start_time()
 
             # 阶段1: 获取成员信息
             start_time_1 = time.time()
             members = get_group_members_simple(_group_id)
-            member_objs = [Member(id=m.get("user_id"), name=m.get("name", "未知成员")) for m in members]
             logger.info(f"📊 [异常分析] 阶段1-获取成员信息完成，耗时{(time.time() - start_time_1):.2f}秒")
 
 
@@ -174,6 +148,7 @@ def analyze_handler():
 
             # 阶段3： 本地数据分析
             result = local_analyze_anomaly_status(raw_data)
+            print(json.dumps(result, ensure_ascii=False, indent=2))
 
             # 合并本地分析结果到raw_data
             raw_data['local_analysis_result'] = result
@@ -186,8 +161,8 @@ def analyze_handler():
                     _local_analyze_result_history = _local_analyze_result_history[-20:]
 
 
-            # 阶段5： 写入队列，异步处理AI分析
-            _ai_analyze_q.put((_group_id, start_time_str, end_time_str, raw_data))
+            # # 阶段5： 写入队列，异步处理AI分析
+            # _ai_analyze_q.put((_group_id, start_time_str, end_time_str, raw_data))
 
             # 取本次分析的开始时间-即取数截止时间，作为下一次分析的起始时间
             last_analyze_time = current_time
@@ -345,12 +320,12 @@ def run_analyze():
 
         _ai_analyze_thread = threading.Thread(target=ai_analyze_handler, name='_ai_analyze_thread', daemon=True)
         _ai_analyze_thread.start()
-
-        # 5s后启动通知线程，错开时间
-        time.sleep(5)
-
-        _notify_thread = threading.Thread(target=notify_handler, name='_notify_thread', daemon=True)
-        _notify_thread.start()
+        #
+        # # 5s后启动通知线程，错开时间
+        # time.sleep(5)
+        #
+        # _notify_thread = threading.Thread(target=notify_handler, name='_notify_thread', daemon=True)
+        # _notify_thread.start()
 
     except (Exception,):
         logger.error('Error in notify_handler loop: %s' % traceback.format_exc())
@@ -363,3 +338,5 @@ if __name__ == "__main__":
     # start_time = datetime.strptime("2025-07-09 02:45:00", "%Y-%m-%d %H:%M:%S")
     # end_time = datetime.strptime("2025-07-09 02:47:00", "%Y-%m-%d %H:%M:%S")
     # analyze("0c90c6de-33e3-4431-b5fe-d06378111ef0", start_time, end_time)
+
+
