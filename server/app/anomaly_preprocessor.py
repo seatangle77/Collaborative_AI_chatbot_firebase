@@ -351,14 +351,14 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     }
 
     ########################################
-    # 查询5: anomaly_analysis_results历史
+    # 查询5: anomaly_analysis_group_results历史
     query5_start = time.time()
     try:
         # 计算时间范围：从start_time往前半小时到start_time
         history_start_time = start_time_dt - timedelta(minutes=30)
         history_start_time_str = history_start_time.isoformat()
         
-        results = db.collection("anomaly_analysis_results") \
+        results = db.collection("anomaly_analysis_group_results") \
             .where(filter=FieldFilter("group_id", "==", group_id)) \
             .where(filter=FieldFilter("created_at", ">=", history_start_time_str)) \
             .where(filter=FieldFilter("created_at", "<=", start_time)) \
@@ -369,10 +369,7 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
         anomaly_history = []
         for h in history:
             anomaly_history.append({
-                "detail": h.get("detail"),
-                "glasses_summary": h.get("glasses_summary"),
-                "summary": h.get("summary"),
-                "user_data_summary": h.get("user_data_summary"),
+                "ai_response": h.get("raw_response"),
                 "start_time": h.get("start_time"),
                 "end_time": h.get("end_time")
             })
@@ -394,17 +391,6 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     increment = len(speech_transcripts) + len(note_edit_history) + len(pageBehaviorLogs) + len(note_contents)
 
     return chunk_data, increment
-
-
-def build_anomaly_history_input(chunk_data: dict) -> dict:
-    """
-    构建用于异常历史分析的输入结构。
-    """
-    return {
-        "current_user": chunk_data.get("current_user"),
-        "anomaly_history": chunk_data.get("anomaly_history")
-    }
-
 
 
 if __name__ == '__main__':

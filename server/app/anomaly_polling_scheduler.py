@@ -1,18 +1,16 @@
 import asyncio
-import json
 import queue
 import threading
 import time
 import traceback
 from datetime import datetime, timezone
 
-from server.app.anomaly_analyze import ai_analyze_anomaly_status, Member, local_analyze_anomaly_status
-from server.app.anomaly_preprocessor import extract_chunk_data_anomaly, get_group_members_simple, parse_iso_time
+from server.app.anomaly_analyze import ai_analyze_anomaly_status, local_analyze_anomaly_status
+from server.app.anomaly_preprocessor import extract_chunk_data_anomaly, get_group_members_simple
 from server.app.database import db
 from server.app.jpush_api import send_jpush_notification
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_anomaly_analysis_result
-
 
 # _group_id = None
 _group_id = None

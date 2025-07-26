@@ -1,18 +1,16 @@
 import json
 import os
-import re
 import time
 import traceback
 import uuid
 from datetime import timezone, datetime
-from typing import Any
 
 import google.generativeai as genai
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
 from server.app.anomaly_preprocessor import (
-    build_anomaly_history_input, parse_iso_time
+    parse_iso_time
 )
 from server.app.database import db
 from server.app.logger.logger_loader import logger
@@ -116,7 +114,7 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
 
     return prompt_text, {"raw_response": response.text}
 
-async def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
+def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
     total_start_time = time.time()
     logger.info(f"🚀 [异常分析] 开始分析group_id={group_id}...")
 
@@ -150,7 +148,7 @@ async def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
             db.collection("anomaly_raw_json_in_out").document(file_id).set({
                 "id": file_id,
                 "group_id": group_id,
-                "created_at": datetime.now(timezone.utc).isoformat(),
+                "created_at": end_time,
                 "input": prompt,
                 "output": ai_analyze_result_json
             })
@@ -163,7 +161,7 @@ async def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
                 "start_time": start_time,
                 "end_time": end_time,
                 "raw_response": ai_analyze_result_json,
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": end_time
             })
             stage5_duration = time.time() - stage5_start
             logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
@@ -226,7 +224,7 @@ def calculate_total_score_and_level(speech_score_dict, edit_score_dict, browser_
         total_level[uid] = level
     return total_score, total_level
 
-def local_analyze_anomaly_status(chunk_data) -> tuple[dict, dict]:
+def local_analyze_anomaly_status(chunk_data, is_save_debug_file:bool = True) -> tuple[dict, dict]:
     """
     统计：
     1. speech_transcripts：按user统计总说话时长、占time_range百分比。
@@ -338,13 +336,16 @@ def local_analyze_anomaly_status(chunk_data) -> tuple[dict, dict]:
             'total_level': total_level_dict.get(uid, "No Participation")
         }
 
-    # 保存调试文件
+
     # 合并本地分析结果到 chunk_data
     chunk_data['local_analysis_result'] = local_analyze_result
-    os.makedirs("analysis_outputs", exist_ok=True)
-    debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
-    with open(debug_file_path, "w", encoding="utf-8") as f:
-        json.dump(chunk_data, f, ensure_ascii=False, indent=2)
+
+    # 保存调试文件
+    if is_save_debug_file:
+        os.makedirs("analysis_outputs", exist_ok=True)
+        debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+        with open(debug_file_path, "w", encoding="utf-8") as f:
+            json.dump(chunk_data, f, ensure_ascii=False, indent=2)
     return chunk_data, local_analyze_result
 
 def classify_speech_level(speech_map, total_speech, total_seconds, chunk_data):
@@ -456,9 +457,11 @@ if __name__ == '__main__':
         member_list=members
     )
     chunk_data_with_local_result, local_analyze_result = local_analyze_anomaly_status(raw_data)
-    prompt, ai_analyze_result = ai_analyze_all_anomalies(chunk_data_with_local_result)
-    if isinstance(ai_analyze_result.get("raw_response"), str):
-        markdown_json = ai_analyze_result["raw_response"]
-        # 去除Markdown标记
-        json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
-        print(json.dumps(json.loads(json_str), ensure_ascii=False, indent=2))
+    # prompt, ai_analyze_result = ai_analyze_all_anomalies(chunk_data_with_local_result)
+    # if isinstance(ai_analyze_result.get("raw_response"), str):
+    #     markdown_json = ai_analyze_result["raw_response"]
+    #     # 去除Markdown标记
+    #     json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
+    #     print(json.dumps(json.loads(json_str), ensure_ascii=False, indent=2))
+
+    ai_analyze_anomaly_status(group_id, chunk_data_with_local_result)
