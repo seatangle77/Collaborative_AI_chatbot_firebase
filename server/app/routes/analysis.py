@@ -190,6 +190,8 @@ async def get_anomaly_results_by_user(
             raw_response = doc.get("raw_response", {})
             if isinstance(raw_response, dict):
                 user_anomaly_result = raw_response.get(user_id, {})
+                # 添加数据库记录的ID
+                user_anomaly_result["record_id"] = doc.get("id", "")
                 user_anomaly_result["start_time"] = doc.get("start_time", "")
                 user_anomaly_result["end_time"] = doc.get("end_time", "")
                 return_list.append(user_anomaly_result)

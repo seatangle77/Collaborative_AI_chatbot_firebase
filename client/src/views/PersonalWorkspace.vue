@@ -79,9 +79,13 @@
             </el-collapse-item>
           </el-collapse>
 
-          <div v-if="anomalyData" class="anomaly-feedback-section">
-            <AbnormalFeedback :anomaly-data="anomalyData" :members="members" />
-          </div>
+                  <div v-if="anomalyData" class="anomaly-feedback-section">
+          <AbnormalFeedback 
+            :anomaly-data="anomalyData" 
+            :members="members" 
+            @update-reminder-frequency="handleUpdateReminderFrequency"
+          />
+        </div>
         </div>
 
 
@@ -115,6 +119,7 @@
           <!-- 右侧历史异常反馈区域和两个空白占位区域 -->
           <div class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">
             <div class="members-status-card">
+              <div class="members-status-header">组员面板</div>
               <div class="members-status-list">
                 <div
                   v-for="member in memberStatusList"
@@ -144,6 +149,16 @@
                       <el-tag v-else type="success" size="small">正常</el-tag>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+            <!-- 提醒频率设置板块 -->
+            <div class="reminder-frequency-card">
+              <div class="reminder-frequency-header">提醒频率</div>
+              <div class="reminder-frequency-content">
+                <div class="frequency-display">
+                  <span class="frequency-label">当前频率：</span>
+                  <span class="frequency-value">{{ reminderFrequency }}分钟</span>
                 </div>
               </div>
             </div>
@@ -194,6 +209,7 @@
           v-if="drawerData"
           :anomaly-data="drawerData"
           :members="members"
+          @update-reminder-frequency="handleUpdateReminderFrequency"
         />
         <span class="close-btn" @click="showRichNotification = false">×</span>
       </div>
@@ -854,6 +870,16 @@ const peerPromptForm = ref({
   content: '',
 });
 
+// 提醒频率相关逻辑
+const reminderFrequency = ref(2); // 默认2分钟
+
+// 处理更新提醒频率
+function handleUpdateReminderFrequency(newFrequency) {
+  console.log('🔄 收到更新提醒频率事件:', newFrequency);
+  reminderFrequency.value = newFrequency;
+  console.log('✅ 提醒频率已更新为:', reminderFrequency.value);
+}
+
 function handleSendPeerPrompt() {
   if (!peerPromptForm.value.targetUserId || !peerPromptForm.value.content.trim()) {
     ElMessage.warning('请选择目标成员并填写提示内容');
@@ -894,6 +920,8 @@ function handleSendPeerPrompt() {
 function handlePresetSelect(suggestion) {
   console.log('选择了预设内容:', suggestion);
 }
+
+
 
 // 监听弹窗状态，当弹窗关闭时重置加载状态
 watch(peerPromptDialogVisible, (newVal) => {
@@ -952,12 +980,48 @@ watch(peerPromptDialogVisible, (newVal) => {
 
 .members-status-header {
   font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 12px;
+  font-size: 1rem;
   color: #303133;
-  border-bottom: 2px solid #e4e7ed;
   padding-bottom: 8px;
 }
+
+.reminder-frequency-card {
+  background: #ffffff;
+  padding: 0 16px;
+  border-radius: 8px;
+}
+
+.reminder-frequency-header {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #303133;
+  margin-bottom: 12px;
+}
+
+.reminder-frequency-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.frequency-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.frequency-label {
+  font-size: 0.9rem;
+  color: #606266;
+}
+
+.frequency-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #409eff;
+}
+
+
 
 .members-status-list {
   display: flex;

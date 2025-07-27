@@ -49,7 +49,14 @@
           </div>
         </div>
         <div class="button-row">
-          <el-button type="primary" @click="onMore" size="default" v-if="!showMore">
+          <el-button 
+            type="primary" 
+            @click="onMore" 
+            size="default" 
+            v-if="!showMore"
+            :loading="buttonLoadingMap.more"
+            :disabled="buttonLoadingMap.more"
+          >
             More
           </el-button>
           <el-button type="primary" @click="onCollapse" size="default" v-else>
@@ -60,7 +67,8 @@
             @click="onLess"
             size="default"
             style="margin-left: 8px"
-            :disabled="props.anomalyData?.anomaly_analysis_results_id && lessClickedMap[props.anomalyData.anomaly_analysis_results_id]"
+            :loading="buttonLoadingMap.less"
+            :disabled="buttonLoadingMap.less"
           >
             Less
           </el-button>
@@ -69,6 +77,8 @@
             @click="openShareDialog"
             size="default"
             style="margin-left: 8px"
+            :loading="buttonLoadingMap.share"
+            :disabled="buttonLoadingMap.share"
           >
             Share
           </el-button>
@@ -166,8 +176,15 @@
         </el-checkbox>
       </el-checkbox-group>
       <template #footer>
-        <el-button @click="shareDialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="confirmShare">Share</el-button>
+        <el-button @click="shareDialogVisible = false" :disabled="buttonLoadingMap.share">Cancel</el-button>
+        <el-button 
+          type="primary" 
+          @click="confirmShare" 
+          :loading="buttonLoadingMap.share"
+          :disabled="buttonLoadingMap.share"
+        >
+          Share
+        </el-button>
       </template>
     </el-dialog>
   </div>
@@ -188,14 +205,22 @@ const props = defineProps({
   }
 });
 
+const emit = defineEmits(['updateReminderFrequency']);
+
 const showMore = ref(false);
 const barChartRef = ref(null);
 const radarChartRef = ref(null);
 let barChart = null;
 let radarChart = null;
 
-// 新增：记录哪些异常已点击过Less
-const lessClickedMap = ref({});
+// 按钮加载状态管理
+const buttonLoadingMap = ref({
+  more: false,
+  less: false,
+  share: false
+});
+
+
 
 const shouldShow = computed(() => {
   // 检查基本数据是否存在
@@ -380,14 +405,21 @@ async function callFeedbackClick(clickType, customShareUserIds) {
     ElMessage.error('反馈参数缺失：group_id 或 user_id');
     return;
   }
-  if (!anomaly.anomaly_analysis_results_id) {
-    ElMessage.error('反馈参数缺失：anomaly_analysis_results_id');
+  if (!anomaly.record_id) {
+    ElMessage.error('反馈参数缺失：record_id');
     return;
   }
   if (!anomaly.detail || !anomaly.detail.type || !anomaly.detail.status) {
     ElMessage.error('反馈参数缺失：异常类型或状态');
     return;
   }
+
+  // 设置按钮加载状态
+  const buttonKey = clickType.toLowerCase();
+  if (buttonLoadingMap.value[buttonKey]) {
+    return; // 如果按钮正在加载中，直接返回
+  }
+  buttonLoadingMap.value[buttonKey] = true;
 
   // 如果是Share，自动获取所有其他组员的ID（现在改为用customShareUserIds）
   let shareToUserIds = [];
@@ -402,6 +434,7 @@ async function callFeedbackClick(clickType, customShareUserIds) {
     }
     if (shareToUserIds.length === 0) {
       ElMessage.warning('没有其他组员可以分享');
+      buttonLoadingMap.value[buttonKey] = false;
       return;
     }
   }
@@ -410,25 +443,44 @@ async function callFeedbackClick(clickType, customShareUserIds) {
     group_id: String(anomaly.group_id),
     user_id: String(anomaly.user_id),
     click_type: clickType,
-    anomaly_analysis_results_id: String(anomaly.anomaly_analysis_results_id),
+    anomaly_analysis_results_id: String(anomaly.record_id),
     detail_type: String(translateLevelType(anomaly.detail.type)),
     detail_status: String(translateLevelType(anomaly.detail.status)),
     share_to_user_ids: shareToUserIds,
   };
 
   try {
-    await api.feedbackClick(payload);
+    const response = await api.feedbackClick(payload);
     if (clickType === 'Less') {
-      ElMessage.info('已降低后续异常提示频率');
-      // 记录该异常已点击过Less
-      if (anomaly.anomaly_analysis_results_id) {
-        lessClickedMap.value[anomaly.anomaly_analysis_results_id] = true;
-      }
+      const intervalMinutes = Math.round(response.feedback_setting?.interval_seconds / 60);
+      ElMessage({
+        message: `已降低后续异常提示频率，当前提醒间隔：${intervalMinutes}分钟`,
+        type: 'success',
+        duration: 3000,
+        customClass: 'custom-feedback-message'
+      });
+      // 通知父组件更新提醒频率
+      console.log('📤 发送更新提醒频率事件 (Less):', intervalMinutes);
+      emit('updateReminderFrequency', intervalMinutes);
+    } else if (clickType === 'More') {
+      const intervalMinutes = Math.round(response.feedback_setting?.interval_seconds / 60);
+      ElMessage({
+        message: `已提高后续异常提示频率，当前提醒间隔：${intervalMinutes}分钟`,
+        type: 'success',
+        duration: 3000,
+        customClass: 'custom-feedback-message'
+      });
+      // 通知父组件更新提醒频率
+      console.log('📤 发送更新提醒频率事件 (More):', intervalMinutes);
+      emit('updateReminderFrequency', intervalMinutes);
     } else if (clickType === 'Share') {
       ElMessage.success(`已成功分享给 ${shareToUserIds.length} 个组员`);
     }
   } catch (e) {
     ElMessage.error('反馈记录失败');
+  } finally {
+    // 无论成功还是失败，都要重置按钮加载状态
+    buttonLoadingMap.value[buttonKey] = false;
   }
 }
 
@@ -441,12 +493,6 @@ function onCollapse() {
 }
 function onLess() {
   showMore.value = false;
-  // 只允许点击一次
-  const anomaly = props.anomalyData || {};
-  if (anomaly.anomaly_analysis_results_id && lessClickedMap.value[anomaly.anomaly_analysis_results_id]) {
-    ElMessage.warning('该异常已反馈过Less，不能重复操作');
-    return;
-  }
   callFeedbackClick('Less');
 }
 function shareFeedback() {
@@ -728,5 +774,26 @@ const historyComparisonTable = computed(() => {
 .user-name {
   color: #3478f6;
   font-weight: 600;
+}
+
+/* 自定义反馈消息样式 */
+:deep(.custom-feedback-message) {
+  min-width: 400px !important;
+  padding: 16px 20px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+:deep(.custom-feedback-message .el-message__content) {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 500 !important;
+}
+
+:deep(.custom-feedback-message .el-message__icon) {
+  font-size: 18px !important;
+  margin-right: 12px !important;
 }
 </style>
