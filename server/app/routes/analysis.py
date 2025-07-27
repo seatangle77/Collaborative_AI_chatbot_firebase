@@ -136,7 +136,10 @@ async def get_anomaly_results_by_user(
         for doc in paginated_docs:
             raw_response = doc.get("raw_response", {})
             if isinstance(raw_response, dict):
-                return_list.append(raw_response.get(user_id, {}))
+                user_anomaly_result = raw_response.get(user_id, {})
+                user_anomaly_result["start_time"] = doc.get("start_time", "")
+                user_anomaly_result["end_time"] = doc.get("end_time", "")
+                return_list.append(user_anomaly_result)
 
         return {
             "results": return_list,

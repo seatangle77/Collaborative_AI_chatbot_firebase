@@ -137,8 +137,8 @@
                         v-if="member.status === 'abnormal'"
                         class="abnormal-detail"
                       >
-                        异常：{{ member.detail_type }}（{{
-                          member.detail_status
+                        异常：{{ translateLevelType(member.detail_type) }}（{{
+                          translateLevelType(member.detail_status)
                         }}）
                       </div>
                       <el-tag v-else type="success" size="small">正常</el-tag>
@@ -184,6 +184,7 @@
               :group-id="group?.id"
               @view-detail="handleViewDetail"
               class="history-panel"
+              title="历史提示反馈"
             />
           </div>
         </div>
@@ -230,6 +231,7 @@ import UserProfileBar from "@/components/personal/UserProfileBar.vue";
 import AnomalyHistoryPanel from "@/components/personal/AnomalyHistoryPanel.vue";
 import PeerPromptInput from "@/components/personal/PeerPromptInput.vue";
 import api from "../services/apiService";
+import { translateLevelType } from "@/utils/levelTranslations";
 // 移除 groupWebSocketManager 相关导入
 // import { connectGroupSocket, onGroupMessage, closeGroupSocket } from "@/services/groupWebSocketManager";
 import {
@@ -405,20 +407,20 @@ onMounted(async () => {
       abnormalMap.value = { ...abnormalMap.value };
     }, 3 * 60 * 1000);
     abnormalMap.value[uid] = {
-      detail_type: payload.detail_type,
-      detail_status: payload.detail_status,
+      detail_type: translateLevelType(payload.detail_type),
+      detail_status: translateLevelType(payload.detail_status),
       receivedAt: Date.now(),
       timer,
     };
     abnormalMap.value = { ...abnormalMap.value };
 
     // 显示通知
-    ElMessage.info(`${fromUserName} 分享了异常信息：${payload.detail_type}`);
+    ElMessage.info(`${fromUserName} 分享了提示信息：${translateLevelType(payload.detail_type)}`);
   });
   onUserMessage("anomaly_analysis", (payload) => {
     // 移除调试打印，只保留原有逻辑
     if (!payload || !payload.data) {
-      console.warn("⚠️ 异常分析结果数据格式不正确");
+      console.warn("⚠️ 提示分析结果数据格式不正确");
       return;
     }
     handleAnomalyAnalysisResult(payload.data);
@@ -717,8 +719,8 @@ const memberStatusList = computed(() => {
         ...member,
         abnormal,
         status: abnormal ? "abnormal" : "normal",
-        detail_type: abnormal?.detail_type,
-        detail_status: abnormal?.detail_status,
+        detail_type: translateLevelType(abnormal?.detail_type),
+        detail_status: translateLevelType(abnormal?.detail_status),
       };
     });
 });
@@ -885,6 +887,8 @@ function handleSendPeerPrompt() {
 function handlePresetSelect(suggestion) {
   console.log('选择了预设内容:', suggestion);
 }
+
+
 </script>
 
 <style scoped>

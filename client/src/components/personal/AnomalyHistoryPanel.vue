@@ -1,7 +1,7 @@
 <template>
   <div class="history-section">
     <div class="history-header">
-      <div class="history-title">历史异常反馈</div>
+      <div class="history-title">{{ title }}</div>
       <el-button size="small" type="primary" @click="loadHistoryData" :loading="historyLoading">刷新</el-button>
     </div>
     <div class="history-content">
@@ -47,6 +47,10 @@ import { ElNotification } from 'element-plus';
 const props = defineProps({
   userId: String,
   groupId: String,
+  title: {
+    type: String,
+    default: "历史异常反馈"
+  }
 });
 const emit = defineEmits(["view-detail"]);
 

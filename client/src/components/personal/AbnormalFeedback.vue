@@ -3,23 +3,27 @@
     <el-card v-if="shouldShow">
       <template #header>
         <div class="card-header">
-          <span>异常反馈报告</span>
+          <span>提示反馈报告</span>
         </div>
       </template>
       <div class="main-section">
         <div class="summary-block">
-          <span class="summary-label">异常总结：</span>
+          <span class="summary-label">提示总结：</span>
           <span
             class="summary-content"
             v-html="md2html(anomalyData.summary)"
           ></span>
         </div>
         <div v-if="anomalyData.detail" class="detail-block">
+          <div v-if="anomalyData.user_name" class="detail-row">
+            <span class="detail-label">用户：</span>
+            <span class="detail-value user-name">{{ anomalyData.user_name }}</span>
+          </div>
           <div class="detail-row">
-            <span class="detail-label">异常类型：</span>
+            <span class="detail-label">提示类型：</span>
             <span
               class="detail-value type"
-              v-html="md2html(anomalyData.detail.type)"
+              v-html="md2html(translateLevelType(anomalyData.detail.type))"
             ></span>
           </div>
           <div class="detail-row">
@@ -33,7 +37,7 @@
             <span class="detail-label">证据：</span>
             <span
               class="detail-value evidence"
-              v-html="md2html(anomalyData.detail.evidence)"
+              v-html="md2html(translateLevelType(anomalyData.detail.evidence))"
             ></span>
           </div>
           <div class="detail-row suggestion-row">
@@ -82,11 +86,11 @@
             <span class="info-content">当前显示的是用户行为数据图表，详细的分析信息将在后续更新中提供。</span>
           </div>
           <el-divider v-if="anomalyData.more_info" />
-          <div v-if="anomalyData.more_info?.detailed_reasoning" class="info-block">
+          <div v-if="anomalyData.more_info?.detailed_reason" class="info-block">
             <span class="info-label">详细推理：</span>
             <span
               class="info-content"
-              v-html="md2html(anomalyData.more_info.detailed_reasoning)"
+              v-html="md2html(anomalyData.more_info.detailed_reason)"
             ></span>
           </div>
           <div v-if="anomalyData.more_info?.history_comparison" class="info-block">
@@ -115,12 +119,21 @@
               v-html="md2html(anomalyData.more_info.group_comparison)"
             ></span>
           </div>
-          <div v-if="anomalyData.more_info?.collaboration_strategies" class="info-block">
+          <div v-if="anomalyData.more_info?.collaboration_suggestion" class="info-block">
             <span class="info-label">协作建议：</span>
             <span
               class="info-content"
-              v-html="md2html(anomalyData.more_info.collaboration_strategies)"
+              v-html="md2html(anomalyData.more_info.collaboration_suggestion)"
             ></span>
+          </div>
+          <div v-if="anomalyData.group_distribution" class="info-block">
+            <span class="info-label">组内分布：</span>
+            <div class="distribution-content">
+              <div class="distribution-item" v-for="(count, type) in anomalyData.group_distribution" :key="type">
+                <span class="distribution-type">{{ getDistributionTypeLabel(type) }}</span>
+                <span class="distribution-count">{{ count }}人</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -132,13 +145,13 @@
         anomalyData.score['是否提示'] === false
       "
       type="info"
-      title="暂无异常反馈"
-      description="当前未检测到需要提示的异常。"
+      title="暂无提示反馈"
+      description="当前未检测到需要提示的情况。"
     />
     <el-alert
       v-else
       type="error"
-      title="异常反馈数据缺失或格式错误"
+      title="提示反馈数据缺失或格式错误"
       description="请检查后端返回内容格式是否正确。"
     />
     <!-- 分享选择弹窗 -->
@@ -165,6 +178,7 @@ import { ref, computed, watch, nextTick, onMounted } from "vue";
 import { ElMessage } from "element-plus";
 import { marked } from "marked";
 import api from '@/services/apiService';
+import { translateLevelType, getDistributionTypeLabel } from '@/utils/levelTranslations';
 
 const props = defineProps({
   anomalyData: Object,
@@ -192,8 +206,13 @@ const shouldShow = computed(() => {
     return true;
   }
   
-  // 如果没有score字段，但有基本的异常信息，也显示
+  // 如果没有score字段，但有基本的提示信息，也显示
   if (props.anomalyData.summary && props.anomalyData.detail) {
+    return true;
+  }
+  
+  // 对于历史记录，只要有summary就显示
+  if (props.anomalyData.summary) {
     return true;
   }
   
@@ -392,8 +411,8 @@ async function callFeedbackClick(clickType, customShareUserIds) {
     user_id: String(anomaly.user_id),
     click_type: clickType,
     anomaly_analysis_results_id: String(anomaly.anomaly_analysis_results_id),
-    detail_type: String(anomaly.detail.type),
-    detail_status: String(anomaly.detail.status),
+    detail_type: String(translateLevelType(anomaly.detail.type)),
+    detail_status: String(translateLevelType(anomaly.detail.status)),
     share_to_user_ids: shareToUserIds,
   };
 
@@ -470,6 +489,8 @@ const historyComparisonTable = computed(() => {
   const md = props.anomalyData?.more_info?.history_comparison;
   return parseMarkdownTable(md);
 });
+
+
 </script>
 
 <style scoped>
@@ -675,5 +696,37 @@ const historyComparisonTable = computed(() => {
   line-height: 1.5 !important;
   color: #444 !important;
   padding-left: 2px !important;
+}
+
+.distribution-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.distribution-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f0f6ff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.distribution-type {
+  color: #3478f6;
+  font-weight: 500;
+}
+
+.distribution-count {
+  color: #666;
+  font-weight: 600;
+}
+
+.user-name {
+  color: #3478f6;
+  font-weight: 600;
 }
 </style>
