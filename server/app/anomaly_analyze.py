@@ -312,7 +312,7 @@ def classify_browser_behavior_level(page_stats, chunk_data):
             browser_score[uid] = 0
     return browser_level, browser_score
 
-def local_analyze_anomaly_status(chunk_data, is_save_debug_file:bool = True) -> tuple[dict, dict]:
+def local_analyze_anomaly_status(chunk_data) -> tuple[dict, dict]:
     """
     统计：
     1. speech_transcripts：按user统计总说话时长、占time_range百分比。
@@ -424,16 +424,9 @@ def local_analyze_anomaly_status(chunk_data, is_save_debug_file:bool = True) -> 
             'total_level': total_level_dict.get(uid, "No Participation")
         }
 
-
     # 合并本地分析结果到 chunk_data
     chunk_data['local_analysis_result'] = local_analyze_result
 
-    # 保存调试文件
-    if is_save_debug_file:
-        os.makedirs("analysis_outputs", exist_ok=True)
-        debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
-        with open(debug_file_path, "w", encoding="utf-8") as f:
-            json.dump(chunk_data, f, ensure_ascii=False, indent=2)
     return chunk_data, local_analyze_result
 
 def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[datetime,str], is_save_debug_file:bool = True) -> tuple[dict, dict]:
@@ -464,8 +457,30 @@ def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[d
         logger.warning("[异常分析] 用户活动数据增量为0，不做分析")
         return {}, {}
 
-    # 阶段3： 本地数据分析
-    return local_analyze_anomaly_status(raw_data, is_save_debug_file=is_save_debug_file)
+    # 阶段3：本地数据分析
+    chunk_data_with_local_analyze, local_analyze_result = local_analyze_anomaly_status(raw_data,
+                                                                                       is_save_debug_file=is_save_debug_file)
+
+    # 阶段4：保存调试文件
+    if is_save_debug_file:
+        os.makedirs("analysis_outputs", exist_ok=True)
+        debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+        with open(debug_file_path, "w", encoding="utf-8") as f:
+            json.dump(chunk_data_with_local_analyze, f, ensure_ascii=False, indent=2)
+
+        # 阶段5: 数据库存储
+        stage5_start = time.time()
+        file_id = str(uuid.uuid4())
+        db.collection("anomaly_local_analyze").document(file_id).set({
+            "id": file_id,
+            "group_id": group_id,
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "output": chunk_data_with_local_analyze
+        })
+        stage5_duration = time.time() - stage5_start
+        logger.info(f"🗄️ [异常分析] 本地分析。数据库存储完成，耗时{stage5_duration:.2f}秒")
+
+    return chunk_data_with_local_analyze, local_analyze_result
 
 
 
