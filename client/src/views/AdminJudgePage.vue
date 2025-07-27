@@ -30,14 +30,16 @@
         <button class="analyze-btn" @click="startAnalysis" :disabled="isAnalyzing">
           {{ isAnalyzing ? '分析中...' : '本地分析' }}
         </button>
-        <div class="polling-time-group">
-          <label for="polling-start-time">轮询开始时间：</label>
+
+        <div class="current-time-display">
+          <span class="time-label">当前时间：</span>
           <input 
-            id="polling-start-time" 
             type="datetime-local" 
-            v-model="pollingStartTime" 
-            class="time-input"
+            v-model="currentTimeLocal" 
+            @change="updateCurrentTime"
+            class="time-picker"
           />
+          <span class="time-utc">UTC: {{ currentTime }}</span>
         </div>
         <button class="polling-btn" @click="startPollingAnalysis" :disabled="isPolling">
           {{ isPolling ? '轮询中...' : '轮询分析' }}
@@ -61,7 +63,8 @@
               v-for="(history, index) in user.analysisHistory" 
               :key="index"
               class="round-tab"
-              :class="{ active: index === 0 }"
+              :class="{ active: user.selectedRoundIndex === index }"
+              @click="selectRound(user.id, index)"
             >
               第{{ history.round }}轮 <span v-if="history.start_time">{{ formatHourMinute(history.start_time) }}</span>
             </div>
@@ -75,23 +78,25 @@
               <div class="progress-item">
                 <div class="progress-label">
                   <span>发言比例</span>
-                  <span class="progress-value">{{ user.analysis.speech_percent }}</span>
+                  <span class="progress-value">{{ getCurrentAnalysis(user).speech_percent }}</span>
                 </div>
                 <div class="progress-bar">
                   <div 
                     class="progress-fill speech-fill" 
-                    :style="{ width: parseFloat(user.analysis.speech_percent) + '%' }"
+                    :style="{ width: parseFloat(getCurrentAnalysis(user).speech_percent) + '%' }"
                   ></div>
                 </div>
-                <div class="analysis-item">
-                  <span class="label">发言时长：</span>
-                  <span class="value">{{ user.analysis.speech_duration }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">发言等级：</span>
-                  <span class="value level-badge" :class="getSpeechLevelClass(user.analysis.speech_level)">
-                    {{ user.analysis.speech_level }}
-                  </span>
+                <div class="compact-data-grid">
+                  <div class="data-item">
+                    <span class="data-label">时长</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).speech_duration }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">等级</span>
+                    <span class="level-badge" :class="getSpeechLevelClass(getCurrentAnalysis(user).speech_level)">
+                      {{ getCurrentAnalysis(user).speech_level }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,27 +107,29 @@
               <div class="progress-item">
                 <div class="progress-label">
                   <span>编辑活跃度</span>
-                  <span class="progress-value">{{ user.analysis.note_edit_score * 100 }}%</span>
+                  <span class="progress-value">{{ getCurrentAnalysis(user).note_edit_score * 100 }}%</span>
                 </div>
                 <div class="progress-bar">
                   <div 
                     class="progress-fill note-fill" 
-                    :style="{ width: user.analysis.note_edit_score * 100 + '%' }"
+                    :style="{ width: getCurrentAnalysis(user).note_edit_score * 100 + '%' }"
                   ></div>
                 </div>
-                <div class="analysis-item">
-                  <span class="label">编辑次数：</span>
-                  <span class="value">{{ user.analysis.note_edit_count }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">字符数：</span>
-                  <span class="value">{{ user.analysis.note_edit_char_count }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">编辑等级：</span>
-                  <span class="value level-badge" :class="getNoteLevelClass(user.analysis.note_edit_level)">
-                    {{ user.analysis.note_edit_level }}
-                  </span>
+                <div class="compact-data-grid">
+                  <div class="data-item">
+                    <span class="data-label">次数</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).note_edit_count }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">字符</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).note_edit_char_count }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">等级</span>
+                    <span class="level-badge" :class="getNoteLevelClass(getCurrentAnalysis(user).note_edit_level)">
+                      {{ getCurrentAnalysis(user).note_edit_level }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -133,35 +140,37 @@
               <div class="progress-item">
                 <div class="progress-label">
                   <span>浏览活跃度</span>
-                  <span class="progress-value">{{ user.analysis.browser_score * 100 }}%</span>
+                  <span class="progress-value">{{ getCurrentAnalysis(user).browser_score * 100 }}%</span>
                 </div>
                 <div class="progress-bar">
                   <div 
                     class="progress-fill browser-fill" 
-                    :style="{ width: user.analysis.browser_score * 100 + '%' }"
+                    :style="{ width: getCurrentAnalysis(user).browser_score * 100 + '%' }"
                   ></div>
                 </div>
-                <div class="analysis-item">
-                  <span class="label">页面数：</span>
-                  <span class="value">{{ user.analysis.page_count }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">鼠标操作：</span>
-                  <span class="value">{{ user.analysis.mouse_action_count }}次</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">浏览时长：</span>
-                  <span class="value">{{ user.analysis.mouse_duration }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">浏览比例：</span>
-                  <span class="value">{{ user.analysis.mouse_percent }}</span>
-                </div>
-                <div class="analysis-item">
-                  <span class="label">浏览等级：</span>
-                  <span class="value level-badge" :class="getBrowserLevelClass(user.analysis.browser_level)">
-                    {{ user.analysis.browser_level }}
-                  </span>
+                <div class="compact-data-grid">
+                  <div class="data-item">
+                    <span class="data-label">页面</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).page_count }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">操作</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).mouse_action_count }}次</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">时长</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).mouse_duration }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">比例</span>
+                    <span class="data-value">{{ getCurrentAnalysis(user).mouse_percent }}</span>
+                  </div>
+                  <div class="data-item">
+                    <span class="data-label">等级</span>
+                    <span class="level-badge" :class="getBrowserLevelClass(getCurrentAnalysis(user).browser_level)">
+                      {{ getCurrentAnalysis(user).browser_level }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -172,19 +181,21 @@
               <div class="progress-item">
                 <div class="progress-label">
                   <span>总参与度</span>
-                  <span class="progress-value">{{ (user.analysis.total_score * 100).toFixed(1) }}%</span>
+                  <span class="progress-value">{{ (getCurrentAnalysis(user).total_score * 100).toFixed(1) }}%</span>
                 </div>
                 <div class="progress-bar">
                   <div 
                     class="progress-fill total-fill" 
-                    :style="{ width: user.analysis.total_score * 100 + '%' }"
+                    :style="{ width: getCurrentAnalysis(user).total_score * 100 + '%' }"
                   ></div>
                 </div>
-                <div class="analysis-item">
-                  <span class="label">参与等级：</span>
-                  <span class="value level-badge total-level" :class="getLevelClass(user.analysis.total_level)">
-                    {{ user.analysis.total_level }}
-                  </span>
+                <div class="compact-data-grid">
+                  <div class="data-item">
+                    <span class="data-label">等级</span>
+                    <span class="level-badge total-level" :class="getLevelClass(getCurrentAnalysis(user).total_level)">
+                      {{ getCurrentAnalysis(user).total_level }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -234,7 +245,119 @@
           <div class="ai-tip">AI提示</div>
         </div>
         
-        <button class="send-btn">取消发送（5秒后自动发送）</button>
+                          <!-- AI提示数据区域 -->
+        <div v-if="user.analysis" class="ai-suggestions-section">
+          <!-- AI提示历史 -->
+          <div class="analysis-section ai-history-section">
+            <div class="section-title">AI提示历史</div>
+            <div class="ai-history-list">
+              <div 
+                v-for="(suggestion, index) in user.aiHistory.slice(0, 3)" 
+                :key="index"
+                class="ai-history-item"
+                @click="showAiDetail(user.id, suggestion)"
+              >
+                <div class="ai-summary">{{ suggestion.glasses_summary }}</div>
+                <div class="ai-time">{{ formatTimeRange(suggestion.start_time, suggestion.end_time) }}</div>
+              </div>
+              <div v-if="user.aiHistory.length === 0" class="no-ai-history">
+                暂无AI提示历史
+              </div>
+            </div>
+          </div>
+          
+          <!-- 当前AI提示 -->
+          <div class="analysis-section ai-current-section">
+            <div class="section-title">即将发送的AI提示</div>
+            <div v-if="user.currentAiSuggestion" class="ai-current-item">
+              <div class="ai-summary" @click="showAiDetail(user.id, user.currentAiSuggestion)">
+                {{ user.currentAiSuggestion.glasses_summary }}
+              </div>
+              <div class="ai-time">{{ formatTimeRange(user.currentAiSuggestion.start_time, user.currentAiSuggestion.end_time) }}</div>
+              <div v-if="user.isCountdownActive" class="countdown-section">
+                <div class="countdown-display">
+                  <span class="countdown-label">倒计时:</span>
+                  <span class="countdown-time" :class="{ 'urgent': user.countdownSeconds <= 10 }">
+                    {{ formatCountdown(user.countdownSeconds) }}
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div v-else class="no-ai-current">
+              暂无即将发送的AI提示
+            </div>
+          </div>
+        </div>
+        
+        <!-- 取消发送按钮（替换原来的发送推送按钮） -->
+        <button 
+          v-if="user.currentAiSuggestion && user.isCountdownActive"
+          class="cancel-send-btn" 
+          @click="cancelNotification(user.id)"
+          :disabled="user.countdownSeconds <= 0"
+        >
+          {{ user.countdownSeconds <= 0 ? '已发送' : '取消发送' }}
+        </button>
+        <div v-else class="no-push-status">
+          暂无推送状态
+        </div>
+      </div>
+    </div>
+    
+    <!-- AI详情弹窗 -->
+    <div v-if="showAiDetailModal" class="ai-detail-modal" @click="closeAiDetail">
+      <div class="ai-detail-content" @click.stop>
+        <div class="ai-detail-header">
+          <h3>AI分析详情</h3>
+          <button class="close-btn" @click="closeAiDetail">&times;</button>
+        </div>
+        <div class="ai-detail-body">
+          <div v-if="selectedAiDetail" class="ai-detail-info">
+            <div class="detail-section">
+              <h4>眼镜提示</h4>
+              <p class="glasses-summary">{{ selectedAiDetail.glasses_summary }}</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>时间范围</h4>
+              <p>{{ formatTimeRange(selectedAiDetail.start_time, selectedAiDetail.end_time) }}</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>参与度分析</h4>
+              <p><strong>类型：</strong>{{ selectedAiDetail.detail?.type || '未知' }}</p>
+              <p><strong>状态：</strong>{{ selectedAiDetail.detail?.status || '未知' }}</p>
+              <p><strong>建议：</strong>{{ selectedAiDetail.detail?.suggestion || '无' }}</p>
+            </div>
+            
+            <div class="detail-section">
+              <h4>详细证据</h4>
+              <pre class="evidence-text">{{ selectedAiDetail.detail?.evidence || '无' }}</pre>
+            </div>
+            
+            <div v-if="selectedAiDetail.more_info" class="detail-section">
+              <h4>额外信息</h4>
+              <p><strong>协作建议：</strong>{{ selectedAiDetail.more_info.collaboration_suggestion || '无' }}</p>
+              <p><strong>详细原因：</strong>{{ selectedAiDetail.more_info.detailed_reason || '无' }}</p>
+              <p><strong>历史对比：</strong>{{ selectedAiDetail.more_info.history_comparison || '无' }}</p>
+              <p><strong>小组对比：</strong>{{ selectedAiDetail.more_info.group_comparison || '无' }}</p>
+            </div>
+            
+            <div v-if="selectedAiDetail.group_distribution" class="detail-section">
+              <h4>小组分布</h4>
+              <p><strong>小组类型：</strong>{{ selectedAiDetail.group_distribution.group_type || '未知' }}</p>
+              <p><strong>小组风险：</strong>{{ selectedAiDetail.group_distribution.group_risk || '无' }}</p>
+              <p><strong>行动提示：</strong>{{ selectedAiDetail.group_distribution.action_hint || '无' }}</p>
+              <div class="distribution-stats">
+                <span class="stat-item">主导: {{ selectedAiDetail.group_distribution.dominant || 0 }}</span>
+                <span class="stat-item">高参与: {{ selectedAiDetail.group_distribution.high || 0 }}</span>
+                <span class="stat-item">正常: {{ selectedAiDetail.group_distribution.normal || 0 }}</span>
+                <span class="stat-item">低参与: {{ selectedAiDetail.group_distribution.low || 0 }}</span>
+                <span class="stat-item">无参与: {{ selectedAiDetail.group_distribution.no || 0 }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -253,13 +376,21 @@ export default {
       allUsers: [], // 所有用户信息
       startTime: '',
       endTime: '',
-      pollingStartTime: '',
       isAnalyzing: false,
       isPolling: false,
       pollingInterval: null, // 存储定时器ID
-      currentPollingStartTime: '', // 当前轮询的起始时间
       analysisHistory: {}, // 存储每个用户的历史分析数据 {userId: [{round1}, {round2}, {round3}]}
       currentRound: 1, // 当前轮次
+      showAiDetailModal: false, // AI详情弹窗显示状态
+      selectedAiDetail: null, // 选中的AI详情数据
+      currentTime: '2025-07-10T07:02:27', // UTC时间，用于调试
+      currentTimeLocal: '', // 本地时间选择器的值
+      lastTimeRange: null, // 记录上一次的时间范围，用于判断是否需要更新
+      lastAiTimeRange: null, // 记录上一次AI分析的时间范围，用于判断是否需要更新
+      lastNextNotifyTimeRange: null, // 记录上一次即将推送的时间范围，用于判断是否需要更新
+      countdownTimers: {}, // 存储每个用户的倒计时定时器 {userId: timerId}
+      countdownSeconds: {}, // 存储每个用户的倒计时秒数 {userId: seconds}
+      cancelledNotifications: new Set(), // 存储已取消的推送通知
     };
   },
   computed: {
@@ -288,45 +419,125 @@ export default {
         const userInfo = this.allUsers.find(u => String(u.user_id || u.id) === String(userId));
         return {
           id: userId,
-          name: userInfo ? userInfo.name : (member.name || '未知用户')
+          name: userInfo ? userInfo.name : (member.name || '未知用户'),
+          pushLoading: false, // 初始化推送状态
         };
       });
     },
     async onGroupChange() {
       await this.fetchGroupMembers(this.selectedGroupId);
     },
-    updateUserCardsWithAnalysis(analysisResult, roundStartTime) {
+    updateUserCardsWithAnalysis(analysisResult, roundStartTime, roundNumber = null) {
       // 更新用户卡片显示分析结果，并保存历史数据
       this.users = this.users.map(user => {
+        // 根据用户ID匹配分析结果
         const userAnalysis = analysisResult[user.id];
         if (userAnalysis) {
+          console.log(`更新用户 ${user.name} (${user.id}) 的分析数据`);
+          
           // 保存到历史记录
           if (!this.analysisHistory[user.id]) {
             this.analysisHistory[user.id] = [];
           }
+          
+          // 使用传入的轮次号，如果没有则使用当前轮次
+          const currentRound = roundNumber || this.currentRound;
+          
           // 添加轮次信息
           const analysisWithRound = {
             ...userAnalysis,
-            round: this.currentRound,
+            round: currentRound,
             timestamp: Date.now(),
-            start_time: roundStartTime // 新增
+            start_time: roundStartTime
           };
-          // 添加到历史记录开头（最新的在前面）
-          this.analysisHistory[user.id].unshift(analysisWithRound);
+          
+          // 检查是否已存在相同轮次的数据，如果存在则更新，否则添加
+          const existingIndex = this.analysisHistory[user.id].findIndex(item => item.round === currentRound);
+          if (existingIndex !== -1) {
+            // 更新现有轮次数据
+            this.analysisHistory[user.id][existingIndex] = analysisWithRound;
+          } else {
+            // 添加新轮次数据到开头（最新的在前面）
+            this.analysisHistory[user.id].unshift(analysisWithRound);
+          }
+          
+          // 按轮次排序（最新的在前面）
+          this.analysisHistory[user.id].sort((a, b) => b.round - a.round);
+          
           // 只保留最新3轮
           if (this.analysisHistory[user.id].length > 3) {
             this.analysisHistory[user.id] = this.analysisHistory[user.id].slice(0, 3);
           }
+          
           return {
             ...user,
             analysis: userAnalysis,
-            analysisHistory: this.analysisHistory[user.id]
+            analysisHistory: this.analysisHistory[user.id],
+            selectedRoundIndex: 0, // 默认选中最新轮次
+            aiHistory: user.aiHistory || [], // 保持现有AI提示历史
+            currentAiSuggestion: user.currentAiSuggestion || null // 保持现有AI提示
           };
+        } else {
+          console.log(`用户 ${user.name} (${user.id}) 在此轮次中无分析数据`);
         }
         return user;
       });
-      // 轮次递增
-      this.currentRound++;
+      
+      // 只有在没有传入轮次号时才递增当前轮次
+      if (!roundNumber) {
+        this.currentRound++;
+      }
+    },
+    hasTimeRangeChanged(currentTimeRange) {
+      // 比较当前时间范围与上次记录的时间范围是否发生变化
+      if (!currentTimeRange) {
+        return false;
+      }
+      
+      if (!this.lastTimeRange) {
+        // 第一次获取数据，需要更新
+        return true;
+      }
+      
+      // 比较开始时间和结束时间
+      const startChanged = currentTimeRange.start !== this.lastTimeRange.start;
+      const endChanged = currentTimeRange.end !== this.lastTimeRange.end;
+      
+      return startChanged || endChanged;
+    },
+    hasAiTimeRangeChanged(currentAiTimeRange) {
+      // 比较当前AI分析时间范围与上次记录的时间范围是否发生变化
+      if (!currentAiTimeRange) {
+        return false;
+      }
+      
+      if (!this.lastAiTimeRange) {
+        // 第一次获取数据，需要更新
+        return true;
+      }
+      
+      // 比较开始时间和结束时间
+      const startChanged = currentAiTimeRange.start !== this.lastAiTimeRange.start;
+      const endChanged = currentAiTimeRange.end !== this.lastAiTimeRange.end;
+      
+      return startChanged || endChanged;
+    },
+    hasNextNotifyTimeRangeChanged(currentNextNotifyTimeRange) {
+      // 比较当前即将推送时间范围与上次记录的时间范围是否发生变化
+      if (!currentNextNotifyTimeRange) {
+        return false;
+      }
+      
+      if (!this.lastNextNotifyTimeRange) {
+        // 第一次获取数据，需要更新
+        return true;
+      }
+      
+      // 比较开始时间和结束时间
+      const startChanged = currentNextNotifyTimeRange.start !== this.lastNextNotifyTimeRange.start;
+      const endChanged = currentNextNotifyTimeRange.end !== this.lastNextNotifyTimeRange.end;
+      
+      return startChanged || endChanged;
     },
     formatHourMinute(timeStr) {
       // timeStr: '2025-07-10T07:02:00' - 需要明确解析为UTC时间
@@ -355,6 +566,452 @@ export default {
       const m = String(utcMinutes).padStart(2, '0');
       
       return `${h}:${m}`;
+    },
+    selectRound(userId, roundIndex) {
+      // 选择轮次
+      this.users = this.users.map(user => {
+        if (user.id === userId) {
+          return {
+            ...user,
+            selectedRoundIndex: roundIndex
+          };
+        }
+        return user;
+      });
+    },
+    getCurrentAnalysis(user) {
+      // 获取当前选中轮次的分析数据
+      if (!user.analysisHistory || user.analysisHistory.length === 0) {
+        return user.analysis || {};
+      }
+      
+      const selectedIndex = user.selectedRoundIndex || 0;
+      const selectedAnalysis = user.analysisHistory[selectedIndex];
+      
+      if (selectedAnalysis) {
+        // 移除轮次相关的字段，只返回分析数据
+        const { round, timestamp, start_time, ...analysisData } = selectedAnalysis;
+        return analysisData;
+      }
+      
+      return user.analysis || {};
+    },
+    formatTimeRange(startTime, endTime) {
+      if (!startTime || !endTime) return '';
+      
+      const start = this.formatHourMinute(startTime);
+      const end = this.formatHourMinute(endTime);
+      
+      return `${start} - ${end}`;
+    },
+    formatCountdown(seconds) {
+      if (seconds <= 0) return '00:00';
+      
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      
+      const result = `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+      console.log(`格式化倒计时: ${seconds}秒 -> ${result}`);
+      
+      return result;
+    },
+    showAiDetail(userId, aiData) {
+      if (!aiData) return;
+      
+      this.selectedAiDetail = aiData;
+      this.showAiDetailModal = true;
+    },
+    closeAiDetail() {
+      this.showAiDetailModal = false;
+      this.selectedAiDetail = null;
+    },
+    // 模拟获取AI提示数据的方法（实际应该从API获取）
+    async fetchAiSuggestions(userId) {
+      // 这里应该调用实际的API
+      // 暂时返回模拟数据
+      const mockAiData = {
+        glasses_summary: "你参与度很高哦～ 继续加油，多和队友互动哦！^_^",
+        start_time: "2025-07-10T07:06:27",
+        end_time: "2025-07-10T07:08:27",
+        detail: {
+          type: "Normal Participation",
+          status: "发言时长较短，占比不高，鼠标操作次数少，未编辑笔记。",
+          suggestion: "建议积极参与讨论，分享你的想法和观点，并尝试更多地与其他成员互动。",
+          evidence: "- 发言等级：Normal Speech（时长：21.24s，占比：17.7%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：104.11s，占比：86.75%）"
+        },
+        more_info: {
+          collaboration_suggestion: "建议主动向其他成员提问，并积极回应其他成员的发言，促进小组讨论的活跃度。",
+          detailed_reason: "发言时长仅为 21.24s，占比 17.7%，相对较低。鼠标操作次数也较少，仅为 6 次，时长为 104.11s，占比 86.75%，说明其主要时间用于浏览页面。此外，未编辑笔记。综合来看，参与度处于中等偏低水平。",
+          history_comparison: "需要更多历史数据进行对比分析，以了解其参与度的变化趋势。",
+          group_comparison: "与其他成员相比，发言时长和编辑次数都较少。建议积极参与讨论，分享自己的想法和观点，并尝试更多地与其他成员互动。"
+        },
+        group_distribution: {
+          group_risk: "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+          group_type: "失衡型",
+          action_hint: "激励低参与成员积极发言，鼓励主导者留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+          dominant: 1,
+          high: 1,
+          normal: 1,
+          low: 1,
+          no: 0
+        }
+      };
+      
+      return mockAiData;
+    },
+    updateCurrentTime() {
+      // 将本地时间转换为UTC时间
+      if (this.currentTimeLocal) {
+        const localDate = new Date(this.currentTimeLocal);
+        // 转换为UTC时间字符串
+        this.currentTime = localDate.toISOString().slice(0, 19);
+      }
+    },
+    // 将UTC时间转换为本地时间（东八区）
+    convertUtcToLocal(utcTime) {
+      if (!utcTime) return '';
+      
+      // 解析UTC时间字符串
+      const match = utcTime.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/);
+      if (!match) {
+        console.error('UTC时间格式错误:', utcTime);
+        return '';
+      }
+      
+      const [, year, month, day, hour, minute, second] = match;
+      
+      // 转换为东八区时间（加8小时）
+      let beijingHour = parseInt(hour) + 8;
+      let beijingDay = parseInt(day);
+      let beijingMonth = parseInt(month);
+      let beijingYear = parseInt(year);
+      
+      // 处理跨日的情况
+      if (beijingHour >= 24) {
+        beijingHour -= 24;
+        beijingDay += 1;
+        
+        // 处理跨月的情况
+        const daysInMonth = new Date(beijingYear, beijingMonth, 0).getDate();
+        if (beijingDay > daysInMonth) {
+          beijingDay = 1;
+          beijingMonth += 1;
+          
+          // 处理跨年的情况
+          if (beijingMonth > 12) {
+            beijingMonth = 1;
+            beijingYear += 1;
+          }
+        }
+      }
+      
+      // 格式化为本地时间选择器格式 (YYYY-MM-DDTHH:MM)
+      const result = `${beijingYear}-${String(beijingMonth).padStart(2, '0')}-${String(beijingDay).padStart(2, '0')}T${String(beijingHour).padStart(2, '0')}:${minute}`;
+      
+      console.log(`UTC时间转换: ${utcTime} -> 东八区时间: ${result}`);
+      
+      return result;
+    },
+    // 更新用户AI提示历史数据
+    updateUserAiHistoryData(aiAnalysisResult, roundStartTime, roundNumber) {
+      console.log(`更新第${roundNumber}轮AI分析数据:`, aiAnalysisResult);
+      
+      // 更新用户卡片显示AI分析结果
+      this.users = this.users.map(user => {
+        // 根据用户ID匹配AI分析结果
+        const userAiData = aiAnalysisResult[user.id];
+        if (userAiData) {
+          console.log(`更新用户 ${user.name} (${user.id}) 的AI分析数据`);
+          
+          // 添加时间范围和轮次信息
+          const aiDataWithTime = {
+            ...userAiData,
+            start_time: roundStartTime,
+            end_time: roundStartTime ? this.addTwoMinutes(roundStartTime) : null,
+            round: roundNumber
+          };
+          
+          // 更新用户的AI提示历史
+          const currentAiHistory = user.aiHistory || [];
+          
+          // 检查是否已存在相同轮次的AI数据，如果存在则更新，否则添加
+          const existingIndex = currentAiHistory.findIndex(item => item.round === roundNumber);
+          if (existingIndex !== -1) {
+            // 更新现有轮次数据
+            currentAiHistory[existingIndex] = aiDataWithTime;
+          } else {
+            // 添加新轮次数据到开头（最新的在前面）
+            currentAiHistory.unshift(aiDataWithTime);
+          }
+          
+          // 按轮次排序（最新的在前面）
+          currentAiHistory.sort((a, b) => b.round - a.round);
+          
+          // 只保留最新3轮
+          const updatedAiHistory = currentAiHistory.slice(0, 3);
+          
+          return {
+            ...user,
+            aiHistory: updatedAiHistory,
+            currentAiSuggestion: user.currentAiSuggestion || null // 保持现有即将推送的AI提示
+          };
+        } else {
+          console.log(`用户 ${user.name} (${user.id}) 在此轮次中无AI分析数据`);
+        }
+        return user;
+      });
+    },
+    // 辅助方法：给时间加2分钟
+    addTwoMinutes(timeStr) {
+      if (!timeStr) return null;
+      
+      const date = new Date(timeStr);
+      date.setMinutes(date.getMinutes() + 2);
+      return date.toISOString().slice(0, 19);
+    },
+    // 计算倒计时秒数
+    calculateCountdown(nextNotifyTime) {
+      if (!nextNotifyTime) return 0;
+      
+      // 解析UTC时间字符串，移除+00:00后缀
+      const cleanTime = nextNotifyTime.replace('+00:00', '');
+      const now = new Date(this.currentTime); // 使用页面当前时间
+      const notifyTime = new Date(cleanTime);
+      
+      console.log('倒计时计算:', {
+        currentTime: this.currentTime,
+        nextNotifyTime: cleanTime,
+        now: now.toISOString(),
+        notifyTime: notifyTime.toISOString()
+      });
+      
+      const diffSeconds = Math.floor((notifyTime - now) / 1000);
+      console.log('时间差秒数:', diffSeconds);
+      
+      // 如果是负数，返回5秒倒计时
+      if (diffSeconds < 0) {
+        return 5;
+      }
+      
+      return diffSeconds;
+    },
+    // 启动倒计时
+    startCountdown(userId, initialSeconds, aiData) {
+      // 清除现有的倒计时
+      this.clearCountdown(userId);
+      
+      let seconds = initialSeconds;
+      
+      // 立即更新用户数据
+      const userIndex = this.users.findIndex(u => u.id === userId);
+      if (userIndex !== -1) {
+        this.users[userIndex] = {
+          ...this.users[userIndex],
+          countdownSeconds: seconds,
+          isCountdownActive: true
+        };
+      }
+      
+      const timer = setInterval(() => {
+        seconds--;
+        
+        // 更新用户数据中的倒计时
+        const userIndex = this.users.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+          this.users[userIndex] = {
+            ...this.users[userIndex],
+            countdownSeconds: seconds
+          };
+        }
+        
+        console.log(`用户 ${userId} 倒计时: ${seconds}秒`);
+        
+        if (seconds <= 0) {
+          // 倒计时结束，自动推送
+          this.clearCountdown(userId);
+          this.autoSendPush(userId, aiData);
+        }
+      }, 1000);
+      
+      this.countdownTimers[userId] = timer;
+      console.log(`用户 ${userId} 倒计时启动，初始秒数: ${initialSeconds}`);
+    },
+    // 清除单个用户的倒计时
+    clearCountdown(userId) {
+      if (this.countdownTimers[userId]) {
+        clearInterval(this.countdownTimers[userId]);
+        delete this.countdownTimers[userId];
+      }
+      delete this.countdownSeconds[userId];
+      
+      // 更新用户数据
+      const userIndex = this.users.findIndex(u => u.id === userId);
+      if (userIndex !== -1) {
+        this.users[userIndex] = {
+          ...this.users[userIndex],
+          countdownSeconds: 0,
+          isCountdownActive: false
+        };
+      }
+    },
+    // 清除所有倒计时
+    clearAllCountdowns() {
+      Object.keys(this.countdownTimers).forEach(userId => {
+        this.clearCountdown(userId);
+      });
+    },
+    // 取消推送
+    cancelNotification(userId) {
+      const user = this.users.find(u => u.id === userId);
+      if (user && user.currentAiSuggestion) {
+        const notificationKey = `${userId}_${user.currentAiSuggestion.next_notify_time}`;
+        this.cancelledNotifications.add(notificationKey);
+        
+        // 清除倒计时
+        this.clearCountdown(userId);
+        
+        console.log(`用户 ${user.name} 的推送已取消`);
+      }
+    },
+    // 自动推送
+    async autoSendPush(userId, aiData) {
+      const user = this.users.find(u => u.id === userId);
+      if (!user) return;
+      
+      console.log(`自动推送用户 ${user.name} 的AI提示`);
+      
+      try {
+        // 准备推送参数
+        const pushPayload = {
+          push_ji: true,
+          device_token: "user_device_token_here",
+          glasses_summary: aiData.glasses_summary,
+          summary: `${user.name}的AI分析提示`,
+          detail_suggestion: aiData.detail?.suggestion || "继续保持良好的参与状态",
+          user_id: userId,
+          user_name: user.name,
+          push_pc: true,
+          ai_analyze_result: aiData
+        };
+
+        console.log('自动推送参数:', pushPayload);
+        
+        // 调用推送接口
+        const response = await apiService.pushAiAnalysisResult(pushPayload);
+        console.log('自动推送成功:', response);
+        
+        // 更新用户状态
+        const userIndex = this.users.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+          this.users[userIndex] = {
+            ...this.users[userIndex],
+            isCountdownActive: false,
+            countdownSeconds: 0
+          };
+        }
+        
+        console.log(`用户 ${user.name} 的自动推送完成`);
+        
+      } catch (error) {
+        console.error('自动推送失败:', error);
+      }
+    },
+    
+    // 更新即将推送的AI提示数据
+    updateNextNotifyData(nextNotifyResult) {
+      console.log('更新即将推送的AI提示数据:', nextNotifyResult);
+      
+      // 根据用户ID匹配即将推送的AI提示数据
+      this.users = this.users.map(user => {
+        const userNotifyData = nextNotifyResult[user.id];
+        if (userNotifyData) {
+          console.log(`更新用户 ${user.name} (${user.id}) 的即将推送AI提示数据`);
+          
+          // 检查是否已取消该推送
+          const notificationKey = `${user.id}_${userNotifyData.next_notify_time}`;
+          if (this.cancelledNotifications.has(notificationKey)) {
+            console.log(`用户 ${user.name} 的推送已被取消，跳过倒计时`);
+            return {
+              ...user,
+              currentAiSuggestion: userNotifyData,
+              countdownSeconds: 0,
+              isCountdownActive: false
+            };
+          }
+          
+          // 计算倒计时秒数
+          const countdownSeconds = this.calculateCountdown(userNotifyData.next_notify_time);
+          
+          // 启动倒计时
+          this.startCountdown(user.id, countdownSeconds, userNotifyData);
+          
+          return {
+            ...user,
+            currentAiSuggestion: userNotifyData,
+            countdownSeconds: countdownSeconds,
+            isCountdownActive: true
+          };
+        } else {
+          console.log(`用户 ${user.name} (${user.id}) 无即将推送的AI提示数据`);
+        }
+        return user;
+      });
+    },
+    
+    // 备用方案：手动获取AI提示数据（主要用于本地分析后调用）
+    async updateAiSuggestions() {
+      try {
+        // 调用AI分析接口获取数据
+        const requestData = {
+          group_id: this.selectedGroupId
+        };
+        
+        const aiAnalyzeResult = await apiService.getAiAnalyze(requestData);
+        console.log('手动获取AI分析结果:', aiAnalyzeResult);
+        
+        // 处理AI分析结果，更新用户数据
+        if (aiAnalyzeResult && aiAnalyzeResult.length > 0) {
+          // 假设返回的是用户AI分析数据数组
+          for (const userAiData of aiAnalyzeResult) {
+            const userIndex = this.users.findIndex(u => u.id === userAiData.user_id || u.id === userAiData.userId);
+            if (userIndex !== -1) {
+              this.users[userIndex] = {
+                ...this.users[userIndex],
+                currentAiSuggestion: userAiData,
+                aiHistory: [
+                  // 这里可以根据实际API返回的历史数据来更新
+                  // 暂时使用当前数据作为历史数据
+                  { ...userAiData, start_time: "2025-07-10T07:04:27", end_time: "2025-07-10T07:06:27" },
+                  { ...userAiData, start_time: "2025-07-10T07:02:27", end_time: "2025-07-10T07:04:27" },
+                  { ...userAiData, start_time: "2025-07-10T07:00:27", end_time: "2025-07-10T07:02:27" }
+                ]
+              };
+            }
+          }
+        }
+      } catch (error) {
+        console.error('手动获取AI分析数据失败:', error);
+        // 如果API调用失败，使用模拟数据作为备用
+        for (const user of this.users) {
+          try {
+            const currentAiData = await this.fetchAiSuggestions(user.id);
+            const userIndex = this.users.findIndex(u => u.id === user.id);
+            if (userIndex !== -1) {
+              this.users[userIndex] = {
+                ...this.users[userIndex],
+                currentAiSuggestion: currentAiData,
+                aiHistory: [
+                  { ...currentAiData, start_time: "2025-07-10T07:04:27", end_time: "2025-07-10T07:06:27" },
+                  { ...currentAiData, start_time: "2025-07-10T07:02:27", end_time: "2025-07-10T07:04:27" },
+                  { ...currentAiData, start_time: "2025-07-10T07:00:27", end_time: "2025-07-10T07:02:27" }
+                ]
+              };
+            }
+          } catch (fallbackError) {
+            console.error(`获取用户 ${user.id} 的备用AI提示数据失败:`, fallbackError);
+          }
+        }
+      }
     },
     getLevelClass(level) {
       // 根据参与等级返回对应的CSS类名
@@ -442,9 +1099,12 @@ export default {
           console.log('分析结果:', result.local_analysis);
           console.log(`分析完成！处理时间: ${result.processing_time.toFixed(2)}秒`);
           
-          // 更新用户卡片显示分析结果
+          // 更新用户卡片显示分析结果（本地分析使用特殊轮次号999）
           const roundStartTime = result.raw_data_summary?.time_range?.start;
-          this.updateUserCardsWithAnalysis(result.local_analysis, roundStartTime);
+          this.updateUserCardsWithAnalysis(result.local_analysis, roundStartTime, 999);
+          
+          // 获取AI提示数据
+          await this.updateAiSuggestions();
         } else {
           console.log('分析完成，但无数据结果');
         }
@@ -464,65 +1124,152 @@ export default {
         return;
       }
       
-      if (!this.pollingStartTime) {
-        alert('请选择轮询开始时间');
-        return;
-      }
-      
-      if (new Date(this.startTime) >= new Date(this.endTime)) {
-        alert('开始时间必须早于结束时间');
-        return;
-      }
-      
       this.isPolling = true;
-      // 初始化当前轮询起始时间
-      this.currentPollingStartTime = this.pollingStartTime;
+      // 重置时间范围记录，确保第一次轮询会更新数据
+      this.lastTimeRange = null;
+      this.lastAiTimeRange = null;
+      this.lastNextNotifyTimeRange = null;
+      // 清除所有倒计时和取消记录
+      this.clearAllCountdowns();
+      this.cancelledNotifications.clear();
+      
       // 立即执行一次分析
       await this.performPollingAnalysis();
-      // 设置定时器，每1分钟执行一次
+      // 设置定时器，每5秒执行一次
       this.pollingInterval = setInterval(async () => {
         if (this.isPolling) {
           await this.performPollingAnalysis();
         }
-      }, 60000); // 1分钟
+      }, 5000); // 5秒
       
-      console.log('前端轮询已启动，每1分钟执行一次');
+      console.log('前端轮询已启动，每5秒执行一次');
     },
     
     async performPollingAnalysis() {
       try {
-        // 计算本次的start_time和end_time
-        const startTimeDate = new Date(this.currentPollingStartTime);
-        const endTimeDate = new Date(startTimeDate.getTime() + 60 * 1000); // +1分钟
-        const startTimeISO = startTimeDate.toISOString().slice(0, 19);
-        const endTimeISO = endTimeDate.toISOString().slice(0, 19);
-        // 构建请求数据
+        // 构建请求数据，只传group_id
         const requestData = {
-          group_id: this.selectedGroupId,
-          round_index: 1,
-          start_time: startTimeISO,
-          end_time: endTimeISO,
-          members: this.users.map(user => ({
-            id: user.id,
-            name: user.name
-          }))
+          group_id: this.selectedGroupId
         };
-        // 调用接口获取分析结果
-        const result = await apiService.getAnomalyStatus(requestData);
-        console.log('轮询分析结果:', result, '窗口:', startTimeISO, '->', endTimeISO);
-        // 处理轮询分析结果
-        if (result.local && result.local.length > 0) {
-          // 获取最新的分析结果
-          const latestAnalysis = result.local[result.local.length - 1];
-          const timeKey = Object.keys(latestAnalysis)[0];
-          const analysisData = latestAnalysis[timeKey];
-          // 更新用户卡片显示分析结果
-          this.updateUserCardsWithAnalysis(analysisData, timeKey);
+        
+        // 并行调用三个接口
+        const [anomalyResult, aiHistoryResult, nextNotifyResult] = await Promise.all([
+          apiService.getAnomalyStatus(requestData),           // 本地分析数据
+          apiService.getAiAnalyze(requestData),               // 最近3条AI提示
+          apiService.getNextNotifyAiAnalyzeResult(requestData) // 即将推送的AI提示
+        ]);
+        
+        console.log('轮询分析结果:', anomalyResult);
+        console.log('AI提示历史结果:', aiHistoryResult);
+        console.log('即将推送结果:', nextNotifyResult);
+        
+        // 处理本地分析数据（最近3轮）
+        if (anomalyResult && Array.isArray(anomalyResult) && anomalyResult.length > 0) {
+          console.log('收到最近3轮分析数据:', anomalyResult);
+          
+          // 检查第一条数据的时间范围是否发生变化
+          const firstRoundData = anomalyResult[0];
+          const currentTimeRange = firstRoundData.time_range;
+          
+          // 比较时间范围是否发生变化
+          const timeRangeChanged = this.hasTimeRangeChanged(currentTimeRange);
+          
+          if (timeRangeChanged) {
+            console.log('时间范围发生变化，更新页面数据');
+            
+            // 处理每一轮的数据
+            anomalyResult.forEach((roundData, roundIndex) => {
+              const roundNumber = anomalyResult.length - roundIndex; // 最新的轮次为第1轮
+              
+              // 提取时间范围
+              const timeRange = roundData.time_range;
+              const roundStartTime = timeRange ? timeRange.start : null;
+              
+              // 提取用户分析数据（排除time_range字段）
+              const userAnalysisData = {};
+              Object.keys(roundData).forEach(key => {
+                if (key !== 'time_range') {
+                  userAnalysisData[key] = roundData[key];
+                }
+              });
+              
+              // 更新用户卡片显示分析结果
+              this.updateUserCardsWithAnalysis(userAnalysisData, roundStartTime, roundNumber);
+            });
+            
+            // 更新记录的时间范围
+            this.lastTimeRange = currentTimeRange;
+          } else {
+            console.log('时间范围未变化，跳过页面更新');
+          }
         } else {
           console.log('轮询分析完成，但无历史数据');
         }
-        // 推进到下一个时间窗口
-        this.currentPollingStartTime = endTimeISO;
+        
+        // 处理AI提示历史数据（最近3轮）
+        if (aiHistoryResult && Array.isArray(aiHistoryResult) && aiHistoryResult.length > 0) {
+          console.log('收到最近3轮AI分析数据:', aiHistoryResult);
+          
+          // 检查第一条数据的时间范围是否发生变化
+          const firstRoundData = aiHistoryResult[0];
+          const currentAiTimeRange = firstRoundData.time_range;
+          
+          // 比较时间范围是否发生变化
+          const aiTimeRangeChanged = this.hasAiTimeRangeChanged(currentAiTimeRange);
+          
+          if (aiTimeRangeChanged) {
+            console.log('AI分析时间范围发生变化，更新AI提示数据');
+            
+            // 处理每一轮的AI分析数据
+            aiHistoryResult.forEach((roundData, roundIndex) => {
+              const roundNumber = aiHistoryResult.length - roundIndex; // 最新的轮次为第1轮
+              
+              // 提取时间范围
+              const timeRange = roundData.time_range;
+              const roundStartTime = timeRange ? timeRange.start : null;
+              
+              // 提取用户AI分析数据（排除time_range字段）
+              const userAiData = {};
+              Object.keys(roundData).forEach(key => {
+                if (key !== 'time_range') {
+                  userAiData[key] = roundData[key];
+                }
+              });
+              
+              // 更新用户AI提示数据
+              this.updateUserAiHistoryData(userAiData, roundStartTime, roundNumber);
+            });
+            
+            // 更新记录的AI时间范围
+            this.lastAiTimeRange = currentAiTimeRange;
+          } else {
+            console.log('AI分析时间范围未变化，跳过AI提示更新');
+          }
+        }
+        
+        // 处理即将推送的AI提示数据
+        if (nextNotifyResult && typeof nextNotifyResult === 'object') {
+          console.log('收到即将推送的AI提示数据:', nextNotifyResult);
+          
+          // 检查时间范围是否发生变化
+          const currentNextNotifyTimeRange = nextNotifyResult.time_range;
+          const nextNotifyTimeRangeChanged = this.hasNextNotifyTimeRangeChanged(currentNextNotifyTimeRange);
+          
+          if (nextNotifyTimeRangeChanged) {
+            console.log('即将推送时间范围发生变化，更新推送数据');
+            
+            // 清除所有现有的倒计时
+            this.clearAllCountdowns();
+            
+            // 更新即将推送的AI提示数据
+            this.updateNextNotifyData(nextNotifyResult);
+            
+            // 更新记录的时间范围
+            this.lastNextNotifyTimeRange = currentNextNotifyTimeRange;
+          } else {
+            console.log('即将推送时间范围未变化，跳过推送数据更新');
+          }
+        }
       } catch (error) {
         console.error('轮询分析失败:', error);
       }
@@ -546,7 +1293,8 @@ export default {
         console.error('停止轮询失败:', error);
         alert('停止轮询失败：' + (error.message || '未知错误'));
       }
-    }
+    },
+
   },
   async mounted() {
     await this.fetchAllUsers();
@@ -577,7 +1325,11 @@ export default {
     
     this.startTime = formatLocalTime(startTime);
     this.endTime = formatLocalTime(endTime);
-    this.pollingStartTime = formatLocalTime(startTime);
+    
+    // 初始化当前时间选择器
+    console.log('初始化时间选择器，UTC时间:', this.currentTime);
+    this.currentTimeLocal = this.convertUtcToLocal(this.currentTime);
+    console.log('转换后的本地时间:', this.currentTimeLocal);
   },
   beforeUnmount() {
     // 组件销毁前清除定时器
@@ -585,6 +1337,8 @@ export default {
       clearInterval(this.pollingInterval);
       this.pollingInterval = null;
     }
+    // 清除所有倒计时
+    this.clearAllCountdowns();
   }
 }
 </script>
@@ -747,18 +1501,50 @@ export default {
   transform: none;
   box-shadow: none;
 }
-.polling-time-group {
+
+.current-time-display {
   display: flex;
   align-items: center;
-  gap: 6px;
-  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #495057;
 }
-.polling-time-group label {
+
+.time-label {
   font-weight: 500;
-  color: #333;
-  font-size: 1rem;
+  color: #6c757d;
   white-space: nowrap;
 }
+
+.time-picker {
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  border: 1px solid #d0d5db;
+  border-radius: 4px;
+  background: #fff;
+  outline: none;
+  transition: border 0.2s;
+  font-family: 'Courier New', monospace;
+}
+
+.time-picker:focus {
+  border: 1.5px solid #1976d2;
+}
+
+.time-utc {
+  font-weight: 600;
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+}
+
 .group-title {
   margin-top: 10px;
   margin-bottom: 12px;
@@ -783,7 +1569,7 @@ export default {
   border-radius: 24px;
   box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
   padding: 20px 25px;
-  min-height: 420px;
+  min-height: 380px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -826,22 +1612,42 @@ export default {
   color: #1976d2;
   font-size: 1.1rem;
 }
-.send-btn {
-  background: linear-gradient(90deg, #ffd580 0%, #ffc266 100%);
+.cancel-send-btn {
+  background: linear-gradient(90deg, #dc3545 0%, #c82333 100%);
   border: none;
   border-radius: 8px;
   width: 100%;
   padding: 12px 0;
   font-weight: 600;
   font-size: 1.05rem;
-  color: #7c4d00;
+  color: white;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(255,194,102,0.12);
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(220,53,69,0.12);
 }
-.send-btn:hover {
-  background: linear-gradient(90deg, #ffe0a3 0%, #ffd580 100%);
-  box-shadow: 0 4px 16px 0 rgba(255,194,102,0.18);
+.cancel-send-btn:hover:not(:disabled) {
+  background: linear-gradient(90deg, #e74c3c 0%, #dc3545 100%);
+  box-shadow: 0 4px 16px 0 rgba(220,53,69,0.18);
+  transform: translateY(-1px);
+}
+.cancel-send-btn:disabled {
+  background: #6c757d;
+  color: #adb5bd;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.no-push-status {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  width: 100%;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 1rem;
+  color: #6c757d;
+  font-weight: 500;
 }
 
 /* 分析结果样式 */
@@ -851,8 +1657,8 @@ export default {
 }
 
 .analysis-section {
-  margin-bottom: 8px;
-  padding: 12px;
+  margin-bottom: 6px;
+  padding: 10px;
   background: #f8f9fa;
   border-radius: 8px;
   border-left: 4px solid #e9ecef;
@@ -866,8 +1672,8 @@ export default {
 .section-title {
   font-weight: 600;
   color: #495057;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -901,6 +1707,38 @@ export default {
   color: #333;
 }
 
+/* 紧凑数据网格样式 */
+.compact-data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.data-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 4px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.data-label {
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 1px;
+  font-size: 0.65rem;
+}
+
+.data-value {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.75rem;
+}
+
 .total-score {
   font-size: 1rem;
   color: #155724;
@@ -908,18 +1746,18 @@ export default {
 }
 
 .level-badge {
-  padding: 3px 6px;
+  padding: 2px 4px;
   border-radius: 3px;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-align: center;
-  min-width: 60px;
+  min-width: 50px;
 }
 
 .total-level {
-  font-size: 0.8rem;
-  padding: 4px 8px;
-  min-width: 80px;
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  min-width: 70px;
 }
 
 .level-no {
@@ -955,24 +1793,35 @@ export default {
 /* 轮次标签 */
 .round-tabs {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .round-tab {
-  padding: 6px 12px;
+  padding: 4px 10px;
   background: #e9ecef;
-  border-radius: 16px;
-  font-size: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
   font-weight: 500;
   color: #6c757d;
   cursor: pointer;
   transition: all 0.2s;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.round-tab:hover {
+  background: #dee2e6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .round-tab.active {
   background: #007bff;
   color: white;
+  border-color: #0056b3;
+  box-shadow: 0 2px 6px rgba(0,123,255,0.3);
 }
 
 /* 进度条样式 */
@@ -981,8 +1830,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
-  font-size: 0.85rem;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -993,11 +1842,11 @@ export default {
 
 .progress-bar {
   width: 100%;
-  height: 8px;
+  height: 6px;
   background: #e9ecef;
-  border-radius: 4px;
+  border-radius: 3px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .progress-fill {
@@ -1085,5 +1934,245 @@ export default {
   height: 100%;
   border-radius: 2px;
   transition: width 0.3s ease;
+}
+
+/* AI提示区域样式 */
+.ai-suggestions-section {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.ai-history-section,
+.ai-current-section {
+  margin-bottom: 6px;
+}
+
+.ai-history-section {
+  background: #f8f9fa;
+  border-left-color: #6c757d;
+}
+
+.ai-current-section {
+  background: #e8f5e8;
+  border-left-color: #28a745;
+}
+
+.ai-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ai-history-item,
+.ai-current-item {
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.75rem;
+  margin-bottom: 2px;
+}
+
+.ai-history-item:hover,
+.ai-current-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(1px);
+}
+
+.ai-current-item {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.ai-summary {
+  color: #495057;
+  margin-bottom: 1px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.ai-time {
+  color: #6c757d;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.no-ai-history {
+  padding: 4px 6px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+}
+
+.no-ai-current {
+  padding: 4px 6px;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+}
+
+.countdown-section {
+  margin-top: 6px;
+  padding: 4px 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 3px;
+  border-left: 3px solid #ffc107;
+}
+
+.countdown-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.countdown-label {
+  font-size: 0.7rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.countdown-time {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #28a745;
+  font-family: 'Courier New', monospace;
+}
+
+.countdown-time.urgent {
+  color: #dc3545;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+
+
+/* AI详情弹窗样式 */
+.ai-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ai-detail-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ai-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.ai-detail-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.ai-detail-body {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section h4 {
+  margin: 0 0 8px 0;
+  color: #495057;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 4px;
+}
+
+.detail-section p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #333;
+}
+
+.glasses-summary {
+  background: #e3f2fd;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 4px solid #2196f3;
+  font-weight: 500;
+}
+
+.evidence-text {
+  background: #f8f9fa;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  color: #495057;
+  border: 1px solid #e9ecef;
+}
+
+.distribution-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.stat-item {
+  background: #e9ecef;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: #495057;
 }
 </style> 
