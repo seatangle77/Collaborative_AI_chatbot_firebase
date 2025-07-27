@@ -58,8 +58,25 @@ def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analy
     start_time = time.time()
     logger.info(f"🖱️ [反馈点击] 收到用户{user_id}的{click_type}点击...")
 
+    # Less\More 时调整轮询周期
+    global _default_interval_seconds, _user_notify_interval_seconds
+    if click_type == "Less":
+        old_interval = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
+
+        if old_interval + 60 <= _default_interval_seconds * 2:
+            _user_notify_interval_seconds[user_id] = old_interval + 60
+
+        logger.info(f"📊 [反馈点击] 检测到Less点击，调整轮询间隔: {old_interval}s → {_user_notify_interval_seconds.get(user_id, _default_interval_seconds)}s")
+    elif click_type == "More":
+        old_interval = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
+
+        if old_interval - 60 >= _default_interval_seconds:
+            _user_notify_interval_seconds[user_id] = old_interval - 60
+
+        logger.info(f"📊 [反馈点击] 检测到More点击，调整轮询间隔: {old_interval}s → {_user_notify_interval_seconds.get(user_id, _default_interval_seconds)}s")
+
     click_id = f"{group_id}_{user_id}_{int(datetime.now().timestamp())}"
-    db.collection("feedback_clicks").document(click_id).set({
+    feedback_setting = {
         "id": click_id,
         "group_id": group_id,
         "user_id": user_id,
@@ -68,30 +85,13 @@ def feedback_setting(group_id: str, user_id: str, click_type: str, anomaly_analy
         "clicked_at": datetime.now(timezone.utc).isoformat(),
         "detail_type": detail_type,
         "detail_status": detail_status,
-        "share_to_user_ids": share_to_user_ids
-    })
-    logger.info(f"💾 [反馈点击] 已记录点击事件到数据库")
-
-    # Less时调整轮询周期
-    global _default_interval_seconds, _user_notify_interval_seconds
-    if click_type == "Less":
-        old_interval = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
-
-        if old_interval + 60 <= _default_interval_seconds * 2:
-            _user_notify_interval_seconds[user_id] = old_interval + 60
-
-        logger.info(f"📊 [反馈点击] 检测到Less点击，调整轮询间隔: {old_interval}s → {old_interval+60}s")
-    elif click_type == "More":
-        old_interval = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
-
-        if old_interval - 60 >= _default_interval_seconds:
-            _user_notify_interval_seconds[user_id] = old_interval - 60
-
-        logger.info(f"📊 [反馈点击] 检测到More点击，调整轮询间隔: {old_interval}s → {old_interval+60}s")
-
+        "share_to_user_ids": share_to_user_ids,
+        "interval_seconds": _user_notify_interval_seconds.get(user_id, _default_interval_seconds),
+    }
+    db.collection("feedback_clicks").document(click_id).set(feedback_setting)
 
     logger.info(f"✅ [反馈点击] 完成！耗时{(time.time() - start_time):.2f}秒")
-    return {"message": "反馈已记录"}
+    return {"message": "反馈已记录", "feedback_setting": feedback_setting}
 
 
 def start_analyze(group_id: str):

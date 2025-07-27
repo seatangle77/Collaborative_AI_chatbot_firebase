@@ -231,7 +231,7 @@ async def stop_anomaly_polling(req: GroupPollingRequest):
 
 @router.post("/analysis/anomaly_polling/feedback_click")
 def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks):
-    feedback_setting(req.group_id, req.user_id, req.click_type, req.anomaly_analysis_results_id, req.detail_type, req.detail_status, req.share_to_user_ids)
+    result = feedback_setting(req.group_id, req.user_id, req.click_type, req.anomaly_analysis_results_id, req.detail_type, req.detail_status, req.share_to_user_ids)
     
     # Share时通过WebSocket推送
     if req.click_type == "Share" and req.share_to_user_ids:
@@ -257,5 +257,5 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
 
         logger.info(f"📤 [反馈点击] 已添加{len(req.share_to_user_ids)}个推送任务")
 
-    return {"message": "反馈已记录"}
+    return result
 
