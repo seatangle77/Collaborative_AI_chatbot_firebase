@@ -37,7 +37,6 @@ class IntervalSummaryRequest(BaseModel):
     round_index: int
     start_time: str
     end_time: str
-    members: List[Member]
 
 class GroupPollingRequest(BaseModel):
     group_id: str
@@ -71,15 +70,15 @@ class PushAiAnalysisRequest(BaseModel):
 
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
-async def get_anomaly_status(req: IntervalSummaryRequest):
+async def get_anomaly_status(req: GroupPollingRequest):
     return get_local_analyze_result()
 
 @router.post("/analysis/get_ai_analyze_result")
-async def get_ai_analyze_result(req: IntervalSummaryRequest):
+async def get_ai_analyze_result(req: GroupPollingRequest):
     return get_ai_analyze_result()
 
 @router.post("/analysis/get_next_notify_ai_analyze_result")
-async def get_next_notify_ai_analyze_result(req: IntervalSummaryRequest):
+async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
     return get_next_notify_ai_analyze_result()
 
 @router.post("/analysis/push_ai_analyze_result")
