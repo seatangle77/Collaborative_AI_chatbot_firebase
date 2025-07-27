@@ -43,16 +43,18 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
 【用户行为数据】='''{chunk_data_with_local_analyze}'''
 
 【任务描述】='''
-你是一个多维度小组协作分析专家。系统已经为一个小组中的三位成员提供了完整的行为评分结果，包括发言、编辑、浏览等级和总得分（不需要你重新判断）。你的任务是：
+你是一个多维度小组协作分析专家。系统已经为一个小组中的三位成员提供了完整的行为评分结果，包括发言、编辑、浏览等级和总得分（无需你重新判断）。你的任务是：
+
 🔹 基于 total_level 判断该成员的参与状态；
 🔹 输出温和鼓励的眼镜提示语（glasses_summary）；
 🔹 给出该成员的状态类型、行为结构描述、建议与证据；
 🔹 提供更详细的多角度分析，包括历史对比、小组对比与协作建议；
-🔹 补充该小组在各个总参与等级（low/normal/high/dominant）中的成员人数统计（group_distribution 字段）。
+🔹 输出该小组的整体参与结构 group_distribution，包括五类参与等级的数量统计与结构洞察（如类型、风险、建议）；
+🔹 明确指出是否需要进行提示（字段 should_notify）。
 
-🎯 所有提示必须语气正向、亲和，不得批评；
-🎯 glasses_summary 应适配眼镜小屏幕，使用一句简洁中文，可含颜文字；
-🎯 输出字段结构必须完全符合下方格式；
+🎯 所有提示必须语气正向、亲和，避免批评；
+🎯 glasses_summary 必须适配智能眼镜的小屏幕，内容简洁、友好，**必须使用颜文字（如 ^_^、>_<、(๑•̀ㅂ•́)و✧），严禁使用 emoji 图标（如 😊、👍 等）**；
+🎯 输出内容必须严格符合下方格式。
 '''
 
 【参与等级与提示规则】='''
@@ -66,39 +68,46 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
 【输出结构】='''
 请为每位成员输出以下 JSON 结构（共 3 组）：
 
-{{
-  "用户ID": {{
+{
+  "用户ID": {
     "user_name": "用户名",
     "summary": "一句话总结当前状态",
     "glasses_summary": "你当前[状态]，建议[温和提示]",
-    "detail": {{
+    "should_notify": true 或 false,
+    "detail": {
       "type": "参与状态类型，如 Low Participation",
       "status": "简洁描述该成员的当前行为结构",
-      "evidence": "- 发言等级：\\n- 编辑等级：\\n- 浏览等级：",
+      "evidence": "- 发言等级：High Speech（时长：76.04s，占比：63.37%）\\n- 编辑等级：Normal Edit（次数：2，字符数：637）\\n- 浏览等级：Normal Browsing（页面数：2，浏览时长：61.13s，占比：50.94%）",
       "suggestion": "行为层面的改善建议，如主动表达、协同参与等"
-    }},
-    "more_info": {{
-      "detailed_reason": "你为何判断该成员为该状态的详细解释",
-      "history_comparison": "与该成员过往轮次的比较分析",
-      "group_comparison": "与当前组内其他成员的对比说明",
-      "collaboration_suggestion": "结合协同角度的具体建议，例如带动他人/让出表达空间等"
-    }},
-    "group_distribution": {{
+    },
+    "more_info": {
+      "detailed_reason": "你为何判断该成员为该状态的详细解释，引用具体数据进行推理，如发言时长、编辑字数、mouse行为等",
+      "history_comparison": "与该成员过往轮次的比较分析，如“本轮发言时长比上一轮增加 20s”",
+      "group_comparison": "与当前组内其他成员的对比说明，如“发言最多，比平均值高出 40%”",
+      "collaboration_suggestion": "结合协同角度的具体建议，例如主动让出空间、邀请他人表达等",
+      "extra_data": "可补充 mouse_action_count、mouse_duration、mouse_percent、total_score 等信息"
+    },
+    "group_distribution": {
       "no": X,
       "low": X,
       "normal": X,
       "high": X,
-      "dominant": X
-    }}
-  }},
+      "dominant": X,
+      "group_type": "结构类型，如 失衡型 / 均衡型 / 高参与组 / 低参与组",
+      "group_risk": "结构潜在风险，如 主导者明显 + 多人低参与",
+      "action_hint": "群体层级建议，如 激励低参与成员 + 鼓励主导者留出空间"
+    }
+  },
   ...
-}}
+}
 '''
 
 【注意事项】='''
-- 所有字段必须填写完整，避免输出模板占位符；
-- 若成员无需提醒，`glasses_summary` 仍需输出空字符串，但 `should_notify` 字段应为 false；
-- group_distribution 统计的是该小组中不同 total_level 的人数（你将收到或推理）；
+- 所有字段必须填写完整，不得留空或使用模板占位符；
+- evidence 必须包含行为等级 + 原始数据（如发言时长、编辑次数、页面数、浏览时长等）；
+- more_info 字段需结合行为数据进行深入分析与比较，不得使用笼统语言；
+- group_distribution 结构中必须包含 group_type、group_risk、action_hint 三项内容；
+- 若成员无需提示，glasses_summary 仍应输出空字符串，should_notify 应为 false；
 '''
 
 你现在收到 3 位成员的数据，请输出上述结构。
