@@ -5,9 +5,9 @@ from typing import Dict, Any, List
 from fastapi import BackgroundTasks
 from google.cloud.firestore_v1 import FieldFilter
 
-from server.app.anomaly_analyze import Member, local_analyze
+from server.app.anomaly_analyze import local_analyze
 from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze, \
-    get_local_analyze_result, get_ai_analyze_result, get_next_notify_ai_analyze_result
+    get_local_analyze_result, get_ai_analyze_result, get_next_notify_ai_analyze
 from server.app.database import db
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_personal_share_message, push_anomaly_analysis_result
@@ -41,12 +41,6 @@ class IntervalSummaryRequest(BaseModel):
 class GroupPollingRequest(BaseModel):
     group_id: str
 
-class MemberPollingRequest(BaseModel):
-    group_id: str
-    user_id: str
-    interval_minutes: int
-    anomaly_analysis_results_id: str = None
-
 class FeedbackClickRequest(BaseModel):
     group_id: str
     user_id: str
@@ -73,13 +67,13 @@ class PushAiAnalysisRequest(BaseModel):
 async def get_anomaly_status(req: GroupPollingRequest):
     return get_local_analyze_result()
 
-@router.post("/analysis/get_ai_analyze_result")
-async def get_ai_analyze_result(req: GroupPollingRequest):
+@router.post("/analysis/get_ai_analyze")
+async def get_ai_analyze(req: GroupPollingRequest):
     return get_ai_analyze_result()
 
 @router.post("/analysis/get_next_notify_ai_analyze_result")
 async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
-    return get_next_notify_ai_analyze_result()
+    return get_next_notify_ai_analyze()
 
 @router.post("/analysis/push_ai_analyze_result")
 async def push_ai_analyze_result(req: PushAiAnalysisRequest):

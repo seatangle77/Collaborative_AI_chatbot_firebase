@@ -115,7 +115,7 @@ def get_ai_analyze_result():
     global _ai_analyze_result_history
     return _ai_analyze_result_history
 
-def get_next_notify_ai_analyze_result():
+def get_next_notify_ai_analyze():
     global _ai_analyze_result_history, _user_notify_last_time, _user_notify_interval_seconds, _default_interval_seconds
     if len(_ai_analyze_result_history) > 0:
         last_ai_analyze_result = _ai_analyze_result_history[-1]
