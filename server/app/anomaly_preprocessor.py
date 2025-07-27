@@ -1,15 +1,15 @@
 import copy
+import json
+import time
 import traceback
 from collections import defaultdict
-from typing import Tuple
-
-from server.app.database import db
-import os, json
 from datetime import datetime
 from datetime import timezone, timedelta
-from google.cloud.firestore_v1.base_query import FieldFilter
-import time
+from typing import Tuple
 
+from google.cloud.firestore_v1.base_query import FieldFilter
+
+from server.app.database import db
 from server.app.logger.logger_loader import logger
 
 
@@ -391,6 +391,38 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     increment = len(speech_transcripts) + len(note_edit_history) + len(pageBehaviorLogs) + len(note_contents)
 
     return chunk_data, increment
+
+
+def get_local_analyze_result(group_id: str, limit:int = 3):
+    results = db.collection("anomaly_local_analyze") \
+        .where(filter=FieldFilter("group_id", "==", group_id)) \
+        .order_by("created_at", direction="DESCENDING") \
+        .limit(limit) \
+        .stream()
+    history = [doc.to_dict() for doc in results]
+    anomaly_history = []
+    for h in history:
+        result = h.get("output",{}).get("local_analysis_result",{})
+        result["time_range"] = h.get("output",{}).get("time_range")
+        anomaly_history.append(result)
+
+    return anomaly_history
+
+
+def get_ai_analyze_result(group_id: str, limit:int = 3):
+    results = db.collection("anomaly_analysis_group_results") \
+        .where(filter=FieldFilter("group_id", "==", group_id)) \
+        .order_by("created_at", direction="DESCENDING") \
+        .limit(limit) \
+        .stream()
+    history = [doc.to_dict() for doc in results]
+    anomaly_history = []
+    for h in history:
+        result = h.get("raw_response", {})
+        result["time_range"] = {"start": h.get("start_time", ""),"end": h.get("end_time", "")}
+        anomaly_history.append(result)
+
+    return anomaly_history
 
 
 if __name__ == '__main__':

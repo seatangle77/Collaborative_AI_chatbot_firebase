@@ -1,13 +1,15 @@
 import time
 import traceback
+from datetime import timedelta, datetime, timezone
 from typing import Dict, Any, List
 
 from fastapi import BackgroundTasks
 from google.cloud.firestore_v1 import FieldFilter
 
 from server.app.anomaly_analyze import local_analyze
-from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze, \
-    get_local_analyze_result, get_ai_analyze_result, get_next_notify_ai_analyze
+from server.app.anomaly_polling_scheduler import start_analyze, stop_analyze
+from server.app.anomaly_preprocessor import get_local_analyze_result, get_ai_analyze_result, \
+    parse_iso_time
 from server.app.database import db
 from server.app.logger.logger_loader import logger
 from server.app.websocket_routes import push_personal_share_message, push_anomaly_analysis_result
@@ -62,21 +64,50 @@ class PushAiAnalysisRequest(BaseModel):
     ai_analyze_result: dict
 
 
+# 120秒的间隔
+_default_interval_seconds = 120
+# 用户定制自己的提示间隔时间，(user_id, interval_seconds)
+_user_notify_interval_seconds = {}
+# 用户最后一次通知时间
+_user_notify_last_time = {}
+
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
 async def get_anomaly_status(req: GroupPollingRequest):
-    return get_local_analyze_result()
+    return get_local_analyze_result(req.group_id)
 
 @router.post("/analysis/get_ai_analyze")
 async def get_ai_analyze(req: GroupPollingRequest):
-    return get_ai_analyze_result()
+    return get_ai_analyze_result(req.group_id)
 
 @router.post("/analysis/get_next_notify_ai_analyze_result")
 async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
-    return get_next_notify_ai_analyze()
+    global _user_notify_last_time, _user_notify_interval_seconds, _default_interval_seconds
+
+    last_ai_analyze_content = get_ai_analyze_result(req.group_id,limit=1)[0]
+
+    user_ids = list(last_ai_analyze_content.keys())
+    end_time = last_ai_analyze_content.get("time_range",{}).get("end","")
+    for user_id in user_ids:
+        if user_id != "time_range":
+            last_notify_time = _user_notify_last_time.get(user_id)
+            interval_seconds = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
+            if last_notify_time is None:
+                # 如果是第一次执行，用AI分析结果的时间作为下次通知时间
+                next_notify_time = parse_iso_time(end_time)
+            else:
+                # 上一次通知时间+间隔时间作为下一次通知时间
+                next_notify_time = last_notify_time + timedelta(seconds=interval_seconds)
+
+            last_ai_analyze_content.get(user_id, {}).update({"next_notify_time": next_notify_time.isoformat()})
+    return last_ai_analyze_content
+
 
 @router.post("/analysis/push_ai_analyze_result")
 async def push_ai_analyze_result(req: PushAiAnalysisRequest):
+    global _user_notify_last_time
+    _user_notify_last_time[req.user_id] = datetime.now(timezone.utc)
+
     # 根据评分决定是否推送通知
     try:
         if req.push_ji:
@@ -211,6 +242,10 @@ async def get_anomaly_results_by_user(
 
 @router.post("/analysis/anomaly_polling/start")
 async def start_anomaly_polling(req: GroupPollingRequest):
+    global _user_notify_interval_seconds, _user_notify_last_time
+    _user_notify_interval_seconds = {}
+    _user_notify_last_time = {}
+
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, start_analyze, req.group_id)
     await push_agenda_stage(req.group_id, 1)
@@ -226,10 +261,29 @@ async def stop_anomaly_polling(req: GroupPollingRequest):
 
 @router.post("/analysis/anomaly_polling/feedback_click")
 def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks):
-    result = feedback_setting(req.group_id, req.user_id, req.click_type, req.anomaly_analysis_results_id, req.detail_type, req.detail_status, req.share_to_user_ids)
-    
+    start_time = time.time()
+    logger.info(f"🖱️ [反馈点击] 收到用户{req.user_id}的{req.click_type}点击...")
+
+    # Less\More 时调整轮询周期
+    global _default_interval_seconds, _user_notify_interval_seconds
+    if req.click_type == "Less":
+        old_interval = _user_notify_interval_seconds.get(req.user_id, _default_interval_seconds)
+
+        if old_interval + 60 <= _default_interval_seconds * 2:
+            _user_notify_interval_seconds[req.user_id] = old_interval + 60
+
+        logger.info(
+            f"📊 [反馈点击] 检测到Less点击，调整轮询间隔: {old_interval}s → {_user_notify_interval_seconds.get(req.user_id, _default_interval_seconds)}s")
+    elif req.click_type == "More":
+        old_interval = _user_notify_interval_seconds.get(req.user_id, _default_interval_seconds)
+
+        if old_interval - 60 >= _default_interval_seconds:
+            _user_notify_interval_seconds[req.user_id] = old_interval - 60
+
+        logger.info(
+            f"📊 [反馈点击] 检测到More点击，调整轮询间隔: {old_interval}s → {_user_notify_interval_seconds.get(req.user_id, _default_interval_seconds)}s")
     # Share时通过WebSocket推送
-    if req.click_type == "Share" and req.share_to_user_ids:
+    elif req.click_type == "Share" and req.share_to_user_ids:
         logger.info(f"📤 [反馈点击] 检测到Share点击，准备推送消息...")
 
         for uid in req.share_to_user_ids:
@@ -252,5 +306,22 @@ def feedback_click(req: FeedbackClickRequest, background_tasks: BackgroundTasks)
 
         logger.info(f"📤 [反馈点击] 已添加{len(req.share_to_user_ids)}个推送任务")
 
-    return result
+    click_id = f"{req.group_id}_{req.user_id}_{int(datetime.now().timestamp())}"
+    feedback_setting = {
+        "id": click_id,
+        "group_id": req.group_id,
+        "user_id": req.user_id,
+        "click_type": req.click_type,
+        "anomaly_analysis_results_id": req.anomaly_analysis_results_id,
+        "clicked_at": datetime.now(timezone.utc).isoformat(),
+        "detail_type": req.detail_type,
+        "detail_status": req.detail_status,
+        "share_to_user_ids": req.share_to_user_ids,
+        "interval_seconds": _user_notify_interval_seconds.get(req.user_id, _default_interval_seconds),
+    }
+    db.collection("feedback_clicks").document(click_id).set(feedback_setting)
+
+    logger.info(f"✅ [反馈点击] 完成！耗时{(time.time() - start_time):.2f}秒")
+    return {"message": "反馈已记录", "feedback_setting": feedback_setting}
+
 
