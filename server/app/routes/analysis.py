@@ -6,10 +6,11 @@ from fastapi import BackgroundTasks
 from google.cloud.firestore_v1 import FieldFilter
 
 from server.app.anomaly_analyze import Member, local_analyze
-from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze, get_analyze_result
+from server.app.anomaly_polling_scheduler import feedback_setting, start_analyze, stop_analyze, \
+    get_local_analyze_result, get_ai_analyze_result, get_next_notify_ai_analyze_result
 from server.app.database import db
 from server.app.logger.logger_loader import logger
-from server.app.websocket_routes import push_personal_share_message
+from server.app.websocket_routes import push_personal_share_message, push_anomaly_analysis_result
 
 # 模拟缓存：用于暂存 interval summary 结果
 interval_summary_cache: Dict[str, List[Dict[str, Any]]] = {}
@@ -25,7 +26,7 @@ if not len(firebase_admin._apps):
 from fastapi import APIRouter, Query
 from pydantic import BaseModel
 #
-from server.app.jpush_api import jpush_personal_share_message
+from server.app.jpush_api import jpush_personal_share_message, send_jpush_notification
 import asyncio
 from server.app.websocket_routes import push_stop_task, push_agenda_stage
 
@@ -56,10 +57,62 @@ class FeedbackClickRequest(BaseModel):
     detail_status: str = None
     share_to_user_ids: list = None
 
+class PushAiAnalysisRequest(BaseModel):
+    push_ji: bool
+    device_token: str
+    glasses_summary: str
+    summary: str
+    detail_suggestion: str
+    user_id: str
+    user_name: str
+    push_pc: bool
+    ai_analyze_result: dict
+
+
 # 替换为 POST 方法，参数结构同 IntervalSummaryRequest，通过请求体接收
 @router.post("/analysis/anomalies")
 async def get_anomaly_status(req: IntervalSummaryRequest):
-    return get_analyze_result()
+    return get_local_analyze_result()
+
+@router.post("/analysis/get_ai_analyze_result")
+async def get_ai_analyze_result(req: IntervalSummaryRequest):
+    return get_ai_analyze_result()
+
+@router.post("/analysis/get_next_notify_ai_analyze_result")
+async def get_next_notify_ai_analyze_result(req: IntervalSummaryRequest):
+    return get_next_notify_ai_analyze_result()
+
+@router.post("/analysis/push_ai_analyze_result")
+async def push_ai_analyze_result(req: PushAiAnalysisRequest):
+    # 根据评分决定是否推送通知
+    try:
+        if req.push_ji:
+            # JPush 推送 - 使用眼镜版本
+            send_jpush_notification(
+                alert=req.glasses_summary,  # 直接使用眼镜版本作为推送内容
+                registration_id=req.device_token,
+                extras={
+                    "type": "anomaly",
+                    "title": "异常提醒",
+                    "body": req.glasses_summary,  # 眼镜版本
+                    "summary": req.summary,
+                    "suggestion": req.detail_suggestion,
+                    "user_id": req.user_id,
+                    "user_name": req.user_name
+                }
+            )
+            logger.info(f"✅ [异常分析] JPush推送完成，用户 {req.user_name}({req.user_id}) 眼镜显示内容：{req.glasses_summary}")
+    except Exception as e:
+        logger.error(f"⚠️ [异常分析] JPush推送失败: {traceback.format_exc()}")
+
+    # WebSocket 推送 - 向PC页面推送完整分析结果
+    try:
+        if req.push_pc:
+            await push_anomaly_analysis_result(req.user_id, req.ai_analyze_result)
+    except Exception as e:
+        logger.error(f"⚠️ [异常分析] WebSocket推送失败: {traceback.format_exc()}")
+
+    return get_next_notify_ai_analyze_result()
 
 # 新增：只执行本地分析的接口
 @router.post("/analysis/local_anomalies")

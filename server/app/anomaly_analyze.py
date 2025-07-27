@@ -143,71 +143,74 @@ def ai_analyze_anomaly_status(group_id: str, chunk_data: dict):
             json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
             ai_analyze_result_json = json.loads(json_str)
 
-            # 阶段4: 文件存储
-            stage4_start = time.time()
-            os.makedirs("analysis_outputs", exist_ok=True)
-            file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
-            with open(file_name, "w", encoding="utf-8") as f:
-                json.dump(ai_analyze_result_json, f, ensure_ascii=False, indent=2)
-            stage4_duration = time.time() - stage4_start
-            logger.info(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
+            try:
+                # 阶段4: 文件存储
+                stage4_start = time.time()
+                os.makedirs("analysis_outputs", exist_ok=True)
+                file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+                with open(file_name, "w", encoding="utf-8") as f:
+                    json.dump(ai_analyze_result_json, f, ensure_ascii=False, indent=2)
+                stage4_duration = time.time() - stage4_start
+                logger.info(f"💾 [异常分析] 阶段4-文件存储完成，耗时{stage4_duration:.2f}秒")
 
-            # 阶段5: 数据库存储
-            stage5_start = time.time()
-            # 新建 anomaly_analysis_files 表并插入内容
-            file_id = str(uuid.uuid4())
-            db.collection("anomaly_raw_json_in_out").document(file_id).set({
-                "id": file_id,
-                "group_id": group_id,
-                "created_at": end_time,
-                "input": prompt,
-                "output": ai_analyze_result_json
-            })
+                # 阶段5: 数据库存储
+                stage5_start = time.time()
+                # 新建 anomaly_analysis_files 表并插入内容
+                file_id = str(uuid.uuid4())
+                db.collection("anomaly_raw_json_in_out").document(file_id).set({
+                    "id": file_id,
+                    "group_id": group_id,
+                    "created_at": end_time,
+                    "input": prompt,
+                    "output": ai_analyze_result_json
+                })
 
-            # 新建anomaly_analysis_group_results表并插入数据
-            analysis_id = str(uuid.uuid4())
-            db.collection("anomaly_analysis_group_results").document(analysis_id).set({
-                "id": analysis_id,
-                "group_id": group_id,
-                "start_time": start_time,
-                "end_time": end_time,
-                "raw_response": ai_analyze_result_json,
-                "created_at": end_time
-            })
-            stage5_duration = time.time() - stage5_start
-            logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
+                # 新建anomaly_analysis_group_results表并插入数据
+                analysis_id = str(uuid.uuid4())
+                db.collection("anomaly_analysis_group_results").document(analysis_id).set({
+                    "id": analysis_id,
+                    "group_id": group_id,
+                    "start_time": start_time,
+                    "end_time": end_time,
+                    "raw_response": ai_analyze_result_json,
+                    "created_at": end_time
+                })
+                stage5_duration = time.time() - stage5_start
+                logger.info(f"🗄️ [异常分析] 阶段5-数据库存储完成，耗时{stage5_duration:.2f}秒")
 
-            total_duration = time.time() - total_start_time
-            logger.info(f"✅ [异常分析] group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
+                total_duration = time.time() - total_start_time
+                logger.info(f"✅ [异常分析] group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
+            except Exception as e:
+                logger.error('AI解析结果保存异常： %s' % traceback.format_exc())
+
+                # 异常情况保存
+                # 阶段4: 文件存储
+                logger.warning(f"💾 [异常分析] 结果异常，保存现场")
+                os.makedirs("analysis_outputs", exist_ok=True)
+                file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+                with open(file_name, "w", encoding="utf-8") as f:
+                    json.dump(ai_analyze_result, f, ensure_ascii=False, indent=2)
+
+                # 阶段5: 数据库存储
+                stage5_start = time.time()
+                file_id = str(uuid.uuid4())
+                db.collection("anomaly_raw_json_in_out").document(file_id).set({
+                    "id": file_id,
+                    "group_id": group_id,
+                    "created_at": datetime.now(timezone.utc).isoformat(),
+                    "input": prompt,
+                    "output": ai_analyze_result
+                })
+                stage5_duration = time.time() - stage5_start
+                logger.info(f"🗄️ [异常分析] 结果异常，保存现场。数据库存储完成，耗时{stage5_duration:.2f}秒")
+
+                total_duration = time.time() - total_start_time
+                logger.info(f"✅ [异常分析] 结果异常，保存现场。group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
 
             # 返回给前端更多信息
             return ai_analyze_result_json
     except Exception as e:
         logger.error('解析AI响应失败： %s' % traceback.format_exc())
-
-    # 异常情况保存
-    # 阶段4: 文件存储
-    logger.warning(f"💾 [异常分析] 结果异常，保存现场")
-    os.makedirs("analysis_outputs", exist_ok=True)
-    file_name = f"analysis_outputs/ai_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
-    with open(file_name, "w", encoding="utf-8") as f:
-        json.dump(ai_analyze_result, f, ensure_ascii=False, indent=2)
-
-    # 阶段5: 数据库存储
-    stage5_start = time.time()
-    file_id = str(uuid.uuid4())
-    db.collection("anomaly_raw_json_in_out").document(file_id).set({
-        "id": file_id,
-        "group_id": group_id,
-        "created_at": datetime.now(timezone.utc).isoformat(),
-        "input": prompt,
-        "output": ai_analyze_result
-    })
-    stage5_duration = time.time() - stage5_start
-    logger.info(f"🗄️ [异常分析] 结果异常，保存现场。数据库存储完成，耗时{stage5_duration:.2f}秒")
-
-    total_duration = time.time() - total_start_time
-    logger.info(f"✅ [异常分析] 结果异常，保存现场。group_id={group_id}分析完成，总耗时{total_duration:.2f}秒")
 
     return {}
 
