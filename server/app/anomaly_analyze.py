@@ -68,26 +68,26 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
 【输出结构】='''
 请为每位成员输出以下 JSON 结构（共 3 组）：
 
-{
-  "用户ID": {
+{{
+  "用户ID": {{
     "user_name": "用户名",
     "summary": "一句话总结当前状态",
     "glasses_summary": "你当前[状态]，建议[温和提示]",
     "should_notify": true 或 false,
-    "detail": {
+    "detail": {{
       "type": "参与状态类型，如 Low Participation",
       "status": "简洁描述该成员的当前行为结构",
       "evidence": "- 发言等级：High Speech（时长：76.04s，占比：63.37%）\\n- 编辑等级：Normal Edit（次数：2，字符数：637）\\n- 浏览等级：Normal Browsing（页面数：2，浏览时长：61.13s，占比：50.94%）",
       "suggestion": "行为层面的改善建议，如主动表达、协同参与等"
-    },
-    "more_info": {
+    }},
+    "more_info": {{
       "detailed_reason": "你为何判断该成员为该状态的详细解释，引用具体数据进行推理，如发言时长、编辑字数、mouse行为等",
       "history_comparison": "与该成员过往轮次的比较分析，如“本轮发言时长比上一轮增加 20s”",
       "group_comparison": "与当前组内其他成员的对比说明，如“发言最多，比平均值高出 40%”",
       "collaboration_suggestion": "结合协同角度的具体建议，例如主动让出空间、邀请他人表达等",
       "extra_data": "可补充 mouse_action_count、mouse_duration、mouse_percent、total_score 等信息"
-    },
-    "group_distribution": {
+    }},
+    "group_distribution": {{
       "no": X,
       "low": X,
       "normal": X,
@@ -96,10 +96,10 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
       "group_type": "结构类型，如 失衡型 / 均衡型 / 高参与组 / 低参与组",
       "group_risk": "结构潜在风险，如 主导者明显 + 多人低参与",
       "action_hint": "群体层级建议，如 激励低参与成员 + 鼓励主导者留出空间"
-    }
-  },
+    }}
+  }},
   ...
-}
+}}
 '''
 
 【注意事项】='''
