@@ -76,15 +76,8 @@ async def get_group_context_by_user(user_id: str):
     member_ids = [doc.to_dict().get("user_id") for doc in member_docs]
 
     # 批量查询用户信息
-    user_info_docs = await asyncio.gather(
-        *[asyncio.to_thread(db.collection("users_info").document(uid).get) for uid in member_ids]
-    )
-    users_info = []
-    for i, udoc in enumerate(user_info_docs):
-        if udoc.exists:
-            user_data = udoc.to_dict()
-            user_data["user_id"] = member_ids[i]
-            users_info.append(user_data)
+    users_info_docs = list(db.collection("users_info").where("user_id", "in", member_ids).stream())
+    users_infos = [doc.to_dict() for doc in users_info_docs]
 
     # 4. 获取最新 session
     session_docs = list(db.collection("chat_sessions")
@@ -94,18 +87,10 @@ async def get_group_context_by_user(user_id: str):
         .stream())
     session_data = session_docs[0].to_dict() | {"id": session_docs[0].id} if session_docs else None
 
-    # 5. 获取该小组的 AI Bot
-    ai_bot_docs = list(db.collection("ai_bots")
-        .where("group_id", "==", group_id)
-        .limit(1)
-        .stream())
-    ai_bot_data = ai_bot_docs[0].to_dict() | {"id": ai_bot_docs[0].id} if ai_bot_docs else None
-
     print(f"✅ get_group_context_by_user 用时: {round(time.time() - start_time, 3)}s")
 
     return {
         "group": group_data,
-        "members": users_info,
-        "session": session_data,
-        "bot": ai_bot_data
+        "members": users_infos,
+        "session": session_data
     }
