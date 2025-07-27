@@ -73,7 +73,7 @@ async def get_realtime_local_anomaly_status(req: IntervalSummaryRequest):
         logger.info(f"🔍 [本地异常分析] 开始分析 group_id={req.group_id}")
         
         # 本地数据分析
-        chunk_data_with_local_analyze, local_analyze_result = local_analyze(req.group_id, req.start_time, req.end_time, is_save_debug_file=False)
+        chunk_data_with_local_analyze, local_analyze_result = local_analyze(req.group_id, req.start_time, req.end_time, is_save_debug_info=False)
 
         processing_time = time.time() - start_time
         logger.info(f"📊 [本地异常分析] 分析完成，耗时{processing_time:.2f}秒")
