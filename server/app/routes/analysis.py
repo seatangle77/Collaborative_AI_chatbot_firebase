@@ -84,23 +84,27 @@ async def get_ai_analyze(req: GroupPollingRequest):
 async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
     global _user_notify_last_time, _user_notify_interval_seconds, _default_interval_seconds
 
-    last_ai_analyze_content = get_ai_analyze_result(req.group_id,limit=1)[0]
+    analyze_result = get_ai_analyze_result(req.group_id, limit=1)
+    if len(analyze_result) > 0:
+        last_ai_analyze_content = analyze_result[0]
 
-    user_ids = list(last_ai_analyze_content.keys())
-    end_time = last_ai_analyze_content.get("time_range",{}).get("end","")
-    for user_id in user_ids:
-        if user_id != "time_range":
-            last_notify_time = _user_notify_last_time.get(user_id)
-            interval_seconds = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
-            if last_notify_time is None:
-                # 如果是第一次执行，用AI分析结果的时间作为下次通知时间
-                next_notify_time = parse_iso_time(end_time)
-            else:
-                # 上一次通知时间+间隔时间作为下一次通知时间
-                next_notify_time = last_notify_time + timedelta(seconds=interval_seconds)
+        user_ids = list(last_ai_analyze_content.keys())
+        end_time = last_ai_analyze_content.get("time_range",{}).get("end","")
+        for user_id in user_ids:
+            if user_id != "time_range":
+                last_notify_time = _user_notify_last_time.get(user_id)
+                interval_seconds = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
+                if last_notify_time is None:
+                    # 如果是第一次执行，用AI分析结果的时间作为下次通知时间
+                    next_notify_time = parse_iso_time(end_time)
+                else:
+                    # 上一次通知时间+间隔时间作为下一次通知时间
+                    next_notify_time = last_notify_time + timedelta(seconds=interval_seconds)
 
-            last_ai_analyze_content.get(user_id, {}).update({"next_notify_time": next_notify_time.isoformat()})
-    return last_ai_analyze_content
+                last_ai_analyze_content.get(user_id, {}).update({"next_notify_time": next_notify_time.isoformat()})
+        return last_ai_analyze_content
+    else:
+        return {}
 
 
 @router.post("/analysis/push_ai_analyze_result")
