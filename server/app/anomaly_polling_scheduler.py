@@ -210,8 +210,7 @@ def ai_analyze_handler():
                 stage_start = time.time()
                 result = None
                 try:
-                    result = asyncio.run(
-                        ai_analyze_anomaly_status(group_id, chunk_data_with_local_analyze))
+                    result = ai_analyze_anomaly_status(group_id, chunk_data_with_local_analyze)
                     if not result:
                         # 无分析结果
                         continue 
