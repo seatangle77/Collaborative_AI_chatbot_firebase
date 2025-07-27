@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 
 from server.app.anomaly_preprocessor import (
-    parse_iso_time
+    get_group_members_simple, parse_iso_time
 )
 from server.app.database import db
 from server.app.logger.logger_loader import logger
@@ -480,7 +480,7 @@ if __name__ == '__main__':
 
     # 查询数据，分析结果
     from server.app.anomaly_preprocessor import (
-         get_group_members_simple, extract_chunk_data_anomaly
+         extract_chunk_data_anomaly
     )
     group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
     start_time_str = "2025-07-10T07:02:27"
