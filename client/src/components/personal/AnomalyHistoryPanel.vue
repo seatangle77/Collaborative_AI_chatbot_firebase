@@ -12,9 +12,9 @@
         height="500"
         @row-click="emitViewDetail"
       >
-        <el-table-column prop="created_at" label="时间" width="80">
+        <el-table-column prop="end_time" label="生成时间" width="80">
           <template #default="scope">
-            {{ formatDate(scope.row.created_at) }}
+            {{ formatDate(scope.row.end_time) }}
           </template>
         </el-table-column>
         <el-table-column prop="summary" label="摘要">
@@ -91,12 +91,16 @@ function onHistoryPageSizeChange(size) {
 function formatDate(str) {
   if (!str) return '';
   const d = new Date(str);
+  
+  // 直接加上8小时转换为东八区时间
+  const beijingTime = new Date(d.getTime() + 8 * 60 * 60 * 1000);
+  
   // 格式：MM/DD HH:mm:ss
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  const hour = String(d.getHours()).padStart(2, '0');
-  const minute = String(d.getMinutes()).padStart(2, '0');
-  const second = String(d.getSeconds()).padStart(2, '0');
+  const month = String(beijingTime.getMonth() + 1).padStart(2, '0');
+  const day = String(beijingTime.getDate()).padStart(2, '0');
+  const hour = String(beijingTime.getHours()).padStart(2, '0');
+  const minute = String(beijingTime.getMinutes()).padStart(2, '0');
+  const second = String(beijingTime.getSeconds()).padStart(2, '0');
   return `${month}/${day} ${hour}:${minute}:${second}`;
 }
 
@@ -132,7 +136,7 @@ watch([() => props.userId, () => props.groupId], () => {
 }
 
 .history-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #303133;
   margin: 0;

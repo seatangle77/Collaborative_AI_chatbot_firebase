@@ -43,9 +43,7 @@ export default {
   getUserGroupContext(userId) {
     return axios.get(`${BASE_URL}/api/user/${userId}/group-context`).then(res => res.data);
   },
-  getAiBots() {
-    return axios.get(`${BASE_URL}/api/ai_bots`).then(res => res.data);
-  },
+
   sendChatMessage(payload) {
     return axios.post(`${BASE_URL}/api/chat/send`, payload).then(res => res.data);
   },
@@ -73,12 +71,7 @@ export default {
   updateUser(userId, data) {
     return axios.put(`${BASE_URL}/api/users/${userId}`, data).then(res => res.data);
   },
-  getBotModel(botId) {
-    return axios.get(`${BASE_URL}/api/ai_bots/${botId}/model`).then(res => res.data);
-  },
-  updateBotModel(botId, model) {
-    return axios.put(`${BASE_URL}/api/ai_bots/${botId}/model`, { model }).then(res => res.data);
-  },
+
   resetAgendaStatus(groupId, stage) {
     return axios.patch(`${BASE_URL}/api/chat/agenda/reset_status/${groupId}?stage=${stage}`)
       .then(res => res.data);

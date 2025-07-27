@@ -50,7 +50,7 @@
         </div>
         <div class="button-row">
           <el-button type="primary" @click="onMore" size="default" v-if="!showMore">
-            More Info
+            More
           </el-button>
           <el-button type="primary" @click="onCollapse" size="default" v-else>
             Hide

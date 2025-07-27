@@ -12,7 +12,7 @@
             :session-title="selectedSessionTitle"
             :all-groups="groups"
             :selected-group-id="selectedGroupId"
-            :bot="selectedGroupBot"
+    
             @update-group="selectGroup"
             :route-name="route.params.name"
           />
@@ -130,10 +130,7 @@ import apiService from '../services/apiService';
 // import { connectGroupSocket, sendGroupMessage } from "@/services/groupWebSocketManager";
 
 const components = { ElButton, ElCollapse, ElCollapseItem, VideoCamera };
-const aiBots = ref([]);
-const selectedGroupBot = computed(() =>
-  aiBots.value.find((bot) => bot.group_id === selectedGroupId.value)
-);
+
 
 const group = ref(null);
 const users = ref({});
@@ -231,14 +228,7 @@ async function stopAnomalyPolling() {
   anomalyPollingLoading.value = false;
 }
 
-const fetchAllAiBots = async () => {
-  try {
-    const bots = await api.getAiBots();
-    aiBots.value = bots;
-  } catch (error) {
-    console.error("获取 AI 机器人失败:", error);
-  }
-};
+
 
 function formatAgendaDesc(desc) {
   if (!desc) return "";
@@ -324,7 +314,6 @@ onMounted(async () => {
   console.log("路由参数 name:", route.params.name);
   groups.value = await api.getGroups();
   if (!groups.value.length) return;
-  await fetchAllAiBots();
   const defaultId = groups.value[0].id;
   await selectGroup(defaultId);
 });

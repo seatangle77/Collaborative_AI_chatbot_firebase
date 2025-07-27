@@ -10,7 +10,7 @@
         :session-title="selectedSessionTitle"
         :all-groups="groups"
         :selected-group-id="selectedGroupId"
-        :bot="selectedBot"
+
         @update-group="selectGroup"
       />
     </header>
@@ -282,11 +282,7 @@ const selectGroup = async (groupId) => {
   await fetchTableData();
 };
 
-const aiBots = ref([]);
-const selectedBot = computed(() =>
-  aiBots.value.find((b) => b.group_id === selectedGroupId.value)
-);
-bot.value = selectedBot;
+
 
 const selectedSessionId = computed(() => session.value?.id || "");
 const selectedSessionTitle = computed(() => session.value?.session_title || "");
@@ -638,7 +634,6 @@ watch([selectedGroupId, selectedTable], () => {
 
 onMounted(async () => {
   groups.value = await api.getGroups();
-  aiBots.value = await api.getAiBots();
   if (!groups.value.length) return;
 
   const defaultGroupId = groups.value[0].id;

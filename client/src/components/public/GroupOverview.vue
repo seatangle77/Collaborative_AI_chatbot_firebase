@@ -32,42 +32,15 @@
             >
               {{ member.name }}
             </el-tag>
-            <el-tag
-              type="info"
-              v-if="bot?.name"
-              @click="showModelDialog = true"
-              style="cursor: pointer"
-              size="small"
-            >
-              🤖 {{ bot.name }}
-            </el-tag>
           </el-space>
         </div>
       </div>
     </div>
   </div>
-  <el-dialog v-model="showModelDialog" title="选择 AI 模型" width="300px">
-    <el-select
-      v-model="localSelectedAiProvider"
-      placeholder="请选择模型"
-      style="width: 100%"
-      @change="handleModelChange"
-    >
-      <el-option
-        v-for="(label, value) in aiModelOptions"
-        :key="value"
-        :label="label"
-        :value="value"
-      />
-    </el-select>
-  </el-dialog>
 </template>
 
 <script setup>
 import { ref, watch, computed } from "vue";
-import { ElMessage, ElDialog } from "element-plus";
-import { aiModelOptions } from "../../utils/constants";
-import api from "../../services/apiService";
 
 const props = defineProps({
   group: Object,
@@ -77,7 +50,6 @@ const props = defineProps({
   sessionId: String,
   allGroups: Array,
   selectedGroupId: String,
-  bot: Object, // ✅ 当前小组的机器人
   routeName: String, // 新增
 });
 
@@ -104,21 +76,7 @@ watch(
   { immediate: true }
 );
 
-const showModelDialog = ref(false);
-const localSelectedAiProvider = ref(props.bot?.model || "");
 
-const handleModelChange = async (newModel) => {
-  if (props.bot?.id) {
-    try {
-      await api.updateBotModel(props.bot.id, newModel);
-      ElMessage.success("AI 模型已更新！");
-      localSelectedAiProvider.value = newModel;
-    } catch (error) {
-      console.error("更新 AI 模型失败:", error);
-    }
-  }
-  showModelDialog.value = false;
-};
 </script>
 
 <style scoped>

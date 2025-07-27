@@ -8,7 +8,7 @@
       :members="members"
 
       :session="session"
-      :bot="bot"
+      
       :route-name="route.params.name"
     />
 
@@ -150,7 +150,7 @@
             <!-- Peer Prompt 互动提示板块 -->
             <div class="peer-prompt-card">
               <div class="peer-prompt-header">成员间互动</div>
-              <el-button type="primary" size="default" @click="peerPromptDialogVisible = true">发起互动提示</el-button>
+              <el-button type="success" size="default" @click="peerPromptDialogVisible = true">发起互动提示</el-button>
               <el-dialog v-model="peerPromptDialogVisible" title="发起互动提示" width="350px" :close-on-click-modal="false">
                 <el-form :model="peerPromptForm" label-width="70px">
                   <el-form-item label="目标成员">
@@ -174,8 +174,8 @@
                   </el-form-item>
                 </el-form>
                 <template #footer>
-                  <el-button @click="peerPromptDialogVisible = false">取消</el-button>
-                  <el-button type="primary" @click="handleSendPeerPrompt">发送</el-button>
+                  <el-button @click="peerPromptDialogVisible = false" :disabled="peerPromptLoading">取消</el-button>
+                  <el-button type="primary" @click="handleSendPeerPrompt" :loading="peerPromptLoading" :disabled="peerPromptLoading">发送</el-button>
                 </template>
               </el-dialog>
             </div>
@@ -302,7 +302,7 @@ const selectedUserId = ref("");
 const discussionId = "discussion_001";
 const group = ref(null);
 const session = ref(null);
-const bot = ref(null);
+
 const members = ref([]);
 const memberList = ref([]);
 const userId = computed(() => selectedUserId.value);
@@ -541,7 +541,6 @@ watch(selectedUserId, async (newUserId) => {
     const context = await api.getUserGroupContext(newUserId);
     group.value = context.group;
     session.value = context.session;
-    bot.value = context.bot;
     members.value = context.members || [];
     sendUserInfoToExtension(newUserId, context);
     if (context.group?.id) {
@@ -561,7 +560,6 @@ watch(selectedUserId, async (newUserId) => {
     user.value = {};
     group.value = null;
     session.value = null;
-    bot.value = null;
   }
 });
 
@@ -850,6 +848,7 @@ watch(showRichNotification, (val) => {
 
 // Peer Prompt 互动提示相关逻辑
 const peerPromptDialogVisible = ref(false);
+const peerPromptLoading = ref(false);
 const peerPromptForm = ref({
   targetUserId: '',
   content: '',
@@ -860,6 +859,10 @@ function handleSendPeerPrompt() {
     ElMessage.warning('请选择目标成员并填写提示内容');
     return;
   }
+  
+  // 设置加载状态，防止重复点击
+  peerPromptLoading.value = true;
+  
   // 调用后端API发送Peer Prompt
   const payload = {
     from_user_id: userId.value,
@@ -881,12 +884,24 @@ function handleSendPeerPrompt() {
     .catch(error => {
       console.error('发送Peer Prompt失败:', error);
       ElMessage.error('发送失败，请重试');
+    })
+    .finally(() => {
+      // 无论成功还是失败，都要重置加载状态
+      peerPromptLoading.value = false;
     });
 }
 
 function handlePresetSelect(suggestion) {
   console.log('选择了预设内容:', suggestion);
 }
+
+// 监听弹窗状态，当弹窗关闭时重置加载状态
+watch(peerPromptDialogVisible, (newVal) => {
+  if (!newVal) {
+    // 弹窗关闭时重置加载状态
+    peerPromptLoading.value = false;
+  }
+});
 
 
 </script>
@@ -1027,7 +1042,7 @@ function handlePresetSelect(suggestion) {
 
 .note-title,
 .history-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #303133;
   margin: 0;
@@ -1160,7 +1175,7 @@ function handlePresetSelect(suggestion) {
 
 .note-title,
 .history-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #303133;
   margin: 0;
@@ -1701,7 +1716,7 @@ function handlePresetSelect(suggestion) {
 }
 .peer-prompt-header {
   font-weight: 600;
-  color: #3478f6;
+  color: #303133;
   font-size: 1rem;
   margin-bottom: 6px;
 }

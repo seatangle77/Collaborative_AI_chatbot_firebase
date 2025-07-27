@@ -33,27 +33,10 @@
             >
               {{ displayMemberName(m) }}
             </el-tag>
-            <el-tooltip
-              content="模型：{{ bot.model }}"
-              placement="top"
-              v-if="bot?.model"
-            >
-              <el-tag
-                size="small"
-                type="info"
-                @click="showModelDialog = true"
-                style="cursor: pointer"
-              >
-                🤖 {{ bot.name }}
-              </el-tag>
-            </el-tooltip>
           </el-space>
         </div>
       </div>
     </div>
-    <el-dialog v-model="showModelDialog" title="选择 AI 模型" width="300px">
-      <p>当前模型：{{ bot.model }}</p>
-    </el-dialog>
   </div>
 </template>
 
@@ -61,7 +44,6 @@
 import { ref, watch, computed } from "vue";
 
 const props = defineProps({
-  bot: Object,
   allUsers: Array,
   selectedUserId: String,
   members: Array,
@@ -107,7 +89,7 @@ watch(
   { immediate: true }
 );
 
-const showModelDialog = ref(false);
+
 
 const sessionTitle = computed(
   () => props.session?.session_title || "未命名议题"
