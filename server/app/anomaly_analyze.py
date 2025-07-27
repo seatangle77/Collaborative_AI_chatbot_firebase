@@ -429,7 +429,7 @@ def local_analyze_anomaly_status(chunk_data) -> tuple[dict, dict]:
 
     return chunk_data, local_analyze_result
 
-def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[datetime,str], is_save_debug_file:bool = True) -> tuple[dict, dict]:
+def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[datetime,str], is_save_debug_info:bool = True) -> tuple[dict, dict]:
     # 阶段1: 获取成员信息
     start_time_1 = time.time()
     members = get_group_members_simple(group_id)
@@ -458,11 +458,10 @@ def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[d
         return {}, {}
 
     # 阶段3：本地数据分析
-    chunk_data_with_local_analyze, local_analyze_result = local_analyze_anomaly_status(raw_data,
-                                                                                       is_save_debug_file=is_save_debug_file)
+    chunk_data_with_local_analyze, local_analyze_result = local_analyze_anomaly_status(raw_data)
 
     # 阶段4：保存调试文件
-    if is_save_debug_file:
+    if is_save_debug_info:
         os.makedirs("analysis_outputs", exist_ok=True)
         debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
         with open(debug_file_path, "w", encoding="utf-8") as f:
