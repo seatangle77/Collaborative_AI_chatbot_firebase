@@ -274,12 +274,29 @@
                 {{ user.currentAiSuggestion.glasses_summary }}
               </div>
               <div class="ai-time">{{ formatTimeRange(user.currentAiSuggestion.start_time, user.currentAiSuggestion.end_time) }}</div>
-              <div v-if="user.isCountdownActive" class="countdown-section">
+              <div v-if="user.isCountdownActive && !user.isPushed" class="countdown-section">
                 <div class="countdown-display">
                   <span class="countdown-label">倒计时:</span>
                   <span class="countdown-time" :class="{ 'urgent': user.countdownSeconds <= 10 }">
                     {{ formatCountdown(user.countdownSeconds) }}
                   </span>
+                </div>
+                <div class="countdown-actions">
+                  <button 
+                    @click="showImmediatePushModal(user.id)"
+                    class="immediate-push-btn">
+                    立即推送
+                  </button>
+                  <button 
+                    @click="cancelNotification(user.id)"
+                    class="cancel-send-btn">
+                    取消发送
+                  </button>
+                </div>
+              </div>
+              <div v-else-if="user.isPushed" class="countdown-section">
+                <div class="pushed-status">
+                  <span class="pushed-label">✅ 已推送</span>
                 </div>
               </div>
             </div>
@@ -289,16 +306,11 @@
           </div>
         </div>
         
-        <!-- 取消发送按钮（替换原来的发送推送按钮） -->
-        <button 
-          v-if="user.currentAiSuggestion && user.isCountdownActive"
-          class="cancel-send-btn" 
-          @click="cancelNotification(user.id)"
-          :disabled="user.countdownSeconds <= 0"
-        >
-          {{ user.countdownSeconds <= 0 ? '已发送' : '取消发送' }}
-        </button>
-        <div v-else class="no-push-status">
+        <!-- 推送状态显示 -->
+        <div v-if="user.currentAiSuggestion && user.isPushed" class="push-status">
+          <span class="status-text">✅ 已推送</span>
+        </div>
+        <div v-else-if="!user.currentAiSuggestion" class="no-push-status">
           暂无推送状态
         </div>
       </div>
@@ -360,6 +372,40 @@
         </div>
       </div>
     </div>
+    
+    <!-- 立即推送编辑模态框 -->
+    <div v-if="immediatePushModalVisible" class="modal-overlay" @click="cancelImmediatePush">
+      <div class="immediate-push-modal" @click.stop>
+        <div class="modal-header">
+          <h3>编辑推送内容</h3>
+          <button class="close-btn" @click="cancelImmediatePush">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Summary:</label>
+            <textarea 
+              v-model="editedSummary" 
+              placeholder="请输入summary内容"
+              rows="4"
+              class="form-textarea">
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label>Glasses Summary:</label>
+            <textarea 
+              v-model="editedGlassesSummary" 
+              placeholder="请输入glasses_summary内容"
+              rows="3"
+              class="form-textarea">
+            </textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button @click="confirmImmediatePush" class="confirm-btn">立即推送</button>
+          <button @click="cancelImmediatePush" class="cancel-btn">取消</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -381,16 +427,22 @@ export default {
       pollingInterval: null, // 存储定时器ID
       analysisHistory: {}, // 存储每个用户的历史分析数据 {userId: [{round1}, {round2}, {round3}]}
       currentRound: 1, // 当前轮次
-      showAiDetailModal: false, // AI详情弹窗显示状态
-      selectedAiDetail: null, // 选中的AI详情数据
-      currentTime: '2025-07-10T07:02:27', // UTC时间，用于调试
-      currentTimeLocal: '', // 本地时间选择器的值
-      lastTimeRange: null, // 记录上一次的时间范围，用于判断是否需要更新
+              showAiDetailModal: false, // AI详情弹窗显示状态
+        selectedAiDetail: null, // 选中的AI详情数据
+        currentTime: '2025-07-28T04:10:00', // UTC时间，用于调试
+        currentTimeLocal: '', // 本地时间选择器值
+        lastTimeRange: null, // 记录上一次的时间范围，用于判断是否需要更新
+        immediatePushModalVisible: false, // 立即推送模态框显示状态
+        editingUserId: null, // 正在编辑的用户ID
+        editedSummary: '', // 编辑后的summary
+        editedGlassesSummary: '', // 编辑后的glasses_summary
       lastAiTimeRange: null, // 记录上一次AI分析的时间范围，用于判断是否需要更新
       lastNextNotifyTimeRange: null, // 记录上一次即将推送的时间范围，用于判断是否需要更新
+      lastNextNotifyTime: null, // 记录上一次的next_notify_time，用于判断推送是否完成
       countdownTimers: {}, // 存储每个用户的倒计时定时器 {userId: timerId}
       countdownSeconds: {}, // 存储每个用户的倒计时秒数 {userId: seconds}
       cancelledNotifications: new Set(), // 存储已取消的推送通知
+      timeUpdateInterval: null, // 时间更新定时器ID
     };
   },
   computed: {
@@ -420,6 +472,7 @@ export default {
         return {
           id: userId,
           name: userInfo ? userInfo.name : (member.name || '未知用户'),
+          device_token: userInfo ? userInfo.device_token : null, // 添加device_token
           pushLoading: false, // 初始化推送状态
         };
       });
@@ -539,6 +592,50 @@ export default {
       
       return startChanged || endChanged;
     },
+    // 检查是否需要更新即将推送数据
+    shouldUpdateNextNotifyData(nextNotifyResult) {
+      // 第一次获取数据，需要更新
+      if (!this.lastNextNotifyTimeRange) {
+        return true;
+      }
+      
+      // 检查时间范围是否发生变化
+      const timeRangeChanged = this.hasNextNotifyTimeRangeChanged(nextNotifyResult.time_range);
+      if (timeRangeChanged) {
+        return true;
+      }
+      
+      // 检查last_notify_time是否与上次的next_notify_time相同
+      const currentLastNotifyTime = this.extractLastNotifyTime(nextNotifyResult);
+      if (currentLastNotifyTime && this.lastNextNotifyTime && currentLastNotifyTime === this.lastNextNotifyTime) {
+        console.log('检测到推送完成，需要更新数据');
+        console.log('当前last_notify_time:', currentLastNotifyTime);
+        console.log('上次next_notify_time:', this.lastNextNotifyTime);
+        return true;
+      }
+      
+      return false;
+    },
+    // 提取next_notify_time
+    extractNextNotifyTime(nextNotifyResult) {
+      // 从所有用户数据中提取next_notify_time
+      for (const userId in nextNotifyResult) {
+        if (userId !== 'time_range' && nextNotifyResult[userId] && nextNotifyResult[userId].next_notify_time) {
+          return nextNotifyResult[userId].next_notify_time;
+        }
+      }
+      return null;
+    },
+    // 提取last_notify_time
+    extractLastNotifyTime(nextNotifyResult) {
+      // 从所有用户数据中提取last_notify_time
+      for (const userId in nextNotifyResult) {
+        if (userId !== 'time_range' && nextNotifyResult[userId] && nextNotifyResult[userId].last_notify_time) {
+          return nextNotifyResult[userId].last_notify_time;
+        }
+      }
+      return null;
+    },
     formatHourMinute(timeStr) {
       // timeStr: '2025-07-10T07:02:00' - 需要明确解析为UTC时间
       if (!timeStr) return '';
@@ -625,46 +722,48 @@ export default {
       this.showAiDetailModal = false;
       this.selectedAiDetail = null;
     },
-    // 模拟获取AI提示数据的方法（实际应该从API获取）
-    async fetchAiSuggestions(userId) {
-      // 这里应该调用实际的API
-      // 暂时返回模拟数据
-      const mockAiData = {
-        glasses_summary: "你参与度很高哦～ 继续加油，多和队友互动哦！^_^",
-        start_time: "2025-07-10T07:06:27",
-        end_time: "2025-07-10T07:08:27",
-        detail: {
-          type: "Normal Participation",
-          status: "发言时长较短，占比不高，鼠标操作次数少，未编辑笔记。",
-          suggestion: "建议积极参与讨论，分享你的想法和观点，并尝试更多地与其他成员互动。",
-          evidence: "- 发言等级：Normal Speech（时长：21.24s，占比：17.7%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：104.11s，占比：86.75%）"
-        },
-        more_info: {
-          collaboration_suggestion: "建议主动向其他成员提问，并积极回应其他成员的发言，促进小组讨论的活跃度。",
-          detailed_reason: "发言时长仅为 21.24s，占比 17.7%，相对较低。鼠标操作次数也较少，仅为 6 次，时长为 104.11s，占比 86.75%，说明其主要时间用于浏览页面。此外，未编辑笔记。综合来看，参与度处于中等偏低水平。",
-          history_comparison: "需要更多历史数据进行对比分析，以了解其参与度的变化趋势。",
-          group_comparison: "与其他成员相比，发言时长和编辑次数都较少。建议积极参与讨论，分享自己的想法和观点，并尝试更多地与其他成员互动。"
-        },
-        group_distribution: {
-          group_risk: "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
-          group_type: "失衡型",
-          action_hint: "激励低参与成员积极发言，鼓励主导者留出更多空间给其他成员，确保讨论的平衡性和全面性。",
-          dominant: 1,
-          high: 1,
-          normal: 1,
-          low: 1,
-          no: 0
-        }
-      };
-      
-      return mockAiData;
-    },
+
     updateCurrentTime() {
       // 将本地时间转换为UTC时间
       if (this.currentTimeLocal) {
-        const localDate = new Date(this.currentTimeLocal);
-        // 转换为UTC时间字符串
-        this.currentTime = localDate.toISOString().slice(0, 19);
+        // 解析本地时间字符串
+        const match = this.currentTimeLocal.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+        if (match) {
+          const [, year, month, day, hour, minute] = match;
+          
+          // 将东八区时间转换为UTC时间（减8小时）
+          let utcHour = parseInt(hour) - 8;
+          let utcDay = parseInt(day);
+          let utcMonth = parseInt(month);
+          let utcYear = parseInt(year);
+          
+          // 处理跨日的情况
+          if (utcHour < 0) {
+            utcHour += 24;
+            utcDay -= 1;
+            
+            // 处理跨月的情况
+            if (utcDay < 1) {
+              utcMonth -= 1;
+              if (utcMonth < 1) {
+                utcMonth = 12;
+                utcYear -= 1;
+              }
+              const daysInMonth = new Date(utcYear, utcMonth, 0).getDate();
+              utcDay = daysInMonth;
+            }
+          }
+          
+          // 格式化为UTC时间字符串
+          this.currentTime = `${utcYear}-${String(utcMonth).padStart(2, '0')}-${String(utcDay).padStart(2, '0')}T${String(utcHour).padStart(2, '0')}:${minute}:00`;
+          
+          console.log('用户手动更新时间:', this.currentTime);
+          
+          // 如果正在轮询，重新启动时间更新定时器
+          if (this.isPolling) {
+            this.startTimeUpdate();
+          }
+        }
       }
     },
     // 将UTC时间转换为本地时间（东八区）
@@ -773,26 +872,36 @@ export default {
     calculateCountdown(nextNotifyTime) {
       if (!nextNotifyTime) return 0;
       
+      console.log('=== 倒计时计算开始 ===');
+      console.log('原始nextNotifyTime:', nextNotifyTime);
+      console.log('页面currentTime:', this.currentTime);
+      
       // 解析UTC时间字符串，移除+00:00后缀
       const cleanTime = nextNotifyTime.replace('+00:00', '');
+      console.log('清理后的时间:', cleanTime);
+      
       const now = new Date(this.currentTime); // 使用页面当前时间
       const notifyTime = new Date(cleanTime);
       
-      console.log('倒计时计算:', {
-        currentTime: this.currentTime,
-        nextNotifyTime: cleanTime,
+      console.log('创建的时间对象:', {
         now: now.toISOString(),
-        notifyTime: notifyTime.toISOString()
+        notifyTime: notifyTime.toISOString(),
+        nowTimestamp: now.getTime(),
+        notifyTimestamp: notifyTime.getTime()
       });
       
       const diffSeconds = Math.floor((notifyTime - now) / 1000);
       console.log('时间差秒数:', diffSeconds);
+      console.log('时间差小时:', Math.floor(diffSeconds / 3600));
+      console.log('时间差天数:', Math.floor(diffSeconds / 86400));
       
       // 如果是负数，返回5秒倒计时
       if (diffSeconds < 0) {
+        console.log('时间差为负数，返回5秒倒计时');
         return 5;
       }
       
+      console.log('=== 倒计时计算结束 ===');
       return diffSeconds;
     },
     // 启动倒计时
@@ -873,6 +982,76 @@ export default {
         console.log(`用户 ${user.name} 的推送已取消`);
       }
     },
+    // 启动时间更新
+    startTimeUpdate() {
+      // 清除现有的时间更新定时器
+      this.stopTimeUpdate();
+      
+      // 每秒更新当前时间
+      this.timeUpdateInterval = setInterval(() => {
+        // 解析当前UTC时间
+        const match = this.currentTime.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/);
+        if (match) {
+          const [, year, month, day, hour, minute, second] = match;
+          
+          // 增加1秒
+          let newSecond = parseInt(second) + 1;
+          let newMinute = parseInt(minute);
+          let newHour = parseInt(hour);
+          let newDay = parseInt(day);
+          let newMonth = parseInt(month);
+          let newYear = parseInt(year);
+          
+          // 处理进位
+          if (newSecond >= 60) {
+            newSecond = 0;
+            newMinute += 1;
+            
+            if (newMinute >= 60) {
+              newMinute = 0;
+              newHour += 1;
+              
+              if (newHour >= 24) {
+                newHour = 0;
+                newDay += 1;
+                
+                // 处理跨月
+                const daysInMonth = new Date(newYear, newMonth, 0).getDate();
+                if (newDay > daysInMonth) {
+                  newDay = 1;
+                  newMonth += 1;
+                  
+                  if (newMonth > 12) {
+                    newMonth = 1;
+                    newYear += 1;
+                  }
+                }
+              }
+            }
+          }
+          
+          // 更新当前时间
+          this.currentTime = `${newYear}-${String(newMonth).padStart(2, '0')}-${String(newDay).padStart(2, '0')}T${String(newHour).padStart(2, '0')}:${String(newMinute).padStart(2, '0')}:${String(newSecond).padStart(2, '0')}`;
+          
+          // 同时更新本地时间选择器
+          this.currentTimeLocal = this.convertUtcToLocal(this.currentTime);
+          
+          console.log('当前时间更新:', this.currentTime);
+        }
+      }, 1000);
+      
+      console.log('时间更新定时器已启动');
+    },
+    
+    // 停止时间更新
+    stopTimeUpdate() {
+      if (this.timeUpdateInterval) {
+        clearInterval(this.timeUpdateInterval);
+        this.timeUpdateInterval = null;
+        console.log('时间更新定时器已停止');
+      }
+    },
+    
     // 自动推送
     async autoSendPush(userId, aiData) {
       const user = this.users.find(u => u.id === userId);
@@ -881,12 +1060,15 @@ export default {
       console.log(`自动推送用户 ${user.name} 的AI提示`);
       
       try {
+        // 从用户信息中获取device_token
+        const deviceToken = user.device_token || user.deviceToken || "default_device_token";
+        
         // 准备推送参数
         const pushPayload = {
           push_ji: true,
-          device_token: "user_device_token_here",
+          device_token: deviceToken,
           glasses_summary: aiData.glasses_summary,
-          summary: `${user.name}的AI分析提示`,
+          summary: aiData.summary || `${user.name}的AI分析提示`,
           detail_suggestion: aiData.detail?.suggestion || "继续保持良好的参与状态",
           user_id: userId,
           user_name: user.name,
@@ -895,6 +1077,8 @@ export default {
         };
 
         console.log('自动推送参数:', pushPayload);
+        console.log('用户device_token:', deviceToken);
+        console.log('推送目标用户ID:', userId);
         
         // 调用推送接口
         const response = await apiService.pushAiAnalysisResult(pushPayload);
@@ -906,7 +1090,8 @@ export default {
           this.users[userIndex] = {
             ...this.users[userIndex],
             isCountdownActive: false,
-            countdownSeconds: 0
+            countdownSeconds: 0,
+            isPushed: true // 标记已推送
           };
         }
         
@@ -915,6 +1100,50 @@ export default {
       } catch (error) {
         console.error('自动推送失败:', error);
       }
+    },
+
+    // 显示立即推送模态框
+    showImmediatePushModal(userId) {
+      const user = this.users.find(u => u.id === userId);
+      if (!user || !user.currentAiSuggestion) return;
+      
+      this.editingUserId = userId;
+      // 预填充原始内容
+      this.editedSummary = user.currentAiSuggestion.summary || '';
+      this.editedGlassesSummary = user.currentAiSuggestion.glasses_summary || '';
+      this.immediatePushModalVisible = true;
+    },
+
+    // 确认立即推送
+    async confirmImmediatePush() {
+      if (!this.editingUserId) return;
+      
+      const user = this.users.find(u => u.id === this.editingUserId);
+      if (!user || !user.currentAiSuggestion) return;
+      
+      // 创建修改后的AI数据
+      const modifiedAiData = {
+        ...user.currentAiSuggestion,
+        summary: this.editedSummary,
+        glasses_summary: this.editedGlassesSummary
+      };
+      
+      // 调用推送
+      await this.autoSendPush(this.editingUserId, modifiedAiData);
+      
+      // 关闭模态框
+      this.immediatePushModalVisible = false;
+      this.editingUserId = null;
+      this.editedSummary = '';
+      this.editedGlassesSummary = '';
+    },
+
+    // 取消立即推送
+    cancelImmediatePush() {
+      this.immediatePushModalVisible = false;
+      this.editingUserId = null;
+      this.editedSummary = '';
+      this.editedGlassesSummary = '';
     },
     
     // 更新即将推送的AI提示数据
@@ -958,61 +1187,6 @@ export default {
       });
     },
     
-    // 备用方案：手动获取AI提示数据（主要用于本地分析后调用）
-    async updateAiSuggestions() {
-      try {
-        // 调用AI分析接口获取数据
-        const requestData = {
-          group_id: this.selectedGroupId
-        };
-        
-        const aiAnalyzeResult = await apiService.getAiAnalyze(requestData);
-        console.log('手动获取AI分析结果:', aiAnalyzeResult);
-        
-        // 处理AI分析结果，更新用户数据
-        if (aiAnalyzeResult && aiAnalyzeResult.length > 0) {
-          // 假设返回的是用户AI分析数据数组
-          for (const userAiData of aiAnalyzeResult) {
-            const userIndex = this.users.findIndex(u => u.id === userAiData.user_id || u.id === userAiData.userId);
-            if (userIndex !== -1) {
-              this.users[userIndex] = {
-                ...this.users[userIndex],
-                currentAiSuggestion: userAiData,
-                aiHistory: [
-                  // 这里可以根据实际API返回的历史数据来更新
-                  // 暂时使用当前数据作为历史数据
-                  { ...userAiData, start_time: "2025-07-10T07:04:27", end_time: "2025-07-10T07:06:27" },
-                  { ...userAiData, start_time: "2025-07-10T07:02:27", end_time: "2025-07-10T07:04:27" },
-                  { ...userAiData, start_time: "2025-07-10T07:00:27", end_time: "2025-07-10T07:02:27" }
-                ]
-              };
-            }
-          }
-        }
-      } catch (error) {
-        console.error('手动获取AI分析数据失败:', error);
-        // 如果API调用失败，使用模拟数据作为备用
-        for (const user of this.users) {
-          try {
-            const currentAiData = await this.fetchAiSuggestions(user.id);
-            const userIndex = this.users.findIndex(u => u.id === user.id);
-            if (userIndex !== -1) {
-              this.users[userIndex] = {
-                ...this.users[userIndex],
-                currentAiSuggestion: currentAiData,
-                aiHistory: [
-                  { ...currentAiData, start_time: "2025-07-10T07:04:27", end_time: "2025-07-10T07:06:27" },
-                  { ...currentAiData, start_time: "2025-07-10T07:02:27", end_time: "2025-07-10T07:04:27" },
-                  { ...currentAiData, start_time: "2025-07-10T07:00:27", end_time: "2025-07-10T07:02:27" }
-                ]
-              };
-            }
-          } catch (fallbackError) {
-            console.error(`获取用户 ${user.id} 的备用AI提示数据失败:`, fallbackError);
-          }
-        }
-      }
-    },
     getLevelClass(level) {
       // 根据参与等级返回对应的CSS类名
       const levelMap = {
@@ -1102,9 +1276,6 @@ export default {
           // 更新用户卡片显示分析结果（本地分析使用特殊轮次号999）
           const roundStartTime = result.raw_data_summary?.time_range?.start;
           this.updateUserCardsWithAnalysis(result.local_analysis, roundStartTime, 999);
-          
-          // 获取AI提示数据
-          await this.updateAiSuggestions();
         } else {
           console.log('分析完成，但无数据结果');
         }
@@ -1129,9 +1300,13 @@ export default {
       this.lastTimeRange = null;
       this.lastAiTimeRange = null;
       this.lastNextNotifyTimeRange = null;
+      this.lastNextNotifyTime = null;
       // 清除所有倒计时和取消记录
       this.clearAllCountdowns();
       this.cancelledNotifications.clear();
+      
+      // 启动时间更新定时器，每秒更新当前时间
+      this.startTimeUpdate();
       
       // 立即执行一次分析
       await this.performPollingAnalysis();
@@ -1147,6 +1322,8 @@ export default {
     
     async performPollingAnalysis() {
       try {
+        console.log('轮询分析开始，当前页面时间:', this.currentTime);
+        
         // 构建请求数据，只传group_id
         const requestData = {
           group_id: this.selectedGroupId
@@ -1162,6 +1339,7 @@ export default {
         console.log('轮询分析结果:', anomalyResult);
         console.log('AI提示历史结果:', aiHistoryResult);
         console.log('即将推送结果:', nextNotifyResult);
+        console.log('轮询分析结束，当前页面时间:', this.currentTime);
         
         // 处理本地分析数据（最近3轮）
         if (anomalyResult && Array.isArray(anomalyResult) && anomalyResult.length > 0) {
@@ -1251,12 +1429,11 @@ export default {
         if (nextNotifyResult && typeof nextNotifyResult === 'object') {
           console.log('收到即将推送的AI提示数据:', nextNotifyResult);
           
-          // 检查时间范围是否发生变化
-          const currentNextNotifyTimeRange = nextNotifyResult.time_range;
-          const nextNotifyTimeRangeChanged = this.hasNextNotifyTimeRangeChanged(currentNextNotifyTimeRange);
+          // 检查是否需要更新数据
+          const shouldUpdate = this.shouldUpdateNextNotifyData(nextNotifyResult);
           
-          if (nextNotifyTimeRangeChanged) {
-            console.log('即将推送时间范围发生变化，更新推送数据');
+          if (shouldUpdate) {
+            console.log('需要更新即将推送数据');
             
             // 清除所有现有的倒计时
             this.clearAllCountdowns();
@@ -1264,10 +1441,11 @@ export default {
             // 更新即将推送的AI提示数据
             this.updateNextNotifyData(nextNotifyResult);
             
-            // 更新记录的时间范围
-            this.lastNextNotifyTimeRange = currentNextNotifyTimeRange;
+            // 更新记录的时间范围和时间
+            this.lastNextNotifyTimeRange = nextNotifyResult.time_range;
+            this.lastNextNotifyTime = this.extractNextNotifyTime(nextNotifyResult);
           } else {
-            console.log('即将推送时间范围未变化，跳过推送数据更新');
+            console.log('无需更新即将推送数据');
           }
         }
       } catch (error) {
@@ -1280,11 +1458,14 @@ export default {
       try {
         console.log('停止前端轮询分析...');
         
-        // 清除定时器
+        // 清除轮询定时器
         if (this.pollingInterval) {
           clearInterval(this.pollingInterval);
           this.pollingInterval = null;
         }
+        
+        // 停止时间更新
+        this.stopTimeUpdate();
         
         this.isPolling = false;
         console.log('前端轮询已停止');
@@ -1337,6 +1518,8 @@ export default {
       clearInterval(this.pollingInterval);
       this.pollingInterval = null;
     }
+    // 停止时间更新
+    this.stopTimeUpdate();
     // 清除所有倒计时
     this.clearAllCountdowns();
   }
@@ -1615,15 +1798,19 @@ export default {
 .cancel-send-btn {
   background: linear-gradient(90deg, #dc3545 0%, #c82333 100%);
   border: none;
-  border-radius: 8px;
-  width: 100%;
-  padding: 12px 0;
+  border-radius: 6px;
+  width: 50%;
+  padding: 8px 12px;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.8rem;
   color: white;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(220,53,69,0.12);
+  box-shadow: 0 2px 6px 0 rgba(220,53,69,0.12);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cancel-send-btn:hover:not(:disabled) {
   background: linear-gradient(90deg, #e74c3c 0%, #dc3545 100%);
@@ -1636,6 +1823,190 @@ export default {
   cursor: not-allowed;
   box-shadow: none;
   transform: none;
+}
+
+.countdown-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.immediate-push-btn {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 6px 0 rgba(40,167,69,0.12);
+  flex: 1;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.immediate-push-btn:hover {
+  background: linear-gradient(90deg, #20c997 0%, #28a745 100%);
+  box-shadow: 0 3px 12px 0 rgba(40,167,69,0.18);
+  transform: translateY(-1px);
+}
+
+.pushed-status {
+  text-align: center;
+  padding: 8px;
+  background: rgba(40, 167, 69, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.pushed-label {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.push-status {
+  text-align: center;
+  padding: 8px;
+  background: rgba(40, 167, 69, 0.1);
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.status-text {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* 立即推送模态框样式 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.immediate-push-modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 100vh;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e9ecef;
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 20px 24px;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #495057;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d0d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: none;
+  min-height: 80px;
+  max-height: 150px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid #e9ecef;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.confirm-btn {
+  background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px 0 rgba(40,167,69,0.12);
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(90deg, #20c997 0%, #28a745 100%);
+  box-shadow: 0 4px 16px 0 rgba(40,167,69,0.18);
+  transform: translateY(-1px);
+}
+
+.cancel-btn {
+  background: #6c757d;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
 }
 
 .no-push-status {
@@ -1944,7 +2315,7 @@ export default {
 
 .ai-history-section,
 .ai-current-section {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .ai-history-section {
@@ -1965,13 +2336,13 @@ export default {
 
 .ai-history-item,
 .ai-current-item {
-  padding: 4px 6px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 3px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 0.75rem;
-  margin-bottom: 2px;
+  font-size: 0.8rem;
+  margin-bottom: 3px;
 }
 
 .ai-history-item:hover,
@@ -1981,7 +2352,8 @@ export default {
 }
 
 .ai-current-item {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(40, 167, 69, 0.2);
 }
 
 .ai-summary {
@@ -2015,37 +2387,36 @@ export default {
   border-radius: 3px;
 }
 
-.countdown-section {
-  margin-top: 6px;
-  padding: 4px 6px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-  border-left: 3px solid #ffc107;
-}
-
 .countdown-display {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
 .countdown-label {
-  font-size: 0.7rem;
-  color: #6c757d;
-  font-weight: 500;
+  font-size: 0.85rem;
+  color: #495057;
+  font-weight: 600;
 }
 
 .countdown-time {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #28a745;
   font-family: 'Courier New', monospace;
+  background: rgba(40, 167, 69, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  min-width: 60px;
+  text-align: center;
 }
 
 .countdown-time.urgent {
   color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
   animation: pulse 1s infinite;
+  font-weight: 800;
 }
 
 @keyframes pulse {

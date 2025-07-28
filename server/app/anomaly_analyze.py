@@ -72,7 +72,7 @@ def ai_analyze_all_anomalies(chunk_data_with_local_analyze: dict) -> tuple[str, 
   "用户ID": {{
     "user_name": "用户名",
     "summary": "一句话总结当前状态",
-    "glasses_summary": "你当前[状态]，建议[温和提示]",
+    "glasses_summary": "建议[温和提示]+颜文字表情,8个字以内",
     "should_notify": true 或 false,
     "detail": {{
       "type": "参与状态类型，如 Low Participation",

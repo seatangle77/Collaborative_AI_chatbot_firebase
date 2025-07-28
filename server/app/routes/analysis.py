@@ -97,11 +97,14 @@ async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
                 if last_notify_time is None:
                     # 如果是第一次执行，用AI分析结果的时间作为下次通知时间
                     next_notify_time = parse_iso_time(end_time)
+                    last_ai_analyze_content.get(user_id, {}).update({"last_notify_time": ""})
                 else:
                     # 上一次通知时间+间隔时间作为下一次通知时间
                     next_notify_time = last_notify_time + timedelta(seconds=interval_seconds)
+                    last_ai_analyze_content.get(user_id, {}).update({"last_notify_time": last_notify_time.isoformat()})
 
                 last_ai_analyze_content.get(user_id, {}).update({"next_notify_time": next_notify_time.isoformat()})
+                
         return last_ai_analyze_content
     else:
         return {}
@@ -136,11 +139,19 @@ async def push_ai_analyze_result(req: PushAiAnalysisRequest):
     # WebSocket 推送 - 向PC页面推送完整分析结果
     try:
         if req.push_pc:
+            logger.info(f"📡 [异常分析] 开始WebSocket推送，用户ID: {req.user_id}")
             await push_anomaly_analysis_result(req.user_id, req.ai_analyze_result)
+            logger.info(f"✅ [异常分析] WebSocket推送完成，用户ID: {req.user_id}")
+        else:
+            logger.info(f"⏭️ [异常分析] 跳过WebSocket推送，push_pc: {req.push_pc}")
     except Exception as e:
         logger.error(f"⚠️ [异常分析] WebSocket推送失败: {traceback.format_exc()}")
 
-    return get_next_notify_ai_analyze_result()
+    # 构造GroupPollingRequest来调用get_next_notify_ai_analyze_result
+    # 从ai_analyze_result中提取group_id，如果没有则使用默认值
+    group_id = req.ai_analyze_result.get('group_id', 'default_group')
+    polling_req = GroupPollingRequest(group_id=group_id)
+    return await get_next_notify_ai_analyze_result(polling_req)
 
 # 新增：只执行本地分析的接口
 @router.post("/analysis/local_anomalies")
