@@ -1,5 +1,6 @@
 import time
 import traceback
+import uuid
 from datetime import timedelta, datetime, timezone
 from typing import Dict, Any, List
 
@@ -146,6 +147,35 @@ async def push_ai_analyze_result(req: PushAiAnalysisRequest):
             logger.info(f"⏭️ [异常分析] 跳过WebSocket推送，push_pc: {req.push_pc}")
     except Exception as e:
         logger.error(f"⚠️ [异常分析] WebSocket推送失败: {traceback.format_exc()}")
+
+    class PushAiAnalysisRequest(BaseModel):
+        push_ji: bool
+        device_token: str
+        glasses_summary: str
+        summary: str
+        detail_suggestion: str
+        user_id: str
+        user_name: str
+        push_pc: bool
+        ai_analyze_result: dict
+
+    # 推送记录入库
+    stage_start = time.time()
+    file_id = str(uuid.uuid4())
+    db.collection("anomaly_push_analyze_result").document(file_id).set({
+        "id": file_id,
+        "push_ji": req.push_ji,
+        "device_token": req.device_token,
+        "glasses_summary": req.glasses_summary,
+        "summary": req.summary,
+        "detail_suggestion": req.detail_suggestion,
+        "user_id": req.user_id,
+        "user_name": req.user_name,
+        "push_pc": req.push_pc,
+        "ai_analyze_result": req.ai_analyze_result,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    })
+    logger.info(f"推送记录入库，耗时{time.time() - stage_start:.2f}秒")
 
     # 构造GroupPollingRequest来调用get_next_notify_ai_analyze_result
     # 从ai_analyze_result中提取group_id，如果没有则使用默认值
