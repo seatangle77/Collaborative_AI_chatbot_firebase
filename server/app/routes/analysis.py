@@ -148,17 +148,6 @@ async def push_ai_analyze_result(req: PushAiAnalysisRequest):
     except Exception as e:
         logger.error(f"⚠️ [异常分析] WebSocket推送失败: {traceback.format_exc()}")
 
-    class PushAiAnalysisRequest(BaseModel):
-        push_ji: bool
-        device_token: str
-        glasses_summary: str
-        summary: str
-        detail_suggestion: str
-        user_id: str
-        user_name: str
-        push_pc: bool
-        ai_analyze_result: dict
-
     # 推送记录入库
     stage_start = time.time()
     file_id = str(uuid.uuid4())
