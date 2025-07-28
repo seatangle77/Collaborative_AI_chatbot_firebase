@@ -79,7 +79,7 @@
             </el-collapse-item>
           </el-collapse>
 
-                  <div v-if="anomalyData" class="anomaly-feedback-section">
+                  <div v-if="anomalyData && !isControlGroup" class="anomaly-feedback-section">
           <AbnormalFeedback 
             :anomaly-data="anomalyData" 
             :members="members" 
@@ -98,7 +98,15 @@
       <div class="section-row">
         <div class="note-section" style="display: flex; flex-direction: row; width: 99%; height: 100vh; min-height: 0; align-items: stretch;">
           <!-- 多成员编辑器区域：每个人都能看到所有成员的NoteEditor，只能编辑自己的，其他只读 -->
-          <div class="multi-note-editors" style="flex: 8; display: flex; flex-direction: row; gap: 20px; height: 100%; min-height: 0; max-width: 80vw;">
+          <div class="multi-note-editors" :style="{
+            flex: isControlGroup ? '1' : '8', 
+            display: 'flex', 
+            flexDirection: 'row', 
+            gap: '20px', 
+            height: '100%', 
+            minHeight: '0', 
+            maxWidth: isControlGroup ? '100vw' : '80vw'
+          }">
             <div v-for="member in members" :key="member.user_id" class="member-editor-flex" style="flex: 1 1 0%; min-width: 0; display: flex; flex-direction: column;">
               <div class="editor-header">
                 <span class="editor-title">{{ member.name }} 的工作区</span>
@@ -117,7 +125,7 @@
             </div>
           </div>
           <!-- 右侧历史异常反馈区域和两个空白占位区域 -->
-          <div class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">
+          <div v-if="!isControlGroup" class="history-panel-side" style="flex: 2; min-width: 180px; max-width: 20vw; height: 800px; margin-left: 20px; overflow: auto; align-self: flex-start; display: flex; flex-direction: column; gap: 20px;">
             <div class="members-status-card">
               <div class="members-status-header">组员面板</div>
               <div class="members-status-list">
@@ -204,7 +212,7 @@
           </div>
         </div>
       </div>
-      <div v-if="showRichNotification" class="rich-notification">
+      <div v-if="showRichNotification && !isControlGroup" class="rich-notification">
         <AbnormalFeedback
           v-if="drawerData"
           :anomaly-data="drawerData"
@@ -353,6 +361,11 @@ function getAvatarColor(user) {
 const otherMembers = computed(() => {
   return members.value.filter((member) => member.user_id !== userId.value);
 });
+
+// 判断当前小组是否为对照组
+const isControlGroup = computed(() => {
+  return group.value?.control_group === 'True' || group.value?.control_group === true;
+});
 const meetingStarted = ref(false);
 const jitsiApi = ref(null);
 const activeTab = ref("note");
@@ -434,6 +447,12 @@ onMounted(async () => {
     ElMessage.info(`${fromUserName} 分享了提示信息：${translateLevelType(payload.detail_type)}`);
   });
   onUserMessage("anomaly_analysis", (payload) => {
+    // 对照组不处理异常分析结果
+    if (isControlGroup.value) {
+      console.log("对照组模式：忽略异常分析结果");
+      return;
+    }
+    
     // 移除调试打印，只保留原有逻辑
     if (!payload || !payload.data) {
       console.warn("⚠️ 提示分析结果数据格式不正确");
@@ -444,6 +463,12 @@ onMounted(async () => {
   });
 
   onUserMessage("peer_prompt_received", (payload) => {
+    // 对照组不处理Peer Prompt
+    if (isControlGroup.value) {
+      console.log("对照组模式：忽略Peer Prompt");
+      return;
+    }
+    
     if (!payload || !payload.data) {
       console.warn("⚠️ Peer Prompt数据格式不正确");
       return;
@@ -793,6 +818,12 @@ function loadHistoryData(
   page = historyPage.value,
   pageSize = historyPageSize.value
 ) {
+  // 对照组不加载历史数据
+  if (isControlGroup.value) {
+    console.log("对照组模式：跳过加载历史数据");
+    return;
+  }
+  
   if (!group.value?.id || !userId.value) return;
   historyLoading.value = true;
   api

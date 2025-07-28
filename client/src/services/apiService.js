@@ -66,7 +66,7 @@ export default {
     return axios.delete(`${BASE_URL}/api/chat/agenda/${agendaId}`).then(res => res.data);
   },
   updateGroupInfo(groupId, data) {
-    return axios.put(`${BASE_URL}/api/groups/${groupId}`, data).then(res => res.data);
+    return axios.post(`${BASE_URL}/api/groups/${groupId}`, data).then(res => res.data);
   },
   updateUser(userId, data) {
     return axios.put(`${BASE_URL}/api/users/${userId}`, data).then(res => res.data);

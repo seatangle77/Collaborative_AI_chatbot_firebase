@@ -9,6 +9,22 @@
         </select>
       </div>
       
+      <!-- 对照组开关区域 -->
+      <div class="control-section control-group-section">
+        <label class="section-label">对照组状态</label>
+        <div class="control-group-toggle">
+          <el-switch
+            v-model="currentGroupControlGroup"
+            :disabled="false"
+            active-text="对照组"
+            inactive-text="实验组"
+            active-color="#10b981"
+            inactive-color="#6b7280"
+            @change="onControlGroupChange"
+          />
+        </div>
+      </div>
+      
       <!-- 时间选择和分析区域 -->
       <div class="control-section time-section">
         <div class="time-range-group">
@@ -281,7 +297,7 @@
           <!-- 当前AI提示 -->
           <div class="analysis-section ai-current-section">
             <div class="section-title">即将发送的AI提示</div>
-            <div v-if="user.currentAiSuggestion" class="ai-current-item">
+            <div v-if="user.currentAiSuggestion && !currentGroupControlGroup" class="ai-current-item">
               <div class="ai-summary" @click="showAiDetail(user.id, user.currentAiSuggestion)">
                 {{ user.currentAiSuggestion.glasses_summary }}
               </div>
@@ -326,6 +342,9 @@
                 </div>
               </div>
             </div>
+            <div v-else-if="currentGroupControlGroup" class="no-ai-current">
+              <div class="control-group-notice">对照组不显示推送功能</div>
+            </div>
             <div v-else class="no-ai-current">
               暂无即将发送的AI提示
             </div>
@@ -333,11 +352,14 @@
         </div>
         
         <!-- 推送状态显示 -->
-        <div v-if="user.currentAiSuggestion && user.isPushed" class="push-status">
+        <div v-if="!currentGroupControlGroup && user.currentAiSuggestion && user.isPushed" class="push-status">
           <span class="status-text">✅ 已推送</span>
         </div>
-        <div v-else-if="user.currentAiSuggestion && !user.isPushed && !user.isCountdownActive" class="no-push-status">
+        <div v-else-if="!currentGroupControlGroup && user.currentAiSuggestion && !user.isPushed && !user.isCountdownActive" class="no-push-status">
           等待推送
+        </div>
+        <div v-else-if="currentGroupControlGroup" class="no-push-status">
+          对照组无推送功能
         </div>
         <div v-else-if="!user.currentAiSuggestion" class="no-push-status">
           暂无推送状态
@@ -472,6 +494,7 @@ export default {
       countdownSeconds: {}, // 存储每个用户的倒计时秒数 {userId: seconds}
       cancelledNotifications: new Set(), // 存储已取消的推送通知
       timeUpdateInterval: null, // 时间更新定时器ID
+      currentGroupControlGroup: false, // 当前小组的对照组状态
     };
   },
   computed: {
@@ -508,6 +531,45 @@ export default {
     },
     async onGroupChange() {
       await this.fetchGroupMembers(this.selectedGroupId);
+      this.updateCurrentGroupControlGroup();
+    },
+    
+    // 更新当前小组的对照组状态
+    updateCurrentGroupControlGroup() {
+      const group = this.groups.find(g => g.id === this.selectedGroupId);
+      this.currentGroupControlGroup = group ? (group.control_group === 'True' || group.control_group === true) : false;
+    },
+    
+    // 处理对照组状态切换
+    async onControlGroupChange(value) {
+      try {
+        console.log('切换对照组状态:', value);
+        
+        // 调用API更新小组信息
+        await apiService.updateGroupInfo(this.selectedGroupId, {
+          control_group: value ? 'True' : 'False'
+        });
+        
+        // 更新本地groups数据
+        const groupIndex = this.groups.findIndex(g => g.id === this.selectedGroupId);
+        if (groupIndex !== -1) {
+          this.groups[groupIndex].control_group = value ? 'True' : 'False';
+        }
+        
+        console.log('对照组状态更新成功');
+        
+        // 显示成功提示
+        this.$message.success(value ? '已设置为对照组' : '已设置为实验组');
+        
+      } catch (error) {
+        console.error('更新对照组状态失败:', error);
+        
+        // 恢复原状态
+        this.currentGroupControlGroup = !value;
+        
+        // 显示错误提示
+        this.$message.error('更新失败：' + (error.message || '未知错误'));
+      }
     },
     updateUserCardsWithAnalysis(analysisResult, roundStartTime, roundNumber = null) {
       // 更新用户卡片显示分析结果，并保存历史数据
@@ -1409,12 +1471,25 @@ export default {
           group_id: this.selectedGroupId
         };
         
-        // 并行调用三个接口
-        const [anomalyResult, aiHistoryResult, nextNotifyResult] = await Promise.all([
-          apiService.getAnomalyStatus(requestData),           // 本地分析数据
-          apiService.getAiAnalyze(requestData),               // 最近3条AI提示
-          apiService.getNextNotifyAiAnalyzeResult(requestData) // 即将推送的AI提示
-        ]);
+        // 根据小组类型决定调用哪些接口
+        let anomalyResult, aiHistoryResult, nextNotifyResult;
+        
+        if (this.currentGroupControlGroup) {
+          // 对照组：只调用分析接口，不调用推送相关接口
+          console.log('当前为对照组，跳过推送相关接口');
+          [anomalyResult, aiHistoryResult] = await Promise.all([
+            apiService.getAnomalyStatus(requestData),           // 本地分析数据
+            apiService.getAiAnalyze(requestData)                // 最近3条AI提示
+          ]);
+          nextNotifyResult = null; // 对照组不获取推送数据
+        } else {
+          // 实验组：调用所有接口
+          [anomalyResult, aiHistoryResult, nextNotifyResult] = await Promise.all([
+            apiService.getAnomalyStatus(requestData),           // 本地分析数据
+            apiService.getAiAnalyze(requestData),               // 最近3条AI提示
+            apiService.getNextNotifyAiAnalyzeResult(requestData) // 即将推送的AI提示
+          ]);
+        }
         
         console.log('轮询分析结果:', anomalyResult);
         console.log('AI提示历史结果:', aiHistoryResult);
@@ -1506,7 +1581,21 @@ export default {
         }
         
         // 处理即将推送的AI提示数据
-        if (nextNotifyResult && typeof nextNotifyResult === 'object') {
+        if (this.currentGroupControlGroup) {
+          // 对照组：清除所有推送相关状态
+          console.log('对照组模式：清除所有推送相关状态');
+          this.clearAllCountdowns();
+          this.users = this.users.map(user => ({
+            ...user,
+            currentAiSuggestion: null,
+            countdownSeconds: 0,
+            isCountdownActive: false,
+            isPushed: false
+          }));
+          this.lastNextNotifyTimeRange = null;
+          this.lastNextNotifyTime = null;
+        } else if (nextNotifyResult && typeof nextNotifyResult === 'object') {
+          // 实验组：正常处理推送数据
           console.log('收到即将推送的AI提示数据:', nextNotifyResult);
           
           // 检查是否需要更新数据
@@ -1560,6 +1649,11 @@ export default {
   async mounted() {
     await this.fetchAllUsers();
     await this.fetchGroups();
+    
+    // 初始化对照组状态
+    if (this.groups.length > 0) {
+      this.updateCurrentGroupControlGroup();
+    }
     
     // 初始化时间范围：2025年7月10日下午3点（本地时间）
     const year = 2025;
@@ -1645,6 +1739,13 @@ export default {
   max-width: 200px;
 }
 
+.control-group-section {
+  flex: 0 0 auto;
+  gap: 4px;
+  min-width: 140px;
+  max-width: 180px;
+}
+
 @media (max-width: 1200px) {
   .controls-container {
     flex-direction: column;
@@ -1704,6 +1805,13 @@ export default {
 .control-select:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* 对照组开关样式 */
+.control-group-toggle {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
 }
 .time-range-group,
 .current-time-group {
@@ -2483,6 +2591,17 @@ export default {
   font-size: 0.75rem;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 3px;
+}
+
+.control-group-notice {
+  padding: 6px 8px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.75rem;
+  background: rgba(107, 114, 128, 0.1);
+  border-radius: 4px;
+  border: 1px solid rgba(107, 114, 128, 0.2);
+  font-weight: 500;
 }
 
 .countdown-display {

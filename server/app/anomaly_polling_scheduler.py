@@ -26,9 +26,9 @@ _ai_analyze_q = queue.Queue(1000)
 _boot_time = datetime.now(timezone.utc)
 _analyze_start_time = datetime.now(timezone.utc)
 
-_group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
-_stop_analyze = False
-_analyze_start_time = parse_iso_time("2025-07-10T07:02:27")
+# _group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+# _stop_analyze = False
+# _analyze_start_time = parse_iso_time("2025-07-10T07:02:27")
 def get_analyze_start_time() -> datetime:
     return _analyze_start_time + (datetime.now(timezone.utc) - _boot_time)
 
