@@ -1,0 +1,89 @@
+{
+  "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+    "user_name": "juno",
+    "summary": "参与度较低，建议积极参与讨论",
+    "glasses_summary": "积极发言哦^_^",
+    "should_notify": true,
+    "detail": {
+      "type": "Low Participation",
+      "status": "发言和编辑缺失，浏览页面较少，参与度低。",
+      "evidence": "- 发言等级：No Speech（时长：0s，占比：0.0%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Few Browsing（页面数：5，浏览时长：20.61s，占比：17.17%）",
+      "suggestion": "建议积极参与讨论，多发言表达你的观点，并浏览更多相关资料。"
+    },
+    "more_info": {
+      "detailed_reason": "juno在本轮讨论中没有发言，发言时长为0s，发言占比为0.0%。编辑次数为0次，字符数为0。浏览页面数为5，浏览时长仅为20.61s，占比17.17%，远低于其他成员。综合来看，juno的参与度较低。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "与其他两位成员相比，juno的发言时长、编辑次数和浏览时长都显著偏低。Tark的发言时长达到114.32s，Meteora虽然没有发言，但浏览时长也显著高于juno。",
+      "collaboration_suggestion": "建议鼓励juno积极参与讨论，例如主动提问、分享自己的想法，并引导他关注小组讨论的重点内容。",
+      "extra_data": "mouse_action_count: 46, mouse_duration: 20.61s, mouse_percent: 17.17%, total_score: 0.045"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 1,
+      "normal": 1,
+      "high": 1,
+      "dominant": 0,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，部分成员被边缘化。",
+      "action_hint": "激励低参与成员（juno）积极发言，并鼓励高参与成员留出更多空间，让其他成员有机会表达。"
+    }
+  },
+  "MehACGvYsfVaGnq5utXQupmAIji2": {
+    "user_name": "Tark",
+    "summary": "参与度高，发言积极，建议注意倾听其他成员的观点。",
+    "glasses_summary": "很棒！注意倾听哦~",
+    "should_notify": true,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言积极，编辑次数多，浏览行为正常，整体参与度高。",
+      "evidence": "- 发言等级：High Speech（时长：114.32s，占比：95.27%）\n- 编辑等级：Frequent Edit（次数：1，字符数：592）\n- 浏览等级：Few Browsing（页面数：1，浏览时长：13.88s，占比：11.57%）",
+      "suggestion": "在积极参与的同时，注意倾听其他成员的观点，并尝试引导讨论，确保每个成员都有发言机会。"
+    },
+    "more_info": {
+      "detailed_reason": "Tark在本轮讨论中发言时长为114.32s，占比95.27%，编辑次数为1次，字数为592，浏览页面数为1，浏览时长为13.88s，占比11.57%。综合来看，其参与度很高。",
+      "history_comparison": "缺乏历史数据，无法进行历史对比分析。",
+      "group_comparison": "与其他两位成员相比，Tark的发言时长和浏览时长都显著高于juno，与Meteora相比发言时长高，但浏览时长低。",
+      "collaboration_suggestion": "建议Tark在发言时，注意留出空间给其他成员表达，并尝试引导讨论，确保讨论的平衡性。",
+      "extra_data": "mouse_action_count: 9, mouse_duration: 13.88s, mouse_percent: 11.57%, total_score: 0.895"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 1,
+      "normal": 1,
+      "high": 1,
+      "dominant": 0,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，部分成员被边缘化。",
+      "action_hint": "激励低参与成员（juno）积极发言，并鼓励高参与成员留出更多空间，让其他成员有机会表达。"
+    }
+  },
+  "50SHBajxtge2rmatUM7OU7MPeu32": {
+    "user_name": "Meteora",
+    "summary": "参与度较低，建议积极参与讨论",
+    "glasses_summary": "多发言，一起讨论吧！",
+    "should_notify": true,
+    "detail": {
+      "type": "Low Participation",
+      "status": "发言缺失，浏览行为正常，参与度低。",
+      "evidence": "- 发言等级：No Speech（时长：0s，占比：0.0%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Normal Browsing（页面数：1，浏览时长：58.98s，占比：49.15%）",
+      "suggestion": "尝试更多地参与讨论，分享你的想法和观点，并积极浏览相关资料。"
+    },
+    "more_info": {
+      "detailed_reason": "Meteora在本轮讨论中没有发言，发言时长为0s，发言占比为0.0%。编辑次数为0次，字符数为0。浏览页面数为1，浏览时长为58.98s，占比49.15%，虽然浏览时间较长，但缺乏发言和编辑行为，整体参与度低。",
+      "history_comparison": "缺乏历史数据，无法进行历史对比分析。",
+      "group_comparison": "与其他两位成员相比，Meteora的发言时长和编辑次数都显著低于Tark，浏览时长虽然高于juno，但由于缺乏发言，整体参与度较低。",
+      "collaboration_suggestion": "建议组长或其他成员主动邀请Meteora参与讨论，并鼓励其分享自己的想法和见解。",
+      "extra_data": "mouse_action_count: 44, mouse_duration: 58.98s, mouse_percent: 49.15%, total_score: 0.105"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 2,
+      "normal": 1,
+      "high": 0,
+      "dominant": 0,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，部分成员被边缘化。",
+      "action_hint": "激励低参与成员（juno, Meteora）积极发言，并鼓励高参与成员留出更多空间，让其他成员有机会表达。"
+    }
+  }
+}

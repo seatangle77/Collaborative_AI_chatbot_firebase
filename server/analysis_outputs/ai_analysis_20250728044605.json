@@ -1,0 +1,89 @@
+{
+  "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+    "user_name": "juno",
+    "summary": "参与度较低，建议积极参与讨论",
+    "glasses_summary": "积极发言吧 ^_^",
+    "should_notify": true,
+    "detail": {
+      "type": "Low Participation",
+      "status": "发言较少，浏览页面较少，编辑笔记次数少",
+      "evidence": "- 发言等级：No Speech（时长：0s，占比：0.0%）\n- 编辑等级：Normal Edit（次数：1，字符数：592）\n- 浏览等级：Few Browsing（页面数：2，浏览时长：28.75s，占比：23.95%）",
+      "suggestion": "尝试更多发言，积极参与讨论，并浏览更多相关资料。"
+    },
+    "more_info": {
+      "detailed_reason": "juno在本轮讨论中没有发言，发言时长为0s，发言占比为0.0%。浏览页面数量为2个，浏览时长仅为28.75s，占比23.95%，远低于其他成员。编辑笔记次数为1次，字数为592字，虽然字数较多，但仅一次编辑表明其参与度不高。总分0.15，总等级为Low Participation，表明其参与度较低。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "与其他成员相比，juno的发言时长、浏览时长和编辑次数都明显较少。Meteora的发言时长达到80.34s，Tark的发言时长为75.14s，都远高于juno。",
+      "collaboration_suggestion": "建议组长鼓励juno积极发言，分享自己的想法和观点。可以提前准备好一些问题，引导juno参与讨论。",
+      "extra_data": "mouse_action_count: 57, mouse_duration: 28.75s, mouse_percent: 23.95%, total_score: 0.15"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与",
+      "action_hint": "激励低参与成员 + 鼓励主导者留出空间"
+    }
+  },
+  "MehACGvYsfVaGnq5utXQupmAIji2": {
+    "user_name": "Tark",
+    "summary": "参与度高，建议关注协作平衡",
+    "glasses_summary": "很棒(๑•̀ㅂ•́)و✧，多听听大家",
+    "should_notify": true,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言正常，浏览页面较多，编辑笔记次数较多",
+      "evidence": "- 发言等级：Normal Speech（时长：75.14s，占比：15.95%）\n- 编辑等级：Normal Edit（次数：2，字符数：637）\n- 浏览等级：Normal Browsing（页面数：3，浏览时长：59.87s，占比：49.89%）",
+      "suggestion": "在积极参与的同时，注意倾听其他成员的意见，并引导他们参与讨论。"
+    },
+    "more_info": {
+      "detailed_reason": "Tark在本轮讨论中发言时长为75.14s，占比15.95%，浏览了3个页面，浏览时长为59.87s，占比49.89%，编辑笔记2次，字数637字。总分0.7，总等级为High Participation，表明其参与度高。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "Tark的发言时长和浏览时长在小组中处于中等偏上水平。",
+      "collaboration_suggestion": "建议Tark在发言时，多关注其他成员的观点，并引导他们参与讨论。可以适当地让出一些发言时间，给其他成员更多表达的机会。",
+      "extra_data": "mouse_action_count: 37, mouse_duration: 59.87s, mouse_percent: 49.89%, total_score: 0.7"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与",
+      "action_hint": "激励低参与成员 + 鼓励主导者留出空间"
+    }
+  },
+  "50SHBajxtge2rmatUM7OU7MPeu32": {
+    "user_name": "Meteora",
+    "summary": "参与度很高，建议适当留出空间给其他成员",
+    "glasses_summary": "很棒！>_<  多鼓励他人",
+    "should_notify": true,
+    "detail": {
+      "type": "Dominant",
+      "status": "发言很多，浏览页面较多，编辑笔记次数较多",
+      "evidence": "- 发言等级：High Speech（时长：80.34s，占比：65.17%）\n- 编辑等级：Normal Edit（次数：2，字符数：637）\n- 浏览等级：Frequent Browsing（页面数：2，浏览时长：99.92s，占比：83.27%）",
+      "suggestion": "在保证自己充分表达的同时，也多鼓励其他成员发言，让讨论更加均衡。"
+    },
+    "more_info": {
+      "detailed_reason": "Meteora在本轮讨论中发言时长达到80.34s，占比65.17%，是小组中发言时长最长的成员。浏览页面数量为2个，浏览时长为99.92s，占比83.27%，编辑笔记2次，字数637字。总分0.955，总等级为Dominant，表明其参与度很高，在小组中占据主导地位。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "Meteora的发言时长和浏览时长都显著高于其他成员，在小组中占据主导地位。",
+      "collaboration_suggestion": "建议Meteora在发言时，多引导其他成员参与讨论，并主动让出一些发言时间，给其他成员更多表达的机会。",
+      "extra_data": "mouse_action_count: 85, mouse_duration: 99.92s, mouse_percent: 83.27%, total_score: 0.955"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与",
+      "action_hint": "激励低参与成员 + 鼓励主导者留出空间"
+    }
+  }
+}

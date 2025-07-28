@@ -299,6 +299,20 @@
                   <span class="pushed-label">✅ 已推送</span>
                 </div>
               </div>
+              <div v-else-if="user.currentAiSuggestion && !user.isPushed && !user.isCountdownActive" class="countdown-section">
+                <div class="countdown-actions">
+                  <button 
+                    @click="showImmediatePushModal(user.id)"
+                    class="immediate-push-btn">
+                    立即推送
+                  </button>
+                  <button 
+                    @click="cancelNotification(user.id)"
+                    class="cancel-send-btn">
+                    取消发送
+                  </button>
+                </div>
+              </div>
             </div>
             <div v-else class="no-ai-current">
               暂无即将发送的AI提示
@@ -309,6 +323,9 @@
         <!-- 推送状态显示 -->
         <div v-if="user.currentAiSuggestion && user.isPushed" class="push-status">
           <span class="status-text">✅ 已推送</span>
+        </div>
+        <div v-else-if="user.currentAiSuggestion && !user.isPushed && !user.isCountdownActive" class="no-push-status">
+          等待推送
         </div>
         <div v-else-if="!user.currentAiSuggestion" class="no-push-status">
           暂无推送状态
@@ -429,7 +446,7 @@ export default {
       currentRound: 1, // 当前轮次
               showAiDetailModal: false, // AI详情弹窗显示状态
         selectedAiDetail: null, // 选中的AI详情数据
-        currentTime: '2025-07-28T04:10:00', // UTC时间，用于调试
+        currentTime: new Date().toISOString().slice(0, 19), // 真正的当前UTC时间
         currentTimeLocal: '', // 本地时间选择器值
         lastTimeRange: null, // 记录上一次的时间范围，用于判断是否需要更新
         immediatePushModalVisible: false, // 立即推送模态框显示状态
@@ -979,6 +996,17 @@ export default {
         // 清除倒计时
         this.clearCountdown(userId);
         
+        // 更新用户状态，清除推送相关状态
+        const userIndex = this.users.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+          this.users[userIndex] = {
+            ...this.users[userIndex],
+            isCountdownActive: false,
+            countdownSeconds: 0,
+            isPushed: false
+          };
+        }
+        
         console.log(`用户 ${user.name} 的推送已取消`);
       }
     },
@@ -1097,6 +1125,17 @@ export default {
         
         console.log(`用户 ${user.name} 的自动推送完成`);
         
+        // 3秒后恢复按钮状态
+        setTimeout(() => {
+          const userIndex = this.users.findIndex(u => u.id === userId);
+          if (userIndex !== -1) {
+            this.users[userIndex] = {
+              ...this.users[userIndex],
+              isPushed: false // 3秒后恢复按钮状态
+            };
+          }
+        }, 3000);
+        
       } catch (error) {
         console.error('自动推送失败:', error);
       }
@@ -1164,24 +1203,53 @@ export default {
               ...user,
               currentAiSuggestion: userNotifyData,
               countdownSeconds: 0,
-              isCountdownActive: false
+              isCountdownActive: false,
+              isPushed: false // 确保不是已推送状态
             };
           }
           
-          // 计算倒计时秒数
-          const countdownSeconds = this.calculateCountdown(userNotifyData.next_notify_time);
+          // 检查是否是新的推送消息（通过比较next_notify_time）
+          const isNewNotification = !user.currentAiSuggestion || 
+            user.currentAiSuggestion.next_notify_time !== userNotifyData.next_notify_time;
           
-          // 启动倒计时
-          this.startCountdown(user.id, countdownSeconds, userNotifyData);
-          
-          return {
-            ...user,
-            currentAiSuggestion: userNotifyData,
-            countdownSeconds: countdownSeconds,
-            isCountdownActive: true
-          };
+          if (isNewNotification) {
+            console.log(`用户 ${user.name} 收到新的推送消息，启动倒计时`);
+            
+            // 计算倒计时秒数
+            const countdownSeconds = this.calculateCountdown(userNotifyData.next_notify_time);
+            
+            // 启动倒计时
+            this.startCountdown(user.id, countdownSeconds, userNotifyData);
+            
+            return {
+              ...user,
+              currentAiSuggestion: userNotifyData,
+              countdownSeconds: countdownSeconds,
+              isCountdownActive: true,
+              isPushed: false // 新消息重置推送状态
+            };
+          } else {
+            console.log(`用户 ${user.name} 的推送消息未变化，保持当前状态`);
+            return {
+              ...user,
+              currentAiSuggestion: userNotifyData,
+              // 保持现有的倒计时和推送状态
+              countdownSeconds: user.countdownSeconds || 0,
+              isCountdownActive: user.isCountdownActive || false,
+              isPushed: user.isPushed || false
+            };
+          }
         } else {
           console.log(`用户 ${user.name} (${user.id}) 无即将推送的AI提示数据`);
+          // 清除该用户的推送相关状态
+          this.clearCountdown(user.id);
+          return {
+            ...user,
+            currentAiSuggestion: null,
+            countdownSeconds: 0,
+            isCountdownActive: false,
+            isPushed: false
+          };
         }
         return user;
       });
@@ -1508,6 +1576,8 @@ export default {
     this.endTime = formatLocalTime(endTime);
     
     // 初始化当前时间选择器
+    // 更新为真正的当前时间
+    this.currentTime = new Date().toISOString().slice(0, 19);
     console.log('初始化时间选择器，UTC时间:', this.currentTime);
     this.currentTimeLocal = this.convertUtcToLocal(this.currentTime);
     console.log('转换后的本地时间:', this.currentTimeLocal);

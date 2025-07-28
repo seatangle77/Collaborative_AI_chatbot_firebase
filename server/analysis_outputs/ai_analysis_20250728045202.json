@@ -1,0 +1,89 @@
+{
+  "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+    "user_name": "juno",
+    "summary": "参与度高，但发言占比略低，建议平衡发言与倾听。",
+    "glasses_summary": "引导队友发言^_^",
+    "should_notify": true,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言时长占比高，鼠标操作频繁，编辑笔记字数较多。",
+      "evidence": "- 发言等级：Normal Speech（时长：15.12s，占比：12.6%）\n- 编辑等级：Frequent Edit（次数：6，字符数：33）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：113.31s，占比：94.43%）",
+      "suggestion": "在保持高参与度的同时，尝试更多地引导其他成员参与讨论，分享你的想法和观点，并留出更多的时间和空间给其他成员发言。"
+    },
+    "more_info": {
+      "detailed_reason": "juno 的发言时长为 15.12s，占比 12.6%，在小组中相对较高，表明其积极参与了讨论。其鼠标操作次数为 62 次，时长为 113.31s，占比 94.43%，说明其积极地浏览和操作页面。此外，juno 编辑了笔记，字数为 33，显示其对讨论内容的参与。但相对其他成员，juno 的发言占比稍低，建议适当平衡发言与倾听，给其他成员更多表达机会。",
+      "history_comparison": "需要更多历史数据进行对比分析，以了解其参与度的长期趋势。",
+      "group_comparison": "juno 的发言时长和编辑次数高于 Meteora，鼠标操作也较为频繁，显示其在小组讨论中扮演着相对活跃的角色。建议 juno 尝试更多地引导其他成员参与讨论，确保讨论的平衡性和全面性。",
+      "collaboration_suggestion": "建议 juno 在发言时，适时引导其他成员表达观点，并主动询问其他成员的想法，营造更平等的讨论氛围。",
+      "extra_data": "mouse_action_count: 62, mouse_duration: 113.31s, mouse_percent: 94.43%, total_score: 0.745"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 0,
+      "normal": 0,
+      "high": 3,
+      "dominant": 0,
+      "group_type": "高参与组",
+      "group_risk": "无明显风险",
+      "action_hint": "保持良好互动，确保信息交流充分。"
+    }
+  },
+  "MehACGvYsfVaGnq5utXQupmAIji2": {
+    "user_name": "Tark",
+    "summary": "参与度高，表现积极，建议继续保持。",
+    "glasses_summary": "保持积极参与^_^",
+    "should_notify": false,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言时长占比适中，鼠标操作较少，笔记编辑次数适中。",
+      "evidence": "- 发言等级：Normal Speech（时长：26.38s，占比：21.98%）\n- 编辑等级：Normal Edit（次数：5，字符数：33）\n- 浏览等级：Normal Browsing（页面数：1，浏览时长：54.04s，占比：45.03%）",
+      "suggestion": "继续保持积极参与，分享你的想法和观点，并积极倾听其他成员的观点。"
+    },
+    "more_info": {
+      "detailed_reason": "Tark 的发言时长为 26.38s，占比 21.98%，处于中等水平。鼠标操作次数和时长都相对较少，表明其专注于讨论内容。编辑了5次笔记，字符数为33，显示其对讨论内容的参与。综合来看，Tark 的参与度较高，表现积极。",
+      "history_comparison": "需要更多历史数据进行对比分析，才能判断本轮参与度是否符合预期。",
+      "group_comparison": "与 juno 和 Meteora 相比，Tark 的发言时长占比中等，鼠标操作时长也相对较少。",
+      "collaboration_suggestion": "建议 Tark 积极主动地参与讨论，分享自己的想法和观点，并积极倾听其他成员的观点，促进小组的合作。",
+      "extra_data": "mouse_action_count: 33, mouse_duration: 54.04s, mouse_percent: 45.03%, total_score: 0.7"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 0,
+      "normal": 0,
+      "high": 3,
+      "dominant": 0,
+      "group_type": "高参与组",
+      "group_risk": "无明显风险",
+      "action_hint": "保持良好互动，确保信息交流充分。"
+    }
+  },
+  "50SHBajxtge2rmatUM7OU7MPeu32": {
+    "user_name": "Meteora",
+    "summary": "参与度高，表现活跃，建议继续保持。",
+    "glasses_summary": "继续保持活跃(๑•̀ㅂ•́)و✧",
+    "should_notify": false,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言时长占比高，鼠标操作次数多，笔记编辑次数适中。",
+      "evidence": "- 发言等级：Normal Speech（时长：43.28s，占比：36.07%）\n- 编辑等级：Normal Edit（次数：6，字符数：33）\n- 浏览等级：Normal Browsing（页面数：1，浏览时长：40.52s，占比：33.77%）",
+      "suggestion": "继续保持积极参与，分享你的想法和观点，并积极倾听其他成员的观点。"
+    },
+    "more_info": {
+      "detailed_reason": "Meteora 的发言时长为 43.28s，占比 36.07%，在小组中较高，表明其积极参与了讨论。鼠标操作次数较多，为 77 次，时长为 40.52s，占比 33.77%，说明其积极地浏览和操作页面。此外，Meteora 编辑了笔记，字数为 33，显示其对讨论内容的深入思考和整理。",
+      "history_comparison": "需要更多历史数据进行对比分析，以了解其参与度的变化趋势。",
+      "group_comparison": "与其他两位成员相比，Meteora 的发言时长和编辑次数都较高。",
+      "collaboration_suggestion": "建议 Meteora 继续保持积极参与，分享自己的想法和观点，并尝试更多地与其他成员互动。",
+      "extra_data": "mouse_action_count: 77, mouse_duration: 40.52s, mouse_percent: 33.77%, total_score: 0.7"
+    },
+    "group_distribution": {
+      "no": 0,
+      "low": 0,
+      "normal": 0,
+      "high": 3,
+      "dominant": 0,
+      "group_type": "高参与组",
+      "group_risk": "无明显风险",
+      "action_hint": "保持良好互动，确保信息交流充分。"
+    }
+  }
+}

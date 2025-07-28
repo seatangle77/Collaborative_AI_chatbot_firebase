@@ -1,0 +1,1755 @@
+{
+  "time_range": {
+    "start": "2025-07-10T07:08:27",
+    "end": "2025-07-10T07:10:27"
+  },
+  "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+  "users": [
+    {
+      "created_at": "2025-06-09 13:00:00.000000",
+      "academic_background": "{\"major\":\"Mechanical Engineering\",\"research_focus\":\"Wearable robotics and real-time biomechanical feedback\"}",
+      "preferences": "{}",
+      "avatar_link": "https://i.pravatar.cc/150?img=23",
+      "academic_advantages": "Familiar with sensor integration, mechatronics system control, and rapid prototyping of assistive devices.",
+      "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+      "device_token": "190e35f7e1667a5c222",
+      "name": "juno",
+      "speech_count": 3,
+      "speech_duration": 22.76
+    },
+    {
+      "created_at": "2025-06-09 13:00:00.000000",
+      "academic_background": "{\"major\":\"Computer Science\",\"research_focus\":\"Human-AI interaction and interface design\"}",
+      "preferences": "{}",
+      "avatar_link": "https://i.pravatar.cc/150?img=15",
+      "academic_advantages": "Experienced in UX prototyping, front-end development, and interface usability testing.",
+      "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+      "device_token": "170976fa8bbd2444e5d",
+      "name": "Tark",
+      "speech_count": 4,
+      "speech_duration": 26.38
+    },
+    {
+      "created_at": "2025-06-09 13:00:00.000000",
+      "academic_background": "{\"major\":\"Environmental Engineering\",\"research_focus\":\"Urban microclimate monitoring and sustainable infrastructure\"}",
+      "preferences": "{}",
+      "avatar_link": "https://i.pravatar.cc/150?img=32",
+      "academic_advantages": "Skilled in field sensor deployment, spatial data analysis, and system modeling in environmental contexts.",
+      "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+      "device_token": "160a3797c92315ac0e3",
+      "name": "Meteora",
+      "speech_count": 12,
+      "speech_duration": 44.7
+    }
+  ],
+  "raw_tables": {
+    "speech_transcripts": [
+      {
+        "text": "呃，就是以兴趣为导向，然后呃，交往的一个方式。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.96,
+        "start": "2025-07-10T07:08:32.259090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:08:39.219090",
+        "transcript_id": "7f24b3cf-bdf2-4979-8ac3-5a09d3fb49e7",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我得就是我们就是我从这下面在单位有个机构，我们从哪些方面去表达这样一个。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 9.46,
+        "start": "2025-07-10T07:08:39.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:48.679090",
+        "transcript_id": "a0fae5ac-1690-42c4-a12e-6bd4c926f63a",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "一个对这个问题进行一个回应呢，就是分析他的心理动因，我们从哪些方面去。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.4,
+        "start": "2025-07-10T07:08:48.679090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:55.079090",
+        "transcript_id": "24b12af0-ced0-4065-afde-79f17661af05",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "表说吗？",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.18,
+        "start": "2025-07-10T07:08:55.079090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "unknown",
+        "end": "2025-07-10T07:08:56.259090",
+        "transcript_id": "bb7270a3-3ea7-483f-a6c9-73583423131b",
+        "user_id": "unknown",
+        "group_key": "groupD"
+      },
+      {
+        "text": "想你和喜欢的。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.94,
+        "start": "2025-07-10T07:08:56.279090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:08:58.219090",
+        "transcript_id": "ca999f98-bc51-4f63-8269-14f0fb927cb1",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "刚刚那个应该属于行为特征吧，因为以兴趣为导向。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 4.44,
+        "start": "2025-07-10T07:08:58.559090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:02.999090",
+        "transcript_id": "0c111060-469f-4da6-ae66-8ad6c9e9f229",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "那就是说，行为特征如果是就是做法的，那心理特征是偏什么呢？",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 8.48,
+        "start": "2025-07-10T07:09:04.639090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark",
+        "end": "2025-07-10T07:09:13.119090",
+        "transcript_id": "4a65ba6d-3873-4022-baa7-62c7ff350568",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "检测是因为。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.78,
+        "start": "2025-07-10T07:09:13.859090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:09:16.639090",
+        "transcript_id": "6f0dcd35-db17-4802-a866-6aac02a2e7d1",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "现在社会大家都有一点封闭的，就是有那种数字化布的。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 7.08,
+        "start": "2025-07-10T07:09:16.639090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:09:23.719090",
+        "transcript_id": "275698e7-cd6a-4980-a41a-3c303410e743",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "哦。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.16,
+        "start": "2025-07-10T07:09:23.919090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:09:26.079090",
+        "transcript_id": "292e63e9-e375-49be-8151-370590826b94",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "对对数字化过多的解决解决方案。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 3.22,
+        "start": "2025-07-10T07:09:26.839090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:30.059090",
+        "transcript_id": "a7efc666-b085-4834-aae2-c3c5ebfd0c60",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "然后下一步是。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.0,
+        "start": "2025-07-10T07:09:48.959090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:50.959090",
+        "transcript_id": "2a78cd6a-ad07-415c-a2e0-0c8ceae316b5",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "一条必须结合真实爱的希望。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.66,
+        "start": "2025-07-10T07:09:52.699090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:09:55.359090",
+        "transcript_id": "fb73afe0-ac32-4b79-9bea-f62aad8dc961",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "资深性资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.94,
+        "start": "2025-07-10T07:09:56.419090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:09:58.359090",
+        "transcript_id": "1c1851ff-c064-4051-8ac6-ca6c9d201d3f",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "他要资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 1.42,
+        "start": "2025-07-10T07:10:02.219090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:10:03.639090",
+        "transcript_id": "6d200e92-a457-4cc0-a154-5365d69e8ae6",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "对他时对你看它是分别列出，然后并。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.24,
+        "start": "2025-07-10T07:10:05.559090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora",
+        "end": "2025-07-10T07:10:11.799090",
+        "transcript_id": "3fac4797-c206-4adc-b929-f56322129480",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "我发现必须结合对啊，我们是我们是结合资料去进行讨论。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 6.74,
+        "start": "2025-07-10T07:10:13.579090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:10:20.319090",
+        "transcript_id": "ecf3a40c-0302-4a59-9e23-b1b6ba178fe2",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "总结一下结果就好了，不需要去列出这些资料。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 4.2,
+        "start": "2025-07-10T07:10:20.399090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Tark-1",
+        "end": "2025-07-10T07:10:24.599090",
+        "transcript_id": "c812b668-77a2-4873-870b-5cda099681af",
+        "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "group_key": "groupD"
+      },
+      {
+        "text": "你们决定就好啊。对，知道。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 2.82,
+        "start": "2025-07-10T07:10:25.599090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "Meteora-1",
+        "end": "2025-07-10T07:10:28.419090",
+        "transcript_id": "cea9b0f1-acce-4840-b77a-fb191f0df15b",
+        "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "group_key": "groupD"
+      },
+      {
+        "text": "也是跟像你刚刚说的，他是在朋友之下，同事同学之上的一种方式，就是首先要有共同的兴趣爱好，然后再进一步发现有没有可能成为朋友的可能。",
+        "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+        "duration": 12.9,
+        "start": "2025-07-10T07:08:19.359090",
+        "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+        "speaker": "juno",
+        "end": "2025-07-10T07:08:32.259090",
+        "transcript_id": "89cbae09-d4c3-4808-8c65-764e03a6dd7b",
+        "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "group_key": "groupD"
+      }
+    ],
+    "note_edit_history": [
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 595,
+        "delta": [
+          {
+            "retain": 593
+          },
+          {
+            "delete": 2
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:57.352Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "行为特征：",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 599,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "delete": 5
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:17.356Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "兴趣\n心理特征：",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 607,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "delete": 8
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:27.355Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "为导向，交朋友",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 608,
+        "delta": [
+          {
+            "retain": 601
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:37.362Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "对数字化孤独的",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 621,
+        "delta": [
+          {
+            "retain": 614
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:47.359Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "解决方法",
+        "hasList": false,
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 621
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:57.351Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 594,
+        "delta": [
+          {
+            "retain": 592
+          },
+          {
+            "insert": "\n\n"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:54.087Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "行为特征：\n心理特征",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 604,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "insert": "行为特征：\n心理特征"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:24.093Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "兴趣为导向，",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 611,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "insert": "兴趣为导向，"
+          },
+          {
+            "retain": 5
+          },
+          {
+            "insert": "："
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:34.099Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "交朋友",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 615,
+        "delta": [
+          {
+            "retain": 605
+          },
+          {
+            "insert": "交朋友"
+          },
+          {
+            "retain": 6
+          },
+          {
+            "insert": "对"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:44.087Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "数字化孤独的解决方法",
+        "hasList": false,
+        "userId": "MehACGvYsfVaGnq5utXQupmAIji2",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 615
+          },
+          {
+            "insert": "数字化孤独的解决方法"
+          }
+        ],
+        "summary": "插入文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:54.085Z",
+        "isDelete": false
+      },
+      {
+        "affectedText": "",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 595,
+        "delta": [
+          {
+            "retain": 593
+          },
+          {
+            "delete": 2
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:08:57.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "行为特征",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 598,
+        "delta": [
+          {
+            "retain": 594
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:17.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "：\n心理特征：",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 605,
+        "delta": [
+          {
+            "retain": 598
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:27.245Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "兴趣为导向，交朋友",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 608,
+        "delta": [
+          {
+            "retain": 599
+          },
+          {
+            "delete": 9
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:37.246Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "对数字化孤独的",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 621,
+        "delta": [
+          {
+            "retain": 614
+          },
+          {
+            "delete": 7
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:47.246Z",
+        "isDelete": true
+      },
+      {
+        "affectedText": "解决方法",
+        "hasList": false,
+        "userId": "50SHBajxtge2rmatUM7OU7MPeu32",
+        "charCount": 625,
+        "delta": [
+          {
+            "retain": 621
+          },
+          {
+            "delete": 4
+          }
+        ],
+        "summary": "删除文字",
+        "hasHeader": false,
+        "updatedAt": "2025-07-10T07:09:57.246Z",
+        "isDelete": true
+      }
+    ],
+    "pageBehaviorLogs": {
+      "juno": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "juno"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:08:20.000Z",
+          "windowEnd": "2025-07-10T07:10:30.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:08:22.207Z",
+            "tabId": 1924860374,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/juno",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:12.268Z",
+                "endTime": "2025-07-10T07:08:14.092Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 509,
+                  "x": 668
+                },
+                "endPosition": {
+                  "y": 562,
+                  "x": 640
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:14.423Z",
+                "endTime": "2025-07-10T07:08:54.960Z",
+                "action_count": 4,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:55.033Z",
+                "endTime": "2025-07-10T07:08:55.033Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 495,
+                  "x": 631
+                },
+                "endPosition": {
+                  "y": 495,
+                  "x": 631
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:58.462Z",
+                "endTime": "2025-07-10T07:08:58.462Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:59.872Z",
+                "endTime": "2025-07-10T07:09:01.429Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 508,
+                  "x": 612
+                },
+                "endPosition": {
+                  "y": 203,
+                  "x": 457
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:01.758Z",
+                "endTime": "2025-07-10T07:09:01.758Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:02.756Z",
+                "endTime": "2025-07-10T07:09:52.416Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 359,
+                  "x": 812
+                },
+                "endPosition": {
+                  "y": 407,
+                  "x": 1440
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:52.884Z",
+                "endTime": "2025-07-10T07:09:52.884Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:53.233Z",
+                "endTime": "2025-07-10T07:09:53.233Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 422,
+                  "x": 1396
+                },
+                "endPosition": {
+                  "y": 422,
+                  "x": 1396
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:53.389Z",
+                "endTime": "2025-07-10T07:09:53.389Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:53.737Z",
+                "endTime": "2025-07-10T07:09:54.249Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 444,
+                  "x": 1386
+                },
+                "endPosition": {
+                  "y": 621,
+                  "x": 1308
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:55.869Z",
+                "endTime": "2025-07-10T07:09:55.869Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:56.991Z",
+                "endTime": "2025-07-10T07:10:02.094Z",
+                "action_count": 7,
+                "startPosition": {
+                  "y": 111,
+                  "x": 1481
+                },
+                "endPosition": {
+                  "y": 132,
+                  "x": 1479
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:02.511Z",
+                "endTime": "2025-07-10T07:10:02.511Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:02.600Z",
+                "endTime": "2025-07-10T07:10:16.720Z",
+                "action_count": 22,
+                "startPosition": {
+                  "y": 388,
+                  "x": 855
+                },
+                "endPosition": {
+                  "y": 220,
+                  "x": 190
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:17.171Z",
+                "endTime": "2025-07-10T07:10:17.171Z",
+                "action_count": 1,
+                "position": {
+                  "y": 225,
+                  "x": 359
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.250Z",
+                "endTime": "2025-07-10T07:10:17.250Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 225,
+                  "x": 359
+                },
+                "endPosition": {
+                  "y": 225,
+                  "x": 359
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:17.794Z",
+                "endTime": "2025-07-10T07:10:17.794Z",
+                "action_count": 1,
+                "position": {
+                  "y": 357,
+                  "x": 366
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.960Z",
+                "endTime": "2025-07-10T07:10:17.960Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 359,
+                  "x": 368
+                },
+                "endPosition": {
+                  "y": 359,
+                  "x": 368
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:18.711Z",
+                "endTime": "2025-07-10T07:10:18.711Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:19.219Z",
+                "endTime": "2025-07-10T07:10:19.219Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 411,
+                  "x": 377
+                },
+                "endPosition": {
+                  "y": 411,
+                  "x": 377
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:19.422Z",
+                "endTime": "2025-07-10T07:10:19.422Z",
+                "action_count": 1,
+                "minDepth": 1.0247038503992174,
+                "maxDepth": 1.0247038503992174
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:19.717Z",
+                "endTime": "2025-07-10T07:10:19.717Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 382,
+                  "x": 323
+                },
+                "endPosition": {
+                  "y": 382,
+                  "x": 323
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Meteora": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "50SHBajxtge2rmatUM7OU7MPeu32",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Meteora"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:08:20.000Z",
+          "windowEnd": "2025-07-10T07:10:30.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:08:22.389Z",
+            "tabId": 2142278855,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Meteora",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:50.831Z",
+                "endTime": "2025-07-10T07:08:53.731Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 381,
+                  "x": 473
+                },
+                "endPosition": {
+                  "y": 536,
+                  "x": 691
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:54.676Z",
+                "endTime": "2025-07-10T07:08:54.676Z",
+                "action_count": 1,
+                "position": {
+                  "y": 577,
+                  "x": 629
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:57.081Z",
+                "endTime": "2025-07-10T07:08:57.081Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 577,
+                  "x": 630
+                },
+                "endPosition": {
+                  "y": 577,
+                  "x": 630
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:08:57.397Z",
+                "endTime": "2025-07-10T07:09:00.580Z",
+                "action_count": 6,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:01.881Z",
+                "endTime": "2025-07-10T07:09:12.847Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 278,
+                  "x": 574
+                },
+                "endPosition": {
+                  "y": 288,
+                  "x": 514
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:13.327Z",
+                "endTime": "2025-07-10T07:09:13.327Z",
+                "action_count": 1,
+                "position": {
+                  "y": 288,
+                  "x": 506
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:13.481Z",
+                "endTime": "2025-07-10T07:09:13.481Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 292,
+                  "x": 506
+                },
+                "endPosition": {
+                  "y": 292,
+                  "x": 506
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:13.960Z",
+                "endTime": "2025-07-10T07:09:13.960Z",
+                "action_count": 1,
+                "position": {
+                  "y": 400,
+                  "x": 498
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:14.230Z",
+                "endTime": "2025-07-10T07:09:14.230Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 400,
+                  "x": 499
+                },
+                "endPosition": {
+                  "y": 400,
+                  "x": 499
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:14.848Z",
+                "endTime": "2025-07-10T07:09:17.097Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:17.614Z",
+                "endTime": "2025-07-10T07:09:18.265Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 381,
+                  "x": 521
+                },
+                "endPosition": {
+                  "y": 649,
+                  "x": 217
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:09:18.578Z",
+                "endTime": "2025-07-10T07:09:18.578Z",
+                "action_count": 1,
+                "position": {
+                  "y": 667,
+                  "x": 190
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:54.198Z",
+                "endTime": "2025-07-10T07:09:58.298Z",
+                "action_count": 6,
+                "startPosition": {
+                  "y": 666,
+                  "x": 199
+                },
+                "endPosition": {
+                  "y": 35,
+                  "x": 1433
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:58.672Z",
+                "endTime": "2025-07-10T07:09:59.182Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:59.416Z",
+                "endTime": "2025-07-10T07:09:59.931Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 395,
+                  "x": 392
+                },
+                "endPosition": {
+                  "y": 169,
+                  "x": 295
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:00.048Z",
+                "endTime": "2025-07-10T07:10:00.548Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:00.782Z",
+                "endTime": "2025-07-10T07:10:06.783Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 162,
+                  "x": 282
+                },
+                "endPosition": {
+                  "y": 224,
+                  "x": 440
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:06.994Z",
+                "endTime": "2025-07-10T07:10:06.994Z",
+                "action_count": 1,
+                "position": {
+                  "y": 223,
+                  "x": 411
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:07.296Z",
+                "endTime": "2025-07-10T07:10:07.296Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 195,
+                  "x": 138
+                },
+                "endPosition": {
+                  "y": 195,
+                  "x": 138
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:08.044Z",
+                "endTime": "2025-07-10T07:10:08.044Z",
+                "action_count": 1,
+                "position": {
+                  "y": 222,
+                  "x": 90
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:08.297Z",
+                "endTime": "2025-07-10T07:10:09.298Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 222,
+                  "x": 91
+                },
+                "endPosition": {
+                  "y": 234,
+                  "x": 101
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:10.012Z",
+                "endTime": "2025-07-10T07:10:10.012Z",
+                "action_count": 1,
+                "position": {
+                  "y": 244,
+                  "x": 110
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:10.297Z",
+                "endTime": "2025-07-10T07:10:10.297Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 250,
+                  "x": 134
+                },
+                "endPosition": {
+                  "y": 250,
+                  "x": 134
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:10.795Z",
+                "endTime": "2025-07-10T07:10:10.795Z",
+                "action_count": 1,
+                "position": {
+                  "y": 250,
+                  "x": 135
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:11.016Z",
+                "endTime": "2025-07-10T07:10:11.666Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 250,
+                  "x": 136
+                },
+                "endPosition": {
+                  "y": 250,
+                  "x": 82
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:10:11.761Z",
+                "endTime": "2025-07-10T07:10:11.761Z",
+                "action_count": 1,
+                "position": {
+                  "y": 250,
+                  "x": 82
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:12.899Z",
+                "endTime": "2025-07-10T07:10:15.316Z",
+                "action_count": 4,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:15.683Z",
+                "endTime": "2025-07-10T07:10:15.683Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 255,
+                  "x": 195
+                },
+                "endPosition": {
+                  "y": 255,
+                  "x": 195
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:16.254Z",
+                "endTime": "2025-07-10T07:10:16.254Z",
+                "action_count": 1,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:16.566Z",
+                "endTime": "2025-07-10T07:10:16.566Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 232,
+                  "x": 324
+                },
+                "endPosition": {
+                  "y": 232,
+                  "x": 324
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:10:17.005Z",
+                "endTime": "2025-07-10T07:10:17.516Z",
+                "action_count": 2,
+                "minDepth": 0.9982964224872232,
+                "maxDepth": 0.9982964224872232
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:10:17.866Z",
+                "endTime": "2025-07-10T07:10:22.233Z",
+                "action_count": 6,
+                "startPosition": {
+                  "y": 185,
+                  "x": 274
+                },
+                "endPosition": {
+                  "y": 246,
+                  "x": 142
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Tark": {
+        "user": {
+          "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3",
+          "user_id": "MehACGvYsfVaGnq5utXQupmAIji2",
+          "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b",
+          "userName": "Tark"
+        },
+        "windowRanges": {
+          "windowStart": "2025-07-10T07:08:20.000Z",
+          "windowEnd": "2025-07-10T07:10:30.000Z"
+        },
+        "tabHistory": [
+          {
+            "title": "Collaborative Platform",
+            "timestamp": "2025-07-10T07:08:20.164Z",
+            "tabId": 1958191049,
+            "url": "https://collaborative-ai-chatbot.web.app/#/personal-dashboard/Tark",
+            "tabBehaviorLogs": [
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:22.530Z",
+                "endTime": "2025-07-10T07:08:50.598Z",
+                "action_count": 4,
+                "startPosition": {
+                  "y": 647,
+                  "x": 554
+                },
+                "endPosition": {
+                  "y": 505,
+                  "x": 67
+                }
+              },
+              {
+                "type": "click",
+                "startTime": "2025-07-10T07:08:51.407Z",
+                "endTime": "2025-07-10T07:08:51.407Z",
+                "action_count": 1,
+                "position": {
+                  "y": 734,
+                  "x": 472
+                }
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:08:51.598Z",
+                "endTime": "2025-07-10T07:08:53.872Z",
+                "action_count": 3,
+                "startPosition": {
+                  "y": 732,
+                  "x": 642
+                },
+                "endPosition": {
+                  "y": 736,
+                  "x": 534
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:06.669Z",
+                "endTime": "2025-07-10T07:09:06.669Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:08.272Z",
+                "endTime": "2025-07-10T07:09:22.285Z",
+                "action_count": 10,
+                "startPosition": {
+                  "y": 744,
+                  "x": 533
+                },
+                "endPosition": {
+                  "y": 621,
+                  "x": 274
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:22.984Z",
+                "endTime": "2025-07-10T07:09:22.984Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:37.210Z",
+                "endTime": "2025-07-10T07:09:37.718Z",
+                "action_count": 2,
+                "startPosition": {
+                  "y": 571,
+                  "x": 295
+                },
+                "endPosition": {
+                  "y": 719,
+                  "x": 244
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:38.546Z",
+                "endTime": "2025-07-10T07:09:38.546Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:39.004Z",
+                "endTime": "2025-07-10T07:09:39.004Z",
+                "action_count": 1,
+                "startPosition": {
+                  "y": 740,
+                  "x": 240
+                },
+                "endPosition": {
+                  "y": 740,
+                  "x": 240
+                }
+              },
+              {
+                "type": "scroll",
+                "startTime": "2025-07-10T07:09:39.089Z",
+                "endTime": "2025-07-10T07:09:39.089Z",
+                "action_count": 1,
+                "minDepth": 1.0353909716194059,
+                "maxDepth": 1.0353909716194059
+              },
+              {
+                "type": "mousemove",
+                "startTime": "2025-07-10T07:09:42.867Z",
+                "endTime": "2025-07-10T07:09:52.041Z",
+                "action_count": 8,
+                "startPosition": {
+                  "y": 743,
+                  "x": 240
+                },
+                "endPosition": {
+                  "y": 742,
+                  "x": 240
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "unique_note_contents": [
+      {
+        "content": [
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)",
+              "bold": true
+            },
+            "insert": "将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)"
+            },
+            "insert": "在数量和形式上更加自由。数字化孤独-"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)",
+              "bold": true
+            },
+            "insert": "主动适应社会变化的选择；亲密关系的降级-"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "rgba(0, 0, 0, 0.84)"
+            },
+            "insert": "浅社交关系，维系成本变低"
+          },
+          {
+            "insert": "\n\n在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。\n\n"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "#191b1f"
+            },
+            "insert": "尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。"
+          },
+          {
+            "insert": "\n\n趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。\n\n"
+          },
+          {
+            "attributes": {
+              "background": "#ffffff",
+              "color": "#191b1f"
+            },
+            "insert": "人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足"
+          },
+          {
+            "insert": "\n\n年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。\n\n"
+          }
+        ],
+        "noteId": "6c45dbb2-d57f-4d78-9bf0-19f71b207b55",
+        "html": "<p><strong style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">将个人的需求和爱好分类，结交不同的朋友，以达到更准确、更高效，</strong><span style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">在数量和形式上更加自由。数字化孤独-</span><strong style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">主动适应社会变化的选择；亲密关系的降级-</strong><span style=\"background-color: rgb(255, 255, 255); color: rgba(0, 0, 0, 0.84);\">浅社交关系，维系成本变低</span></p><p><br></p><p>在“搭子”社交中，社交的“越界”行为和侵犯隐私的行为被有效控制，双方在相互理解和尊重的基 础上，心照不宣地建立起了明确的社交边界。</p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(25, 27, 31);\">尽管现代社会的人们在物理上更加接近，社交网络也更为广泛，但真正的社区感和归属感正在逐渐消失。这一点在青年人的“找搭子”行为中得到了体现，表面上的社交网络扩大了，实际上的人际深度却在缩小。</span></p><p><br></p><p>趣缘关系体现了个体自由选择和参与的社交模式，与马克 思关于人的社会性理念相呼应。它基于兴趣爱好构建了一个自由平等的社会联系网络，不同于传统关系， 更强调个体在社交中的自主性和独立性。“搭子”社交作为一种新兴形式，正是基于这种趣缘关系满足 了青年的社交需求，在促进个体在平等和自由的环境中探索个人兴趣，推动了社交形式的创新和发展。</p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(25, 27, 31);\">人类有一个基本的需要，那就是与他人建立持久且有意义的关系。当这种需要得不到满足时，个体可能会经历心理疼痛，包括孤独感和不幸福感。热衷于寻找“搭子”的行为，尽管在表面上看似增加了社交机会，但由于这些关系缺乏深度和持久性，难以满足归属需要，从而可能导致个体感到更加孤独和不满足</span></p><p><br></p><p>年轻人通过找“搭子”这一途径，构筑起基于共同目标抑或兴趣的伙伴关系，克服原子化 状态。</p><p><br></p>",
+        "userId": "VaTnrRc18Facn5GYEcDyYNPyY7p2",
+        "updatedAt": "2025-07-10T07:08:52.010Z"
+      }
+    ]
+  },
+  "speech_counts": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 4,
+    "50SHBajxtge2rmatUM7OU7MPeu32": 12,
+    "unknown": 1,
+    "VaTnrRc18Facn5GYEcDyYNPyY7p2": 3
+  },
+  "speech_durations": {
+    "MehACGvYsfVaGnq5utXQupmAIji2": 26.38,
+    "50SHBajxtge2rmatUM7OU7MPeu32": 44.7,
+    "unknown": 1.18,
+    "VaTnrRc18Facn5GYEcDyYNPyY7p2": 22.759999999999998
+  },
+  "anomaly_history": [
+    {
+      "ai_response": {
+        "50SHBajxtge2rmatUM7OU7MPeu32": {
+          "should_notify": true,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（Meteora）积极发言，鼓励主导者（juno）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度较低，建议积极参与讨论，分享想法和观点。",
+          "user_name": "Meteora",
+          "detail": {
+            "evidence": "- 发言等级：Low Speech（时长：13.94s，占比：11.62%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：110.61s，占比：92.18%）",
+            "type": "Normal Participation",
+            "status": "发言时长占比低，鼠标操作频繁，笔记未编辑，显示参与度一般。",
+            "suggestion": "尝试更多地参与讨论，分享你的想法和观点，并积极倾听其他成员的观点。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 36, mouse_duration: 110.61s, mouse_percent: 92.18%, total_score: 0.36",
+            "collaboration_suggestion": "建议小组成员主动邀请 Meteora 参与讨论，并分享一些相关的资料，帮助 Meteora 更好地融入小组活动。",
+            "detailed_reason": "Meteora 的发言时长占比仅为 11.62%，相对较低。其未编辑笔记，但鼠标操作频繁，时长达 110.61s，占比92.18%，这表明其可能在积极地搜集信息，但缺乏发言和编辑行为，参与度有待提高。",
+            "history_comparison": "需要更多历史数据进行对比分析，才能判断本轮参与度是否异常。",
+            "group_comparison": "与 juno 和 Tark 相比，Meteora 的发言时长占比最低，虽然鼠标操作时长较长，但缺乏发言和编辑行为，整体参与度偏低。"
+          },
+          "glasses_summary": "多发言和互动哦>_<"
+        },
+        "MehACGvYsfVaGnq5utXQupmAIji2": {
+          "should_notify": false,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（Meteora）积极发言，鼓励主导者（juno）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度中等，建议积极参与讨论，平衡发言和倾听。",
+          "user_name": "Tark",
+          "detail": {
+            "evidence": "- 发言等级：Normal Speech（时长：21.24s，占比：17.7%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：104.11s，占比：86.75%）",
+            "type": "Normal Participation",
+            "status": "发言时长占比适中，鼠标操作较少，笔记未编辑，显示参与度一般。",
+            "suggestion": "尝试更多地参与讨论，分享你的想法和观点，并积极倾听其他成员的观点。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 6, mouse_duration: 104.11s, mouse_percent: 86.75%, total_score: 0.64",
+            "collaboration_suggestion": "建议 Tark 积极主动地参与讨论，分享自己的想法和观点，并积极倾听其他成员的观点，促进小组的合作。",
+            "detailed_reason": "Tark 的发言时长占比为 17.7%，相对较低。其未编辑笔记，鼠标操作也较少，时长为 104.11s，占比86.75%。这表明其参与度处于中等水平，需要进一步提升。",
+            "history_comparison": "需要更多历史数据进行对比分析，才能判断本轮参与度是否符合预期。",
+            "group_comparison": "与 juno 和 Meteora 相比，Tark 的发言时长占比最低，鼠标操作时长也相对较少。"
+          },
+          "glasses_summary": "保持互动哦～^_^"
+        },
+        "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+          "should_notify": true,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（Meteora）积极发言，鼓励主导者（juno）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度较高，但在发言方面略显不足，建议积极参与讨论。",
+          "user_name": "juno",
+          "detail": {
+            "evidence": "- 发言等级：High Speech（时长：67.38s，占比：56.15%）\n- 编辑等级：Frequent Edit（次数：1，字符数：592）\n- 浏览等级：Frequent Browsing（页面数：2，浏览时长：102.13s，占比：85.11%）",
+            "type": "Dominant",
+            "status": "发言时长占比高，但鼠标操作频繁，显示积极参与但发言相对较少。",
+            "suggestion": "在保持高参与度的同时，尝试更多地引导其他成员参与讨论，分享你的想法和观点，并留出更多的时间和空间给其他成员发言。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 35, mouse_duration: 102.13s, mouse_percent: 85.11%, total_score: 1.0",
+            "collaboration_suggestion": "建议 juno 在发言时，更注重引导其他成员参与，并尝试控制发言时长，给其他成员更多机会表达观点。",
+            "detailed_reason": "juno 的发言时长占比达 56.15%，显示其在讨论中贡献了相当一部分内容。其编辑了一次笔记，字符数为 592，显示其积极参与了笔记的编辑工作。鼠标操作频繁，时长达 102.13s，占比85.11%，说明其积极地参与了互动。然而，相对其鼠标操作的活跃度，其发言时长占比相对较低，建议在保持积极参与的同时，注意平衡发言和倾听。",
+            "history_comparison": "需要更多历史数据进行对比分析，才能判断本轮参与度是否异常。",
+            "group_comparison": "与 Tark 和 Meteora 相比，juno 的发言时长占比最高，但其鼠标操作时长也显著高于其他两人，说明其积极参与讨论，但发言时间相对较少。"
+          },
+          "glasses_summary": "积极发言吧！^_^"
+        }
+      },
+      "start_time": "2025-07-10T07:06:27",
+      "end_time": "2025-07-10T07:08:27"
+    },
+    {
+      "ai_response": {
+        "50SHBajxtge2rmatUM7OU7MPeu32": {
+          "should_notify": true,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度中等，发言时长较短，建议积极参与讨论。",
+          "user_name": "Meteora",
+          "detail": {
+            "evidence": "- 发言等级：Low Speech（时长：13.94s，占比：11.62%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：110.61s，占比：92.18%）",
+            "type": "Normal Participation",
+            "status": "发言时长较短，占比不高，鼠标操作次数多，未编辑笔记。",
+            "suggestion": "建议积极参与讨论，分享你的想法和观点，并尝试更多地与其他成员互动。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 36, mouse_duration: 110.61s, mouse_percent: 92.18%, total_score: 0.36",
+            "collaboration_suggestion": "建议 Meteora 主动向其他成员提问，并积极回应其他成员的发言，促进小组讨论的活跃度。",
+            "detailed_reason": "Meteora 的发言时长仅为 13.94s，占比 11.62%，相对较低。鼠标操作次数较多，为 36 次，时长为 110.61s，占比 92.18%，说明其主要时间用于浏览页面。此外，Meteora 未编辑笔记。综合来看，Meteora 的参与度处于中等偏低水平。",
+            "history_comparison": "需要更多历史数据进行对比分析，以了解其参与度的变化趋势。",
+            "group_comparison": "与其他两位成员相比，Meteora 的发言时长和编辑次数都较少。建议 Meteora 积极参与讨论，分享自己的想法和观点，并尝试更多地与其他成员互动。"
+          },
+          "glasses_summary": "加油哦！多发言分享你的想法吧！>_<"
+        },
+        "MehACGvYsfVaGnq5utXQupmAIji2": {
+          "should_notify": true,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度中等，发言时长较短，建议积极参与讨论。",
+          "user_name": "Tark",
+          "detail": {
+            "evidence": "- 发言等级：Normal Speech（时长：21.24s，占比：17.7%）\n- 编辑等级：No Edit（次数：0，字符数：0）\n- 浏览等级：Frequent Browsing（页面数：1，浏览时长：104.11s，占比：86.75%）",
+            "type": "Normal Participation",
+            "status": "发言时长较短，占比不高，鼠标操作次数少，未编辑笔记。",
+            "suggestion": "建议积极参与讨论，分享你的想法和观点，并尝试更多地与其他成员互动。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 6, mouse_duration: 104.11s, mouse_percent: 86.75%, total_score: 0.64",
+            "collaboration_suggestion": "建议 Tark 主动向其他成员提问，并积极回应其他成员的发言，促进小组讨论的活跃度。",
+            "detailed_reason": "Tark 的发言时长仅为 21.24s，占比 17.7%，相对较低。鼠标操作次数也较少，仅为 6 次，时长为 104.11s，占比 86.75%，说明其主要时间用于浏览页面。此外，Tark 未编辑笔记。综合来看，Tark 的参与度处于中等偏低水平。",
+            "history_comparison": "需要更多历史数据进行对比分析，以了解其参与度的变化趋势。",
+            "group_comparison": "与其他两位成员相比，Tark 的发言时长和编辑次数都较少。建议 Tark 积极参与讨论，分享自己的想法和观点，并尝试更多地与其他成员互动。"
+          },
+          "glasses_summary": "你参与度很高哦～  继续加油，多和队友互动哦！^_^"
+        },
+        "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+          "should_notify": true,
+          "group_distribution": {
+            "group_risk": "主导者明显 + 一人低参与，可能导致讨论结果偏向主导者观点，信息交流不充分。",
+            "low": 1,
+            "group_type": "失衡型",
+            "dominant": 1,
+            "no": 0,
+            "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出更多空间给其他成员，确保讨论的平衡性和全面性。",
+            "normal": 1,
+            "high": 1
+          },
+          "summary": "参与度较高，但发言占比略低，建议平衡发言与倾听。",
+          "user_name": "juno",
+          "detail": {
+            "evidence": "- 发言等级：High Speech（时长：67.38s，占比：56.15%）\n- 编辑等级：Frequent Edit（次数：1，字符数：592）\n- 浏览等级：Frequent Browsing（页面数：2，浏览时长：102.13s，占比：85.11%）",
+            "type": "Dominant",
+            "status": "发言时长较长，占比相对较高，鼠标操作频繁，编辑笔记字数较多。",
+            "suggestion": "在保持高参与度的同时，尝试更多地引导其他成员参与讨论，分享你的想法和观点，并留出更多的时间和空间给其他成员发言。"
+          },
+          "more_info": {
+            "extra_data": "mouse_action_count: 35, mouse_duration: 102.13s, mouse_percent: 85.11%, total_score: 1.0",
+            "collaboration_suggestion": "建议 juno 在发言时，适时引导其他成员表达观点，并主动询问其他成员的想法，营造更平等的讨论氛围。",
+            "detailed_reason": "juno 的发言时长为 67.38s，占比 56.15%，在小组中相对较高，表明其积极参与了讨论。其鼠标操作次数为 35 次，时长为 102.13s，占比 85.11%，说明其积极地浏览和操作页面。此外，juno 编辑了笔记，字数为 592，显示其对讨论内容的深入思考和整理。但相对其他成员，juno 的发言占比稍高，建议适当平衡发言与倾听，给其他成员更多表达机会。",
+            "history_comparison": "需要更多历史数据进行对比分析，以了解其参与度的长期趋势。",
+            "group_comparison": "juno 的发言时长和编辑次数都高于其他两位成员，鼠标操作也较为频繁，显示其在小组讨论中扮演着主导角色。建议 juno 尝试更多地引导其他成员参与讨论，确保讨论的平衡性和全面性。"
+          },
+          "glasses_summary": "你贡献真大！👏  适当留点空间给队友，一起完成任务更棒哦！"
+        }
+      },
+      "start_time": "2025-07-10T07:06:27",
+      "end_time": "2025-07-10T07:08:27"
+    }
+  ],
+  "local_analysis_result": {
+    "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+      "name": "juno",
+      "speech_duration": "15.12s",
+      "speech_percent": "12.6%",
+      "page_count": 1,
+      "mouse_action_count": 62,
+      "mouse_duration": "113.31s",
+      "mouse_percent": "94.43%",
+      "note_edit_count": 6,
+      "note_edit_char_count": 33,
+      "speech_level": "Normal Speech",
+      "speech_level_score": 0.7,
+      "note_edit_level": "Normal Edit",
+      "note_edit_score": 0.7,
+      "browser_level": "Frequent Browsing",
+      "browser_score": 1,
+      "total_score": 0.745,
+      "total_level": "High Participation"
+    },
+    "MehACGvYsfVaGnq5utXQupmAIji2": {
+      "name": "Tark",
+      "speech_duration": "26.38s",
+      "speech_percent": "21.98%",
+      "page_count": 1,
+      "mouse_action_count": 33,
+      "mouse_duration": "54.04s",
+      "mouse_percent": "45.03%",
+      "note_edit_count": 5,
+      "note_edit_char_count": 33,
+      "speech_level": "Normal Speech",
+      "speech_level_score": 0.7,
+      "note_edit_level": "Normal Edit",
+      "note_edit_score": 0.7,
+      "browser_level": "Normal Browsing",
+      "browser_score": 0.7,
+      "total_score": 0.7,
+      "total_level": "High Participation"
+    },
+    "50SHBajxtge2rmatUM7OU7MPeu32": {
+      "name": "Meteora",
+      "speech_duration": "43.28s",
+      "speech_percent": "36.07%",
+      "page_count": 1,
+      "mouse_action_count": 77,
+      "mouse_duration": "40.52s",
+      "mouse_percent": "33.77%",
+      "note_edit_count": 6,
+      "note_edit_char_count": 33,
+      "speech_level": "Normal Speech",
+      "speech_level_score": 0.7,
+      "note_edit_level": "Normal Edit",
+      "note_edit_score": 0.7,
+      "browser_level": "Normal Browsing",
+      "browser_score": 0.7,
+      "total_score": 0.7,
+      "total_level": "High Participation"
+    }
+  }
+}
