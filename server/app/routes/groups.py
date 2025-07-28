@@ -34,8 +34,9 @@ async def get_group_members(group_id: str):
 class GroupUpdateRequest(BaseModel):
     name: Optional[str] = None
     group_goal: Optional[str] = None
+    control_group: Optional[str] = None
 
-@router.put("/api/groups/{group_id}")
+@router.post("/api/groups/{group_id}")
 # 更新指定小组的信息（包括名称和目标）
 async def update_group_info(group_id: str, update_data: GroupUpdateRequest):
     """
@@ -49,7 +50,7 @@ async def update_group_info(group_id: str, update_data: GroupUpdateRequest):
     if not existing_doc.exists:
         raise HTTPException(status_code=404, detail="未找到该小组")
 
-    await asyncio.to_thread(doc_ref.update, update_fields)
+    doc_ref.update(update_fields)
     updated_data = existing_doc.to_dict() | update_fields | {"id": existing_doc.id}
     return {"message": "小组信息已更新", "data": updated_data}
 
