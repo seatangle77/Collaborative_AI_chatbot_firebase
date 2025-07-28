@@ -1,52 +1,64 @@
 <template>
   <div class="admin-judge-root">
     <div class="controls-container">
-      <div class="group-selector">
-        <label for="group-select">选择小组：</label>
-        <select id="group-select" v-model="selectedGroupId" @change="onGroupChange">
+      <!-- 小组选择区域 -->
+      <div class="control-section group-section">
+        <label for="group-select" class="section-label">选择小组</label>
+        <select id="group-select" v-model="selectedGroupId" @change="onGroupChange" class="control-select">
           <option v-for="group in groups" :key="group.id" :value="group.id">{{ group.name }}</option>
         </select>
       </div>
       
-      <div class="time-selector">
-        <div class="time-input-group">
-          <label for="start-time">开始时间：</label>
-          <input 
-            id="start-time" 
-            type="datetime-local" 
-            v-model="startTime" 
-            class="time-input"
-          />
+      <!-- 时间选择和分析区域 -->
+      <div class="control-section time-section">
+        <div class="time-range-group">
+          <div class="time-input-group">
+            <label for="start-time" class="input-label">开始时间</label>
+            <input 
+              id="start-time" 
+              type="datetime-local" 
+              v-model="startTime" 
+              class="control-input"
+            />
+          </div>
+          <div class="time-input-group">
+            <label for="end-time" class="input-label">结束时间</label>
+            <input 
+              id="end-time" 
+              type="datetime-local" 
+              v-model="endTime" 
+              class="control-input"
+            />
+          </div>
+          <button class="control-btn primary-btn" @click="startAnalysis" :disabled="isAnalyzing">
+            {{ isAnalyzing ? '分析中...' : '本地分析' }}
+          </button>
         </div>
-        <div class="time-input-group">
-          <label for="end-time">结束时间：</label>
-          <input 
-            id="end-time" 
-            type="datetime-local" 
-            v-model="endTime" 
-            class="time-input"
-          />
-        </div>
-        <button class="analyze-btn" @click="startAnalysis" :disabled="isAnalyzing">
-          {{ isAnalyzing ? '分析中...' : '本地分析' }}
-        </button>
+      </div>
 
-        <div class="current-time-display">
-          <span class="time-label">当前时间：</span>
-          <input 
-            type="datetime-local" 
-            v-model="currentTimeLocal" 
-            @change="updateCurrentTime"
-            class="time-picker"
-          />
-          <span class="time-utc">UTC: {{ currentTime }}</span>
+      <!-- 当前时间和轮询控制区域 -->
+      <div class="control-section current-time-section">
+        <div class="current-time-group">
+          <div class="time-input-group">
+            <label class="input-label">当前时间</label>
+            <input 
+              type="datetime-local" 
+              v-model="currentTimeLocal" 
+              @change="updateCurrentTime"
+              class="control-input"
+            />
+          </div>
+          <div class="utc-display">
+            <span class="utc-label">UTC:</span>
+            <span class="utc-time">{{ currentTime }}</span>
+          </div>
+          <button class="control-btn secondary-btn" @click="startPollingAnalysis" :disabled="isPolling">
+            {{ isPolling ? '轮询中...' : '轮询分析' }}
+          </button>
+          <button class="control-btn neutral-btn" @click="stopPollingAnalysis" :disabled="!isPolling">
+            {{ isPolling ? '停止轮询' : '轮询已停止' }}
+          </button>
         </div>
-        <button class="polling-btn" @click="startPollingAnalysis" :disabled="isPolling">
-          {{ isPolling ? '轮询中...' : '轮询分析' }}
-        </button>
-        <button class="stop-polling-btn" @click="stopPollingAnalysis" :disabled="!isPolling">
-          {{ isPolling ? '停止轮询' : '轮询已停止' }}
-        </button>
       </div>
     </div>
     
@@ -1609,194 +1621,210 @@ export default {
 .controls-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding: 10px;
-  width: 100%;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 20px;
+  width: 99%;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-left: 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #e1e5e9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
-.group-selector {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 1rem;
-  color: #333;
+.control-section {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  min-width: 200px;
+  flex: 1;
 }
-.group-selector select {
-  font-size: 1rem;
-  padding: 6px 10px;
-  border: 1px solid #d0d5db;
-  background: #fff;
-  outline: none;
-  transition: border 0.2s;
-  min-width: 120px;
-  border-radius:6px
 
+.group-section {
+  flex: 0 0 auto;
+  gap: 4px;
+  min-width: 160px;
+  max-width: 200px;
 }
-.group-selector select:focus {
-  border: 1.5px solid #1976d2;
+
+@media (max-width: 1200px) {
+  .controls-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .control-section {
+    min-width: auto;
+  }
+  
+  .time-range-group,
+  .current-time-group {
+    justify-content: flex-start;
+  }
 }
-.time-selector {
-  margin-top: 0;
-  margin-bottom: 0;
+
+@media (max-width: 768px) {
+  .controls-container {
+    padding: 16px;
+  }
+  
+  .time-range-group,
+  .current-time-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .time-input-group {
+    min-width: auto;
+  }
+  
+  .control-input {
+    min-width: auto;
+  }
+}
+
+.section-label {
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.control-select {
+  font-size: 0.875rem;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  min-width: 140px;
+  color: #374151;
+}
+
+.control-select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.time-range-group,
+.current-time-group {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 12px;
-  flex-wrap: nowrap;
-  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.input-label {
+  font-weight: 500;
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.control-input {
+  font-size: 0.875rem;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  outline: none;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  min-width: 160px;
+  color: #374151;
+}
+
+.control-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 .time-input-group {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 160px;
 }
-.time-input-group label {
-  font-weight: 500;
-  color: #333;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-.time-input {
-  font-size: 1rem;
-  padding: 6px 10px;
-  border: 1px solid #d0d5db;
-  background: #fff;
-  outline: none;
-  transition: border 0.2s;
-  min-width: 140px;
-  max-width: 200px;
-  border-radius:6px
-
-}
-.time-input:focus {
-  border: 1.5px solid #1976d2;
-}
-.analyze-btn {
-  background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
-  border: none;
-  border-radius: 6px;
-  padding: 6px 16px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 6px 0 rgba(76,175,80,0.12);
-  min-width: 80px;
-  white-space: nowrap;
-}
-.analyze-btn:hover:not(:disabled) {
-  background: linear-gradient(90deg, #5cb85c 0%, #4cae4c 100%);
-  box-shadow: 0 3px 12px 0 rgba(76,175,80,0.18);
-  transform: translateY(-1px);
-}
-.analyze-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  color: #888;
-  transform: none;
-  box-shadow: none;
-}
-.polling-btn {
-  background: linear-gradient(90deg, #2196F3 0%, #1976D2 100%);
-  border: none;
-  border-radius: 6px;
-  padding: 6px 16px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 6px 0 rgba(33,150,243,0.12);
-  min-width: 80px;
-  white-space: nowrap;
-}
-.polling-btn:hover:not(:disabled) {
-  background: linear-gradient(90deg, #42a5f5 0%, #2196f3 100%);
-  box-shadow: 0 3px 12px 0 rgba(33,150,243,0.18);
-  transform: translateY(-1px);
-}
-.polling-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  color: #888;
-  transform: none;
-  box-shadow: none;
-}
-.stop-polling-btn {
-  background: linear-gradient(90deg, #f44336 0%, #d32f2f 100%);
-  border: none;
-  border-radius: 6px;
-  padding: 6px 16px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 6px 0 rgba(244,67,54,0.12);
-  min-width: 80px;
-  white-space: nowrap;
-}
-.stop-polling-btn:hover:not(:disabled) {
-  background: linear-gradient(90deg, #ef5350 0%, #f44336 100%);
-  box-shadow: 0 3px 12px 0 rgba(244,67,54,0.18);
-  transform: translateY(-1px);
-}
-.stop-polling-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-  color: #888;
-  transform: none;
-  box-shadow: none;
-}
-
-.current-time-display {
+.utc-display {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 6px;
-  font-size: 0.9rem;
-  color: #495057;
+  font-size: 0.75rem;
+  color: #64748b;
 }
 
-.time-label {
+.utc-label {
   font-weight: 500;
-  color: #6c757d;
-  white-space: nowrap;
+  color: #64748b;
 }
 
-.time-picker {
-  font-size: 0.85rem;
-  padding: 4px 8px;
-  border: 1px solid #d0d5db;
-  border-radius: 4px;
-  background: #fff;
-  outline: none;
-  transition: border 0.2s;
-  font-family: 'Courier New', monospace;
-}
-
-.time-picker:focus {
-  border: 1.5px solid #1976d2;
-}
-
-.time-utc {
+.utc-time {
   font-weight: 600;
-  color: #007bff;
-  background: rgba(0, 123, 255, 0.1);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.8rem;
+  color: #3b82f6;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
+.control-btn {
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-width: 90px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.control-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.primary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
+}
+
+.secondary-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.neutral-btn {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(107, 114, 128, 0.2);
+}
+
+.neutral-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4b5563 0%, #374151 100%);
+  box-shadow: 0 4px 8px rgba(107, 114, 128, 0.3);
+  transform: translateY(-1px);
+}
+
+
+
 
 .group-title {
   margin-top: 10px;

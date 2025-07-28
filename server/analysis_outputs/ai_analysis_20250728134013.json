@@ -1,0 +1,89 @@
+{
+  "VaTnrRc18Facn5GYEcDyYNPyY7p2": {
+    "user_name": "juno",
+    "summary": "参与度较低，建议积极参与讨论",
+    "glasses_summary": "积极发言哦^_^",
+    "should_notify": true,
+    "detail": {
+      "type": "Low Participation",
+      "status": "发言较少，浏览和编辑行为也较少",
+      "evidence": "- 发言等级：No Speech（时长：0s，占比：0.0%）\n- 编辑等级：Normal Edit（次数：1，字符数：592）\n- 浏览等级：Few Browsing（页面数：2，浏览时长：28.75s，占比：23.95%）",
+      "suggestion": "尝试更多发言，分享你的想法和观点，并积极浏览其他成员的笔记和内容。"
+    },
+    "more_info": {
+      "detailed_reason": "juno在本轮讨论中没有发言，发言时长为0s，发言占比为0.0%。编辑行为仅有一次，字数为592，主要为笔记编辑。浏览行为也较少，页面数为2，浏览时长仅为28.75s，占比23.95%。综合来看，juno的整体参与度较低。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "与其他两位成员相比，juno的发言时长和浏览时长都显著较低。Meteora的发言时长为78.2s，Tark的发言时长为19.14s。",
+      "collaboration_suggestion": "鼓励juno积极参与讨论，可以先从简单的评论或提问开始，也可以主动向其他成员提问，了解他们的想法。",
+      "extra_data": "mouse_action_count: 57, mouse_duration: 28.75s, mouse_percent: 23.95%, total_score: 0.15"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，信息偏差。",
+      "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出空间，促进更均衡的参与。"
+    }
+  },
+  "MehACGvYsfVaGnq5utXQupmAIji2": {
+    "user_name": "Tark",
+    "summary": "参与度较高，贡献良多(๑•̀ㅂ•́)و✧",
+    "glasses_summary": "继续保持哦>_<",
+    "should_notify": false,
+    "detail": {
+      "type": "High Participation",
+      "status": "发言、编辑和浏览行为都比较积极",
+      "evidence": "- 发言等级：Normal Speech（时长：19.14s，占比：15.95%）\n- 编辑等级：Normal Edit（次数：2，字符数：637）\n- 浏览等级：Normal Browsing（页面数：3，浏览时长：59.87s，占比：49.89%）",
+      "suggestion": "继续保持积极参与的状态，并尝试在发言中更多地与其他成员互动。"
+    },
+    "more_info": {
+      "detailed_reason": "Tark在本轮讨论中发言时长为19.14s，发言占比为15.95%，编辑次数为2次，字数为637，浏览页面数为3，浏览时长为59.87s，占比49.89%。整体参与度较高，积极贡献讨论内容。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "与其他两位成员相比，Tark的参与度处于中等水平。",
+      "collaboration_suggestion": "可以尝试在发言中更多地与其他成员互动，例如回应其他成员的发言，或者提出一些问题来引导讨论。",
+      "extra_data": "mouse_action_count: 37, mouse_duration: 59.87s, mouse_percent: 49.89%, total_score: 0.7"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，信息偏差。",
+      "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出空间，促进更均衡的参与。"
+    }
+  },
+  "50SHBajxtge2rmatUM7OU7MPeu32": {
+    "user_name": "Meteora",
+    "summary": "参与度很高，主导了本次讨论，建议适当留出空间给其他成员发言",
+    "glasses_summary": "很棒！^_^  多鼓励大家",
+    "should_notify": true,
+    "detail": {
+      "type": "Dominant",
+      "status": "发言、编辑和浏览行为都非常活跃，主导了本次讨论",
+      "evidence": "- 发言等级：High Speech（时长：80.34s，占比：65.17%）\n- 编辑等级：Normal Edit（次数：2，字符数：637）\n- 浏览等级：Frequent Browsing（页面数：2，浏览时长：99.92s，占比：83.27%）",
+      "suggestion": "在保持积极参与的同时，尝试更多地引导其他成员发言，并鼓励他们分享他们的想法和观点。"
+    },
+    "more_info": {
+      "detailed_reason": "Meteora在本轮讨论中发言时长达到80.34s，占比65.17%，远高于其他两位成员。编辑行为也比较活跃，次数为2次，字数为637。浏览行为也频繁，页面数为2，浏览时长为99.92s，占比83.27%。整体表现非常活跃，主导了本次讨论。",
+      "history_comparison": "缺乏历史数据，无法进行对比分析。",
+      "group_comparison": "Meteora的发言时长和浏览时长都显著高于其他两位成员，是小组中当之无愧的主导者。",
+      "collaboration_suggestion": "建议Meteora在发言时，多一些开放性的提问，鼓励其他成员参与讨论，并尝试总结其他成员的观点，引导讨论向更深入的方向发展。",
+      "extra_data": "mouse_action_count: 85, mouse_duration: 99.92s, mouse_percent: 83.27%, total_score: 0.955"
+    },
+    "group_distribution": {
+      "no": 1,
+      "low": 1,
+      "normal": 0,
+      "high": 1,
+      "dominant": 1,
+      "group_type": "失衡型",
+      "group_risk": "主导者明显 + 多人低参与，可能导致讨论不充分，信息偏差。",
+      "action_hint": "激励低参与成员（juno）积极发言，鼓励主导者（Meteora）留出空间，促进更均衡的参与。"
+    }
+  }
+}
