@@ -87,10 +87,8 @@ async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
     global _user_notify_last_time, _user_notify_interval_seconds, _default_interval_seconds
 
     analyze_result = get_ai_analyze_result(req.group_id, limit=1)
-    logger.info(f"🔍 [get_next_notify_ai_analyze_result] 获取到的分析结果: {json.dumps(analyze_result, ensure_ascii=False, indent=2)}")
     if len(analyze_result) > 0:
         last_ai_analyze_content = analyze_result[0]
-        logger.info(f"🔍 [get_next_notify_ai_analyze_result] 第一条分析内容: {json.dumps(last_ai_analyze_content, ensure_ascii=False, indent=2)}")
 
         user_ids = list(last_ai_analyze_content.keys())
         end_time = last_ai_analyze_content.get("time_range",{}).get("end","")
@@ -117,7 +115,6 @@ async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
                 user_data.update({"next_notify_time": next_notify_time.isoformat()})
                 
         # 确保record_id字段被正确传递
-        logger.info(f"🔍 [get_next_notify_ai_analyze_result] 最终返回的数据: {json.dumps(last_ai_analyze_content, ensure_ascii=False, indent=2)}")
         return last_ai_analyze_content
     else:
         return {}
