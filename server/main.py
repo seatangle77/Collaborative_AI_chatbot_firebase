@@ -74,7 +74,7 @@ async def root():
 
 if __name__ == "__main__":
     run_analyze()
-    uvicorn.run("app.main:app", host="0.0.0.0", port=10000, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=False)
 
 # Note: To adapt the WebSocket connection protocol for different environments,
 # update the frontend WebSocket initialization logic as follows:

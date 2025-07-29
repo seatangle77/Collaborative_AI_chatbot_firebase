@@ -13,6 +13,10 @@ server/log
 server/app/__pycache__
 server/app/logger/__pycache__
 server/app/routes/__pycache__
+server/__pycache__
+server/analysis_outputs
+
+
 
 
 audio_runtime/__pycache__
