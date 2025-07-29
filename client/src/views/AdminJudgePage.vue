@@ -305,7 +305,7 @@
               <div v-if="user.isCountdownActive && !user.isPushed" class="countdown-section">
                 <div class="countdown-display">
                   <span class="countdown-label">倒计时:</span>
-                  <span class="countdown-time" :class="{ 'urgent': user.countdownSeconds <= 10 }">
+                  <span class="countdown-time" :class="{ 'urgent': user.countdownSeconds <= 10, 'expired': user.countdownSeconds < 0 }">
                     {{ formatCountdown(user.countdownSeconds) }}
                   </span>
                 </div>
@@ -322,6 +322,7 @@
                   </button>
                 </div>
               </div>
+
               <div v-else-if="user.isPushed" class="countdown-section">
                 <div class="pushed-status">
                   <span class="pushed-label">✅ 已推送</span>
@@ -793,6 +794,15 @@ export default {
       return `${start} - ${end}`;
     },
     formatCountdown(seconds) {
+      if (seconds < 0) {
+        // 负数倒计时显示为 -MM:SS 格式
+        const absSeconds = Math.abs(seconds);
+        const minutes = Math.floor(absSeconds / 60);
+        const remainingSeconds = absSeconds % 60;
+        const result = `-${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        console.log(`格式化负数倒计时: ${seconds}秒 -> ${result}`);
+        return result;
+      }
       if (seconds <= 0) return '00:00';
       
       const minutes = Math.floor(seconds / 60);
@@ -987,9 +997,9 @@ export default {
       console.log('时间差小时:', Math.floor(diffSeconds / 3600));
       console.log('时间差天数:', Math.floor(diffSeconds / 86400));
       
-      // 如果是负数，返回5秒倒计时
+      // 如果是负数，返回5秒倒计时（表示已过期但需要立即推送）
       if (diffSeconds < 0) {
-        console.log('时间差为负数，返回5秒倒计时');
+        console.log('时间差为负数，返回5秒倒计时进行立即推送');
         return 5;
       }
       
@@ -1279,6 +1289,7 @@ export default {
               currentAiSuggestion: userNotifyData,
               countdownSeconds: 0,
               isCountdownActive: false,
+              isExpired: false, // 清除过期标记
               isPushed: false // 确保不是已推送状态
             };
           }
@@ -1300,7 +1311,7 @@ export default {
               ...user,
               currentAiSuggestion: userNotifyData,
               countdownSeconds: countdownSeconds,
-              isCountdownActive: true,
+              isCountdownActive: true, // 统一激活倒计时
               isPushed: false // 新消息重置推送状态
             };
           } else {
@@ -1323,6 +1334,7 @@ export default {
             currentAiSuggestion: null,
             countdownSeconds: 0,
             isCountdownActive: false,
+            isExpired: false, // 清除过期标记
             isPushed: false
           };
         }
@@ -2638,6 +2650,14 @@ export default {
   background: rgba(220, 53, 69, 0.1);
   animation: pulse 1s infinite;
   font-weight: 800;
+}
+
+.countdown-time.expired {
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
+  font-weight: 600;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  animation: pulse 1s infinite;
 }
 
 @keyframes pulse {
