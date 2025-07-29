@@ -850,10 +850,11 @@ export default {
           
           console.log('用户手动更新时间:', this.currentTime);
           
+          // 时间更新定时器已经在页面加载时启动，这里不需要重新启动
           // 如果正在轮询，重新启动时间更新定时器
-          if (this.isPolling) {
-            this.startTimeUpdate();
-          }
+          // if (this.isPolling) {
+          //   this.startTimeUpdate();
+          // }
         }
       }
     },
@@ -1447,8 +1448,8 @@ export default {
       this.clearAllCountdowns();
       this.cancelledNotifications.clear();
       
-      // 启动时间更新定时器，每秒更新当前时间
-      this.startTimeUpdate();
+      // 时间更新定时器已经在页面加载时启动，这里不需要重复启动
+      // this.startTimeUpdate();
       
       // 立即执行一次分析
       await this.performPollingAnalysis();
@@ -1633,8 +1634,8 @@ export default {
           this.pollingInterval = null;
         }
         
-        // 停止时间更新
-        this.stopTimeUpdate();
+        // 不停止时间更新，因为时间更新应该在页面整个生命周期内持续
+        // this.stopTimeUpdate();
         
         this.isPolling = false;
         console.log('前端轮询已停止');
@@ -1687,6 +1688,9 @@ export default {
     console.log('初始化时间选择器，UTC时间:', this.currentTime);
     this.currentTimeLocal = this.convertUtcToLocal(this.currentTime);
     console.log('转换后的本地时间:', this.currentTimeLocal);
+    
+    // 页面加载后立即启动时间更新
+    this.startTimeUpdate();
   },
   beforeUnmount() {
     // 组件销毁前清除定时器
