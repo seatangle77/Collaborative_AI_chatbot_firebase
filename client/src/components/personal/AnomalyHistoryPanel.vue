@@ -17,9 +17,9 @@
             {{ formatDate(scope.row.end_time) }}
           </template>
         </el-table-column>
-        <el-table-column prop="summary" label="摘要">
+        <el-table-column prop="glasses_summary" label="摘要">
           <template #default="scope">
-            <span v-html="scope.row.summary"></span>
+            <span v-html="scope.row.glasses_summary || scope.row.summary"></span>
           </template>
         </el-table-column>
       </el-table>

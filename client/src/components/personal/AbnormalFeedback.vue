@@ -11,7 +11,7 @@
           <span class="summary-label">提示总结：</span>
           <span
             class="summary-content"
-            v-html="md2html(anomalyData.summary)"
+            v-html="md2html(anomalyData.glasses_summary || anomalyData.summary)"
           ></span>
         </div>
         <div v-if="anomalyData.detail" class="detail-block">
@@ -37,10 +37,10 @@
             <span class="detail-label">证据：</span>
             <span
               class="detail-value evidence"
-              v-html="md2html(translateLevelType(anomalyData.detail.evidence))"
+              v-html="md2html(highlightNumbers(anomalyData.detail.evidence))"
             ></span>
           </div>
-          <div class="detail-row suggestion-row">
+          <div class="detail-row suggestion-row" v-if="anomalyData.detail.suggestion">
             <span class="detail-label">建议：</span>
             <span
               class="detail-value suggestion"
@@ -84,6 +84,26 @@
           </el-button>
         </div>
         <div v-if="showMore && (anomalyData.more_info || anomalyData.user_data_summary)" class="more-info">
+          
+          <!-- More Info 图表区域 -->
+          <div v-if="anomalyData.more_info" class="charts-section">
+            <div class="charts-header">
+              <span class="charts-title">📊 数据分析图表</span>
+            </div>
+            <div class="charts-grid">
+              <!-- 参与度分布饼图 -->
+              <div class="chart-container" v-if="anomalyData.group_distribution">
+                <div ref="participationChartRef" class="chart-item"></div>
+                <div class="chart-title">组内参与度分布</div>
+              </div>
+              <!-- 行为指标柱状图 -->
+              <div class="chart-container" v-if="anomalyData.more_info.extra_data">
+                <div ref="behaviorChartRef" class="chart-item"></div>
+                <div class="chart-title">行为指标对比</div>
+              </div>
+            </div>
+          </div>
+          
           <div v-if="anomalyData.user_data_summary">
             <div
               ref="barChartRef"
@@ -136,14 +156,12 @@
               v-html="md2html(anomalyData.more_info.collaboration_suggestion)"
             ></span>
           </div>
-          <div v-if="anomalyData.group_distribution" class="info-block">
-            <span class="info-label">组内分布：</span>
-            <div class="distribution-content">
-              <div class="distribution-item" v-for="(count, type) in anomalyData.group_distribution" :key="type">
-                <span class="distribution-type">{{ getDistributionTypeLabel(type) }}</span>
-                <span class="distribution-count">{{ count }}人</span>
-              </div>
-            </div>
+          <div v-if="anomalyData.group_distribution?.action_hint" class="info-block">
+            <span class="info-label">组内建议：</span>
+            <span
+              class="info-content"
+              v-html="md2html(anomalyData.group_distribution.action_hint)"
+            ></span>
           </div>
         </div>
       </div>
@@ -210,8 +228,12 @@ const emit = defineEmits(['updateReminderFrequency']);
 const showMore = ref(false);
 const barChartRef = ref(null);
 const radarChartRef = ref(null);
+const participationChartRef = ref(null);
+const behaviorChartRef = ref(null);
 let barChart = null;
 let radarChart = null;
+let participationChart = null;
+let behaviorChart = null;
 
 // 按钮加载状态管理
 const buttonLoadingMap = ref({
@@ -352,23 +374,154 @@ function renderCharts() {
   }
 }
 
+// 渲染more_info图表
+function renderMoreInfoCharts() {
+  if (!props.anomalyData?.more_info) return;
+  
+  // 参与度分布饼图
+  if (participationChartRef.value && props.anomalyData.group_distribution) {
+    const distribution = props.anomalyData.group_distribution;
+    const pieData = [
+      { value: distribution.high || 0, name: '高参与', itemStyle: { color: '#52c41a' } },
+      { value: distribution.normal || 0, name: '正常参与', itemStyle: { color: '#1890ff' } },
+      { value: distribution.low || 0, name: '低参与', itemStyle: { color: '#faad14' } },
+      { value: distribution.no || 0, name: '无参与', itemStyle: { color: '#ff4d4f' } },
+      { value: distribution.dominant || 0, name: '主导型', itemStyle: { color: '#722ed1' } }
+    ].filter(item => item.value > 0);
+    
+    const pieOption = {
+      title: {
+        text: '组内成员参与度分布',
+        left: 'center',
+        top: 10,
+        textStyle: { fontSize: 12, fontWeight: 'bold' }
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: function(params) {
+          const total = pieData.reduce((sum, item) => sum + item.value, 0);
+          const percentage = ((params.value / total) * 100).toFixed(1);
+          return `${params.name}<br/>人数: ${params.value}人<br/>占比: ${percentage}%`;
+        }
+      },
+      legend: {
+        orient: 'vertical',
+        left: '3%',
+        top: 'center',
+        textStyle: { fontSize: 11 },
+        itemWidth: 12,
+        itemHeight: 8,
+        itemGap: 8,
+        formatter: function(name) {
+          const item = pieData.find(d => d.name === name);
+          if (item) {
+            return `${name} (${item.value}人)`;
+          }
+          return name;
+        }
+      },
+      series: [
+        {
+          name: '参与度分布',
+          type: 'pie',
+          radius: ['30%', '55%'],
+          center: ['70%', '50%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: true,
+            position: 'outside',
+            formatter: '{b}\n{c}人 ({d}%)',
+            fontSize: 10,
+            color: '#333'
+          },
+          labelLine: {
+            show: true,
+            length: 12,
+            length2: 12
+          },
+          data: pieData
+        }
+      ]
+    };
+    
+    if (!participationChart) participationChart = echarts.init(participationChartRef.value);
+    participationChart.setOption(pieOption);
+  }
+  
+  // 行为指标柱状图
+  if (behaviorChartRef.value && props.anomalyData.more_info.extra_data) {
+    const extraData = parseExtraData(props.anomalyData.more_info.extra_data);
+    const barOption = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: '8%',
+        right: '8%',
+        bottom: '15%',
+        top: '15%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        data: ['鼠标操作', '鼠标时长(秒)', '总分'],
+        axisLabel: { fontSize: 11 }
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: { fontSize: 11 }
+      },
+      series: [
+        {
+          name: '数值',
+          type: 'bar',
+          data: [
+            { value: extraData.mouse_action_count || 0, itemStyle: { color: '#1890ff' } },
+            { value: extraData.mouse_duration_seconds || 0, itemStyle: { color: '#52c41a' } },
+            { value: extraData.total_score || 0, itemStyle: { color: '#faad14' } }
+          ],
+          barWidth: '60%'
+        }
+      ]
+    };
+    
+    if (!behaviorChart) behaviorChart = echarts.init(behaviorChartRef.value);
+    behaviorChart.setOption(barOption);
+  }
+}
+
+
+
 watch(
   () => showMore.value,
   async (val) => {
-    if (val && props.anomalyData?.user_data_summary) {
+    if (val) {
       await loadEcharts();
       nextTick(() => {
-        renderCharts();
+        if (props.anomalyData?.user_data_summary) {
+          renderCharts();
+        }
+        if (props.anomalyData?.more_info) {
+          renderMoreInfoCharts();
+        }
       });
     }
   }
 );
 
 onMounted(async () => {
-  if (showMore.value && props.anomalyData?.user_data_summary) {
+  if (showMore.value) {
     await loadEcharts();
     nextTick(() => {
-      renderCharts();
+      if (props.anomalyData?.user_data_summary) {
+        renderCharts();
+      }
+      if (props.anomalyData?.more_info) {
+        renderMoreInfoCharts();
+      }
     });
   }
 });
@@ -536,6 +689,58 @@ const historyComparisonTable = computed(() => {
   return parseMarkdownTable(md);
 });
 
+// 高亮数字函数，用不同颜色标记
+function highlightNumbers(text) {
+  if (!text) return '';
+  
+  console.log('原始文本:', text); // 调试用
+  
+  // 先处理所有特定格式，避免重复匹配
+  text = text.replace(/时长：(\d+)s/g, '时长：<span class="number-time">$1</span>s');
+  text = text.replace(/浏览时长：(\d+)s/g, '浏览时长：<span class="number-time">$1</span>s');
+  text = text.replace(/占比：(\d+\.?\d*)%/g, '占比：<span class="number-percent">$1</span>%');
+  text = text.replace(/次数：(\d+)/g, '次数：<span class="number-count">$1</span>');
+  text = text.replace(/字符数：(\d+)/g, '字符数：<span class="number-chars">$1</span>');
+  text = text.replace(/页面数：(\d+)/g, '页面数：<span class="number-pages">$1</span>');
+  
+  // 不再处理其他数字，避免嵌套问题
+  // text = text.replace(/(\d+)/g, '<span class="number-other">$1</span>');
+  
+  console.log('处理后文本:', text); // 调试用
+  
+  return text;
+}
+
+// 解析extra_data字符串
+function parseExtraData(extraDataStr) {
+  if (!extraDataStr) return {};
+  
+  const result = {};
+  const pairs = extraDataStr.split(', ');
+  
+  pairs.forEach(pair => {
+    const [key, value] = pair.split(': ');
+    if (key && value !== undefined) {
+      // 处理数值
+      if (value.includes('s') && !isNaN(parseFloat(value))) {
+        result[key] = parseFloat(value);
+        result[`${key}_seconds`] = parseFloat(value);
+      } else if (value.includes('%') && !isNaN(parseFloat(value))) {
+        result[key] = parseFloat(value);
+        result[`${key}_percent`] = parseFloat(value);
+      } else if (!isNaN(parseFloat(value))) {
+        result[key] = parseFloat(value);
+      } else {
+        result[key] = value;
+      }
+    }
+  });
+  
+  return result;
+}
+
+
+
 
 </script>
 
@@ -570,10 +775,6 @@ const historyComparisonTable = computed(() => {
   display: flex;
   align-items: center;
   min-height: 32px;
-}
-.more-info {
-  margin-top: 8px;
-  padding: 8px 0;
 }
 .info-block {
   margin-bottom: 6px;
@@ -630,12 +831,7 @@ const historyComparisonTable = computed(() => {
   color: #e67e22;
   font-weight: 600;
 }
-.evidence-row .evidence {
-  background: #fffbe6;
-  border-radius: 4px;
-  padding: 5px 5px;
-  color: #b26a00;
-}
+
 .suggestion-row .suggestion {
   background: #e3f9e5;
   border-radius: 4px;
@@ -643,10 +839,8 @@ const historyComparisonTable = computed(() => {
   color: #218838;
 }
 .more-info {
-  margin-top: 16px;
   background: #f9f9f9;
   border-radius: 6px;
-  padding: 12px 16px;
   font-size: 13px;
   color: #444;
 }
@@ -731,6 +925,76 @@ const historyComparisonTable = computed(() => {
   border-radius: 0 0 8px 8px;
   margin-top: 2px;
 }
+.evidence-row .evidence {
+  background: #fffbe6;
+  border-radius: 4px;
+  padding: 5px 5px;
+  color: #b26a00;
+}
+
+/* 数字高亮样式 - 统一颜色 */
+:deep(.number-time),
+:deep(.number-percent),
+:deep(.number-count),
+:deep(.number-chars),
+:deep(.number-pages),
+:deep(.number-other) {
+  color: #1890ff !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+}
+
+/* 图表样式 */
+.charts-section {
+  margin-bottom: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.charts-header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.charts-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chart-item {
+  width: 100%;
+  height: 250px;
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: #495057;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 :deep(.evidence-row .evidence ul) {
   margin: 4px 0 4px 16px !important;
   padding-left: 16px !important;
@@ -744,32 +1008,7 @@ const historyComparisonTable = computed(() => {
   padding-left: 2px !important;
 }
 
-.distribution-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
 
-.distribution-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  background: #f0f6ff;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 12px;
-}
-
-.distribution-type {
-  color: #3478f6;
-  font-weight: 500;
-}
-
-.distribution-count {
-  color: #666;
-  font-weight: 600;
-}
 
 .user-name {
   color: #3478f6;
