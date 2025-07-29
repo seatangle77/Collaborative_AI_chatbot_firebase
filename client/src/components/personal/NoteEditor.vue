@@ -328,6 +328,8 @@ onMounted(async () => {
   quill.on("text-change", (delta, oldDelta, source) => {
     if (!true || source !== "user") return;
     if (isApplyingColor) return;
+    // 只读模式下不处理编辑事件
+    if (props.readOnly) return;
 
     pendingDeltas.push(delta);
 
@@ -349,6 +351,8 @@ onMounted(async () => {
   // 每 5 秒合并一次 delta，记录编辑行为
   deltaFlushInterval = setInterval(() => {
     if (!props.editorStarted) return;
+    // 只读模式下不记录编辑历史
+    if (props.readOnly) return;
     try {
       console.log('[NoteEditor] 当前userId:', props.userId, 'currentUserId:', props.currentUserId);
       // 只记录当前登录用户的编辑历史
@@ -431,6 +435,8 @@ onMounted(async () => {
     if (!props.editorStarted) return;
     if (!quill) return;
     wordCount.value = quill.getText().trim().length;
+    // 只读模式下不保存内容
+    if (props.readOnly) return;
     // 只记录当前登录用户的内容
     if (props.userId !== props.currentUserId) return;
     const now = Date.now();
