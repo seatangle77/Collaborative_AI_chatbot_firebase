@@ -8,6 +8,7 @@ from .chat import router as chat_router
 from .editor import router as editor_router
 from .ai_bots import router as ai_bots_router
 from .analysis import router as analysis_router
+from .group_data import router as group_data_router
 
 
 # 创建主路由对象
@@ -20,3 +21,4 @@ router.include_router(chat_router)
 router.include_router(editor_router)
 router.include_router(ai_bots_router)
 router.include_router(analysis_router)
+router.include_router(group_data_router)

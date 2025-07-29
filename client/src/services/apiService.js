@@ -182,6 +182,35 @@ export default {
       params: { page, page_size: pageSize }
     }).then(res => res.data);
   },
+  getAnomalyAnalysisGroupResultsByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/anomaly_analysis_group_results/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
+  },
+  // 单条删除anomaly_analysis_group_results
+  deleteAnomalyAnalysisGroupResult(docId) {
+    return axios.delete(`${BASE_URL}/api/group_data/anomaly_analysis_group_results/${docId}`).then(res => res.data);
+  },
+  // 批量删除anomaly_analysis_group_results
+  batchDeleteAnomalyAnalysisGroupResults(ids) {
+    return axios.delete(`${BASE_URL}/api/group_data/anomaly_analysis_group_results/batch`, { data: { ids } }).then(res => res.data);
+  },
+  // 查询 anomaly_local_analyze 表历史数据（前端展示用）
+  getLocalAnalyzeHistoryByGroup(groupId, page = 1, pageSize = 20) {
+    return axios.get(`${BASE_URL}/api/group_data/local_analyze_history/${groupId}`, {
+      params: { page, page_size: pageSize }
+    }).then(res => res.data);
+  },
+
+  // 删除本地分析历史记录
+  deleteLocalAnalyzeHistory(docId) {
+    return axios.delete(`${BASE_URL}/api/group_data/local_analyze_history/${docId}`).then(res => res.data);
+  },
+
+  // 批量删除本地分析历史记录
+  batchDeleteLocalAnalyzeHistory(ids) {
+    return axios.delete(`${BASE_URL}/api/group_data/local_analyze_history/batch`, { data: { ids } }).then(res => res.data);
+  },
   // 单条删除anomaly_analysis_results
   deleteAnomalyAnalysisResult(docId) {
     return axios.delete(`${BASE_URL}/api/group_data/anomaly_analysis_results/${docId}`).then(res => res.data);

@@ -25,7 +25,7 @@
               :name="item.value"
             />
           </el-tabs>
-          <div v-if="selectedTable === 'anomaly_analysis_results'" style="margin-bottom: 12px;">
+          <div v-if="selectedTable === 'anomaly_analysis_results' || selectedTable === 'local_analyze_history'" style="margin-bottom: 12px;">
             <el-button type="danger" :disabled="!multipleSelection.length" @click="handleBatchDelete">批量删除</el-button>
           </div>
           <div v-if="selectedTable === 'pageBehaviorLogs' && members.length" style="margin-bottom: 12px;">
@@ -86,9 +86,61 @@
           >
             <!-- 异常分析结果列 -->
             <template v-if="selectedTable === 'anomaly_analysis_results'">
+              <el-table-column prop="start_time" label="开始时间" width="180" />
+              <el-table-column prop="end_time" label="结束时间" width="180" />
+              <el-table-column prop="group_type" label="组类型" width="100">
+                <template #default="scope">
+                  <el-tag :type="getGroupTypeTagType(scope.row.group_type)">
+                    {{ scope.row.group_type }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column prop="group_risk" label="组风险" min-width="200">
+                <template #default="scope">
+                  <span class="ellipsis" @click="showHtmlDialog(scope.row.group_risk)">
+                    {{ scope.row.group_risk && scope.row.group_risk.length > 50 ? scope.row.group_risk.slice(0, 50) + '...' : scope.row.group_risk }}
+                  </span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="action_hint" label="行动提示" min-width="200">
+                <template #default="scope">
+                  <span class="ellipsis" @click="showHtmlDialog(scope.row.action_hint)">
+                    {{ scope.row.action_hint && scope.row.action_hint.length > 50 ? scope.row.action_hint.slice(0, 50) + '...' : scope.row.action_hint }}
+                  </span>
+                </template>
+              </el-table-column>
+              <el-table-column prop="participation_summary" label="参与情况" min-width="150">
+                <template #default="scope">
+                  <span class="ellipsis" @click="showParticipationDetails(scope.row)">
+                    {{ getParticipationSummary(scope.row) }}
+                  </span>
+                </template>
+              </el-table-column>
               <el-table-column prop="id" label="ID" min-width="180px" />
-              <el-table-column prop="created_at" label="分析时间" />
-              <el-table-column prop="result" label="结果" />
+            </template>
+            
+            <!-- 本地分析历史列 -->
+            <template v-if="selectedTable === 'local_analyze_history'">
+              <el-table-column prop="created_at" label="创建时间" width="180" />
+              <el-table-column prop="group_id" label="组ID" width="180" />
+              <el-table-column prop="user_count" label="用户数" width="80">
+                <template #default="scope">
+                  <el-tag type="info">{{ scope.row.user_count }}</el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column prop="avg_score" label="平均评分" width="100">
+                <template #default="scope">
+                  <el-tag :type="scope.row.avg_score >= 0.5 ? 'success' : scope.row.avg_score >= 0.3 ? 'warning' : 'danger'">
+                    {{ scope.row.avg_score.toFixed(2) }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column label="详情" width="100">
+                <template #default="scope">
+                  <el-button type="primary" size="small" @click="showLocalAnalyzeDetails(scope.row)">查看详情</el-button>
+                </template>
+              </el-table-column>
+              <el-table-column prop="id" label="ID" min-width="180px" />
             </template>
             
             <!-- 语音转写列 -->
@@ -183,8 +235,9 @@
               <el-table-column prop="id" label="ID" min-width="180px" />
             </template>
             
-            <el-table-column v-if="showDelete" label="操作" width="80">
+            <el-table-column v-if="showDelete" label="操作" width="150">
               <template #default="scope">
+                <el-button type="primary" size="small" @click="showRecordDetails(scope.row)" style="margin-right: 5px;">详情</el-button>
                 <el-button type="danger" size="small" @click="handleDelete(scope.row.id)">删除</el-button>
               </template>
             </el-table-column>
@@ -198,8 +251,9 @@
           >
             <el-table-column type="selection" width="50" />
             <el-table-column v-for="col in columns" :key="col.prop" :prop="col.prop" :label="col.label" :min-width="col.minWidth || '120px'" />
-            <el-table-column label="操作" width="80">
+            <el-table-column label="操作" width="150">
               <template #default="scope">
+                <el-button type="primary" size="small" @click="showRecordDetails(scope.row)" style="margin-right: 5px;">详情</el-button>
                 <el-button type="danger" size="small" @click="handleDelete(scope.row.id)">删除</el-button>
               </template>
             </el-table-column>
@@ -217,6 +271,128 @@
           />
           <el-dialog v-model="htmlDialogVisible" title="HTML内容预览" width="60%">
             <div v-html="htmlDialogContent" style="max-height:60vh;overflow:auto;"></div>
+          </el-dialog>
+          
+          <!-- 异常分析结果详情弹窗 -->
+          <el-dialog v-model="recordDetailsVisible" title="异常分析结果详情" width="80%" :close-on-click-modal="false">
+            <div v-if="currentRecordDetails" class="record-details">
+              <!-- 基本信息 -->
+              <div class="detail-section">
+                <h3>基本信息</h3>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <span class="info-label">记录ID：</span>
+                    <span class="info-value">{{ currentRecordDetails.id }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">开始时间：</span>
+                    <span class="info-value">{{ currentRecordDetails.start_time }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">结束时间：</span>
+                    <span class="info-value">{{ currentRecordDetails.end_time }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">创建时间：</span>
+                    <span class="info-value">{{ formatToCST(currentRecordDetails.created_at) }}</span>
+                  </div>
+                  <div class="info-item">
+                    <span class="info-label">组ID：</span>
+                    <span class="info-value">{{ currentRecordDetails.group_id }}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 组级别分析 -->
+              <div class="detail-section">
+                <h3>组级别分析</h3>
+                <div class="group-analysis">
+                  <div class="analysis-item">
+                    <span class="analysis-label">组类型：</span>
+                    <el-tag :type="getGroupTypeTagType(currentRecordDetails.group_type)">
+                      {{ currentRecordDetails.group_type }}
+                    </el-tag>
+                  </div>
+                  <div class="analysis-item">
+                    <span class="analysis-label">组风险：</span>
+                    <span class="analysis-value">{{ currentRecordDetails.group_risk }}</span>
+                  </div>
+                  <div class="analysis-item">
+                    <span class="analysis-label">行动提示：</span>
+                    <span class="analysis-value">{{ currentRecordDetails.action_hint }}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- 用户分析详情 -->
+              <div class="detail-section">
+                <h3>用户分析详情</h3>
+                <div class="user-analysis-list">
+                  <div 
+                    v-for="(userData, userId) in currentRecordDetails.raw_response" 
+                    :key="userId" 
+                    class="user-analysis-item"
+                  >
+                    <div class="user-header">
+                      <h4>{{ userData.user_name || userId }}</h4>
+                      <el-tag :type="getUserTypeTagType(userData.detail?.type)">
+                        {{ userData.detail?.type || '未知' }}
+                      </el-tag>
+                    </div>
+                    
+                    <div class="user-content">
+                      <div class="user-summary">
+                        <span class="summary-label">摘要：</span>
+                        <span class="summary-content">{{ userData.summary }}</span>
+                      </div>
+                      
+                      <div class="user-detail">
+                        <div class="detail-row">
+                          <span class="detail-label">状态：</span>
+                          <span class="detail-value">{{ userData.detail?.status }}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">建议：</span>
+                          <span class="detail-value">{{ userData.detail?.suggestion }}</span>
+                        </div>
+                        <div class="detail-row">
+                          <span class="detail-label">眼镜提示：</span>
+                          <span class="detail-value">{{ userData.glasses_summary }}</span>
+                        </div>
+                      </div>
+                      
+                      <div class="user-evidence">
+                        <span class="evidence-label">证据：</span>
+                        <div class="evidence-content" v-html="formatEvidence(userData.detail?.evidence)"></div>
+                      </div>
+                      
+                      <div class="user-more-info" v-if="userData.more_info">
+                        <div class="more-info-item">
+                          <span class="more-info-label">详细原因：</span>
+                          <span class="more-info-content">{{ userData.more_info.detailed_reason }}</span>
+                        </div>
+                        <div class="more-info-item">
+                          <span class="more-info-label">协作建议：</span>
+                          <span class="more-info-content">{{ userData.more_info.collaboration_suggestion }}</span>
+                        </div>
+                        <div class="more-info-item">
+                          <span class="more-info-label">组内对比：</span>
+                          <span class="more-info-content">{{ userData.more_info.group_comparison }}</span>
+                        </div>
+                        <div class="more-info-item">
+                          <span class="more-info-label">历史对比：</span>
+                          <span class="more-info-content">{{ userData.more_info.history_comparison }}</span>
+                        </div>
+                        <div class="more-info-item">
+                          <span class="more-info-label">额外数据：</span>
+                          <span class="more-info-content">{{ userData.more_info.extra_data }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </el-dialog>
         </div>
       </main>
@@ -294,7 +470,8 @@ const filteredMembers = computed(() =>
 // ====== 数据表切换相关 ======
 const selectedTable = ref("anomaly_analysis_results");
 const tableOptions = [
-  { label: "异常分析结果", value: "anomaly_analysis_results" },
+  { label: "AI分析结果", value: "anomaly_analysis_results" },
+  { label: "本地分析历史", value: "local_analyze_history" },
   { label: "语音转写", value: "speech_transcripts" },
   { label: "页面行为日志", value: "pageBehaviorLogs" },
   { label: "笔记编辑历史", value: "note_edit_history" },
@@ -347,9 +524,21 @@ const columnsMap = {
     { prop: "id", label: "ID", minWidth: "180px" },
   ],
   anomaly_analysis_results: [
+    { prop: "start_time", label: "开始时间", minWidth: "180px" },
+    { prop: "end_time", label: "结束时间", minWidth: "180px" },
+    { prop: "user_count", label: "用户数", minWidth: "80px" },
+    { prop: "group_type", label: "组类型", minWidth: "100px" },
+    { prop: "group_risk", label: "组风险", minWidth: "200px" },
+    { prop: "action_hint", label: "行动提示", minWidth: "200px" },
+    { prop: "participation_summary", label: "参与情况", minWidth: "150px" },
     { prop: "id", label: "ID", minWidth: "180px" },
-    { prop: "created_at", label: "分析时间" },
-    { prop: "result", label: "结果" },
+  ],
+  local_analyze_history: [
+    { prop: "created_at", label: "创建时间", minWidth: "180px" },
+    { prop: "group_id", label: "组ID", minWidth: "180px" },
+    { prop: "user_count", label: "用户数", minWidth: "80px" },
+    { prop: "avg_score", label: "平均评分", minWidth: "100px" },
+    { prop: "id", label: "ID", minWidth: "180px" },
   ],
   feedback_clicks: [
     { prop: "click_type", label: "点击类型" },
@@ -371,7 +560,7 @@ const columns = computed(() => {
   const cols = columnsMap[selectedTable.value] || [];
   return cols.filter(col => col && typeof col === 'object' && col.prop);
 });
-const showDelete = computed(() => selectedTable.value === "anomaly_analysis_results");
+const showDelete = computed(() => selectedTable.value === "anomaly_analysis_results" || selectedTable.value === "local_analyze_history");
 
 const pagedTableData = computed(() => {
   return tableData.value;
@@ -598,14 +787,100 @@ async function fetchTableData() {
       totalPages.value = res.total_pages || 0;
       break;
     case "anomaly_analysis_results":
-      res = await api.getAnomalyAnalysisResultsByGroup(selectedGroupId.value, page.value, pageSize.value);
-      tableData.value = (res.data || []).map(item => ({
-        ...item,
-        created_at: formatToCST(item.created_at),
-        result: item.summary || "",
-      }));
-      total.value = res.total || 0;
-      totalPages.value = res.total_pages || 0;
+      try {
+        res = await api.getAnomalyAnalysisGroupResultsByGroup(selectedGroupId.value, page.value, pageSize.value);
+        tableData.value = (res.data || []).map(item => {
+          const rawResponse = item.raw_response || {};
+          
+          // 获取第一个用户的 group_distribution 信息（所有用户应该相同）
+          const firstUserId = Object.keys(rawResponse)[0];
+          const firstUserData = rawResponse[firstUserId] || {};
+          const groupDistribution = firstUserData.group_distribution || {};
+          
+          // 统计用户参与情况
+          const userCounts = {
+            high: 0,
+            low: 0,
+            normal: 0,
+            no: 0,
+            total: Object.keys(rawResponse).length
+          };
+          
+          // 遍历所有用户，统计参与类型
+          Object.values(rawResponse).forEach(userData => {
+            if (userData.detail && userData.detail.type) {
+              const type = userData.detail.type;
+              if (type === 'High Participation') userCounts.high++;
+              else if (type === 'Low Participation') userCounts.low++;
+              else if (type === 'Normal Participation') userCounts.normal++;
+              else if (type === 'No Participation') userCounts.no++;
+            }
+          });
+          
+          return {
+            ...item,
+            start_time: formatToCST(item.start_time),
+            end_time: formatToCST(item.end_time),
+            group_type: groupDistribution.group_type || "",
+            group_risk: groupDistribution.group_risk || "",
+            action_hint: groupDistribution.action_hint || "",
+            participation_summary: `${userCounts.high}高/${userCounts.low}低/${userCounts.normal}正常/${userCounts.no}无参与`,
+            user_count: userCounts.total,
+            // 保存原始数据用于详情显示
+            raw_response: rawResponse,
+          };
+        });
+        total.value = res.total || 0;
+        totalPages.value = res.total_pages || 0;
+      } catch (error) {
+        console.error("获取异常分析结果失败:", error);
+        tableData.value = [];
+        total.value = 0;
+        totalPages.value = 0;
+      }
+      break;
+    case "local_analyze_history":
+      try {
+        res = await api.getLocalAnalyzeHistoryByGroup(selectedGroupId.value, page.value, pageSize.value);
+        tableData.value = (res.data || []).map(item => {
+          const output = item.output || {};
+          const anomalyHistory = output.anomaly_history || [];
+          const localAnalysisResult = output.local_analysis_result || {};
+          const timeRange = output.time_range || {};
+          const noteEditHistory = output.raw_tables?.note_edit_history || [];
+          const users = output.users || [];
+          
+          // 计算平均评分
+          let totalScore = 0;
+          let scoreCount = 0;
+          
+          // 遍历用户分析结果，计算平均评分
+          Object.values(localAnalysisResult).forEach(userData => {
+            if (userData.total_score !== undefined && userData.total_score !== null) {
+              totalScore += userData.total_score;
+              scoreCount++;
+            }
+          });
+          
+          const avgScore = scoreCount > 0 ? totalScore / scoreCount : 0;
+          
+          return {
+            ...item,
+            created_at: formatToCST(item.created_at),
+            user_count: Object.keys(localAnalysisResult).length,
+            avg_score: avgScore,
+            // 保存原始数据用于详情显示
+            output: output,
+          };
+        });
+        total.value = res.total || 0;
+        totalPages.value = res.total_pages || 0;
+      } catch (error) {
+        console.error("获取本地分析历史失败:", error);
+        tableData.value = [];
+        total.value = 0;
+        totalPages.value = 0;
+      }
       break;
   }
   loading.value = false;
@@ -623,8 +898,18 @@ function handleSizeChange(val) {
 }
 
 async function handleDelete(id) {
-  await api.deleteAnomalyAnalysisResult(id);
-  tableData.value = tableData.value.filter(item => item.id !== id);
+  try {
+    if (selectedTable.value === "anomaly_analysis_results") {
+      await api.deleteAnomalyAnalysisGroupResult(id);
+    } else if (selectedTable.value === "local_analyze_history") {
+      await api.deleteLocalAnalyzeHistory(id);
+    } else {
+      await api.deleteAnomalyAnalysisResult(id);
+    }
+    tableData.value = tableData.value.filter(item => item.id !== id);
+  } catch (error) {
+    console.error("删除失败:", error);
+  }
 }
 
 watch([selectedGroupId, selectedTable], () => {
@@ -664,17 +949,241 @@ function handleSelectionChange(val) {
 
 async function handleBatchDelete() {
   if (!multipleSelection.value.length) return;
-  const ids = multipleSelection.value.map(item => item.id);
-  await api.batchDeleteAnomalyAnalysisResults(ids);
-  await fetchTableData();
-  multipleSelection.value = [];
+  try {
+    const ids = multipleSelection.value.map(item => item.id);
+    if (selectedTable.value === "anomaly_analysis_results") {
+      await api.batchDeleteAnomalyAnalysisGroupResults(ids);
+    } else if (selectedTable.value === "local_analyze_history") {
+      await api.batchDeleteLocalAnalyzeHistory(ids);
+    } else {
+      await api.batchDeleteAnomalyAnalysisResults(ids);
+    }
+    await fetchTableData();
+    multipleSelection.value = [];
+  } catch (error) {
+    console.error("批量删除失败:", error);
+  }
 }
 
 const htmlDialogVisible = ref(false);
 const htmlDialogContent = ref("");
+
+// 异常分析结果详情相关
+const recordDetailsVisible = ref(false);
+const currentRecordDetails = ref(null);
 function showHtmlDialog(html) {
   htmlDialogContent.value = html;
   htmlDialogVisible.value = true;
+}
+
+// 显示记录详情
+function showRecordDetails(record) {
+  currentRecordDetails.value = record;
+  recordDetailsVisible.value = true;
+}
+
+// 获取用户类型标签颜色
+function getUserTypeTagType(userType) {
+  switch (userType) {
+    case "High Participation":
+      return "success";
+    case "Low Participation":
+      return "warning";
+    case "No Participation":
+      return "danger";
+    case "Normal Participation":
+      return "info";
+    default:
+      return "info";
+  }
+}
+
+// 格式化证据内容
+function formatEvidence(evidence) {
+  if (!evidence) return "";
+  return evidence.replace(/\n/g, "<br/>");
+}
+
+// 获取组类型标签颜色
+function getGroupTypeTagType(groupType) {
+  switch (groupType) {
+    case "失衡型":
+      return "danger";
+    case "均衡型":
+      return "success";
+    case "活跃型":
+      return "warning";
+    default:
+      return "info";
+  }
+}
+
+// 获取参与情况摘要
+function getParticipationSummary(item) {
+  // 从 raw_response 中获取 group_distribution
+  const groupDistribution = item.raw_response?.group_distribution || item.group_distribution;
+  
+  if (!groupDistribution) return "无数据";
+  
+  const { high = 0, low = 0, normal = 0, no = 0 } = groupDistribution;
+  const total = high + low + normal + no;
+  if (total === 0) return "无参与数据";
+  
+  return `高参与:${high} 低参与:${low} 正常:${normal} 无参与:${no}`;
+}
+
+// 显示参与详情
+function showParticipationDetails(item) {
+  const rawResponse = item.raw_response || {};
+  
+  if (!rawResponse || Object.keys(rawResponse).length === 0) {
+    showHtmlDialog("无参与数据");
+    return;
+  }
+  
+  // 获取第一个用户的 group_distribution 信息
+  const firstUserId = Object.keys(rawResponse)[0];
+  const firstUserData = rawResponse[firstUserId] || {};
+  const groupDistribution = firstUserData.group_distribution || {};
+  
+  // 统计用户参与情况
+  const userCounts = {
+    high: 0,
+    low: 0,
+    normal: 0,
+    no: 0,
+    dominant: groupDistribution.dominant || 0
+  };
+  
+  // 构建用户详情信息
+  let userDetails = "";
+  
+  // 遍历所有用户数据
+  Object.entries(rawResponse).forEach(([userId, userData]) => {
+    const detail = userData.detail || {};
+    const moreInfo = userData.more_info || {};
+    
+    // 统计参与类型
+    if (detail.type) {
+      if (detail.type === 'High Participation') userCounts.high++;
+      else if (detail.type === 'Low Participation') userCounts.low++;
+      else if (detail.type === 'Normal Participation') userCounts.normal++;
+      else if (detail.type === 'No Participation') userCounts.no++;
+    }
+    
+    userDetails += `
+      <div style="margin: 10px 0; padding: 10px; border: 1px solid #eee; border-radius: 5px; background: #f9f9f9;">
+        <h5 style="color: #3478f6; margin: 0 0 8px 0;">用户: ${userData.user_name || userId}</h5>
+        <p><strong>参与类型：</strong><span style="color: #e67e22; font-weight: 600;">${detail.type || "未知"}</span></p>
+        <p><strong>状态：</strong>${detail.status || "未知"}</p>
+        <p><strong>建议：</strong>${detail.suggestion || "无"}</p>
+        <p><strong>摘要：</strong>${userData.summary || "无"}</p>
+        <p><strong>眼镜提示：</strong>${userData.glasses_summary || "无"}</p>
+        <p><strong>详细原因：</strong>${moreInfo.detailed_reason || "无"}</p>
+        <p><strong>协作建议：</strong>${moreInfo.collaboration_suggestion || "无"}</p>
+        <p><strong>组内对比：</strong>${moreInfo.group_comparison || "无"}</p>
+      </div>
+    `;
+  });
+  
+  const details = `
+    <h4>参与情况详情</h4>
+    <p><strong>高参与成员：</strong>${userCounts.high}人</p>
+    <p><strong>低参与成员：</strong>${userCounts.low}人</p>
+    <p><strong>正常参与成员：</strong>${userCounts.normal}人</p>
+    <p><strong>无参与成员：</strong>${userCounts.no}人</p>
+    <p><strong>主导者：</strong>${userCounts.dominant}人</p>
+    <hr>
+    <h4>组风险</h4>
+    <p>${groupDistribution.group_risk || "无"}</p>
+    <h4>行动提示</h4>
+    <p>${groupDistribution.action_hint || "无"}</p>
+    <hr>
+    <h4>用户详情</h4>
+    ${userDetails || "无用户详情"}
+  `;
+  
+  showHtmlDialog(details);
+}
+
+// 显示本地分析详情
+function showLocalAnalyzeDetails(item) {
+  const output = item.output || {};
+  const localAnalysisResult = output.local_analysis_result || {};
+  const timeRange = output.time_range || {};
+  
+  // 构建基本信息
+  let basicInfo = `
+    <h4>基本信息</h4>
+    <p><strong>记录ID：</strong>${item.id}</p>
+    <p><strong>创建时间：</strong>${item.created_at}</p>
+    <p><strong>组ID：</strong>${item.group_id}</p>
+    <p><strong>分析时间范围：</strong>${formatToCST(timeRange.start)} ~ ${formatToCST(timeRange.end)}</p>
+    <p><strong>用户总数：</strong>${Object.keys(localAnalysisResult).length}人</p>
+  `;
+  
+  // 构建用户分析详情
+  let userAnalysisDetails = "";
+  Object.entries(localAnalysisResult).forEach(([userId, userData]) => {
+    const userName = userData.name || userId;
+    const totalLevel = userData.total_level || "未知";
+    const totalScore = userData.total_score || 0;
+    
+    // 根据参与度设置颜色
+    let levelColor = "#666";
+    if (totalLevel.includes('High')) levelColor = "#52c41a";
+    else if (totalLevel.includes('Low')) levelColor = "#faad14";
+    else if (totalLevel.includes('No')) levelColor = "#f5222d";
+    
+    userAnalysisDetails += `
+      <div style="margin: 15px 0; padding: 15px; border: 1px solid #e4e7ed; border-radius: 8px; background: #fafbfc;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 2px solid #3478f6; padding-bottom: 8px;">
+          <h5 style="color: #3478f6; margin: 0; font-size: 16px;">用户: ${userName}</h5>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span style="color: ${levelColor}; font-weight: 600; font-size: 14px;">${totalLevel}</span>
+            <el-tag :type="${totalScore >= 0.5 ? 'success' : totalScore >= 0.3 ? 'warning' : 'danger'}" style="margin-left: 8px;">${totalScore.toFixed(2)}</el-tag>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+          <div style="background: #f0f6ff; padding: 12px; border-radius: 6px; border-left: 4px solid #3478f6;">
+            <h6 style="color: #3478f6; margin: 0 0 8px 0; font-size: 14px;">发言行为</h6>
+            <p style="margin: 4px 0;"><strong>等级：</strong>${userData.speech_level || "未知"}</p>
+            <p style="margin: 4px 0;"><strong>时长：</strong>${userData.speech_duration || "0s"}</p>
+            <p style="margin: 4px 0;"><strong>占比：</strong>${userData.speech_percent || "0%"}</p>
+            <p style="margin: 4px 0;"><strong>评分：</strong>${userData.speech_level_score || 0}</p>
+          </div>
+          <div style="background: #fff7e6; padding: 12px; border-radius: 6px; border-left: 4px solid #faad14;">
+            <h6 style="color: #faad14; margin: 0 0 8px 0; font-size: 14px;">编辑行为</h6>
+            <p style="margin: 4px 0;"><strong>等级：</strong>${userData.note_edit_level || "未知"}</p>
+            <p style="margin: 4px 0;"><strong>次数：</strong>${userData.note_edit_count || 0}</p>
+            <p style="margin: 4px 0;"><strong>字符数：</strong>${userData.note_edit_char_count || 0}</p>
+            <p style="margin: 4px 0;"><strong>评分：</strong>${userData.note_edit_score || 0}</p>
+          </div>
+          <div style="background: #f6ffed; padding: 12px; border-radius: 6px; border-left: 4px solid #52c41a;">
+            <h6 style="color: #52c41a; margin: 0 0 8px 0; font-size: 14px;">浏览行为</h6>
+            <p style="margin: 4px 0;"><strong>等级：</strong>${userData.browser_level || "未知"}</p>
+            <p style="margin: 4px 0;"><strong>页面数：</strong>${userData.page_count || 0}</p>
+            <p style="margin: 4px 0;"><strong>评分：</strong>${userData.browser_score || 0}</p>
+          </div>
+          <div style="background: #fff2f0; padding: 12px; border-radius: 6px; border-left: 4px solid #ff4d4f;">
+            <h6 style="color: #ff4d4f; margin: 0 0 8px 0; font-size: 14px;">鼠标操作</h6>
+            <p style="margin: 4px 0;"><strong>次数：</strong>${userData.mouse_action_count || 0}</p>
+            <p style="margin: 4px 0;"><strong>时长：</strong>${userData.mouse_duration || "0s"}</p>
+            <p style="margin: 4px 0;"><strong>占比：</strong>${userData.mouse_percent || "0%"}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+  
+  const details = `
+    ${basicInfo}
+    <hr>
+    <h4>用户参与度分析详情 (${Object.keys(localAnalysisResult).length}个用户)</h4>
+    ${userAnalysisDetails || "无用户分析数据"}
+  `;
+  
+  showHtmlDialog(details);
 }
 </script>
 
@@ -717,5 +1226,204 @@ main.main-content {
   text-overflow: ellipsis;
   cursor: pointer;
   color: #409EFF;
+}
+
+/* 异常分析结果详情样式 */
+.record-details {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.detail-section {
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  background: #fafbfc;
+}
+
+.detail-section h3 {
+  margin: 0 0 16px 0;
+  color: #3478f6;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #3478f6;
+  padding-bottom: 8px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 100px;
+  margin-right: 8px;
+}
+
+.info-value {
+  color: #333;
+  font-family: monospace;
+  background: #f5f5f5;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.group-analysis {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.analysis-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 100px;
+  margin-top: 4px;
+}
+
+.analysis-value {
+  color: #333;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.user-analysis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-analysis-item {
+  border: 1px solid #e4e7ed;
+  border-radius: 8px;
+  background: white;
+  overflow: hidden;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f0f6ff;
+  border-bottom: 1px solid #e4e7ed;
+}
+
+.user-header h4 {
+  margin: 0;
+  color: #3478f6;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.user-content {
+  padding: 16px;
+}
+
+.user-summary {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border-left: 4px solid #3478f6;
+}
+
+.summary-label {
+  font-weight: 600;
+  color: #3478f6;
+  margin-right: 8px;
+}
+
+.summary-content {
+  color: #333;
+  font-weight: 500;
+}
+
+.user-detail {
+  margin-bottom: 16px;
+}
+
+.detail-row {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: flex-start;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #666;
+  min-width: 80px;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+
+.detail-value {
+  color: #333;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.user-evidence {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #fffbe6;
+  border-radius: 6px;
+  border-left: 4px solid #e6a23c;
+}
+
+.evidence-label {
+  font-weight: 600;
+  color: #b26a00;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.evidence-content {
+  color: #b26a00;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+.user-more-info {
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.more-info-item {
+  margin-bottom: 12px;
+}
+
+.more-info-item:last-child {
+  margin-bottom: 0;
+}
+
+.more-info-label {
+  font-weight: 600;
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.more-info-content {
+  color: #333;
+  line-height: 1.6;
+  font-size: 13px;
 }
 </style>
