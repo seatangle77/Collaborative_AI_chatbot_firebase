@@ -13,3 +13,4 @@ jpush
 apscheduler
 loguru
 numpy
+Levenshtein
