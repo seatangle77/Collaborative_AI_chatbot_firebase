@@ -1278,6 +1278,10 @@ export default {
       this.users = this.users.map(user => {
         const userNotifyData = nextNotifyResult[user.id];
         if (userNotifyData) {
+          // 确保record_id字段被传递到用户数据中
+          if (nextNotifyResult.record_id && !userNotifyData.record_id) {
+            userNotifyData.record_id = nextNotifyResult.record_id;
+          }
           console.log(`更新用户 ${user.name} (${user.id}) 的即将推送AI提示数据`);
           
           // 检查是否已取消该推送

@@ -1,6 +1,7 @@
 import time
 import traceback
 import uuid
+import json
 from datetime import timedelta, datetime, timezone
 from typing import Dict, Any, List
 
@@ -86,26 +87,37 @@ async def get_next_notify_ai_analyze_result(req: GroupPollingRequest):
     global _user_notify_last_time, _user_notify_interval_seconds, _default_interval_seconds
 
     analyze_result = get_ai_analyze_result(req.group_id, limit=1)
+    logger.info(f"🔍 [get_next_notify_ai_analyze_result] 获取到的分析结果: {json.dumps(analyze_result, ensure_ascii=False, indent=2)}")
     if len(analyze_result) > 0:
         last_ai_analyze_content = analyze_result[0]
+        logger.info(f"🔍 [get_next_notify_ai_analyze_result] 第一条分析内容: {json.dumps(last_ai_analyze_content, ensure_ascii=False, indent=2)}")
 
         user_ids = list(last_ai_analyze_content.keys())
         end_time = last_ai_analyze_content.get("time_range",{}).get("end","")
         for user_id in user_ids:
-            if user_id != "time_range":
+            if user_id != "time_range" and user_id != "record_id":
+                # 确保用户数据是字典类型
+                user_data = last_ai_analyze_content.get(user_id)
+                if not isinstance(user_data, dict):
+                    # 如果不是字典，创建一个新的字典
+                    user_data = {}
+                    last_ai_analyze_content[user_id] = user_data
+                
                 last_notify_time = _user_notify_last_time.get(user_id)
                 interval_seconds = _user_notify_interval_seconds.get(user_id, _default_interval_seconds)
                 if last_notify_time is None:
                     # 如果是第一次执行，用AI分析结果的时间作为下次通知时间
                     next_notify_time = parse_iso_time(end_time)
-                    last_ai_analyze_content.get(user_id, {}).update({"last_notify_time": ""})
+                    user_data.update({"last_notify_time": ""})
                 else:
                     # 上一次通知时间+间隔时间作为下一次通知时间
                     next_notify_time = last_notify_time + timedelta(seconds=interval_seconds)
-                    last_ai_analyze_content.get(user_id, {}).update({"last_notify_time": last_notify_time.isoformat()})
+                    user_data.update({"last_notify_time": last_notify_time.isoformat()})
 
-                last_ai_analyze_content.get(user_id, {}).update({"next_notify_time": next_notify_time.isoformat()})
+                user_data.update({"next_notify_time": next_notify_time.isoformat()})
                 
+        # 确保record_id字段被正确传递
+        logger.info(f"🔍 [get_next_notify_ai_analyze_result] 最终返回的数据: {json.dumps(last_ai_analyze_content, ensure_ascii=False, indent=2)}")
         return last_ai_analyze_content
     else:
         return {}

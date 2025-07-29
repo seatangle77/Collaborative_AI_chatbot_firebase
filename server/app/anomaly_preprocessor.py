@@ -420,6 +420,8 @@ def get_ai_analyze_result(group_id: str, limit:int = 3):
     for h in history:
         result = h.get("raw_response", {})
         result["time_range"] = {"start": h.get("start_time", ""),"end": h.get("end_time", "")}
+        # 添加数据库记录的ID作为record_id
+        result["record_id"] = h.get("id", "")
         anomaly_history.append(result)
 
     return anomaly_history

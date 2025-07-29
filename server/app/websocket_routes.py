@@ -210,6 +210,10 @@ async def push_personal_share_message(user_id: str, from_user: str, detail_type:
 async def push_anomaly_analysis_result(user_id: str, analysis_result: dict):
     """向指定用户推送异常分析结果"""
     logger.info(f"📡 [WebSocket推送] 开始向用户{user_id}推送异常分析结果...")
+    
+    # 调试：打印推送的数据结构
+    logger.info(f"🔍 [WebSocket推送] 推送数据结构: {json.dumps(analysis_result, ensure_ascii=False, indent=2)}")
+    
     payload = json.dumps({
         "type": "anomaly_analysis",
         "data": analysis_result

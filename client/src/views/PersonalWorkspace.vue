@@ -453,11 +453,14 @@ onMounted(async () => {
       return;
     }
     
-    // 移除调试打印，只保留原有逻辑
+    console.log("📨 [WebSocket] 收到异常分析消息:", payload);
+    
     if (!payload || !payload.data) {
       console.warn("⚠️ 提示分析结果数据格式不正确");
       return;
     }
+    
+    console.log("📋 [WebSocket] 异常分析数据:", payload.data);
     handleAnomalyAnalysisResult(payload.data);
     loadHistoryData();
   });
@@ -696,7 +699,11 @@ async function handleAnomalyCheck() {
         console.error("❌ 解析异常检测结果失败:", e, jsonStr);
       }
     }
-    anomalyData.value = parsed;
+    // 确保record_id字段存在
+    anomalyData.value = {
+      ...parsed,
+      record_id: parsed.record_id || parsed.anomaly_analysis_results_id || parsed.analysis_id || parsed.id || parsed.result_id || "",
+    };
     console.log("✅ Anomaly Data:", parsed);
   } catch (err) {
     console.error("❌ Anomaly Detection Error:", err);
@@ -779,6 +786,13 @@ function handleAnomalyAnalysisResult(data) {
     parsedData = data;
   }
 
+  // 检查是否是包含results数组的数据结构
+  if (parsedData.results && Array.isArray(parsedData.results) && parsedData.results.length > 0) {
+    // 如果是results数组，取第一个结果
+    parsedData = parsedData.results[0];
+    console.log("📋 检测到results数组，使用第一个结果:", parsedData);
+  }
+
   // 确保score字段存在，用于判断是否显示
   if (!parsedData.score) {
     parsedData.score = { should_notify: true };
@@ -786,16 +800,15 @@ function handleAnomalyAnalysisResult(data) {
 
   // 调试：检查ID字段
   console.log("🔍 [调试] 检查ID字段:");
-  console.log(
-    "  - anomaly_analysis_results_id:",
-    parsedData.anomaly_analysis_results_id
-  );
+  console.log("  - record_id:", parsedData.record_id);
+  console.log("  - anomaly_analysis_results_id:", parsedData.anomaly_analysis_results_id);
   console.log("  - analysis_id:", parsedData.analysis_id);
   console.log("  - id:", parsedData.id);
   console.log("  - result_id:", parsedData.result_id);
 
   // 补全 group_id、user_id、anomaly_analysis_results_id
   const anomalyId =
+    parsedData.record_id ||
     parsedData.anomaly_analysis_results_id ||
     parsedData.analysis_id ||
     parsedData.id ||
@@ -808,6 +821,7 @@ function handleAnomalyAnalysisResult(data) {
     group_id: group.value?.id,
     user_id: userId.value,
     anomaly_analysis_results_id: anomalyId,
+    record_id: parsedData.record_id || anomalyId, // 确保record_id字段存在
   };
   drawerSource.value = "realtime";
   drawerVisible.value = true;
@@ -860,13 +874,14 @@ function handleViewDetail(detail) {
   }
 
   // 合并数据，确保兼容性
+  const recordId = detail.id || detail.anomaly_analysis_results_id || detail.result_id || parsedData?.record_id || "";
   drawerData.value = {
     ...parsedData, // 从raw_response解析的完整数据
     ...detail, // 数据库中的字段（会覆盖解析的重复字段）
     group_id: group.value?.id,
     user_id: userId.value,
-    anomaly_analysis_results_id:
-      detail.id || detail.anomaly_analysis_results_id || detail.result_id || "",
+    anomaly_analysis_results_id: recordId,
+    record_id: recordId, // 确保record_id字段存在
     // 确保score字段存在，用于判断是否显示
     score: parsedData?.score || { should_notify: true },
   };
