@@ -144,7 +144,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, nextTick, watch } from "vue";
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from "vue";
 import GroupOverview from "@/components/public/GroupOverview.vue";
 import NoteEditor from "@/components/personal/NoteEditor.vue";
 import api from "../services/apiService";
@@ -298,26 +298,39 @@ function formatAgendaDesc(desc) {
 }
 
 // 新增：进度条与倒计时相关
-const agendaTimers = ref({}); // { agendaId: { timeLeft, interval, finished } }
+const agendaTimers = ref({}); // { agendaId: { timeLeft, interval, finished, startTime } }
 
 function startAgendaTimer(agenda) {
   if (!agenda.allocated_time_minutes) return;
   const totalSeconds = agenda.allocated_time_minutes * 60;
+  
   if (!agendaTimers.value[agenda.id]) {
     agendaTimers.value[agenda.id] = {
       timeLeft: totalSeconds,
       interval: null,
       finished: false,
+      startTime: Date.now(),
+      totalSeconds: totalSeconds
     };
   }
+  
   if (agendaTimers.value[agenda.id].interval) return;
+  
   agendaTimers.value[agenda.id].interval = setInterval(() => {
-    if (agendaTimers.value[agenda.id].timeLeft > 0) {
-      agendaTimers.value[agenda.id].timeLeft--;
+    const timer = agendaTimers.value[agenda.id];
+    if (!timer) return;
+    
+    // 基于实际经过的时间计算剩余时间，而不是简单的递减
+    const elapsedSeconds = Math.floor((Date.now() - timer.startTime) / 1000);
+    const newTimeLeft = Math.max(0, timer.totalSeconds - elapsedSeconds);
+    
+    if (newTimeLeft > 0) {
+      timer.timeLeft = newTimeLeft;
     } else {
-      agendaTimers.value[agenda.id].finished = true;
-      clearInterval(agendaTimers.value[agenda.id].interval);
-      agendaTimers.value[agenda.id].interval = null;
+      timer.finished = true;
+      timer.timeLeft = 0;
+      clearInterval(timer.interval);
+      timer.interval = null;
       // 新增：自动触发停止所有功能
       if (!anomalyPollingStopped.value) {
         stopAnomalyPolling();
@@ -364,6 +377,44 @@ onMounted(async () => {
   if (!groups.value.length) return;
   const defaultId = groups.value[0].id;
   await selectGroup(defaultId);
+  
+  // 添加页面可见性变化监听器
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+});
+
+// 监听页面可见性变化，确保计时器在页面切换时正常工作
+const handleVisibilityChange = () => {
+  if (!document.hidden) {
+    // 页面重新可见时，更新所有计时器的状态
+    Object.keys(agendaTimers.value).forEach(agendaId => {
+      const timer = agendaTimers.value[agendaId];
+      if (timer && !timer.finished) {
+        const elapsedSeconds = Math.floor((Date.now() - timer.startTime) / 1000);
+        const newTimeLeft = Math.max(0, timer.totalSeconds - elapsedSeconds);
+        timer.timeLeft = newTimeLeft;
+        
+        // 如果时间已到，标记为完成
+        if (newTimeLeft <= 0) {
+          timer.finished = true;
+          timer.timeLeft = 0;
+          if (timer.interval) {
+            clearInterval(timer.interval);
+            timer.interval = null;
+          }
+          // 自动触发停止所有功能
+          if (!anomalyPollingStopped.value) {
+            stopAnomalyPolling();
+          }
+        }
+      }
+    });
+  }
+};
+
+// 页面卸载时清理计时器和事件监听器
+onUnmounted(() => {
+  stopAllAgendaTimers();
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
 });
 </script>
 

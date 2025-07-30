@@ -121,3 +121,7 @@
 2025-07-30 14:18:27,278 tencent_speech.log-INFO  on_message:259 af7070d6-6d0c-11f0-a980-a6cf704f3a85 recognition complete
 2025-07-30 14:52:34,426 tencent_speech.log-INFO  start:311 c586328e-6d11-11f0-bddd-a6cf704f3a85 recognition start
 2025-07-30 15:24:11,243 tencent_speech.log-INFO  on_message:259 c586328e-6d11-11f0-bddd-a6cf704f3a85 recognition complete
+2025-07-30 15:33:49,694 tencent_speech.log-INFO  start:311 88e620cc-6d17-11f0-95bf-a6cf704f3a85 recognition start
+2025-07-30 15:34:11,135 tencent_speech.log-INFO  on_message:259 88e620cc-6d17-11f0-95bf-a6cf704f3a85 recognition complete
+2025-07-30 15:42:03,349 tencent_speech.log-INFO  start:311 af23d6ca-6d18-11f0-9eb3-a6cf704f3a85 recognition start
+2025-07-30 16:10:31,405 tencent_speech.log-INFO  on_message:259 af23d6ca-6d18-11f0-9eb3-a6cf704f3a85 recognition complete
