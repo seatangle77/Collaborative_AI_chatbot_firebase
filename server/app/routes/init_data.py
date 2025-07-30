@@ -103,7 +103,7 @@ async def init_data(input_data: dict = Body(...)):
                 "ai_bot_id": str(uuid.uuid4()),
                 "is_active": "true",
                 "group_goal": "",
-                "control_group": "False",
+                "control_group": item.get("control_group"),
                 "note_id": str(uuid.uuid4()),
                 "task_intro": agenda_title
             })
