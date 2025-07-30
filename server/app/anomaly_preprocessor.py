@@ -374,7 +374,7 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
                 "end_time": h.get("end_time")
             })
         if len(anomaly_history) == 0:
-            chunk_data["anomaly_history"] = None
+            chunk_data["anomaly_history"] = []
         else:
             chunk_data["anomaly_history"] = anomaly_history
         query5_duration = time.time() - query5_start
@@ -382,7 +382,7 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     except Exception as e:
         query5_duration = time.time() - query5_start
         logger.error(f"❌ [数据预处理] 查询5-anomaly_analysis_results历史失败，耗时{query5_duration:.2f}秒：{e}")
-        chunk_data["anomaly_history"] = None
+        chunk_data["anomaly_history"] = []
 
     total_duration = time.time() - total_start_time
     logger.info(f"✅ [数据预处理] group_id={group_id}数据提取完成，总耗时{total_duration:.2f}秒")

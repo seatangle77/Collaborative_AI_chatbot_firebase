@@ -1,696 +1,636 @@
 1
-2025-07-10 06:46:33,259 --> 2025-07-10 06:46:35,439
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "然后就能一起来。", "start": "2025-07-10T06:46:33.259090", "end": "2025-07-10T06:46:35.439090", "duration": 2.18}
+2025-07-30 06:54:12,357 --> 2025-07-30 06:54:17,897
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我看到一篇文献，来自华东科技大学马克思主义学院。", "start": "2025-07-30T06:54:12.357798", "end": "2025-07-30T06:54:17.897798", "duration": 5.54}
 
 2
-2025-07-10 06:46:37,719 --> 2025-07-10 06:46:42,919
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "三个看到团队的力量，然后也有那种。", "start": "2025-07-10T06:46:37.719090", "end": "2025-07-10T06:46:42.919090", "duration": 5.2}
+2025-07-30 06:54:17,897 --> 2025-07-30 06:54:19,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "我觉得长得还。", "start": "2025-07-30T06:54:17.897798", "end": "2025-07-30T06:54:19.597798", "duration": 1.7}
 
 3
-2025-07-10 06:46:43,219 --> 2025-07-10 06:46:44,599
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "开盒子。", "start": "2025-07-10T06:46:43.219090", "end": "2025-07-10T06:46:44.599090", "duration": 1.38}
+2025-07-30 06:54:19,597 --> 2025-07-30 06:54:20,857
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "妈。", "start": "2025-07-30T06:54:19.597798", "end": "2025-07-30T06:54:20.857798", "duration": 1.26}
 
 4
-2025-07-10 06:46:44,839 --> 2025-07-10 06:46:48,659
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "突然就变得没人了。就。", "start": "2025-07-10T06:46:44.839090", "end": "2025-07-10T06:46:48.659090", "duration": 3.82}
+2025-07-30 06:54:21,437 --> 2025-07-30 06:54:23,157
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "帮我调理的。", "start": "2025-07-30T06:54:21.437798", "end": "2025-07-30T06:54:23.157798", "duration": 1.72}
 
 5
-2025-07-10 06:46:49,659 --> 2025-07-10 06:47:12,139
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "人会跑掉，然后就直接退组，也不会说一声的那种。那你们有没有一些及时就临时组成的课堂小组？就大家都像现在一样，都是陌生人。你们的交流会会在可以在一个课堂里面就特别顺畅嘛，或者是交流特别糟糕。嗯，就正常交流吧，好像没有特别糟糕的。", "start": "2025-07-10T06:46:49.659090", "end": "2025-07-10T06:47:12.139090", "duration": 22.48}
+2025-07-30 06:54:23,897 --> 2025-07-30 06:54:25,037
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "就是。", "start": "2025-07-30T06:54:23.897798", "end": "2025-07-30T06:54:25.037798", "duration": 1.14}
 
 6
-2025-07-10 06:47:12,379 --> 2025-07-10 06:48:12,859
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "办个登道手续，或者陌生到陌生，对，然后其他两位同学也可以说一下，呃，我简单聊一下，就是我经历的小组讨论吧。呃，我觉得偏好一点的，他们可能会有个共性，就是这个小组里的成员呃的目标相对一致。比如说大家都想好好干这个事情，OK, 那大家会发表自己的观点，然后去呃想办法儿的认真干好，或者大家哪怕都不想把这个事情干好，大家就是想混一下水个学分儿，这也OK。大家就是就目的就是那我们就是把这个东西顺利完成，然后做的好，就是怎么简单，怎么省事儿，怎么把他糊弄好，糊弄的完成，自己也OK。就感觉小组不好的情况就是这个小组团队里的的想法不一致，有人想好好搞，有人想哎，我这搞这玩意儿有啥用啊？拉倒吧，然后这种情况下就比较容易呃出现一些分歧，就是。", "start": "2025-07-10T06:47:12.379090", "end": "2025-07-10T06:48:12.859090", "duration": 60.48}
+2025-07-30 06:54:25,037 --> 2025-07-30 06:54:29,137
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是青年蛮抽象的生成逻辑。他讲的一共有三个点，一。", "start": "2025-07-30T06:54:25.037798", "end": "2025-07-30T06:54:29.137798", "duration": 4.1}
 
 7
-2025-07-10 06:48:12,859 --> 2025-07-10 06:48:18,059
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "可能那个大佬找的人呢，会觉得，呃。", "start": "2025-07-10T06:48:12.859090", "end": "2025-07-10T06:48:18.059090", "duration": 5.2}
+2025-07-30 06:54:29,517 --> 2025-07-30 06:54:32,477
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "舒适感的共鸣和身体归属感的驱动。", "start": "2025-07-30T06:54:29.517798", "end": "2025-07-30T06:54:32.477798", "duration": 2.96}
 
 8
-2025-07-10 06:48:18,059 --> 2025-07-10 06:48:28,439
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "付出的很多辛苦，然后让你干活。但是另一个人觉得啊，你给我分配这个活有没有什么用？你说你让我干，我花时间，我也懒，算干。然后就会有一些分歧，甚至有一些矛盾。", "start": "2025-07-10T06:48:18.059090", "end": "2025-07-10T06:48:28.439090", "duration": 10.38}
+2025-07-30 06:54:32,797 --> 2025-07-30 06:54:34,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "可能是因为。", "start": "2025-07-30T06:54:32.797798", "end": "2025-07-30T06:54:34.357798", "duration": 1.56}
 
 9
-2025-07-10 06:48:28,439 --> 2025-07-10 06:48:49,879
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "矛盾已经到了矛盾了，那就是矛。对我说的矛盾就是肯定不是那种显示出来的去指责，但是就是会有人会觉得不爽啊，他会觉得哎，我这个费劲巴拉的干了很多，但是没有达到我想要的预期。但是其实另一个人他也会觉得被逼迫者干了很多他可能不认可的事情。", "start": "2025-07-10T06:48:28.439090", "end": "2025-07-10T06:48:49.879090", "duration": 21.44}
+2025-07-30 06:54:34,757 --> 2025-07-30 06:54:40,097
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就现在这种抽象，就是大多数是在网络，网络世界流行。", "start": "2025-07-30T06:54:34.757798", "end": "2025-07-30T06:54:40.097798", "duration": 5.34}
 
 10
-2025-07-10 06:48:49,879 --> 2025-07-10 06:49:22,899
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "就是那其实大家还是想干的有没有就是真的是全摆烂，或者是太我不说话，完全不说任何意见的？其实，全白案的是没有矛盾的，因为大家都是抱着百样的心态，对吧，这个这种没有矛盾的，这种你都知道了我就是管来的，这种是不存在的啊。就大家一起摆烂，对呀，一起摆了，有一半人摆烂了一半人摆烂，会不会有几个人特别辛苦啊？对这种就比较麻烦了。这种就是你可想好好干的人，可能需要把他们一些白干的人的工作里面，我看得出来。", "start": "2025-07-10T06:48:49.879090", "end": "2025-07-10T06:49:22.899090", "duration": 33.02}
+2025-07-30 06:54:40,097 --> 2025-07-30 06:54:50,457
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "然后现在他又太喜欢上网了，所以就是网网友或者说是说是网络上的这些人，就其实已经是他们身处的一个重要的一个群体。", "start": "2025-07-30T06:54:40.097798", "end": "2025-07-30T06:54:50.457798", "duration": 10.36}
 
 11
-2025-07-10 06:49:22,899 --> 2025-07-10 06:49:39,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "这个就比较麻烦的，尤其是在可能涉及到一些利益的时候。比如说，我们本科争争取一些保研名额呀，这种对吧？他说是又根据纪检上要有一些力子，就就碰碰触碰触的时候就会显得格外的吃闲。", "start": "2025-07-10T06:49:22.899090", "end": "2025-07-10T06:49:39.979090", "duration": 17.08}
+2025-07-30 06:54:50,457 --> 2025-07-30 06:54:54,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "然后他们可能就会有需要有这样的情感共鸣。", "start": "2025-07-30T06:54:50.457798", "end": "2025-07-30T06:54:54.297798", "duration": 3.84}
 
 12
-2025-07-10 06:49:40,619 --> 2025-07-10 06:50:41,099
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "然后，大理了呃，我觉得吧，我觉得像这种一个小组，我觉得最好的一种状态就是你需要有一个leader。然后提就是这个leader，你能够统筹所有的项目进度，然后分配任务。然后，当然对于组员的话，就是需要那些你可以没有你的领导能力，但是你要有过你需要的是你一个态度，你能够及时沟通，然后我分配的任务，你能够及时完成，这是一个非常好的个种教育状态。有没有遇到没有人可以掌控局面的小子？呃，之前就是在本科时候，大一大二大一大一的时候遇到过一次。当时就是有个项目是离时组队测试，然后然后项目里面每个人其实都没有那个当的能力，是对，然后到然后到最后的话，因为第二，我记得好像是到最后呃两天我们项目还没开始，但是两天后我们要答辩。然后这时候遇到一个更加淡然的事情，就是其中有一个组员直接把它消失。", "start": "2025-07-10T06:49:40.619090", "end": "2025-07-10T06:50:41.099090", "duration": 60.48}
+2025-07-30 06:54:54,297 --> 2025-07-30 06:54:57,917
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "然后重生。作为这样的一种媒介。", "start": "2025-07-30T06:54:54.297798", "end": "2025-07-30T06:54:57.917798", "duration": 3.62}
 
 13
-2025-07-10 06:50:41,099 --> 2025-07-10 06:51:41,139
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "然后，我们几个人就通宵了两晚上，然后，然后把那个拖这做出来。但是，那因为因为我们是通宵完，我们早上答辩，然后那个组员他没有陪我们通宵，但是答辩的时候他来了。然后，老老师也就是没说什么之类的。然后，就拖腿。对。然后，有因为有了这种情况之后，然后最后最后的课，比如说一些组队的话，我我们都不会是直接课堂上找着的，我们会通过自己的一些人脉去了解你想组队的那个人，他的态度或者说他情况再是怎么样，然后再去组队，然后这样就可可以防止一些抽象的人抽象的事情出现。所以态度还是最关键的，对那们是好。OK, 那你们刚才说的过程中已经收到那个提示了嘛？在眼睛上可以看到提示啊，看到你对诶你们等一下正式讨论的时候，他也会在中间会突然提示出来，如果你们觉得啊，你们一开始也可以去观察一下，如果你们觉得太打扰的话，可以可以把它关掉，就是那个呃显示关掉。", "start": "2025-07-10T06:50:41.099090", "end": "2025-07-10T06:51:41.139090", "duration": 60.04}
+2025-07-30 06:54:58,517 --> 2025-07-30 06:54:59,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "支持他们的这种共鸣。", "start": "2025-07-30T06:54:58.517798", "end": "2025-07-30T06:54:59.997798", "duration": 1.48}
 
 14
-2025-07-10 06:51:41,139 --> 2025-07-10 06:52:00,019
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "然后，他还是会有声音的。你们可以试一下看哪一种会比较适合你们。就是你按后面那个键，它不会显示关掉嘛，但是它它有提示的时候，眼睛也会有声音，没有听到，只是没有屏幕显示。是对呀，它不仅是有屏幕显示，它还会说出来。", "start": "2025-07-10T06:51:41.139090", "end": "2025-07-10T06:52:00.019090", "duration": 18.88}
+2025-07-30 06:55:05,577 --> 2025-07-30 06:55:08,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "我觉得你写的第一个点，它还挺像的。", "start": "2025-07-30T06:55:05.577798", "end": "2025-07-30T06:55:08.357798", "duration": 2.78}
 
 15
-2025-07-10 06:52:00,019 --> 2025-07-10 06:52:04,919
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "然后，你们分享组员的状态，你们也可以去试一下这个高能的一些。", "start": "2025-07-10T06:52:00.019090", "end": "2025-07-10T06:52:04.919090", "duration": 4.9}
+2025-07-30 06:55:50,457 --> 2025-07-30 06:55:54,917
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "这是关于社会压力。社会的心理方面积极就是。", "start": "2025-07-30T06:55:50.457798", "end": "2025-07-30T06:55:54.917798", "duration": 4.46}
 
 16
-2025-07-10 06:52:05,299 --> 2025-07-10 06:52:11,939
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "好了，你这边可以停一下，然后让他们开始正式的讨论。", "start": "2025-07-10T06:52:05.299090", "end": "2025-07-10T06:52:11.939090", "duration": 6.64}
+2025-07-30 06:55:54,917 --> 2025-07-30 06:55:56,117
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "我觉得这个也。", "start": "2025-07-30T06:55:54.917798", "end": "2025-07-30T06:55:56.117798", "duration": 1.2}
 
 17
-2025-07-10 06:52:13,839 --> 2025-07-10 06:52:18,719
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "看哪个哪个是哪个，等一下。", "start": "2025-07-10T06:52:13.839090", "end": "2025-07-10T06:52:18.719090", "duration": 4.88}
+2025-07-30 06:55:56,497 --> 2025-07-30 06:55:58,237
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "是，是一个摄像头。", "start": "2025-07-30T06:55:56.497798", "end": "2025-07-30T06:55:58.237798", "duration": 1.74}
 
 18
-2025-07-10 06:52:20,979 --> 2025-07-10 06:52:23,819
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "哦，他是那个。", "start": "2025-07-10T06:52:20.979090", "end": "2025-07-10T06:52:23.819090", "duration": 2.84}
+2025-07-30 06:55:58,617 --> 2025-07-30 06:56:00,237
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "本能因素。", "start": "2025-07-30T06:55:58.617798", "end": "2025-07-30T06:56:00.237798", "duration": 1.62}
 
 19
-2025-07-10 06:52:27,159 --> 2025-07-10 06:52:29,399
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "哎，我看一下他是几号。", "start": "2025-07-10T06:52:27.159090", "end": "2025-07-10T06:52:29.399090", "duration": 2.24}
+2025-07-30 06:56:01,217 --> 2025-07-30 06:56:03,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "对，就现在，人的生活都太苦了。", "start": "2025-07-30T06:56:01.217798", "end": "2025-07-30T06:56:03.297798", "duration": 2.08}
 
 20
-2025-07-10 06:52:30,259 --> 2025-07-10 06:52:33,299
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "我咋感觉刚才他听见那的时候这个。", "start": "2025-07-10T06:52:30.259090", "end": "2025-07-10T06:52:33.299090", "duration": 3.04}
+2025-07-30 06:56:03,337 --> 2025-07-30 06:56:05,757
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我觉得就是玩抽象也是一种。", "start": "2025-07-30T06:56:03.337798", "end": "2025-07-30T06:56:05.757798", "duration": 2.42}
 
 21
-2025-07-10 06:52:33,299 --> 2025-07-10 06:52:35,899
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "他们有人过来吗？", "start": "2025-07-10T06:52:33.299090", "end": "2025-07-10T06:52:35.899090", "duration": 2.6}
+2025-07-30 06:56:07,617 --> 2025-07-30 06:56:09,237
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "囊中助乐的一种。", "start": "2025-07-30T06:56:07.617798", "end": "2025-07-30T06:56:09.237798", "duration": 1.62}
 
 22
-2025-07-10 06:52:37,979 --> 2025-07-10 06:52:45,019
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "没有女生是蓝色的手机，然后男生是黑色的三星。", "start": "2025-07-10T06:52:37.979090", "end": "2025-07-10T06:52:45.019090", "duration": 7.04}
+2025-07-30 06:56:09,517 --> 2025-07-30 06:56:11,157
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "心理防御机制。", "start": "2025-07-30T06:56:09.517798", "end": "2025-07-30T06:56:11.157798", "duration": 1.64}
 
 23
-2025-07-10 06:52:48,799 --> 2025-07-10 06:53:18,619
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "然后，你们现在重新刷新一下你们当前的页面，然后是都刷新好了，可以说一下他这边就重新开始。然后，你们其实你们小组好像是票选四选二是有两个相同票数的话题，但是，因为我们这两天呢，全部小组都选的大子文化，所以全最最终我们决定就全部都选大子文化这个话题去聊的。然后，你这边开始吧。", "start": "2025-07-10T06:52:48.799090", "end": "2025-07-10T06:53:18.619090", "duration": 29.82}
+2025-07-30 06:57:18,937 --> 2025-07-30 06:57:20,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "我要那个小敬。", "start": "2025-07-30T06:57:18.937798", "end": "2025-07-30T06:57:20.497798", "duration": 1.56}
 
 24
-2025-07-10 06:53:18,879 --> 2025-07-10 06:53:22,159
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "你们时候刷新楚没刷up。", "start": "2025-07-10T06:53:18.879090", "end": "2025-07-10T06:53:22.159090", "duration": 3.28}
+2025-07-30 06:57:21,677 --> 2025-07-30 06:57:22,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "主要的原因。", "start": "2025-07-30T06:57:21.677798", "end": "2025-07-30T06:57:22.977798", "duration": 1.3}
 
 25
-2025-07-10 06:53:24,019 --> 2025-07-10 06:53:25,899
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "已经赶过来了。", "start": "2025-07-10T06:53:24.019090", "end": "2025-07-10T06:53:25.899090", "duration": 1.88}
+2025-07-30 06:57:24,437 --> 2025-07-30 06:57:29,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "刚才提到一个是素媒介化时代的青典。作意是与文化需求主。", "start": "2025-07-30T06:57:24.437798", "end": "2025-07-30T06:57:29.977798", "duration": 5.54}
 
 26
-2025-07-10 06:53:28,739 --> 2025-07-10 06:53:29,839
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "好。", "start": "2025-07-10T06:53:28.739090", "end": "2025-07-10T06:53:29.839090", "duration": 1.1}
+2025-07-30 06:57:32,497 --> 2025-07-30 06:57:33,777
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "嗯，抽相声。", "start": "2025-07-30T06:57:32.497798", "end": "2025-07-30T06:57:33.777798", "duration": 1.28}
 
 27
-2025-07-10 06:53:31,899 --> 2025-07-10 06:54:18,819
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "你们现在可以看一下任务啊，任务我忘了，任务你们是有两个任务的，第一个任务是分析这个现象的一个呃背后年轻人的心理动因，然后可以适当在谷歌浏览器上寻找一些呃证据去证明自己的发现点啊。证据不一定是论文，不一定是论文，你可以是新闻或者是一些呃报告，简单的报告或者是社交媒体的一些讨论帖子，然后第二个任务是根据这个心理动因，你们设计一款面向大子文化的一个智能匹配工具。接下来就是可以构思一下它的功能。这个构图功能可以不需要依据，你们就主要是讨论，然后把你们共同的观点填在那个写作笔记上就好。", "start": "2025-07-10T06:53:31.899090", "end": "2025-07-10T06:54:18.819090", "duration": 46.92}
+2025-07-30 06:57:35,277 --> 2025-07-30 06:57:36,877
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我觉得这个这个。", "start": "2025-07-30T06:57:35.277798", "end": "2025-07-30T06:57:36.877798", "duration": 1.6}
 
 28
-2025-07-10 06:54:19,139 --> 2025-07-10 06:54:21,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "好，可以开始了，嗯。", "start": "2025-07-10T06:54:19.139090", "end": "2025-07-10T06:54:21.039090", "duration": 1.9}
+2025-07-30 06:57:38,017 --> 2025-07-30 06:57:47,217
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是新媒体这样的一个媒介，它也是促成了这种文化的一种生存，后面就是现在到视频时代。", "start": "2025-07-30T06:57:38.017798", "end": "2025-07-30T06:57:47.217798", "duration": 9.2}
 
 29
-2025-07-10 06:54:21,699 --> 2025-07-10 06:54:26,719
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "你们可以先说一下，怎么样去完成这个任务。", "start": "2025-07-10T06:54:21.699090", "end": "2025-07-10T06:54:26.719090", "duration": 5.02}
+2025-07-30 06:57:48,337 --> 2025-07-30 06:57:51,037
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "偶像的这种行为。", "start": "2025-07-30T06:57:48.337798", "end": "2025-07-30T06:57:51.037798", "duration": 2.7}
 
 30
-2025-07-10 06:55:00,739 --> 2025-07-10 06:55:02,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "可以现在网上搜。", "start": "2025-07-10T06:55:00.739090", "end": "2025-07-10T06:55:02.039090", "duration": 1.3}
+2025-07-30 06:57:51,617 --> 2025-07-30 06:57:53,057
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "他可以在。", "start": "2025-07-30T06:57:51.617798", "end": "2025-07-30T06:57:53.057798", "duration": 1.44}
 
 31
-2025-07-10 06:55:06,499 --> 2025-07-10 06:55:29,679
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "我们是先要去找到一些材料，然后再去根据这些材料去，就是根据这些信息去提出我们的构想和就是转成第二步，对吧？第一步是寻找的过程，第二就是输的过程，第二个是输出的多少。对，第一个是先分析他的心理动因，然后最好是有材料支持，但材料不需要很学术，不需要太深的。", "start": "2025-07-10T06:55:06.499090", "end": "2025-07-10T06:55:29.679090", "duration": 23.18}
+2025-07-30 06:57:53,117 --> 2025-07-30 06:57:55,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "短时间内给。", "start": "2025-07-30T06:57:53.117798", "end": "2025-07-30T06:57:55.297798", "duration": 2.18}
 
 32
-2025-07-10 06:55:33,819 --> 2025-07-10 06:55:38,639
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "他对这个动因，我们每个人都搜一下儿呗，因为因为他。", "start": "2025-07-10T06:55:33.819090", "end": "2025-07-10T06:55:38.639090", "duration": 4.82}
+2025-07-30 06:57:55,577 --> 2025-07-30 06:57:58,317
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "嗯，视频的观众带来就是。", "start": "2025-07-30T06:57:55.577798", "end": "2025-07-30T06:57:58.317798", "duration": 2.74}
 
 33
-2025-07-10 06:55:39,339 --> 2025-07-10 06:55:42,239
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "就这好像两个可可分。", "start": "2025-07-10T06:55:39.339090", "end": "2025-07-10T06:55:42.239090", "duration": 2.9}
+2025-07-30 06:57:58,537 --> 2025-07-30 06:58:04,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "比较大量的做饭刺激，所以我觉得这个也是非常符合现在，嗯。", "start": "2025-07-30T06:57:58.537798", "end": "2025-07-30T06:58:04.297798", "duration": 5.76}
 
 34
-2025-07-10 06:55:55,199 --> 2025-07-10 06:55:57,419
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "管理，欢迎你。", "start": "2025-07-10T06:55:55.199090", "end": "2025-07-10T06:55:57.419090", "duration": 2.22}
+2025-07-30 06:58:05,297 --> 2025-07-30 06:58:07,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "这种新媒体的一种。", "start": "2025-07-30T06:58:05.297798", "end": "2025-07-30T06:58:07.497798", "duration": 2.2}
 
 35
-2025-07-10 06:56:00,279 --> 2025-07-10 06:56:05,499
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "他有bug，所以你们用的时候就当做是一个有bug的程序试用。", "start": "2025-07-10T06:56:00.279090", "end": "2025-07-10T06:56:05.499090", "duration": 5.22}
+2025-07-30 06:58:07,857 --> 2025-07-30 06:58:10,617
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "运作模式。所以这种。", "start": "2025-07-30T06:58:07.857798", "end": "2025-07-30T06:58:10.617798", "duration": 2.76}
 
 36
-2025-07-10 06:56:59,299 --> 2025-07-10 06:57:12,999
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "那这个有大概时间的安排吗？给我前面多少钱反这第一会一三十分钟，你大概大概还有二十多分钟，但但是他的时间只实有在这里，你可以看哦。", "start": "2025-07-10T06:56:59.299090", "end": "2025-07-10T06:57:12.999090", "duration": 13.7}
+2025-07-30 06:58:11,197 --> 2025-07-30 06:58:14,797
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "就是玩初香的话，风也。", "start": "2025-07-30T06:58:11.197798", "end": "2025-07-30T06:58:14.797798", "duration": 3.6}
 
 37
-2025-07-10 06:57:14,099 --> 2025-07-10 06:57:15,659
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "这个分钟没有提醒。", "start": "2025-07-10T06:57:14.099090", "end": "2025-07-10T06:57:15.659090", "duration": 1.56}
+2025-07-30 06:58:57,677 --> 2025-07-30 06:58:58,897
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "", "start": "2025-07-30T06:58:57.677798", "end": "2025-07-30T06:58:58.897798", "duration": 1.22}
 
 38
-2025-07-10 06:57:16,719 --> 2025-07-10 06:57:20,459
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "嗯，我们可以找五分钟的资料。", "start": "2025-07-10T06:57:16.719090", "end": "2025-07-10T06:57:20.459090", "duration": 3.74}
+2025-07-30 06:59:10,917 --> 2025-07-30 06:59:12,817
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "这是要解决什么问题？", "start": "2025-07-30T06:59:10.917798", "end": "2025-07-30T06:59:12.817798", "duration": 1.9}
 
 39
-2025-07-10 07:00:57,499 --> 2025-07-10 07:00:59,219
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-10T07:00:57.499090", "end": "2025-07-10T07:00:59.219090", "duration": 1.72}
+2025-07-30 06:59:15,837 --> 2025-07-30 06:59:17,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "我最大的问题是搞。", "start": "2025-07-30T06:59:15.837798", "end": "2025-07-30T06:59:17.597798", "duration": 1.76}
 
 40
-2025-07-10 07:02:24,859 --> 2025-07-10 07:02:27,439
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "我们先讨论一下这个。", "start": "2025-07-10T07:02:24.859090", "end": "2025-07-10T07:02:27.439090", "duration": 2.58}
+2025-07-30 06:59:23,837 --> 2025-07-30 06:59:25,577
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "就是他其实在。", "start": "2025-07-30T06:59:23.837798", "end": "2025-07-30T06:59:25.577798", "duration": 1.74}
 
 41
-2025-07-10 07:02:34,399 --> 2025-07-10 07:02:37,339
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "这是背后的心理动力。", "start": "2025-07-10T07:02:34.399090", "end": "2025-07-10T07:02:37.339090", "duration": 2.94}
+2025-07-30 06:59:25,597 --> 2025-07-30 06:59:27,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "可以传达上那个传统的一个。", "start": "2025-07-30T06:59:25.597798", "end": "2025-07-30T06:59:27.977798", "duration": 2.38}
 
 42
-2025-07-10 07:02:46,639 --> 2025-07-10 07:02:48,459
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "呃，他。", "start": "2025-07-10T07:02:46.639090", "end": "2025-07-10T07:02:48.459090", "duration": 1.82}
+2025-07-30 06:59:44,397 --> 2025-07-30 06:59:45,577
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "去进行一个。", "start": "2025-07-30T06:59:44.397798", "end": "2025-07-30T06:59:45.577798", "duration": 1.18}
 
 43
-2025-07-10 07:02:49,239 --> 2025-07-10 07:02:58,079
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "呃，我觉得其实你大你找大师信息，本质上还是反映了你呃这个人你内心的一种情感需要。", "start": "2025-07-10T07:02:49.239090", "end": "2025-07-10T07:02:58.079090", "duration": 8.84}
+2025-07-30 06:59:55,357 --> 2025-07-30 06:59:58,897
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "出现了，然后我可能以为你真的是一个出场的人。", "start": "2025-07-30T06:59:55.357798", "end": "2025-07-30T06:59:58.897798", "duration": 3.54}
 
 44
-2025-07-10 07:02:58,099 --> 2025-07-10 07:03:02,919
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "因为你因为你现在比如说你现在对于这些。", "start": "2025-07-10T07:02:58.099090", "end": "2025-07-10T07:03:02.919090", "duration": 4.82}
+2025-07-30 07:00:00,657 --> 2025-07-30 07:00:04,477
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "你在开玩笑，我以为你真的是这样想的哦。", "start": "2025-07-30T07:00:00.657798", "end": "2025-07-30T07:00:04.477798", "duration": 3.82}
 
 45
-2025-07-10 07:03:04,139 --> 2025-07-10 07:03:13,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "呃，这些什么呃自媒体啊，或者说一些呃电子通讯的工具增加接近你你人跟人一起，很多时候你们的。", "start": "2025-07-10T07:03:04.139090", "end": "2025-07-10T07:03:13.039090", "duration": 8.9}
+2025-07-30 07:00:14,897 --> 2025-07-30 07:00:22,397
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "设计点其实可以有很多嘛，你也可以说去帮那些辅助他生成他的那个抽象表达，比如说生成表情包或者视频的工具。", "start": "2025-07-30T07:00:14.897798", "end": "2025-07-30T07:00:22.397798", "duration": 7.5}
 
 46
-2025-07-10 07:03:13,039 --> 2025-07-10 07:03:20,399
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "就是大部分的交流是还是在通过比如说微信这种社交媒体，然后就是但是。", "start": "2025-07-10T07:03:13.039090", "end": "2025-07-10T07:03:20.399090", "duration": 7.36}
+2025-07-30 07:00:28,097 --> 2025-07-30 07:00:29,457
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "心里的桥上或者怎么。", "start": "2025-07-30T07:00:28.097798", "end": "2025-07-30T07:00:29.457798", "duration": 1.36}
 
 47
-2025-07-10 07:03:20,399 --> 2025-07-10 07:03:43,479
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "在实习生你如果你这是一个面对呃面对一面对这种冷冰冰的屏幕，然后用一些看似有一些情感寄托的文字或者说表情与对方聊天，但是随着你这个时间的呃选你这个时间里，或者说是你这种方式，你所持续的时间越来越长。", "start": "2025-07-10T07:03:20.399090", "end": "2025-07-10T07:03:43.479090", "duration": 23.08}
+2025-07-30 07:00:32,977 --> 2025-07-30 07:00:34,737
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "想要解决的问题是什么？", "start": "2025-07-30T07:00:32.977798", "end": "2025-07-30T07:00:34.737798", "duration": 1.76}
 
 48
-2025-07-10 07:03:43,639 --> 2025-07-10 07:03:51,399
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "然后以性，呃，他内心其实还是真正缺乏这种线下情感的联系。", "start": "2025-07-10T07:03:43.639090", "end": "2025-07-10T07:03:51.399090", "duration": 7.76}
+2025-07-30 07:00:58,277 --> 2025-07-30 07:00:59,757
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "产品解决了。", "start": "2025-07-30T07:00:58.277798", "end": "2025-07-30T07:00:59.757798", "duration": 1.48}
 
 49
-2025-07-10 07:03:51,899 --> 2025-07-10 07:03:56,199
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "所以这就会导致为什么他们需要找一种搭子。", "start": "2025-07-10T07:03:51.899090", "end": "2025-07-10T07:03:56.199090", "duration": 4.3}
+2025-07-30 07:01:01,657 --> 2025-07-30 07:01:03,617
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "他是面对面沟通，我觉得。", "start": "2025-07-30T07:01:01.657798", "end": "2025-07-30T07:01:03.617798", "duration": 1.96}
 
 50
-2025-07-10 07:03:56,359 --> 2025-07-10 07:04:01,479
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "对，但你大粉其实也只是暂时缓解了你。", "start": "2025-07-10T07:03:56.359090", "end": "2025-07-10T07:04:01.479090", "duration": 5.12}
+2025-07-30 07:01:03,657 --> 2025-07-30 07:01:05,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "还行，那是线上沟通。", "start": "2025-07-30T07:01:03.657798", "end": "2025-07-30T07:01:05.497798", "duration": 1.84}
 
 51
-2025-07-10 07:04:01,579 --> 2025-07-10 07:04:04,399
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "你被动线下情感的渴求。", "start": "2025-07-10T07:04:01.579090", "end": "2025-07-10T07:04:04.399090", "duration": 2.82}
+2025-07-30 07:01:11,417 --> 2025-07-30 07:01:16,077
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "就是像那个微信点一下，然后翻译一下，或者说他给你计时点一下。", "start": "2025-07-30T07:01:11.417798", "end": "2025-07-30T07:01:16.077798", "duration": 4.66}
 
 52
-2025-07-10 07:04:07,859 --> 2025-07-10 07:04:22,539
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "嗯，我也是看那资料，就是有有很多个原因，咱们就是可以呃，我先给孩儿的说，然后那之后大家可以再补充啊。我觉得就是搭子这个东西的存在呢，呃。", "start": "2025-07-10T07:04:07.859090", "end": "2025-07-10T07:04:22.539090", "duration": 14.68}
+2025-07-30 07:01:21,537 --> 2025-07-30 07:01:23,417
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "可能是这样一种形式的诱惑。", "start": "2025-07-30T07:01:21.537798", "end": "2025-07-30T07:01:23.417798", "duration": 1.88}
 
 53
-2025-07-10 07:04:22,539 --> 2025-07-10 07:05:22,999
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "我认为的一个比较重要的原因就是说，呃本质上其实人是有社交的需求的，但是呢，社交的就是两个人。比如说从来再不成功，这个单子的确认不是就是在朋友之下，在同事啊，或者同学可能普通这种陌生人之上，为什么会有这样一种情况呢？我我是觉得可能是因为当两个人在进行情感的这个交流的过程中呢，如果说他是呃像朋友这种，他可能比较苛刻，需要各个方向都比较契合。但我觉得这个是现实生活中可能比较难的，可能我们两个人只是在有某一种爱好，但其实在有些三观上是不合适的这种情况下呢，其实是大部分文化的一个有一个兴息的原因，就是他们可以说我们摒弃那些呃不一样的地方。我们少起这关于那些地方的争执，而我们只关注我们喜欢的这个兴趣的方面，比如说我们就喜欢去徒步，OK, 那我们就就就。", "start": "2025-07-10T07:04:22.539090", "end": "2025-07-10T07:05:22.999090", "duration": 60.46}
+2025-07-30 07:01:29,277 --> 2025-07-30 07:01:30,917
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "相反方向移。", "start": "2025-07-30T07:01:29.277798", "end": "2025-07-30T07:01:30.917798", "duration": 1.64}
 
 54
-2025-07-10 07:05:22,999 --> 2025-07-10 07:05:48,579
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "以这种形式去玩而去减少，比如说我们可能会有一些地位上的不平等啊，或者说我们的三观有些不一致，这些其实是促使我们没法做朋友，但是我们可以就某一个爱好去进行呃去做一个呃社交活动吧，然后形成一个大的文化。这是我觉得呃第一个原因，第二个原因就是我觉得。", "start": "2025-07-10T07:05:22.999090", "end": "2025-07-10T07:05:48.579090", "duration": 25.58}
+2025-07-30 07:01:31,377 --> 2025-07-30 07:01:33,097
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "不知道怎么样把搞成。", "start": "2025-07-30T07:01:31.377798", "end": "2025-07-30T07:01:33.097798", "duration": 1.72}
 
 55
-2025-07-10 07:05:48,599 --> 2025-07-10 07:05:50,819
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "呃，这个。", "start": "2025-07-10T07:05:48.599090", "end": "2025-07-10T07:05:50.819090", "duration": 2.22}
+2025-07-30 07:01:33,097 --> 2025-07-30 07:01:38,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "重现了我把你的情绪，或者你想表达的东西，如果你需要，他能给你。", "start": "2025-07-30T07:01:33.097798", "end": "2025-07-30T07:01:38.497798", "duration": 5.4}
 
 56
-2025-07-10 07:05:52,379 --> 2025-07-10 07:05:54,159
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "就是。", "start": "2025-07-10T07:05:52.379090", "end": "2025-07-10T07:05:54.159090", "duration": 1.78}
+2025-07-30 07:01:43,957 --> 2025-07-30 07:01:47,237
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "我刚刚看到一个说三。", "start": "2025-07-30T07:01:43.957798", "end": "2025-07-30T07:01:47.237798", "duration": 3.28}
 
 57
-2025-07-10 07:05:54,239 --> 2025-07-10 07:06:11,739
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "年轻人之间，他的那个呃，通过找搭子的这样一个途径吧，可以去呃构建就是只只关注我们的共同兴趣目标，找到这项的伙伙，这个同学或者伙伴而。", "start": "2025-07-10T07:05:54.239090", "end": "2025-07-10T07:06:11.739090", "duration": 17.5}
+2025-07-30 07:01:50,297 --> 2025-07-30 07:01:52,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "其实我对就是这种想法。", "start": "2025-07-30T07:01:50.297798", "end": "2025-07-30T07:01:52.977798", "duration": 2.68}
 
 58
-2025-07-10 07:06:11,739 --> 2025-07-10 07:06:26,499
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "呃，不是那种就是有什么利益关系啊，或者说在有一些社交的压迫下的一种一种情感，就是可以完全凭借着自己的兴趣跟爱好去找到一些志同道合的人。", "start": "2025-07-10T07:06:11.739090", "end": "2025-07-10T07:06:26.499090", "duration": 14.76}
+2025-07-30 07:01:54,017 --> 2025-07-30 07:01:55,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "直播一下。", "start": "2025-07-30T07:01:54.017798", "end": "2025-07-30T07:01:55.357798", "duration": 1.34}
 
 59
-2025-07-10 07:06:26,519 --> 2025-07-10 07:06:29,499
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "是我分析的两个原因。", "start": "2025-07-10T07:06:26.519090", "end": "2025-07-10T07:06:29.499090", "duration": 2.98}
+2025-07-30 07:02:18,597 --> 2025-07-30 07:02:19,777
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "是。", "start": "2025-07-30T07:02:18.597798", "end": "2025-07-30T07:02:19.777798", "duration": 1.18}
 
 60
-2025-07-10 07:06:30,459 --> 2025-07-10 07:06:48,739
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "我觉得这样子的话，就是现在社会来说，就更准确更高效的一个交朋友的方法。你有兴趣，那我们在这个世界上可以一起玩，就成本也会降低，就会像以前一样，你交一个朋友需要很久才能深入去。", "start": "2025-07-10T07:06:30.459090", "end": "2025-07-10T07:06:48.739090", "duration": 18.28}
+2025-07-30 07:02:22,217 --> 2025-07-30 07:02:28,397
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "关键是一个实验室。华中师大的实验显示，长期使用抽象梗的群体。", "start": "2025-07-30T07:02:22.217798", "end": "2025-07-30T07:02:28.397798", "duration": 6.18}
 
 61
-2025-07-10 07:06:48,739 --> 2025-07-10 07:06:51,619
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "走路对方的心。这种。", "start": "2025-07-10T07:06:48.739090", "end": "2025-07-10T07:06:51.619090", "duration": 2.88}
+2025-07-30 07:02:28,837 --> 2025-07-30 07:02:33,417
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "论文写著作中例证多样性化率下降百分之三十七，然后。", "start": "2025-07-30T07:02:28.837798", "end": "2025-07-30T07:02:33.417798", "duration": 4.58}
 
 62
-2025-07-10 07:06:52,139 --> 2025-07-10 07:07:01,779
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "而且，他也不是身边的人，你可以在网上找，所以就是空间上，你就没有那么大的限制。", "start": "2025-07-10T07:06:52.139090", "end": "2025-07-10T07:07:01.779090", "duration": 9.64}
+2025-07-30 07:02:35,897 --> 2025-07-30 07:02:43,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "小抽象它虽然是一个很有趣味的事情，它但是它其实在深度和复杂表达上面的能力是会下降。", "start": "2025-07-30T07:02:35.897798", "end": "2025-07-30T07:02:43.597798", "duration": 7.7}
 
 63
-2025-07-10 07:07:03,139 --> 2025-07-10 07:07:15,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "你有的时候，你约一个单子，可能嗯一起出去旅游什么的你从这里去，从那那边一起去都可以。就不是你的同学，不是你同事，这种在身边的朋友。", "start": "2025-07-10T07:07:03.139090", "end": "2025-07-10T07:07:15.979090", "duration": 12.84}
+2025-07-30 07:02:43,957 --> 2025-07-30 07:02:45,337
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是他其实可能会。", "start": "2025-07-30T07:02:43.957798", "end": "2025-07-30T07:02:45.337798", "duration": 1.38}
 
 64
-2025-07-10 07:07:16,539 --> 2025-07-10 07:07:17,799
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "然后。", "start": "2025-07-10T07:07:16.539090", "end": "2025-07-10T07:07:17.799090", "duration": 1.26}
+2025-07-30 07:02:45,637 --> 2025-07-30 07:02:49,517
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "造成一个他和不同群体的一个表达之间。", "start": "2025-07-30T07:02:45.637798", "end": "2025-07-30T07:02:49.517798", "duration": 3.88}
 
 65
-2025-07-10 07:07:19,099 --> 2025-07-10 07:07:35,959
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "也是现在大家对自己的自我认同感更高，所以对自己兴趣更关注。所以他就是能了解到这些呃，有相同共同兴趣爱好的人，就是更细化去分那些爱好吧。", "start": "2025-07-10T07:07:19.099090", "end": "2025-07-10T07:07:35.959090", "duration": 16.86}
+2025-07-30 07:03:17,517 --> 2025-07-30 07:03:19,037
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "那你真有可能。", "start": "2025-07-30T07:03:17.517798", "end": "2025-07-30T07:03:19.037798", "duration": 1.52}
 
 66
-2025-07-10 07:07:39,939 --> 2025-07-10 07:07:46,779
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "我们是不是现在要把这个任务的总结，就是做成这个笔记形式？", "start": "2025-07-10T07:07:39.939090", "end": "2025-07-10T07:07:46.779090", "duration": 6.84}
+2025-07-30 07:03:22,037 --> 2025-07-30 07:03:24,137
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "可能我有时候搞抽象。", "start": "2025-07-30T07:03:22.037798", "end": "2025-07-30T07:03:24.137798", "duration": 2.1}
 
 67
-2025-07-10 07:07:46,879 --> 2025-07-10 07:07:53,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "这块就是分点的去网页，那可能我们要总结一下这个刚才大家的这个。", "start": "2025-07-10T07:07:46.879090", "end": "2025-07-10T07:07:53.979090", "duration": 7.1}
+2025-07-30 07:03:25,257 --> 2025-07-30 07:03:27,737
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是为了让对方识别。", "start": "2025-07-30T07:03:25.257798", "end": "2025-07-30T07:03:27.737798", "duration": 2.48}
 
 68
-2025-07-10 07:07:53,979 --> 2025-07-10 07:07:55,499
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "这个发现。", "start": "2025-07-10T07:07:53.979090", "end": "2025-07-10T07:07:55.499090", "duration": 1.52}
+2025-07-30 07:03:31,397 --> 2025-07-30 07:03:34,697
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我就是想吓他一下，就我也没想让他。", "start": "2025-07-30T07:03:31.397798", "end": "2025-07-30T07:03:34.697798", "duration": 3.3}
 
 69
-2025-07-10 07:07:55,779 --> 2025-07-10 07:07:59,599
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "是，作为警长要总结发言。", "start": "2025-07-10T07:07:55.779090", "end": "2025-07-10T07:07:59.599090", "duration": 3.82}
+2025-07-30 07:03:34,777 --> 2025-07-30 07:03:36,777
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "懂我的幽默，我就想。", "start": "2025-07-30T07:03:34.777798", "end": "2025-07-30T07:03:36.777798", "duration": 2.0}
 
 70
-2025-07-10 07:07:59,599 --> 2025-07-10 07:08:01,279
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "呃。", "start": "2025-07-10T07:07:59.599090", "end": "2025-07-10T07:08:01.279090", "duration": 1.68}
+2025-07-30 07:04:13,357 --> 2025-07-30 07:04:15,397
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "生成抽象文化的不。", "start": "2025-07-30T07:04:13.357798", "end": "2025-07-30T07:04:15.397798", "duration": 2.04}
 
 71
-2025-07-10 07:08:01,459 --> 2025-07-10 07:08:03,359
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "我也你。", "start": "2025-07-10T07:08:01.459090", "end": "2025-07-10T07:08:03.359090", "duration": 1.9}
+2025-07-30 07:04:34,437 --> 2025-07-30 07:04:37,557
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "你租一个车套就是整寿机。", "start": "2025-07-30T07:04:34.437798", "end": "2025-07-30T07:04:37.557798", "duration": 3.12}
 
 72
-2025-07-10 07:08:05,359 --> 2025-07-10 07:08:16,699
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "对，一步步来，我首先我想跟咱们讨论一下，你他说搭子是交头那种方式，是是是，我理解的是这样的吗？", "start": "2025-07-10T07:08:05.359090", "end": "2025-07-10T07:08:16.699090", "duration": 11.34}
+2025-07-30 07:04:37,557 --> 2025-07-30 07:04:38,917
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "广场出。", "start": "2025-07-30T07:04:37.557798", "end": "2025-07-30T07:04:38.917798", "duration": 1.36}
 
 73
-2025-07-10 07:08:17,159 --> 2025-07-10 07:08:19,279
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "呃，我觉得就是。", "start": "2025-07-10T07:08:17.159090", "end": "2025-07-10T07:08:19.279090", "duration": 2.12}
+2025-07-30 07:05:18,697 --> 2025-07-30 07:05:19,857
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我想我。", "start": "2025-07-30T07:05:18.697798", "end": "2025-07-30T07:05:19.857798", "duration": 1.16}
 
 74
-2025-07-10 07:08:19,359 --> 2025-07-10 07:08:32,259
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "也是跟像你刚刚说的，他是在朋友之下，同事同学之上的一种方式，就是首先要有共同的兴趣爱好，然后再进一步发现有没有可能成为朋友的可能。", "start": "2025-07-10T07:08:19.359090", "end": "2025-07-10T07:08:32.259090", "duration": 12.9}
+2025-07-30 07:05:19,857 --> 2025-07-30 07:05:23,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "我没用过抖音，但是就是微信不是有一个你通过。", "start": "2025-07-30T07:05:19.857798", "end": "2025-07-30T07:05:23.297798", "duration": 3.44}
 
 75
-2025-07-10 07:08:32,259 --> 2025-07-10 07:08:39,219
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "呃，就是以兴趣为导向，然后呃，交往的一个方式。", "start": "2025-07-10T07:08:32.259090", "end": "2025-07-10T07:08:39.219090", "duration": 6.96}
+2025-07-30 07:05:23,597 --> 2025-07-30 07:05:25,537
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "朱文的一身什么表情包吗？", "start": "2025-07-30T07:05:23.597798", "end": "2025-07-30T07:05:25.537798", "duration": 1.94}
 
 76
-2025-07-10 07:08:39,219 --> 2025-07-10 07:08:48,679
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "我得就是我们就是我从这下面在单位有个机构，我们从哪些方面去表达这样一个。", "start": "2025-07-10T07:08:39.219090", "end": "2025-07-10T07:08:48.679090", "duration": 9.46}
+2025-07-30 07:05:26,737 --> 2025-07-30 07:05:30,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "他说，我输一个，我压力好大。他其实跟你深深的，基本上。", "start": "2025-07-30T07:05:26.737798", "end": "2025-07-30T07:05:30.597798", "duration": 3.86}
 
 77
-2025-07-10 07:08:48,679 --> 2025-07-10 07:08:55,079
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "一个对这个问题进行一个回应呢，就是分析他的心理动因，我们从哪些方面去。", "start": "2025-07-10T07:08:48.679090", "end": "2025-07-10T07:08:55.079090", "duration": 6.4}
+2025-07-30 07:05:35,537 --> 2025-07-30 07:05:38,157
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是他其实可以通过对于抽象文化的理解。", "start": "2025-07-30T07:05:35.537798", "end": "2025-07-30T07:05:38.157798", "duration": 2.62}
 
 78
-2025-07-10 07:08:55,079 --> 2025-07-10 07:08:56,259
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "表说吗？", "start": "2025-07-10T07:08:55.079090", "end": "2025-07-10T07:08:56.259090", "duration": 1.18}
+2025-07-30 07:05:40,337 --> 2025-07-30 07:05:42,377
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "不要现在郁闷到了，已经没有力气了。", "start": "2025-07-30T07:05:40.337798", "end": "2025-07-30T07:05:42.377798", "duration": 2.04}
 
 79
-2025-07-10 07:08:56,279 --> 2025-07-10 07:08:58,219
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "想你和喜欢的。", "start": "2025-07-10T07:08:56.279090", "end": "2025-07-10T07:08:58.219090", "duration": 1.94}
+2025-07-30 07:05:42,877 --> 2025-07-30 07:05:44,177
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "更抽象一点的东西。", "start": "2025-07-30T07:05:42.877798", "end": "2025-07-30T07:05:44.177798", "duration": 1.3}
 
 80
-2025-07-10 07:08:58,559 --> 2025-07-10 07:09:02,999
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "刚刚那个应该属于行为特征吧，因为以兴趣为导向。", "start": "2025-07-10T07:08:58.559090", "end": "2025-07-10T07:09:02.999090", "duration": 4.44}
+2025-07-30 07:05:47,037 --> 2025-07-30 07:05:48,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "嗯，对，这方面。", "start": "2025-07-30T07:05:47.037798", "end": "2025-07-30T07:05:48.497798", "duration": 1.46}
 
 81
-2025-07-10 07:09:04,639 --> 2025-07-10 07:09:13,119
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "那就是说，行为特征如果是就是做法的，那心理特征是偏什么呢？", "start": "2025-07-10T07:09:04.639090", "end": "2025-07-10T07:09:13.119090", "duration": 8.48}
+2025-07-30 07:05:52,537 --> 2025-07-30 07:05:54,037
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我奇峰。", "start": "2025-07-30T07:05:52.537798", "end": "2025-07-30T07:05:54.037798", "duration": 1.5}
 
 82
-2025-07-10 07:09:13,859 --> 2025-07-10 07:09:16,639
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "检测是因为。", "start": "2025-07-10T07:09:13.859090", "end": "2025-07-10T07:09:16.639090", "duration": 2.78}
+2025-07-30 07:05:59,457 --> 2025-07-30 07:06:02,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "一句很抽象的话，或者一个很诚恳的表情包在。", "start": "2025-07-30T07:05:59.457798", "end": "2025-07-30T07:06:02.597798", "duration": 3.14}
 
 83
-2025-07-10 07:09:16,639 --> 2025-07-10 07:09:23,719
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "现在社会大家都有一点封闭的，就是有那种数字化布的。", "start": "2025-07-10T07:09:16.639090", "end": "2025-07-10T07:09:23.719090", "duration": 7.08}
+2025-07-30 07:06:05,557 --> 2025-07-30 07:06:06,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "加强它的一个引用。", "start": "2025-07-30T07:06:05.557798", "end": "2025-07-30T07:06:06.977798", "duration": 1.42}
 
 84
-2025-07-10 07:09:23,919 --> 2025-07-10 07:09:26,079
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "哦。", "start": "2025-07-10T07:09:23.919090", "end": "2025-07-10T07:09:26.079090", "duration": 2.16}
+2025-07-30 07:06:07,817 --> 2025-07-30 07:06:09,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "快速找到他的一个。", "start": "2025-07-30T07:06:07.817798", "end": "2025-07-30T07:06:09.357798", "duration": 1.54}
 
 85
-2025-07-10 07:09:26,839 --> 2025-07-10 07:09:30,059
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "对对数字化过多的解决解决方案。", "start": "2025-07-10T07:09:26.839090", "end": "2025-07-10T07:09:30.059090", "duration": 3.22}
+2025-07-30 07:06:13,057 --> 2025-07-30 07:06:19,457
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "嗯，因为抽象的话和表情的话，他其实对情感的表达比日常的话画是更加强烈和。", "start": "2025-07-30T07:06:13.057798", "end": "2025-07-30T07:06:19.457798", "duration": 6.4}
 
 86
-2025-07-10 07:09:48,959 --> 2025-07-10 07:09:50,959
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "然后下一步是。", "start": "2025-07-10T07:09:48.959090", "end": "2025-07-10T07:09:50.959090", "duration": 2.0}
+2025-07-30 07:06:38,877 --> 2025-07-30 07:06:47,317
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "提示吗？我一条都没有收到，现在临时变成对照组，有一点点技术上的问题，继续。", "start": "2025-07-30T07:06:38.877798", "end": "2025-07-30T07:06:47.317798", "duration": 8.44}
 
 87
-2025-07-10 07:09:52,699 --> 2025-07-10 07:09:55,359
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "一条必须结合真实爱的希望。", "start": "2025-07-10T07:09:52.699090", "end": "2025-07-10T07:09:55.359090", "duration": 2.66}
+2025-07-30 07:07:02,117 --> 2025-07-30 07:07:05,037
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "歌曲说，收集抽象内容的。", "start": "2025-07-30T07:07:02.117798", "end": "2025-07-30T07:07:05.037798", "duration": 2.92}
 
 88
-2025-07-10 07:09:56,419 --> 2025-07-10 07:09:58,359
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "资深性资料。", "start": "2025-07-10T07:09:56.419090", "end": "2025-07-10T07:09:58.359090", "duration": 1.94}
+2025-07-30 07:07:05,037 --> 2025-07-30 07:07:06,697
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "你可以再再再说一下吗。", "start": "2025-07-30T07:07:05.037798", "end": "2025-07-30T07:07:06.697798", "duration": 1.66}
 
 89
-2025-07-10 07:10:02,219 --> 2025-07-10 07:10:03,639
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "他要资料。", "start": "2025-07-10T07:10:02.219090", "end": "2025-07-10T07:10:03.639090", "duration": 1.42}
+2025-07-30 07:07:08,777 --> 2025-07-30 07:07:10,617
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "他会。", "start": "2025-07-30T07:07:08.777798", "end": "2025-07-30T07:07:10.617798", "duration": 1.84}
 
 90
-2025-07-10 07:10:05,559 --> 2025-07-10 07:10:11,799
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "对他时对你看它是分别列出，然后并。", "start": "2025-07-10T07:10:05.559090", "end": "2025-07-10T07:10:11.799090", "duration": 6.24}
+2025-07-30 07:07:11,917 --> 2025-07-30 07:07:13,937
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "网上歌不要不要的。", "start": "2025-07-30T07:07:11.917798", "end": "2025-07-30T07:07:13.937798", "duration": 2.02}
 
 91
-2025-07-10 07:10:13,579 --> 2025-07-10 07:10:20,319
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "我发现必须结合对啊，我们是我们是结合资料去进行讨论。", "start": "2025-07-10T07:10:13.579090", "end": "2025-07-10T07:10:20.319090", "duration": 6.74}
+2025-07-30 07:07:15,337 --> 2025-07-30 07:07:16,877
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "可以查询就是。", "start": "2025-07-30T07:07:15.337798", "end": "2025-07-30T07:07:16.877798", "duration": 1.54}
 
 92
-2025-07-10 07:10:20,399 --> 2025-07-10 07:10:24,599
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "总结一下结果就好了，不需要去列出这些资料。", "start": "2025-07-10T07:10:20.399090", "end": "2025-07-10T07:10:24.599090", "duration": 4.2}
+2025-07-30 07:07:22,237 --> 2025-07-30 07:07:23,397
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "是。", "start": "2025-07-30T07:07:22.237798", "end": "2025-07-30T07:07:23.397798", "duration": 1.16}
 
 93
-2025-07-10 07:10:25,599 --> 2025-07-10 07:10:28,419
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "你们决定就好啊。对，知道。", "start": "2025-07-10T07:10:25.599090", "end": "2025-07-10T07:10:28.419090", "duration": 2.82}
+2025-07-30 07:07:23,397 --> 2025-07-30 07:07:24,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "收集大量的之后。", "start": "2025-07-30T07:07:23.397798", "end": "2025-07-30T07:07:24.977798", "duration": 1.58}
 
 94
-2025-07-10 07:10:32,219 --> 2025-07-10 07:10:35,259
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "看他这里不是有个私密网，发现。", "start": "2025-07-10T07:10:32.219090", "end": "2025-07-10T07:10:35.259090", "duration": 3.04}
+2025-07-30 07:07:27,737 --> 2025-07-30 07:07:30,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "是有个生命新的，然后他也可以根据现有的。", "start": "2025-07-30T07:07:27.737798", "end": "2025-07-30T07:07:30.997798", "duration": 3.26}
 
 95
-2025-07-10 07:10:40,259 --> 2025-07-10 07:10:41,459
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "错一个。", "start": "2025-07-10T07:10:40.259090", "end": "2025-07-10T07:10:41.459090", "duration": 1.2}
+2025-07-30 07:09:13,057 --> 2025-07-30 07:09:15,877
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "那我觉得除了生成表情包。", "start": "2025-07-30T07:09:13.057798", "end": "2025-07-30T07:09:15.877798", "duration": 2.82}
 
 96
-2025-07-10 07:10:42,219 --> 2025-07-10 07:10:47,139
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "啊，这个菜好不下了。", "start": "2025-07-10T07:10:42.219090", "end": "2025-07-10T07:10:47.139090", "duration": 4.92}
+2025-07-30 07:09:15,877 --> 2025-07-30 07:09:17,477
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "是不是还可以就是。", "start": "2025-07-30T07:09:15.877798", "end": "2025-07-30T07:09:17.477798", "duration": 1.6}
 
 97
-2025-07-10 07:10:47,159 --> 2025-07-10 07:10:52,379
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "或者你说还是我们对这个心理，呃。", "start": "2025-07-10T07:10:47.159090", "end": "2025-07-10T07:10:52.379090", "duration": 5.22}
+2025-07-30 07:09:18,457 --> 2025-07-30 07:09:19,737
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "少一些。", "start": "2025-07-30T07:09:18.457798", "end": "2025-07-30T07:09:19.737798", "duration": 1.28}
 
 98
-2025-07-10 07:10:52,699 --> 2025-07-10 07:10:58,119
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "就心理中心还有什么想法儿，可以去补充在这些调度上面。", "start": "2025-07-10T07:10:52.699090", "end": "2025-07-10T07:10:58.119090", "duration": 5.42}
+2025-07-30 07:09:19,837 --> 2025-07-30 07:09:21,837
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "视频或者是。", "start": "2025-07-30T07:09:19.837798", "end": "2025-07-30T07:09:21.837798", "duration": 2.0}
 
 99
-2025-07-10 07:11:01,639 --> 2025-07-10 07:11:03,179
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "就是。", "start": "2025-07-10T07:11:01.639090", "end": "2025-07-10T07:11:03.179090", "duration": 1.54}
+2025-07-30 07:09:24,397 --> 2025-07-30 07:09:27,017
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "像小红书帖子那样子的东西。", "start": "2025-07-30T07:09:24.397798", "end": "2025-07-30T07:09:27.017798", "duration": 2.62}
 
 100
-2025-07-10 07:11:03,859 --> 2025-07-10 07:11:07,479
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "就他不不让我们去做这样一个。", "start": "2025-07-10T07:11:03.859090", "end": "2025-07-10T07:11:07.479090", "duration": 3.62}
+2025-07-30 07:09:27,697 --> 2025-07-30 07:09:29,877
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "不直接直接申请，但我觉得他。", "start": "2025-07-30T07:09:27.697798", "end": "2025-07-30T07:09:29.877798", "duration": 2.18}
 
 101
-2025-07-10 07:11:07,899 --> 2025-07-10 07:11:09,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "背后动因的一个分析。", "start": "2025-07-10T07:11:07.899090", "end": "2025-07-10T07:11:09.979090", "duration": 2.08}
+2025-07-30 07:09:29,977 --> 2025-07-30 07:09:31,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "我们可以教用户怎么拍。", "start": "2025-07-30T07:09:29.977798", "end": "2025-07-30T07:09:31.997798", "duration": 2.02}
 
 102
-2025-07-10 07:11:09,979 --> 2025-07-10 07:11:18,939
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "我们刚才分析他可能会有行为的一些特征，就是交朋友的这样一个关系，包括心理上他就是解决。", "start": "2025-07-10T07:11:09.979090", "end": "2025-07-10T07:11:18.939090", "duration": 8.96}
+2025-07-30 07:09:32,557 --> 2025-07-30 07:09:33,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "比方说那个。", "start": "2025-07-30T07:09:32.557798", "end": "2025-07-30T07:09:33.977798", "duration": 1.42}
 
 103
-2025-07-10 07:11:18,939 --> 2025-07-10 07:11:24,399
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "每个人的内心的就是对自己内心的孤独进行了一个。", "start": "2025-07-10T07:11:18.939090", "end": "2025-07-10T07:11:24.399090", "duration": 5.46}
+2025-07-30 07:09:37,277 --> 2025-07-30 07:09:41,157
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "还是出那个衣服，就我不知道你们有看过那个视频就是。", "start": "2025-07-30T07:09:37.277798", "end": "2025-07-30T07:09:41.157798", "duration": 3.88}
 
 104
-2025-07-10 07:11:24,399 --> 2025-07-10 07:11:26,139
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "嗯，换一个吧。", "start": "2025-07-10T07:11:24.399090", "end": "2025-07-10T07:11:26.139090", "duration": 1.74}
+2025-07-30 07:09:41,437 --> 2025-07-30 07:09:42,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "就是一个。", "start": "2025-07-30T07:09:41.437798", "end": "2025-07-30T07:09:42.997798", "duration": 1.56}
 
 105
-2025-07-10 07:11:27,059 --> 2025-07-10 07:11:28,759
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "还有别的一些。", "start": "2025-07-10T07:11:27.059090", "end": "2025-07-10T07:11:28.759090", "duration": 1.7}
+2025-07-30 07:09:42,997 --> 2025-07-30 07:09:46,737
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "一个一个一个女的，她回家，然后家里催婚，然后。", "start": "2025-07-30T07:09:42.997798", "end": "2025-07-30T07:09:46.737798", "duration": 3.74}
 
 106
-2025-07-10 07:11:28,839 --> 2025-07-10 07:11:29,919
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "四个人。", "start": "2025-07-10T07:11:28.839090", "end": "2025-07-10T07:11:29.919090", "duration": 1.08}
+2025-07-30 07:09:46,737 --> 2025-07-30 07:09:52,097
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "免费，他是什么时候结婚？他说随便中午或者晚上也行，就是这样子。", "start": "2025-07-30T07:09:46.737798", "end": "2025-07-30T07:09:52.097798", "duration": 5.36}
 
 107
-2025-07-10 07:11:35,039 --> 2025-07-10 07:11:37,759
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "复制的没有，我们就进行下一轮儿。", "start": "2025-07-10T07:11:35.039090", "end": "2025-07-10T07:11:37.759090", "duration": 2.72}
+2025-07-30 07:09:56,037 --> 2025-07-30 07:10:00,477
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我也看了很多遍，就是我觉得除了这种。", "start": "2025-07-30T07:09:56.037798", "end": "2025-07-30T07:10:00.477798", "duration": 4.44}
 
 108
-2025-07-10 07:11:39,359 --> 2025-07-10 07:11:42,879
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "我们先从下班开始。OK, 好。", "start": "2025-07-10T07:11:39.359090", "end": "2025-07-10T07:11:42.879090", "duration": 3.52}
+2025-07-30 07:10:00,917 --> 2025-07-30 07:10:03,217
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "我要宣传，是不是也可以？", "start": "2025-07-30T07:10:00.917798", "end": "2025-07-30T07:10:03.217798", "duration": 2.3}
 
 109
-2025-07-10 07:11:43,259 --> 2025-07-10 07:11:50,119
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "呃，下下一部分是这个设计，一款对设计工具。", "start": "2025-07-10T07:11:43.259090", "end": "2025-07-10T07:11:50.119090", "duration": 6.86}
+2025-07-30 07:10:04,537 --> 2025-07-30 07:10:06,457
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "收集这些。", "start": "2025-07-30T07:10:04.537798", "end": "2025-07-30T07:10:06.457798", "duration": 1.92}
 
 110
-2025-07-10 07:11:50,119 --> 2025-07-10 07:11:52,219
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "不是方向，他没有关键功能。", "start": "2025-07-10T07:11:50.119090", "end": "2025-07-10T07:11:52.219090", "duration": 2.1}
+2025-07-30 07:10:06,897 --> 2025-07-30 07:10:12,637
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "爆款视频或者爆款帖子，然后去教他怎么去复刻这样子的一些内容。", "start": "2025-07-30T07:10:06.897798", "end": "2025-07-30T07:10:12.637798", "duration": 5.74}
 
 111
-2025-07-10 07:11:54,439 --> 2025-07-10 07:11:55,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "是一个产品。", "start": "2025-07-10T07:11:54.439090", "end": "2025-07-10T07:11:55.979090", "duration": 1.54}
+2025-07-30 07:10:14,097 --> 2025-07-30 07:10:15,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "声音视频。", "start": "2025-07-30T07:10:14.097798", "end": "2025-07-30T07:10:15.297798", "duration": 1.2}
 
 112
-2025-07-10 07:12:02,259 --> 2025-07-10 07:12:09,699
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "不过，构思他们也只能构建一个类似于APP的这个东西吧？你们有用过、使用过类似的产品呢？", "start": "2025-07-10T07:12:02.259090", "end": "2025-07-10T07:12:09.699090", "duration": 7.44}
+2025-07-30 07:10:16,317 --> 2025-07-30 07:10:20,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "所以我觉得他们可以去教他们拍，比如说。", "start": "2025-07-30T07:10:16.317798", "end": "2025-07-30T07:10:20.297798", "duration": 3.98}
 
 113
-2025-07-10 07:12:10,479 --> 2025-07-10 07:12:12,339
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "没有，没有。", "start": "2025-07-10T07:12:10.479090", "end": "2025-07-10T07:12:12.339090", "duration": 1.86}
+2025-07-30 07:10:20,937 --> 2025-07-30 07:10:22,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "你回家被催以后，你可能就。", "start": "2025-07-30T07:10:20.937798", "end": "2025-07-30T07:10:22.997798", "duration": 2.06}
 
 114
-2025-07-10 07:12:12,339 --> 2025-07-10 07:12:14,059
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "或者是，呃。", "start": "2025-07-10T07:12:12.339090", "end": "2025-07-10T07:12:14.059090", "duration": 1.72}
+2025-07-30 07:10:24,517 --> 2025-07-30 07:10:26,717
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "然后摆什么样的表情？", "start": "2025-07-30T07:10:24.517798", "end": "2025-07-30T07:10:26.717798", "duration": 2.2}
 
 115
-2025-07-10 07:12:15,079 --> 2025-07-10 07:13:15,559
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "相关的这这个之前其实我考虑过，就是我当时在的是我就有个不成熟的想法儿，然后他就觉得现在这个恋爱软件很很很很很多，而且很赚钱，他们乱七八糟的软件会员费都很贵。我当时就觉得就我我也我也下载下来，我看了一下的，我感觉其实做的很多东西不是很好，就是它上面只写啊，比如我叫啥啥海哦，我叫啥不不会写。就是说我是比如哪个学校毕业的，我多大岁数，然后我这个呃有买没买车，买没买房，然后我的爱好是什么，兴趣是什么，可能就是这不就三软件对对是三星软件就对对对，就是我觉得就是你这个东西，我觉得作为一个参考，我就觉得他们做的不好。一个什么呢？就是他们上面会列出很多，呃，举个例子，就是比如爱好，那可能有人会写啊，喜欢潜水，喜欢画画，喜欢什么美食啊，旅游。", "start": "2025-07-10T07:12:15.079090", "end": "2025-07-10T07:13:15.559090", "duration": 60.48}
+2025-07-30 07:10:26,777 --> 2025-07-30 07:10:28,897
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "然后说的话可以。", "start": "2025-07-30T07:10:26.777798", "end": "2025-07-30T07:10:28.897798", "duration": 2.12}
 
 116
-2025-07-10 07:13:15,559 --> 2025-07-10 07:13:42,139
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "有啊，这些东西，但我觉得他们列出这东西，因为这些是是用户去变的，我觉得这里面掺水分就旅游，谁都喜欢旅游嘛，对吧？大家都喜欢旅游，但是你这个旅游的时间有多少？对吧？你工作很忙，我要为在赚钱，我可能没有办权人旅游，对吧？我觉得他们这可能西穿掺水的，包括比如有的人喜欢说喜欢潜水，那个逻辑上面，你要是真想进入，一年能进几次呢？这个我刚不说了，我觉得这种带这种目的的。", "start": "2025-07-10T07:13:15.559090", "end": "2025-07-10T07:13:42.139090", "duration": 26.58}
+2025-07-30 07:10:31,257 --> 2025-07-30 07:10:33,657
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "要容易引起热度这样子。", "start": "2025-07-30T07:10:31.257798", "end": "2025-07-30T07:10:33.657798", "duration": 2.4}
 
 117
-2025-07-10 07:13:42,199 --> 2025-07-10 07:14:04,539
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "嗯，进去标签他可能有一点就是夸大，有一点就是对他好的那一些去写进去，是可能一些小众的兴趣不一定会写对他们只会表达一些显示的就是哦，显示自己的逼格很高。但是这个我觉得就是我们的，但他们比如说就比如说有没有对。", "start": "2025-07-10T07:13:42.199090", "end": "2025-07-10T07:14:04.539090", "duration": 22.34}
+2025-07-30 07:10:41,117 --> 2025-07-30 07:10:46,857
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "我没有激活的时候，他没有走。现在已经过了二十分钟左右，你们还有十分钟时间。", "start": "2025-07-30T07:10:41.117798", "end": "2025-07-30T07:10:46.857798", "duration": 5.74}
 
 118
-2025-07-10 07:14:04,619 --> 2025-07-10 07:14:16,159
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "就比如说，呃，你有你有个兴趣标签，假设我是我喜面标签是潜水，然后又然后有没有存在任务呢，就比如说我点击这个显示里面，然后下面列就是涵盖了那些。", "start": "2025-07-10T07:14:04.619090", "end": "2025-07-10T07:14:16.159090", "duration": 11.54}
+2025-07-30 07:10:47,137 --> 2025-07-30 07:10:50,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1-1", "text": "哦，它卡住了，还需要那个。", "start": "2025-07-30T07:10:47.137798", "end": "2025-07-30T07:10:50.297798", "duration": 3.16}
 
 119
-2025-07-10 07:14:16,339 --> 2025-07-10 07:14:25,439
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "呃，兴趣为潜水的那些用户，还是只是说你点进去，然后你各个用户摆在那里，然后各个用户每条都是各各种兴趣。", "start": "2025-07-10T07:14:16.339090", "end": "2025-07-10T07:14:25.439090", "duration": 9.1}
+2025-07-30 07:10:53,537 --> 2025-07-30 07:10:55,057
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "外面开。", "start": "2025-07-30T07:10:53.537798", "end": "2025-07-30T07:10:55.057798", "duration": 1.52}
 
 120
-2025-07-10 07:14:25,659 --> 2025-07-10 07:14:38,759
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "嗯，据我所知是没有，我不知道现在有没有，反正之前是没有了，但但但如果假设，但如果他这样假设你是真是一个有需求的人，然后你点进去看，然后你发现那么多用户他们的。", "start": "2025-07-10T07:14:25.659090", "end": "2025-07-10T07:14:38.759090", "duration": 13.1}
+2025-07-30 07:10:58,477 --> 2025-07-30 07:11:00,637
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "需要案例知识。", "start": "2025-07-30T07:10:58.477798", "end": "2025-07-30T07:11:00.637798", "duration": 2.16}
 
 121
-2025-07-10 07:14:38,759 --> 2025-07-10 07:15:12,859
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "兴趣都都很广泛，然后没有进行一个分类，那如果你要找一个相同兴趣的，那你岂实是要花更长时间才能找。所以说他们的，我感觉他们不是说他们相亲，不是说通过这个呃我找我就找一个潜水类的，而是他们比如说给给你推荐一个一个一个人啊，这个人你可以看到他的所有性求，你觉得o OK不o OK OK的话，可能你可以什么找他聊一聊啊。当然这很多都是要会员的这样一个功能，就是他只是根据人去推荐，而不是说啊，我就想找一个会潜水的，然后从这里面选。", "start": "2025-07-10T07:14:38.759090", "end": "2025-07-10T07:15:12.859090", "duration": 34.1}
+2025-07-30 07:11:11,377 --> 2025-07-30 07:11:13,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "所以你说这个差不多。", "start": "2025-07-30T07:11:11.377798", "end": "2025-07-30T07:11:13.357798", "duration": 1.98}
 
 122
-2025-07-10 07:15:13,539 --> 2025-07-10 07:15:50,379
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "啊，我觉得这种还是比呃男女对目的的，就是像有一些单子，其实我我个人是用过这种小红书找搭子，就专门你比如说想去逛街，想去逛展，然后就一个人找不到，身边没有合适的朋友，你就直接在上面发个帖子问，或者是找一下有没有人发帖。这种就是比较直接的，但是可能需要搜寻啊，或者是时效没有那么快，所以就是如果有一个这种专门的搭子的小程序小APP，感觉就会。", "start": "2025-07-10T07:15:13.539090", "end": "2025-07-10T07:15:50.379090", "duration": 36.84}
+2025-07-30 07:11:15,857 --> 2025-07-30 07:11:18,117
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "", "start": "2025-07-30T07:11:15.857798", "end": "2025-07-30T07:11:18.117798", "duration": 2.26}
 
 123
-2025-07-10 07:15:50,399 --> 2025-07-10 07:15:54,319
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "更高一些，但那为什么国家呢？比如说整一个大致。", "start": "2025-07-10T07:15:50.399090", "end": "2025-07-10T07:15:54.319090", "duration": 3.92}
+2025-07-30 07:14:58,657 --> 2025-07-30 07:15:01,057
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "还有最后五分钟。", "start": "2025-07-30T07:14:58.657798", "end": "2025-07-30T07:15:01.057798", "duration": 2.4}
 
 124
-2025-07-10 07:15:55,939 --> 2025-07-10 07:15:59,119
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "然后就比如说一个用户，你发发了一个关于。", "start": "2025-07-10T07:15:55.939090", "end": "2025-07-10T07:15:59.119090", "duration": 3.18}
+2025-07-30 07:15:05,917 --> 2025-07-30 07:15:07,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "有什么规章内容？", "start": "2025-07-30T07:15:05.917798", "end": "2025-07-30T07:15:07.497798", "duration": 1.58}
 
 125
-2025-07-10 07:15:59,319 --> 2025-07-10 07:16:04,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "某个领域的一个帖子，然后把这些帖子我们。", "start": "2025-07-10T07:15:59.319090", "end": "2025-07-10T07:16:04.039090", "duration": 4.72}
+2025-07-30 07:15:26,757 --> 2025-07-30 07:15:28,657
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "把他转到我这边。", "start": "2025-07-30T07:15:26.757798", "end": "2025-07-30T07:15:28.657798", "duration": 1.9}
 
 126
-2025-07-10 07:16:04,039 --> 2025-07-10 07:16:17,319
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "特别的贵，在某个标签下，然后如果有的用户需要呃约人去看这个领域的一些东西，那为什么直接点进去，而不是说去搜索，花比较长的时间去搜索这些。", "start": "2025-07-10T07:16:04.039090", "end": "2025-07-10T07:16:17.319090", "duration": 13.28}
+2025-07-30 07:15:45,977 --> 2025-07-30 07:15:48,197
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "这些是真的吗？", "start": "2025-07-30T07:15:45.977798", "end": "2025-07-30T07:15:48.197798", "duration": 2.22}
 
 127
-2025-07-10 07:16:20,899 --> 2025-07-10 07:16:23,079
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "其实也有，但是。", "start": "2025-07-10T07:16:20.899090", "end": "2025-07-10T07:16:23.079090", "duration": 2.18}
+2025-07-30 07:15:48,197 --> 2025-07-30 07:15:49,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1", "text": "是吧，又查一。", "start": "2025-07-30T07:15:48.197798", "end": "2025-07-30T07:15:49.977798", "duration": 1.78}
 
 128
-2025-07-10 07:16:23,819 --> 2025-07-10 07:16:38,879
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "比如说，你有一些豆瓣，它上面会有展览的，然后或者是有一些演唱会的发布，他也会是下面有人一起约着那种的，但是好像就都很散。", "start": "2025-07-10T07:16:23.819090", "end": "2025-07-10T07:16:38.879090", "duration": 15.06}
+2025-07-30 07:15:53,857 --> 2025-07-30 07:15:56,237
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "那个太太也太厉爱了。", "start": "2025-07-30T07:15:53.857798", "end": "2025-07-30T07:15:56.237798", "duration": 2.38}
 
 129
-2025-07-10 07:16:40,159 --> 2025-07-10 07:16:51,119
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "伞的意思是，就是有有可能发现一个，有可能有，碰巧碰到了就就约了。碰不到，绝大部分概率是碰不到的。是这个意思吗？", "start": "2025-07-10T07:16:40.159090", "end": "2025-07-10T07:16:51.119090", "duration": 10.96}
+2025-07-30 07:16:24,017 --> 2025-07-30 07:16:25,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "我不经常洗澡。", "start": "2025-07-30T07:16:24.017798", "end": "2025-07-30T07:16:25.297798", "duration": 1.28}
 
 130
-2025-07-10 07:16:51,119 --> 2025-07-10 07:17:03,939
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "就碰到的感觉，还还碰到台，嗯，碰到合适的感觉可以，他们那你合指的合适是更希望有什么样的？", "start": "2025-07-10T07:16:51.119090", "end": "2025-07-10T07:17:03.939090", "duration": 12.82}
+2025-07-30 07:18:39,057 --> 2025-07-30 07:18:40,557
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "唐僧最后的要一米。", "start": "2025-07-30T07:18:39.057798", "end": "2025-07-30T07:18:40.557798", "duration": 1.5}
 
 131
-2025-07-10 07:17:03,939 --> 2025-07-10 07:17:08,299
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "我的经验的那种。看到了大家的帖子就。", "start": "2025-07-10T07:17:03.939090", "end": "2025-07-10T07:17:08.299090", "duration": 4.36}
+2025-07-30 07:18:43,237 --> 2025-07-30 07:18:49,457
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "呃，最好，不然的话，不知道你们最后具体达成什么，对，是的。", "start": "2025-07-30T07:18:43.237798", "end": "2025-07-30T07:18:49.457798", "duration": 6.22}
 
 132
-2025-07-10 07:17:08,299 --> 2025-07-10 07:17:13,599
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "时间合适，然后性别合适，那就OK，就可能。", "start": "2025-07-10T07:17:08.299090", "end": "2025-07-10T07:17:13.599090", "duration": 5.3}
+2025-07-30 07:18:49,937 --> 2025-07-30 07:18:57,297
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "最好听，你起码在一个人那里，是是是你们达成一致的结果吧，不然我们不好分。", "start": "2025-07-30T07:18:49.937798", "end": "2025-07-30T07:18:57.297798", "duration": 7.36}
 
 133
-2025-07-10 07:17:13,719 --> 2025-07-10 07:17:30,659
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "具体两个人，嗯，比如说要是一起约着骑车或者是登山，你们的体力相不相符合这个？你要详细的去聊，就没办法一下子让他如果有一个东西，他能标注出来啊。", "start": "2025-07-10T07:17:13.719090", "end": "2025-07-10T07:17:30.659090", "duration": 16.94}
+2025-07-30 07:19:15,457 --> 2025-07-30 07:19:16,657
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "付生活。", "start": "2025-07-30T07:19:15.457798", "end": "2025-07-30T07:19:16.657798", "duration": 1.2}
 
 134
-2025-07-10 07:17:33,399 --> 2025-07-10 07:17:34,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "妈的。", "start": "2025-07-10T07:17:33.399090", "end": "2025-07-10T07:17:34.979090", "duration": 1.58}
+2025-07-30 07:20:18,097 --> 2025-07-30 07:20:23,517
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "停止的有没赶紧交，交了一个版本是吧，交。", "start": "2025-07-30T07:20:18.097798", "end": "2025-07-30T07:20:23.517798", "duration": 5.42}
 
 135
-2025-07-10 07:17:46,379 --> 2025-07-10 07:18:04,579
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "那就是那我总结一下一下，就是说找搭子这些信息，呃尽量的去完善一些。嗯，比如说不光要求的是时间性别，还有比如说比如说我们要去登山的话，我们会不会具体到某座山会不会好一点，嗯。", "start": "2025-07-10T07:17:46.379090", "end": "2025-07-10T07:18:04.579090", "duration": 18.2}
+2025-07-30 07:20:26,757 --> 2025-07-30 07:20:37,077
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1-1", "text": "你你们现在是每个人写的东西都不一样的，不刷新哦哦哦哦，我知道了，他要去到那个页面才刷新。", "start": "2025-07-30T07:20:26.757798", "end": "2025-07-30T07:20:37.077798", "duration": 10.32}
 
 136
-2025-07-10 07:18:04,579 --> 2025-07-10 07:18:24,539
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "比如说去黄山路大夫山，那就是一个很很简单的一个徒步，如果是去，我举个例子，珠穆朗玛啊，这这这个太太厉害了，或者就是类似于这种像黄山啊，这种就是明显就是说可能对体育有些要求，那那就代表就是说我们的。", "start": "2025-07-10T07:18:04.579090", "end": "2025-07-10T07:18:24.539090", "duration": 19.96}
+2025-07-30 07:20:37,977 --> 2025-07-30 07:20:39,717
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "Okay.", "start": "2025-07-30T07:20:37.977798", "end": "2025-07-30T07:20:39.717798", "duration": 1.74}
 
 137
-2025-07-10 07:18:24,539 --> 2025-07-10 07:18:26,799
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "呃，第一个就是。", "start": "2025-07-10T07:18:24.539090", "end": "2025-07-10T07:18:26.799090", "duration": 2.26}
+2025-07-30 07:20:47,757 --> 2025-07-30 07:20:49,197
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "好了。", "start": "2025-07-30T07:20:47.757798", "end": "2025-07-30T07:20:49.197798", "duration": 1.44}
 
 138
-2025-07-10 07:18:28,539 --> 2025-07-10 07:18:30,319
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "老搭子。", "start": "2025-07-10T07:18:28.539090", "end": "2025-07-10T07:18:30.319090", "duration": 1.78}
+2025-07-30 07:20:52,277 --> 2025-07-30 07:21:00,357
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "那你们现在可以暂时休息五到十分钟，然后再进行实验组那个呆子的话题了。", "start": "2025-07-30T07:20:52.277798", "end": "2025-07-30T07:21:00.357798", "duration": 8.08}
 
 139
-2025-07-10 07:18:30,999 --> 2025-07-10 07:18:32,579
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "这。", "start": "2025-07-10T07:18:30.999090", "end": "2025-07-10T07:18:32.579090", "duration": 1.58}
+2025-07-30 07:21:01,977 --> 2025-07-30 07:21:03,637
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "赶紧改一改。", "start": "2025-07-30T07:21:01.977798", "end": "2025-07-30T07:21:03.637798", "duration": 1.66}
 
 140
-2025-07-10 07:18:32,699 --> 2025-07-10 07:18:38,919
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "活动信息近了七折，晚上十九号回家。", "start": "2025-07-10T07:18:32.699090", "end": "2025-07-10T07:18:38.919090", "duration": 6.22}
+2025-07-30 07:21:19,517 --> 2025-07-30 07:21:22,177
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "知道了，他一直要挂在这里才是。", "start": "2025-07-30T07:21:19.517798", "end": "2025-07-30T07:21:22.177798", "duration": 2.66}
 
 141
-2025-07-10 07:18:40,219 --> 2025-07-10 07:18:41,779
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "这样。", "start": "2025-07-10T07:18:40.219090", "end": "2025-07-10T07:18:41.779090", "duration": 1.56}
+2025-07-30 07:21:54,477 --> 2025-07-30 07:21:57,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "可以去个厕所，或者是接个水都可以。", "start": "2025-07-30T07:21:54.477798", "end": "2025-07-30T07:21:57.977798", "duration": 3.5}
 
 142
-2025-07-10 07:18:47,359 --> 2025-07-10 07:18:53,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "使用场景跟互动设计，哦，这是呃，不对，这个应该是我们构思方向。", "start": "2025-07-10T07:18:47.359090", "end": "2025-07-10T07:18:53.039090", "duration": 5.68}
+2025-07-30 07:21:59,697 --> 2025-07-30 07:22:00,897
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "切换一下唱。", "start": "2025-07-30T07:21:59.697798", "end": "2025-07-30T07:22:00.897798", "duration": 1.2}
 
 143
-2025-07-10 07:18:54,639 --> 2025-07-10 07:18:57,659
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "我觉得它的时效性真的没有考虑到。", "start": "2025-07-10T07:18:54.639090", "end": "2025-07-10T07:18:57.659090", "duration": 3.02}
+2025-07-30 07:22:16,077 --> 2025-07-30 07:22:19,077
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "私私聊里的档次是哪个来着？", "start": "2025-07-30T07:22:16.077798", "end": "2025-07-30T07:22:19.077798", "duration": 3.0}
 
 144
-2025-07-10 07:18:57,959 --> 2025-07-10 07:19:04,279
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "有那些活动也可以长期的，有一些活动就是只能。", "start": "2025-07-10T07:18:57.959090", "end": "2025-07-10T07:19:04.279090", "duration": 6.32}
+2025-07-30 07:22:26,497 --> 2025-07-30 07:22:31,597
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "你们上次那个什么VR眼镜的ad HD那个还有在做吗？", "start": "2025-07-30T07:22:26.497798", "end": "2025-07-30T07:22:31.597798", "duration": 5.1}
 
 145
-2025-07-10 07:19:09,879 --> 2025-07-10 07:19:15,679
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "或者后轮再可以再加一个地域的话，某个地域对在一起。", "start": "2025-07-10T07:19:09.879090", "end": "2025-07-10T07:19:15.679090", "duration": 5.8}
+2025-07-30 07:22:31,817 --> 2025-07-30 07:22:32,997
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "unknown", "speaker": "unknown", "text": "没有错。", "start": "2025-07-30T07:22:31.817798", "end": "2025-07-30T07:22:32.997798", "duration": 1.18}
 
 146
-2025-07-10 07:19:39,899 --> 2025-07-10 07:20:09,259
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "我还是觉得就是我之前反正感觉到搭子的就是在网上找搭子，我会有点担心，就是我我不怕这时被车换着这个这个如果是骗子的话，我觉得就是好。所以说我觉得如果说哪怕就是说，我们不可能去把这个人他的背调背调详细的，但我觉得会不会呃，我们比如说只关注学生群体会不会对相对安全一些。", "start": "2025-07-10T07:19:39.899090", "end": "2025-07-10T07:20:09.259090", "duration": 29.36}
+2025-07-30 07:22:32,997 --> 2025-07-30 07:22:43,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "啊，我觉得那个还挺好的，老是觉得那个测不准，因为那个仪器它只有几百块买的，只有一个通过信号正常，你要是发。", "start": "2025-07-30T07:22:32.997798", "end": "2025-07-30T07:22:43.497798", "duration": 10.5}
 
 147
-2025-07-10 07:20:09,979 --> 2025-07-10 07:20:17,699
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark-1", "text": "嗯，或者我们的关注的点就是不是说就要需要有进行一些认证。", "start": "2025-07-10T07:20:09.979090", "end": "2025-07-10T07:20:17.699090", "duration": 7.72}
+2025-07-30 07:22:44,457 --> 2025-07-30 07:22:46,117
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "找高琴的那个什么。", "start": "2025-07-30T07:22:44.457798", "end": "2025-07-30T07:22:46.117798", "duration": 1.66}
 
 148
-2025-07-10 07:20:17,959 --> 2025-07-10 07:20:26,019
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "呃，我觉得认证是可以，但是如果说只关注某一个群体的啊，比较不学的心不太。", "start": "2025-07-10T07:20:17.959090", "end": "2025-07-10T07:20:26.019090", "duration": 8.06}
+2025-07-30 07:22:50,877 --> 2025-07-30 07:22:53,637
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "那个录取从开之类拼交互内容有。", "start": "2025-07-30T07:22:50.877798", "end": "2025-07-30T07:22:53.637798", "duration": 2.76}
 
 149
-2025-07-10 07:20:26,239 --> 2025-07-10 07:20:31,159
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "不是就像我们因为你学生内心，你现在都会有比你。", "start": "2025-07-10T07:20:26.239090", "end": "2025-07-10T07:20:31.159090", "duration": 4.92}
+2025-07-30 07:22:58,817 --> 2025-07-30 07:23:04,717
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "那种可能还要去什么实验室，界老店的那种设备。", "start": "2025-07-30T07:22:58.817798", "end": "2025-07-30T07:23:04.717798", "duration": 5.9}
 
 150
-2025-07-10 07:20:31,979 --> 2025-07-10 07:20:33,379
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "许多。", "start": "2025-07-10T07:20:31.979090", "end": "2025-07-10T07:20:33.379090", "duration": 1.4}
+2025-07-30 07:23:06,177 --> 2025-07-30 07:23:07,497
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "这是西蒙的方式。", "start": "2025-07-30T07:23:06.177798", "end": "2025-07-30T07:23:07.497798", "duration": 1.32}
 
 151
-2025-07-10 07:20:33,379 --> 2025-07-10 07:20:55,579
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "嗯，我的意思就是说，比如说我们怎么通过一个筛选机制去至少保证这些人没有大的问题。这个别后来有那种在上面啊，对表表达我是天花乱坠，实际上他可能是比如那种骗子，以有一个对这个人的评分哦，这样可以。", "start": "2025-07-10T07:20:33.379090", "end": "2025-07-10T07:20:55.579090", "duration": 22.2}
+2025-07-30 07:23:08,577 --> 2025-07-30 07:23:10,477
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "同学们说要要投个post。", "start": "2025-07-30T07:23:08.577798", "end": "2025-07-30T07:23:10.477798", "duration": 1.9}
 
 152
-2025-07-10 07:20:56,839 --> 2025-07-10 07:20:59,299
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "但是大根据这些信息来评分。", "start": "2025-07-10T07:20:56.839090", "end": "2025-07-10T07:20:59.299090", "duration": 2.46}
+2025-07-30 07:23:26,077 --> 2025-07-30 07:23:28,177
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "这个是你自己的课题吗？", "start": "2025-07-30T07:23:26.077798", "end": "2025-07-30T07:23:28.177798", "duration": 2.1}
 
 153
-2025-07-10 07:20:59,419 --> 2025-07-10 07:21:02,059
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "他们就是像你去。", "start": "2025-07-10T07:20:59.419090", "end": "2025-07-10T07:21:02.059090", "duration": 2.64}
+2025-07-30 07:23:28,277 --> 2025-07-30 07:23:31,397
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "对，也是在感慨。", "start": "2025-07-30T07:23:28.277798", "end": "2025-07-30T07:23:31.397798", "duration": 3.12}
 
 154
-2025-07-10 07:21:02,199 --> 2025-07-10 07:21:13,859
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "吃饭，呃，跟店铺的评分一样吧。就是可能我跟你见了面，然后我们互相评论分，觉得你这个人还不错，嗯，适合什什么样的，随便写一写。", "start": "2025-07-10T07:21:02.199090", "end": "2025-07-10T07:21:13.859090", "duration": 11.66}
+2025-07-30 07:23:31,577 --> 2025-07-30 07:23:35,337
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "就是主要是探究的是AR。", "start": "2025-07-30T07:23:31.577798", "end": "2025-07-30T07:23:35.337798", "duration": 3.76}
 
 155
-2025-07-10 07:21:15,819 --> 2025-07-10 07:21:23,859
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "虽然这样，可能也有一些另外的隐患，人气超高了。是新人就特别好，但是，呃。", "start": "2025-07-10T07:21:15.819090", "end": "2025-07-10T07:21:23.859090", "duration": 8.04}
+2025-07-30 07:23:36,537 --> 2025-07-30 07:23:37,977
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2", "speaker": "Shirao1", "text": "我心对于你的。", "start": "2025-07-30T07:23:36.537798", "end": "2025-07-30T07:23:37.977798", "duration": 1.44}
 
 156
-2025-07-10 07:21:24,679 --> 2025-07-10 07:21:30,359
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "我们到这个因为时间快到了，我们就简单写一下，就是说嗯。", "start": "2025-07-10T07:21:24.679090", "end": "2025-07-10T07:21:30.359090", "duration": 5.68}
+2025-07-30 07:23:41,397 --> 2025-07-30 07:23:44,137
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "你这是这一个是验证阶段的吗。", "start": "2025-07-30T07:23:41.397798", "end": "2025-07-30T07:23:44.137798", "duration": 2.74}
 
 157
-2025-07-10 07:21:31,519 --> 2025-07-10 07:21:33,279
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "对。", "start": "2025-07-10T07:21:31.519090", "end": "2025-07-10T07:21:33.279090", "duration": 1.76}
+2025-07-30 07:23:44,737 --> 2025-07-30 07:23:51,217
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "对，但是不一定是正向的，有可能是负向的。主要就是探讨这个问题。", "start": "2025-07-30T07:23:44.737798", "end": "2025-07-30T07:23:51.217798", "duration": 6.48}
 
 158
-2025-07-10 07:21:34,799 --> 2025-07-10 07:21:37,899
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "用用户筛选机制。", "start": "2025-07-10T07:21:34.799090", "end": "2025-07-10T07:21:37.899090", "duration": 3.1}
+2025-07-30 07:23:52,937 --> 2025-07-30 07:23:55,057
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2", "speaker": "Terry1-1", "text": "是你们设计的分心？", "start": "2025-07-30T07:23:52.937798", "end": "2025-07-30T07:23:55.057798", "duration": 2.12}
 
 159
-2025-07-10 07:21:39,059 --> 2025-07-10 07:21:42,479
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "OK, 好，这是我们的，嗯。", "start": "2025-07-10T07:21:39.059090", "end": "2025-07-10T07:21:42.479090", "duration": 3.42}
-
-160
-2025-07-10 07:21:44,939 --> 2025-07-10 07:21:53,479
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "所以最后再说一个关键功能吧，还有一分半还你有啥想法给我那些关键功能。", "start": "2025-07-10T07:21:44.939090", "end": "2025-07-10T07:21:53.479090", "duration": 8.54}
-
-161
-2025-07-10 07:21:54,279 --> 2025-07-10 07:21:57,179
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "", "start": "2025-07-10T07:21:54.279090", "end": "2025-07-10T07:21:57.179090", "duration": 2.9}
-
-162
-2025-07-10 07:22:00,599 --> 2025-07-10 07:22:02,039
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno", "text": "找大次。", "start": "2025-07-10T07:22:00.599090", "end": "2025-07-10T07:22:02.039090", "duration": 1.44}
-
-163
-2025-07-10 07:22:02,239 --> 2025-07-10 07:22:07,179
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "对他这个是核心点，就是叫。", "start": "2025-07-10T07:22:02.239090", "end": "2025-07-10T07:22:07.179090", "duration": 4.94}
-
-164
-2025-07-10 07:22:12,139 --> 2025-07-10 07:22:15,599
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "学校对高校高校化讲解。", "start": "2025-07-10T07:22:12.139090", "end": "2025-07-10T07:22:15.599090", "duration": 3.46}
-
-165
-2025-07-10 07:22:26,299 --> 2025-07-10 07:22:28,019
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "自由选择。", "start": "2025-07-10T07:22:26.299090", "end": "2025-07-10T07:22:28.019090", "duration": 1.72}
-
-166
-2025-07-10 07:22:31,319 --> 2025-07-10 07:22:33,099
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "就是可以。", "start": "2025-07-10T07:22:31.319090", "end": "2025-07-10T07:22:33.099090", "duration": 1.78}
-
-167
-2025-07-10 07:22:35,099 --> 2025-07-10 07:22:41,439
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "这大部的平台都是是，但肯定得自由，这是资强迫。", "start": "2025-07-10T07:22:35.099090", "end": "2025-07-10T07:22:41.439090", "duration": 6.34}
-
-168
-2025-07-10 07:22:52,559 --> 2025-07-10 07:22:56,979
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora-1", "text": "但互动方式呢？不能不能让他们出钱去饲料？不可能吧？", "start": "2025-07-10T07:22:52.559090", "end": "2025-07-10T07:22:56.979090", "duration": 4.42}
-
-169
-2025-07-10 07:22:56,979 --> 2025-07-10 07:23:02,079
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "活动方式是就是在在设计一个平台。", "start": "2025-07-10T07:22:56.979090", "end": "2025-07-10T07:23:02.079090", "duration": 5.1}
-
-170
-2025-07-10 07:23:03,599 --> 2025-07-10 07:23:05,799
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "提供。", "start": "2025-07-10T07:23:03.599090", "end": "2025-07-10T07:23:05.799090", "duration": 2.2}
-
-171
-2025-07-10 07:23:05,799 --> 2025-07-10 07:23:08,159
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "unknown", "speaker": "unknown", "text": "交流渠道。", "start": "2025-07-10T07:23:05.799090", "end": "2025-07-10T07:23:08.159090", "duration": 2.36}
-
-172
-2025-07-10 07:23:15,379 --> 2025-07-10 07:23:16,779
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "50SHBajxtge2rmatUM7OU7MPeu32", "speaker": "Meteora", "text": "大号匹配。", "start": "2025-07-10T07:23:15.379090", "end": "2025-07-10T07:23:16.779090", "duration": 1.4}
-
-173
-2025-07-10 07:23:18,459 --> 2025-07-10 07:23:20,899
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "MehACGvYsfVaGnq5utXQupmAIji2", "speaker": "Tark", "text": "", "start": "2025-07-10T07:23:18.459090", "end": "2025-07-10T07:23:20.899090", "duration": 2.44}
-
-174
-2025-07-10 07:23:22,299 --> 2025-07-10 07:23:34,963
-{"group_name": "groupD", "group_id": "cc8f1d29-7a49-4975-95dc-7ac94aefc04b", "session_id": "9c2f05d3-19d1-4cf6-b5a4-124ec6fba4a3", "user_id": "VaTnrRc18Facn5GYEcDyYNPyY7p2", "speaker": "juno-1", "text": "对，可以停一下，然后你们把你们写作笔记的内容截图一下，到那个群里。对，你们都在群里，如果一次截不完，就截几次截一下，免得数据丢了。", "start": "2025-07-10T07:23:22.299090", "end": "2025-07-10T07:23:34.963090", "duration": 12.664}
+2025-07-30 07:23:55,377 --> 2025-07-30 07:23:59,173
+{"group_name": "group01", "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f", "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1", "speaker": "Ally1", "text": "对已经改了好几版，它主要就是哎呀忘了。", "start": "2025-07-30T07:23:55.377798", "end": "2025-07-30T07:23:59.173798", "duration": 3.796}
 

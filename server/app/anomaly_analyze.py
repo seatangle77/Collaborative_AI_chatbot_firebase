@@ -474,10 +474,14 @@ def local_analyze(group_id:str, start_time:Union[datetime,str], end_time:Union[d
 
     # 阶段4：保存调试文件
     if is_save_debug_info:
-        os.makedirs("analysis_outputs", exist_ok=True)
-        debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
-        with open(debug_file_path, "w", encoding="utf-8") as f:
-            json.dump(chunk_data_with_local_analyze, f, ensure_ascii=False, indent=2)
+        try:
+            os.makedirs("analysis_outputs", exist_ok=True)
+            debug_file_path = f"analysis_outputs/local_analysis_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.json"
+            with open(debug_file_path, "w", encoding="utf-8") as f:
+                json.dump(chunk_data_with_local_analyze, f, ensure_ascii=False, indent=2)
+        except Exception:
+            logger.error(f"Error saving debug file: {chunk_data_with_local_analyze}")
+            logger.error('Error in local_analyze loop: %s' % traceback.format_exc())
 
         # 阶段5: 数据库存储
         stage5_start = time.time()
