@@ -515,6 +515,6 @@ if __name__ == '__main__':
     group_id = "d71b3d49-a328-44bf-a30e-7d8da310e20e"
     start_time_str = "2025-07-30T08:07:37"
     end_time_str = "2025-07-30T08:09:37"
-    chunk_data_with_local_result, local_analyze_result = local_analyze(group_id, start_time=start_time_str, end_time=end_time_str, is_save_debug_info=True)
+    chunk_data_with_local_result, local_analyze_result = local_analyze(group_id, start_time=start_time_str, end_time=end_time_str, is_save_debug_info=False)
 
     # ai_analyze_anomaly_status(group_id, chunk_data_with_local_result)
