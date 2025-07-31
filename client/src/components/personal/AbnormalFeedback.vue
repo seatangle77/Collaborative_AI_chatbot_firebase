@@ -123,25 +123,6 @@
               v-html="md2html(anomalyData.more_info.detailed_reason)"
             ></span>
           </div>
-          <div v-if="anomalyData.more_info?.history_comparison" class="info-block">
-            <span class="info-label">历史对比：</span>
-            <template v-if="historyComparisonTable && historyComparisonTable.data.length">
-              <el-table :data="historyComparisonTable.data" class="history-compare-table" style="width: 100%; margin-bottom: 8px;">
-                <el-table-column
-                  v-for="col in historyComparisonTable.columns"
-                  :key="col.prop"
-                  :prop="col.prop"
-                  :label="col.label"
-                  align="center"
-                />
-              </el-table>
-            </template>
-            <span
-              v-else
-              class="info-content"
-              v-html="md2html(anomalyData.more_info.history_comparison)"
-            ></span>
-          </div>
           <div v-if="anomalyData.more_info?.group_comparison" class="info-block">
             <span class="info-label">组内对比：</span>
             <span
