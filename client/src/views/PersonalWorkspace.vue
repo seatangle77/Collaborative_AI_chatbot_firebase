@@ -208,6 +208,7 @@
               @view-detail="handleViewDetail"
               class="history-panel"
               title="历史提示反馈"
+              style="display: none;"
             />
           </div>
         </div>

@@ -353,36 +353,36 @@ def extract_chunk_data_anomaly(round_index: int, start_time: str, end_time: str,
     ########################################
     # 查询5: anomaly_analysis_group_results历史
     query5_start = time.time()
-    try:
-        # 计算时间范围：从start_time往前半小时到start_time
-        history_start_time = start_time_dt - timedelta(minutes=30)
-        history_start_time_str = history_start_time.isoformat()
+    # try:
+    #     # 计算时间范围：从start_time往前半小时到start_time
+    #     history_start_time = start_time_dt - timedelta(minutes=30)
+    #     history_start_time_str = history_start_time.isoformat()
         
-        results = db.collection("anomaly_analysis_group_results") \
-            .where(filter=FieldFilter("group_id", "==", group_id)) \
-            .where(filter=FieldFilter("created_at", ">=", history_start_time_str)) \
-            .where(filter=FieldFilter("created_at", "<=", start_time)) \
-            .order_by("created_at", direction="DESCENDING") \
-            .limit(2) \
-            .stream()
-        history = [doc.to_dict() for doc in results]
-        anomaly_history = []
-        for h in history:
-            anomaly_history.append({
-                "ai_response": h.get("raw_response"),
-                "start_time": h.get("start_time"),
-                "end_time": h.get("end_time")
-            })
-        if len(anomaly_history) == 0:
-            chunk_data["anomaly_history"] = []
-        else:
-            chunk_data["anomaly_history"] = anomaly_history
-        query5_duration = time.time() - query5_start
-        logger.info(f"📚 [数据预处理] 查询5-anomaly_analysis_results历史完成，耗时{query5_duration:.2f}秒，找到{len(anomaly_history)}条历史记录")
-    except Exception as e:
-        query5_duration = time.time() - query5_start
-        logger.error(f"❌ [数据预处理] 查询5-anomaly_analysis_results历史失败，耗时{query5_duration:.2f}秒：{e}")
-        chunk_data["anomaly_history"] = []
+    #     results = db.collection("anomaly_analysis_group_results") \
+    #         .where(filter=FieldFilter("group_id", "==", group_id)) \
+    #         .where(filter=FieldFilter("created_at", ">=", history_start_time_str)) \
+    #         .where(filter=FieldFilter("created_at", "<=", start_time)) \
+    #         .order_by("created_at", direction="DESCENDING") \
+    #         .limit(2) \
+    #         .stream()
+    #     history = [doc.to_dict() for doc in results]
+    #     anomaly_history = []
+    #     for h in history:
+    #         anomaly_history.append({
+    #             "ai_response": h.get("raw_response"),
+    #             "start_time": h.get("start_time"),
+    #             "end_time": h.get("end_time")
+    #         })
+    #     if len(anomaly_history) == 0:
+    #         chunk_data["anomaly_history"] = []
+    #     else:
+    #         chunk_data["anomaly_history"] = anomaly_history
+    #     query5_duration = time.time() - query5_start
+    #     logger.info(f"📚 [数据预处理] 查询5-anomaly_analysis_results历史完成，耗时{query5_duration:.2f}秒，找到{len(anomaly_history)}条历史记录")
+    # except Exception as e:
+    #     query5_duration = time.time() - query5_start
+    #     logger.error(f"❌ [数据预处理] 查询5-anomaly_analysis_results历史失败，耗时{query5_duration:.2f}秒：{e}")
+    #     chunk_data["anomaly_history"] = []
 
     total_duration = time.time() - total_start_time
     logger.info(f"✅ [数据预处理] group_id={group_id}数据提取完成，总耗时{total_duration:.2f}秒")
