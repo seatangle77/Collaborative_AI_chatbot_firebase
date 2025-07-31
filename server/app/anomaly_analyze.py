@@ -509,23 +509,12 @@ if __name__ == '__main__':
     # print(json.dumps(local_analyze_anomaly_status(logs), ensure_ascii=False, indent=2))
 
     # 查询数据，分析结果
-    group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
-    start_time_str = "2025-07-10T07:02:27"
-    end_time_str = "2025-07-10T07:04:27"
-    members = get_group_members_simple(group_id)
-    raw_data, increment = extract_chunk_data_anomaly(
-        group_id=group_id,
-        round_index=1,
-        start_time=start_time_str,
-        end_time=end_time_str,
-        member_list=members
-    )
-    chunk_data_with_local_result, local_analyze_result = local_analyze_anomaly_status(raw_data)
-    # prompt, ai_analyze_result = ai_analyze_all_anomalies(chunk_data_with_local_result)
-    # if isinstance(ai_analyze_result.get("raw_response"), str):
-    #     markdown_json = ai_analyze_result["raw_response"]
-    #     # 去除Markdown标记
-    #     json_str = markdown_json.strip('```json').strip('\n').strip('```').strip()
-    #     print(json.dumps(json.loads(json_str), ensure_ascii=False, indent=2))
+    # group_id = "cc8f1d29-7a49-4975-95dc-7ac94aefc04b"
+    # start_time_str = "2025-07-10T07:02:27"
+    # end_time_str = "2025-07-10T07:04:27"
+    group_id = "d71b3d49-a328-44bf-a30e-7d8da310e20e"
+    start_time_str = "2025-07-30T08:07:37"
+    end_time_str = "2025-07-30T08:09:37"
+    chunk_data_with_local_result, local_analyze_result = local_analyze(group_id, start_time=start_time_str, end_time=end_time_str, is_save_debug_info=False)
 
-    ai_analyze_anomaly_status(group_id, chunk_data_with_local_result)
+    # ai_analyze_anomaly_status(group_id, chunk_data_with_local_result)
