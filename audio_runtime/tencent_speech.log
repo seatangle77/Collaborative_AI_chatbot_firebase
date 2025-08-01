@@ -125,3 +125,41 @@
 2025-07-30 15:34:11,135 tencent_speech.log-INFO  on_message:259 88e620cc-6d17-11f0-95bf-a6cf704f3a85 recognition complete
 2025-07-30 15:42:03,349 tencent_speech.log-INFO  start:311 af23d6ca-6d18-11f0-9eb3-a6cf704f3a85 recognition start
 2025-07-30 16:10:31,405 tencent_speech.log-INFO  on_message:259 af23d6ca-6d18-11f0-9eb3-a6cf704f3a85 recognition complete
+2025-07-31 16:52:36,005 tencent_speech.log-INFO  start:311 b469ab7c-6deb-11f0-b2f9-a6cf704f3a85 recognition start
+2025-07-31 17:02:19,976 tencent_speech.log-INFO  on_message:259 b469ab7c-6deb-11f0-b2f9-a6cf704f3a85 recognition complete
+2025-07-31 17:45:12,944 tencent_speech.log-INFO  start:311 0e184410-6df3-11f0-9dfd-a6cf704f3a85 recognition start
+2025-07-31 17:52:46,553 tencent_speech.log-INFO  on_message:259 0e184410-6df3-11f0-9dfd-a6cf704f3a85 recognition complete
+2025-08-01 10:40:44,025 tencent_speech.log-INFO  start:311 ebd97282-6e80-11f0-b3be-a6cf704f3a85 recognition start
+2025-08-01 10:40:50,000 tencent_speech.log-ERROR  on_message:251 ebd97282-6e80-11f0-b3be-a6cf704f3a85 server recognition fail 因机器负载过高、网络抖动等导致失败，请重新发起新识别
+2025-08-01 10:40:50,002 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id ebd97282-6e80-11f0-b3be-a6cf704f3a85
+2025-08-01 10:40:50,003 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id ebd97282-6e80-11f0-b3be-a6cf704f3a85
+2025-08-01 10:41:22,257 tencent_speech.log-INFO  start:311 02a328be-6e81-11f0-95a3-a6cf704f3a85 recognition start
+2025-08-01 10:42:29,603 tencent_speech.log-ERROR  on_message:251 02a328be-6e81-11f0-95a3-a6cf704f3a85 server recognition fail 因机器负载过高、网络抖动等导致失败，请重新发起新识别
+2025-08-01 10:42:29,605 tencent_speech.log-ERROR  on_error:275 websocket error Connection to remote host was lost.  voice id 02a328be-6e81-11f0-95a3-a6cf704f3a85
+2025-08-01 10:42:29,606 tencent_speech.log-ERROR  on_error:275 websocket error on_close() takes 1 positional argument but 3 were given  voice id 02a328be-6e81-11f0-95a3-a6cf704f3a85
+2025-08-01 13:11:46,532 tencent_speech.log-INFO  start:311 05863dfe-6e96-11f0-bb7b-a6cf704f3a85 recognition start
+2025-08-01 13:13:44,522 tencent_speech.log-INFO  on_message:259 05863dfe-6e96-11f0-bb7b-a6cf704f3a85 recognition complete
+2025-08-01 13:14:05,316 tencent_speech.log-INFO  start:311 583efcfc-6e96-11f0-a0d6-a6cf704f3a85 recognition start
+2025-08-01 13:16:47,845 tencent_speech.log-INFO  on_message:259 583efcfc-6e96-11f0-a0d6-a6cf704f3a85 recognition complete
+2025-08-01 13:17:25,592 tencent_speech.log-INFO  start:311 cf9ec2dc-6e96-11f0-abd9-a6cf704f3a85 recognition start
+2025-08-01 13:17:45,127 tencent_speech.log-INFO  on_message:259 cf9ec2dc-6e96-11f0-abd9-a6cf704f3a85 recognition complete
+2025-08-01 13:18:02,789 tencent_speech.log-INFO  start:311 e5ca9400-6e96-11f0-b25f-a6cf704f3a85 recognition start
+2025-08-01 13:18:19,888 tencent_speech.log-INFO  on_message:259 e5ca9400-6e96-11f0-b25f-a6cf704f3a85 recognition complete
+2025-08-01 13:18:44,328 tencent_speech.log-INFO  start:311 fe8cd0c0-6e96-11f0-93aa-a6cf704f3a85 recognition start
+2025-08-01 13:20:27,070 tencent_speech.log-INFO  on_message:259 fe8cd0c0-6e96-11f0-93aa-a6cf704f3a85 recognition complete
+2025-08-01 13:26:01,666 tencent_speech.log-INFO  start:311 03394a8a-6e98-11f0-9728-a6cf704f3a85 recognition start
+2025-08-01 13:28:02,053 tencent_speech.log-INFO  on_message:259 03394a8a-6e98-11f0-9728-a6cf704f3a85 recognition complete
+2025-08-01 13:34:47,704 tencent_speech.log-INFO  start:311 3cc4611c-6e99-11f0-b0ee-a6cf704f3a85 recognition start
+2025-08-01 14:06:43,505 tencent_speech.log-INFO  on_message:259 3cc4611c-6e99-11f0-b0ee-a6cf704f3a85 recognition complete
+2025-08-01 14:21:23,146 tencent_speech.log-INFO  start:311 befb0b08-6e9f-11f0-a740-a6cf704f3a85 recognition start
+2025-08-01 14:52:02,351 tencent_speech.log-INFO  on_message:259 befb0b08-6e9f-11f0-a740-a6cf704f3a85 recognition complete
+2025-08-01 20:13:10,865 tencent_speech.log-INFO  start:311 e4295ad4-6ed0-11f0-9333-a6cf704f3a85 recognition start
+2025-08-01 20:14:55,007 tencent_speech.log-INFO  on_message:259 e4295ad4-6ed0-11f0-9333-a6cf704f3a85 recognition complete
+2025-08-01 20:15:05,863 tencent_speech.log-INFO  start:311 28b4a47e-6ed1-11f0-b095-a6cf704f3a85 recognition start
+2025-08-01 20:17:35,313 tencent_speech.log-INFO  on_message:259 28b4a47e-6ed1-11f0-b095-a6cf704f3a85 recognition complete
+2025-08-01 20:40:23,538 tencent_speech.log-INFO  start:311 b14f7b76-6ed4-11f0-b9de-a6cf704f3a85 recognition start
+2025-08-01 20:42:06,179 tencent_speech.log-INFO  on_message:259 b14f7b76-6ed4-11f0-b9de-a6cf704f3a85 recognition complete
+2025-08-01 20:44:02,475 tencent_speech.log-INFO  start:311 33ce89de-6ed5-11f0-8651-a6cf704f3a85 recognition start
+2025-08-01 21:21:59,873 tencent_speech.log-INFO  on_message:259 33ce89de-6ed5-11f0-8651-a6cf704f3a85 recognition complete
+2025-08-01 21:32:19,928 tencent_speech.log-INFO  start:311 f2d2d82a-6edb-11f0-a0b4-a6cf704f3a85 recognition start
+2025-08-01 22:03:19,768 tencent_speech.log-INFO  on_message:259 f2d2d82a-6edb-11f0-a0b4-a6cf704f3a85 recognition complete

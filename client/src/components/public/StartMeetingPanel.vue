@@ -1,10 +1,7 @@
 <template>
   <div class="start-meeting-panel">
-    <p class="start-title">🚀 讨论即将开始</p>
-    <el-button 
-      type="primary" 
-      @click="$emit('start-meeting')"
-    >
+    <p class="start-title">🚀 讨论即将开始！开始前必须先开启视频录制</p>
+    <el-button type="primary" @click="$emit('start-meeting')">
       <VideoCamera style="margin-right: 8px" />
       开始
     </el-button>
@@ -36,7 +33,7 @@ import { VideoCamera } from "@element-plus/icons-vue";
 .start-title {
   font-size: 1.35rem;
   font-weight: 600;
-  color: #606266;
+  color: #dc486a;
   margin-bottom: 28px;
   letter-spacing: 0.2px;
   text-align: center;
