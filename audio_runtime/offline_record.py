@@ -67,7 +67,7 @@ def txt_to_firestore_entries(txt_path, group_key, group_id, session_id, user_map
         }
         # 写入 Firestore
         # firestore.client().collection("speech_transcripts_offline").document(entry["transcript_id"]).set(entry)
-        print(f"{entry}")
+        print(f"{speaker_id}:{user_info.get("speaker","")}: {text} ({s_time.isoformat()} - {e_time.isoformat()})")
 
 if __name__ == "__main__":
     ...
