@@ -1,0 +1,13 @@
+{
+  "group_id": "874db45b-cb84-4763-850f-fa01103899da",
+  "session_id": "3b4de935-ed35-4b22-8437-28961a258964",
+  "user_ids": ["IXEj3REytxSZ5OAuhUHLVe0kojZ2", "VTUkpXf6gZXTa6OkJZbOkwo79242", "VqzbNdFiywSyeuEX8S9nKiVuFbG2"],
+  "speaker_name_to_user_id": {
+    "Joann1": "IXEj3REytxSZ5OAuhUHLVe0kojZ2",
+    "Joann1-1": "IXEj3REytxSZ5OAuhUHLVe0kojZ2",
+    "Sparrow1": "VTUkpXf6gZXTa6OkJZbOkwo79242",
+    "Sparrow1-1": "VTUkpXf6gZXTa6OkJZbOkwo79242",
+    "Jude1": "VqzbNdFiywSyeuEX8S9nKiVuFbG2",
+    "Jude1-1": "VqzbNdFiywSyeuEX8S9nKiVuFbG2"
+  }
+}
