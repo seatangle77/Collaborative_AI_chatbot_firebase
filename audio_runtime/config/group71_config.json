@@ -9,5 +9,13 @@
     "Aries1-1": "jM6wXjdJ71MiIEA8HALyofBfpH02",
     "Emerald1": "SjQpCHbflVY5k9grJLqe83aBNrv1",
     "Emerald1-1": "SjQpCHbflVY5k9grJLqe83aBNrv1"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group71",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

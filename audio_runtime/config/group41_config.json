@@ -9,5 +9,13 @@
     "Gladys1-1": "nIYIn6mMpuYA7Wz1dRPWqvDy4sq1",
     "Scott1": "ZpmJrR88CUPJr5urmclGbz6Kaiy2",
     "Scott1-1": "ZpmJrR88CUPJr5urmclGbz6Kaiy2"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group41",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

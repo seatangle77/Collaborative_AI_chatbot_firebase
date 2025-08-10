@@ -9,5 +9,13 @@
     "Nancy2-1": "o3HwvXGoK1c0YijZBEgzeXF8CyP2",
     "Jackie2": "BX66CtpTzMMwjWRqn2DN80Sv6w22",
     "Jackie2-1": "BX66CtpTzMMwjWRqn2DN80Sv6w22"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group82",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

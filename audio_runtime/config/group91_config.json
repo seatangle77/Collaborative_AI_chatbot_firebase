@@ -9,5 +9,13 @@
     "Carlos1-1": "4eQQ5Xg9v2aX2mwu9LjvyhVylfl1",
     "Cibo1": "XbHBiiT7MnTSoKGj53djuVSoaJt1",
     "Cibo1-1": "XbHBiiT7MnTSoKGj53djuVSoaJt1"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group91",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

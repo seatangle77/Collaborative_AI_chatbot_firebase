@@ -1,3 +1,4 @@
+import json
 import re
 import uuid
 from datetime import datetime, timedelta, timezone
@@ -66,20 +67,12 @@ def txt_to_firestore_entries(txt_path, group_key, group_id, session_id, user_map
         }
         # 写入 Firestore
         # firestore.client().collection("speech_transcripts_offline").document(entry["transcript_id"]).set(entry)
-        print(f"✅ 已写入: {entry}")
+        print(f"{entry}")
 
 if __name__ == "__main__":
     ...
-    base_data = {
-        "group_key": "group01",
-        "group_id": "99ea0701-f656-4960-83c4-0a09d39e856f",
-        "session_id": "5ab15191-a1e6-40ca-b3b7-1cb880c558e8",
-        "user_map": {
-            "0": {"speaker": "Terry", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2"},
-            "1": {"speaker": "Ally", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1"},
-            "2": {"speaker": "Shirao", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2"}
-        },
-        "base_time_str": "2025-07-30 14:52:18"
-    }
-    file_path = "D:/PythonProject/Collaborative_AI_chatbot_firebase/audio_runtime/offline_recognition/通用语音识别_海康_G01_无辅助_搞抽象.m4a.txt"
-    txt_to_firestore_entries(file_path,base_data['group_key'], base_data['group_id'], base_data['session_id'], base_data['user_map'], base_data['base_time_str'])
+    input_file = "./config/group01_config.json"
+    with open(input_file, 'r', encoding='utf-8') as f:
+        file_analysis_config = json.load(f)
+    file_path = file_analysis_config.get('file_path')
+    txt_to_firestore_entries(file_path,file_analysis_config['group_key'], file_analysis_config['group_id'], file_analysis_config['session_id'], file_analysis_config['user_map'], file_analysis_config['base_time_str'])

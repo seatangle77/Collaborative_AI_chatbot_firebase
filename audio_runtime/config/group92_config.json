@@ -9,5 +9,13 @@
     "Carlos2-1": "AdHfIAr9O0OqMCynNGUJpjcJvYS2",
     "Cibo2": "Su4hKpRk0kXmH6Em8ejz7vCeF2z2",
     "Cibo2-1": "Su4hKpRk0kXmH6Em8ejz7vCeF2z2"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group92",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

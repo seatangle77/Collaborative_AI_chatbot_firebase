@@ -9,5 +9,13 @@
     "Shirao1-1": "zN8ugpSZseMHty0la3MM9YKNGtj2",
     "Terry1": "AMgf8LZrTSdg03xY7HYfLsuhQjH2",
     "Terry1-1": "AMgf8LZrTSdg03xY7HYfLsuhQjH2"
-  }
+  },
+  "file_path": "./offline_recognition/通用语音识别_海康_G01_无辅助_搞抽象.m4a.txt",
+  "group_key": "group01",
+  "user_map": {
+        "0": {"speaker": "Terry", "user_id": "AMgf8LZrTSdg03xY7HYfLsuhQjH2"},
+        "1": {"speaker": "Ally", "user_id": "EMf4aBZbXzO4RL8xNwAf3BPmkFh1"},
+        "2": {"speaker": "Shirao", "user_id": "zN8ugpSZseMHty0la3MM9YKNGtj2"}
+    },
+  "base_time_str": "2025-07-30 14:52:18"
 }

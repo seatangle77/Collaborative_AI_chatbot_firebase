@@ -9,5 +9,13 @@
     "Ben1-1": "atOSTDkZqNZyiQUd9N5XYBf4j8j1",
     "Jasper1": "TQFdzZVRiBdb792pIWBbeboyCFB3",
     "Jasper1-1": "TQFdzZVRiBdb792pIWBbeboyCFB3"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group61",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

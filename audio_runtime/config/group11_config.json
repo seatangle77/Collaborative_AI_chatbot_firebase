@@ -9,5 +9,13 @@
     "Jessica1-1": "WHTowUjJBghcWeMg11sAEmJsj3Y2",
     "JieXu1": "6Ekn7fivMQajteeM5ApmZeIFY2V2",
     "JieXu1-1": "6Ekn7fivMQajteeM5ApmZeIFY2V2"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group11",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

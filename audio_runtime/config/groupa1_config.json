@@ -9,5 +9,13 @@
     "Daniel1-1": "rs6mL7XB2zdAQFf13bZfGdtAWt72",
     "Louis1": "PXv7YQkOShdVeaC9RCEPFi0Q3q23",
     "Louis1-1": "PXv7YQkOShdVeaC9RCEPFi0Q3q23"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "groupa1",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }

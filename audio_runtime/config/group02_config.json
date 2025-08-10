@@ -9,5 +9,13 @@
     "Shirao2-1": "MZUJn9gYieaq6mlXcFLOS34wEWe2",
     "Terry1": "CNadt8EaJkOm4C2rg5VAD0GlPyZ2",
     "Terry1-1": "CNadt8EaJkOm4C2rg5VAD0GlPyZ2"
-  }
+  },
+  "file_path": "./offline_recognition/",
+  "group_key": "group02",
+  "user_map": {
+        "0": {"speaker": "", "user_id": ""},
+        "1": {"speaker": "", "user_id": ""},
+        "2": {"speaker": "", "user_id": ""}
+    },
+  "base_time_str": ""
 }
